@@ -1,8 +1,0 @@
-# depslib dependency file v1.0
-1554193385 source:/home/fv/Escritorio/raid-humans2/main.cpp
-	<SFML/Graphics.hpp>
-	"juego.h"
-
-1554193434 /home/fv/Escritorio/raid-humans2/include/juego.h
-	<SFML/Graphics.hpp>
-
