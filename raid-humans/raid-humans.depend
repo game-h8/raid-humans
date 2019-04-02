@@ -9,3 +9,24 @@
 1554194999 source:/home/fv/Escritorio/Game-H8/raid-humans/raid-humans/src/juego.cpp
 	"../include/juego.h"
 
+1554228953 source:/home/fv/Escritorio/raid-humans/main.cpp
+	<SFML/Graphics.hpp>
+	"include/juego.h"
+	<player.h>
+
+1554236987 /home/fv/Escritorio/raid-humans/include/juego.h
+	<SFML/System/Clock.hpp>
+	<iostream>
+	<SFML/Graphics.hpp>
+	<player.h>
+
+1554237095 source:/home/fv/Escritorio/raid-humans/src/juego.cpp
+	"../include/juego.h"
+
+1554237118 source:/home/fv/Escritorio/raid-humans/src/player.cpp
+	"player.h"
+
+1554237071 /home/fv/Escritorio/raid-humans/include/player.h
+	<iostream>
+	<SFML/Graphics.hpp>
+

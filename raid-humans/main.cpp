@@ -1,10 +1,12 @@
 #include <SFML/Graphics.hpp>
 #include "include/juego.h"
+#include <player.h>
 using namespace std;
 using namespace sf;
 int main()
 {
     juego* game = new juego(Vector2u(800,600));
+
 
     /*
     // Create the main window
