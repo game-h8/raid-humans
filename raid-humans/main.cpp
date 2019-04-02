@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include "juego.h"
+#include "include/juego.h"
 using namespace std;
 using namespace sf;
 int main()
@@ -41,5 +41,5 @@ int main()
 
 
     */
-    return EXIT_SUCCESS;
+    return 0;
 }

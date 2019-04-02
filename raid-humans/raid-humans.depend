@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1554194853 source:/home/fv/Escritorio/Game-H8/raid-humans/raid-humans/main.cpp
+	<SFML/Graphics.hpp>
+	"include/juego.h"
+
+1554194708 /home/fv/Escritorio/Game-H8/raid-humans/raid-humans/include/juego.h
+	<SFML/Graphics.hpp>
+
+1554194999 source:/home/fv/Escritorio/Game-H8/raid-humans/raid-humans/src/juego.cpp
+	"../include/juego.h"
+
