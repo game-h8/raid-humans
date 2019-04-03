@@ -3,41 +3,30 @@
 
 Bala::Bala(float posX, float posY)
 {
-    if(!balaTex.loadFromFile("arrow.png")){
+    if(!balaTex.loadFromFile("bala.png")){
         std::cerr <<"Error al cargar la imagen de bala";
         exit(0);
     }
     balaSprite.setTexture(balaTex);
+    balaSprite.scale(0.02,0.02);
     balaSprite.setOrigin(sf::Vector2f(5.5,5.5));
+    nextPosX = posX;
+    nextPosY= posY;
 
-    float angle = atan2(posY - balaSprite.getPosition().y, posX - balaSprite.getPosition().x);
-    angle = angle * 180 / (atan(1) * 4);
-    sf::Vector2f newpos((cos(angle))*2, (sin(angle))*2);
 
-    direccion = newpos;
-    cout << newpos;
     viva=true;
 }
 
 void Bala::disparar(){
 float speed=1.5;
-/*
-    switch(direccion) {
-        case 'r':
-            bala.move(speed, 0);
-        break;
-        case 'l':
-            bala.move(-speed, 0);
-        break;
-        case 'd':
-            bala.move(0, speed);
-        break;
-        case 'u':
-            bala.move(0, -speed);
-        break;
-    }*/
 
-    balaSprite.move(direccion.x, direccion.y);
+    float angle = atan2(nextPosY - balaSprite.getPosition().y, nextPosX - balaSprite.getPosition().x);
+    angle = angle * 180 / (atan(1) * 4);
+    sf::Vector2f newpos((cos(angle))*2, (sin(angle))*2);
+
+    direccion = newpos;
+
+    balaSprite.move(direccion);
 
     /*float sX = balaSprite.getPosition().x - torreta.getPosX();
     float sY = balaSprite.getPosition().y - torreta.getPosY();

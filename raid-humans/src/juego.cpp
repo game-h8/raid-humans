@@ -83,6 +83,7 @@ vector<int> inputs= getInputs();                //Funcion para coger los botones
 Vector2f v = calcularVelocidadPlayer(inputs);   //Calculamos la direccion de la velocidad dependiendo de las teclas pulsadas
 jugador->movePlayer(v,elapsedTime);             //Calculamos la posicion inicial y final deljugador y lo movemos
 
+
 }
 
 
@@ -96,6 +97,14 @@ dibujarSelector();
 //Recorrer el vector de torretas y dibujar las torretas
 for(int i=0; i<vectorTorreta.size(); i++)
     vectorTorreta[i].draw(*ventana);
+
+for(int i=0; i<vectorBalas.size(); i++){
+    vectorBalas[i].draw(*ventana);
+    vectorBalas[i].disparar();
+    //vectorBalas[i].perseguir(enemigo.getPosX(), enemigo.getPosY());
+    //Si la bala colisiona con el enemigo, muere
+    //enemigo.colisionBala(vectorBalas[i]);
+}
 jugador->render(percentick, *ventana);
 ventana->display();
 
@@ -258,9 +267,9 @@ void juego::disparar(){
 
     //Recorro el vector de torretas, las cuales dispararan al centro del mapa cada x tiempo
     for(int i=0; i<vectorTorreta.size(); i++){
-        Bala nuevaBala(jugador->x, jugador->y);
-        nuevaBala.setPos(sf::Vector2f(vectorTorreta[i].getX(), vectorTorreta[i].getY()));
-        vectorBalas.push_back(nuevaBala);
+        Bala * nuevaBala = new Bala(jugador->x, jugador->y);
+        nuevaBala->setPos(sf::Vector2f(vectorTorreta[i].getX(), vectorTorreta[i].getY()));
+        vectorBalas.push_back(*nuevaBala);
     }
 
      for(int i=0; i<vectorBalas.size(); i++){

@@ -11,6 +11,8 @@ class Bala
     public:
         sf::Vector2f direccion;
         bool viva;
+        float nextPosX;
+        float nextPosY;
         Bala(float posX, float posY);
         void disparar();
         void setPos(sf::Vector2f newPos);
