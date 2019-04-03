@@ -74,6 +74,3 @@ ventana.draw(pSprite);
 
 
 
-
-
-

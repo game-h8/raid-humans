@@ -1,16 +1,27 @@
 #include "../include/Bala.h"
+#include <iostream>
 
-Bala::Bala(char dir)
+Bala::Bala(float posX, float posY)
 {
-    bala.setSize(sf::Vector2f(5.f,5.f));
-    sf::Color color(255, 255, 0);
-    bala.setFillColor(color);
-    direccion = dir;
+    if(!balaTex.loadFromFile("arrow.png")){
+        std::cerr <<"Error al cargar la imagen de bala";
+        exit(0);
+    }
+    balaSprite.setTexture(balaTex);
+    balaSprite.setOrigin(sf::Vector2f(5.5,5.5));
+
+    float angle = atan2(posY - balaSprite.getPosition().y, posX - balaSprite.getPosition().x);
+    angle = angle * 180 / (atan(1) * 4);
+    sf::Vector2f newpos((cos(angle))*2, (sin(angle))*2);
+
+    direccion = newpos;
+    cout << newpos;
     viva=true;
 }
-/*
-void Bala::disparar(float speed, Torreta torreta){
 
+void Bala::disparar(){
+float speed=1.5;
+/*
     switch(direccion) {
         case 'r':
             bala.move(speed, 0);
@@ -24,39 +35,35 @@ void Bala::disparar(float speed, Torreta torreta){
         case 'u':
             bala.move(0, -speed);
         break;
-    }
+    }*/
 
-    float sX = bala.getPosition().x - torreta.getPosX();
-    float sY = bala.getPosition().y - torreta.getPosY();
+    balaSprite.move(direccion.x, direccion.y);
+
+    /*float sX = balaSprite.getPosition().x - torreta.getPosX();
+    float sY = balaSprite.getPosition().y - torreta.getPosY();
 
     if (sX > 320 || sX < -320 || sY > 240 || sY < -240 )
     {
         viva = false;
     }
-
-}
 */
+}
+
 void Bala::setPos(sf::Vector2f newPos){
-    bala.setPosition(newPos);
+    balaSprite.setPosition(newPos);
 }
-int Bala::getLeft(){
-    return bala.getPosition().x;
+int Bala::getX(){
+    return balaSprite.getPosition().x;
 }
-int Bala::getTop(){
-    return bala.getPosition().y;
-}
-int Bala::getBottom(){
-    return bala.getPosition().y + bala.getSize().y;
-}
-int Bala::getRight(){
-    return bala.getPosition().x + bala.getSize().x;
+int Bala::getY(){
+    return balaSprite.getPosition().y;
 }
 sf::FloatRect Bala::getGlobal(){
-    return bala.getGlobalBounds();
+    return balaSprite.getGlobalBounds();
 }
 void Bala::draw(sf::RenderWindow &Window){
-    if(viva)
-        Window.draw(bala);
+    //if(viva)
+        Window.draw(balaSprite);
 }
 
 Bala::~Bala()

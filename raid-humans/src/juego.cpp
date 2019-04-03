@@ -134,7 +134,7 @@ vector<int> data;
                 addTorreta();
             }
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-                //disparando=true;
+                disparar();
             }
 
             Vector2i position = Mouse::getPosition(*ventana);
@@ -252,5 +252,22 @@ void juego::addTorreta(){
     //Anade la torreta creada al vector de torretas
     vectorTorreta.push_back(*torreta);
 
+}
 
+void juego::disparar(){
+
+    //Recorro el vector de torretas, las cuales dispararan al centro del mapa cada x tiempo
+    for(int i=0; i<vectorTorreta.size(); i++){
+        Bala nuevaBala(jugador->x, jugador->y);
+        nuevaBala.setPos(sf::Vector2f(vectorTorreta[i].getX(), vectorTorreta[i].getY()));
+        vectorBalas.push_back(nuevaBala);
+    }
+
+     for(int i=0; i<vectorBalas.size(); i++){
+        vectorBalas[i].draw(*ventana);
+        vectorBalas[i].disparar();
+        //vectorBalas[i].perseguir(enemigo.getPosX(), enemigo.getPosY());
+        //Si la bala colisiona con el enemigo, muere
+        //enemigo.colisionBala(vectorBalas[i]);
+     }
 }

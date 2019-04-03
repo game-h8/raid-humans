@@ -29,6 +29,7 @@ class player
 
 
 
+
     Vector2f movePlayer(Vector2f a, float time);
     void render(float ticks, RenderWindow& ventana);
 

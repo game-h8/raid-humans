@@ -24,6 +24,7 @@ class juego
         Vector2f calcularVelocidadPlayer(vector<int> inputs);
         void dibujarSelector();
         void addTorreta();
+        void disparar();
 
     protected:
 
@@ -31,6 +32,7 @@ class juego
         RenderWindow * ventana;
         player * jugador;
         std::vector<Torreta> vectorTorreta;
+        std::vector<Bala> vectorBalas;
 };
 
 #endif // JUEGO_H

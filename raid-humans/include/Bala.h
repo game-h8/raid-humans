@@ -1,25 +1,27 @@
 #ifndef BALA_H
 #define BALA_H
 #include <SFML/Graphics.hpp>
+#include "player.h"
+#include <math.h>
 
 class Torreta;
+class player;
 class Bala
 {
     public:
-        char direccion;
+        sf::Vector2f direccion;
         bool viva;
-        Bala(char dir);
-        void disparar(float speed, Torreta torreta);
+        Bala(float posX, float posY);
+        void disparar();
         void setPos(sf::Vector2f newPos);
-        int getLeft();
-        int getTop();
-        int getBottom();
-        int getRight();
+        int getY();
+        int getX();
         sf::FloatRect getGlobal();
         void draw(sf::RenderWindow &Window);
         virtual ~Bala();
     private:
-        sf::RectangleShape bala;
+        sf::Texture balaTex;
+        sf::Sprite balaSprite;
 };
 
 #endif // BALA_H
