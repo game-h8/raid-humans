@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1554276008 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/main.cpp
+	<SFML/Graphics.hpp>
+	<iostream>
+	"Bala.h"
+	"Torreta.h"
+	<vector>
+
+1554276026 /home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/include/Bala.h
+	<SFML/Graphics.hpp>
+
+1554276103 /home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/include/Torreta.h
+	<SFML/Graphics.hpp>
+	<iostream>
+
+1554276088 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/Bala.cpp
+	"Bala.h"
+
