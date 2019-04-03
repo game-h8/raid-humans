@@ -9,13 +9,7 @@ int main()
 {
     // Create the main window
     sf::RenderWindow app(sf::VideoMode(800, 600), "SFML window");
-/*
-    // Load a sprite to display
-    sf::Texture texture;
-    if (!texture.loadFromFile("cb.bmp"))
-        return EXIT_FAILURE;
-    sf::Sprite sprite(texture);
-*/
+
     //definir rectangulo, para selector
     sf::RectangleShape selector(sf::Vector2f(30.f, 30.f));
     sf::Color trasnparente(0, 0, 0, 1); //Cuadrado transparente
@@ -31,7 +25,6 @@ int main()
 
     //Defino vector donde iran las torretas
     std::vector<Torreta> vectorTorreta;
-
 
     bool disparando = false;
 
@@ -72,7 +65,6 @@ int main()
                 ponerTorreta = false;
              }
 
-
         //Dibujar selector en el mapa para poner la torreta donde marque
 
         //Obtener coordenadas de la ventana
@@ -93,9 +85,6 @@ int main()
         selector.setPosition(i*32.f ,j*32.f);
 
         }
-
-
-
 
         // Clear screen
         app.clear();
