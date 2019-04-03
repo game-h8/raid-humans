@@ -1,4 +1,4 @@
-#include "Bala.h"
+#include "../include/Bala.h"
 
 Bala::Bala(char dir)
 {

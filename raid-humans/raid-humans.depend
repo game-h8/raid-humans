@@ -1,18 +1,41 @@
 # depslib dependency file v1.0
-1554276008 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/main.cpp
+1554279202 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/main.cpp
+	<SFML/Graphics.hpp>
+	"include/juego.h"
+	"include/player.h"
+	"include/Bala.h"
+	"include/Torreta.h"
+	<vector>
+
+1554277362 /home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/include/Bala.h
+	<SFML/Graphics.hpp>
+
+1554277362 /home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/include/Torreta.h
 	<SFML/Graphics.hpp>
 	<iostream>
+
+1554279237 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/Bala.cpp
+	"../include/Bala.h"
+
+1554299740 /home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/include/juego.h
+	<SFML/System/Clock.hpp>
+	<iostream>
+	<SFML/Graphics.hpp>
+	"player.h"
 	"Bala.h"
 	"Torreta.h"
 	<vector>
 
-1554276026 /home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/include/Bala.h
-	<SFML/Graphics.hpp>
-
-1554276103 /home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/include/Torreta.h
-	<SFML/Graphics.hpp>
+1554277233 /home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/include/player.h
 	<iostream>
+	<SFML/Graphics.hpp>
 
-1554276088 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/Bala.cpp
-	"Bala.h"
+1554299940 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/juego.cpp
+	"../include/juego.h"
+
+1554299961 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/player.cpp
+	"../include/player.h"
+
+1554299971 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/Torreta.cpp
+	"../include/Torreta.h"
 

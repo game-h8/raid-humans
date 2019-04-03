@@ -1,4 +1,4 @@
-#include "Torreta.h"
+#include "../include/Torreta.h"
 
 Torreta::Torreta(std::string imgDirectory)
 {

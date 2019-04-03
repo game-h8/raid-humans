@@ -40,7 +40,15 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="cb.bmp" />
+		<Unit filename="include/Bala.h" />
+		<Unit filename="include/Torreta.h" />
+		<Unit filename="include/juego.h" />
+		<Unit filename="include/player.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Bala.cpp" />
+		<Unit filename="src/Torreta.cpp" />
+		<Unit filename="src/juego.cpp" />
+		<Unit filename="src/player.cpp" />
 		<Extensions>
 			<envvars />
 			<code_completion />
