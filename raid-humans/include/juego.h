@@ -8,6 +8,7 @@
 #include "player.h"
 #include "Bala.h"
 #include "Torreta.h"
+#include "enemigos.h"
 #include <vector>
 
 using namespace sf;
@@ -33,6 +34,8 @@ class juego
         player * jugador;
         std::vector<Torreta> vectorTorreta;
         std::vector<Bala> vectorBalas;
+        std::vector<enemigos> enemigosFuera; //vector de enemigos que se encuentran en pantalla
+        std::vector<enemigos>enemigosEspera; //vector de enemigos para hacer spawn*/
 };
 
 #endif // JUEGO_H

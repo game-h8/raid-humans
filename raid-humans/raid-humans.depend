@@ -22,20 +22,21 @@
 	<iostream>
 	<math.h>
 
-1554304081 /home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/include/juego.h
+1554471016 /home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/include/juego.h
 	<SFML/System/Clock.hpp>
 	<iostream>
 	<SFML/Graphics.hpp>
 	"player.h"
 	"Bala.h"
 	"Torreta.h"
+	"enemigos.h"
 	<vector>
 
 1554305841 /home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/include/player.h
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1554450787 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/juego.cpp
+1554471599 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/juego.cpp
 	"../include/juego.h"
 
 1554393928 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/player.cpp
@@ -43,4 +44,11 @@
 
 1554451172 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/Torreta.cpp
 	"../include/Torreta.h"
+
+1554420570 /home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/include/enemigos.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1554471032 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/enemigos.cpp
+	"../include/enemigos.h"
 

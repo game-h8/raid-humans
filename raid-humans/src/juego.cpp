@@ -2,7 +2,7 @@
 
 
 
-
+#define SPAWN_SPEED 3000
 #define UPDATE_TICK_TIME 1000/15
 #define kVel 100
 
@@ -18,7 +18,19 @@ inicializar();
     Time tiempo = clock.getElapsedTime();
 
 
+    //variables de tiempo para el spawn
+    Clock clockSpawn;
+    Time tiempoSpawn = clock.getElapsedTime();
 
+    enemigos ene1(100,100);
+    enemigos ene2(100,100);
+    enemigos ene3(100,100);
+    enemigos ene4(100,100);
+
+    enemigosEspera.push_back(ene1);
+    enemigosEspera.push_back(ene2);
+    enemigosEspera.push_back(ene3);
+    enemigosEspera.push_back(ene4);
 
 
  while(ventana->isOpen()){
@@ -38,6 +50,21 @@ inicializar();
 
 
          }
+         //temporizador para generar enemigos
+         if(clockSpawn.getElapsedTime().asMilliseconds() - tiempoSpawn.asMilliseconds() > SPAWN_SPEED){
+
+            tiempoSpawn = clockSpawn.getElapsedTime();
+            if (enemigosEspera.empty()==false) {
+                enemigosFuera.push_back(enemigosEspera.at(enemigosEspera.size()-1));
+                enemigosEspera.pop_back();
+            }
+            //le damos un objetivo al enemigo
+            Vector2f obj(100.f,700.f);
+            enemigosFuera.at(enemigosFuera.size()-1).setObjetivo(obj);
+
+
+         }
+
 float timeElapsed=updateCLock.getElapsedTime().asMilliseconds();
 float tiempoRefresco = UPDATE_TICK_TIME;                                   //Hay un bug que si utilizas el  UPDATE TIME directamente no hace la division bien
 
@@ -76,6 +103,13 @@ for(int i=0; i<vectorBalas.size(); i++){
     vectorBalas[i].disparar(elapsedTime);
 }
 
+//movimiento enemigo
+if (enemigosFuera.empty()==false) {
+    for (int i=0;i<enemigosFuera.size();i++) {
+        enemigosFuera.at(i).moveEnemy(elapsedTime);
+    }
+}
+
 }
 
 
@@ -93,6 +127,12 @@ for(int i=0; i<vectorBalas.size(); i++){
     vectorBalas[i].render(percentick, *ventana);
 }
 jugador->render(percentick, *ventana);
+
+if (enemigosFuera.empty()==false) {
+    for (int i=0;i<enemigosFuera.size();i++) {
+        enemigosFuera.at(i).render(percentick, *ventana);
+    }
+}
 ventana->display();
 
 
@@ -255,15 +295,28 @@ void juego::disparar(){
     //Recorro el vector de torretas, las cuales dispararan al enemigo mas cercano
     for(int i=0; i<vectorTorreta.size(); i++){
         float angle=0;
+        float enemigoX=0;//Variables para pasar a la nueva bala, con la pos del enemigo mas cercano
+        float enemigoY=0;
+        float dist=10000;
         /*FUNCION PARA CALCULAR EL ENEMIGO MAS CERCANO cogiendo el vector de los enemigos Y PASARLE LA POSICION A LA NUEVA BALA
           IF HAY ALGUN ENEMIGO le paso la posicion ELSE no creo la bala */
-        if(jugador!=NULL){
-            Bala * nuevaBala = new Bala(jugador->x, jugador->y);
+        if(!enemigosFuera.empty()){//Si hay enemigos
+            for(int j=0; j<enemigosFuera.size(); j++){//Recorro el vector de enemigos
+                if(enemigosFuera[j].x>0){//Si en esa pos del vector hay un enemigo
+                    //Calcular distancia entre enemigo y torreta
+                    float newDist=sqrt(pow(vectorTorreta[i].getX()-enemigosFuera[j].x,2) + pow(vectorTorreta[i].getY()-enemigosFuera[j].y,2));
+                    if(newDist < dist){
+                        dist=newDist;//si la nueva distancia es menor que la anterior, sera la nueva distancia
+                        enemigoX=enemigosFuera[j].x;//Asignamos las coordenadas de ese enemigo a nuestras variables
+                        enemigoY=enemigosFuera[j].y;
+                    }
+                }
+            }
+            Bala * nuevaBala = new Bala(enemigoX, enemigoY);
             angle = nuevaBala->setPos(sf::Vector2f(vectorTorreta[i].getX(), vectorTorreta[i].getY()));
             vectorBalas.push_back(*nuevaBala);
             vectorTorreta[i].rotarTorreta(angle);
         }
-
     }
 
 }
