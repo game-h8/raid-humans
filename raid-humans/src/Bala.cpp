@@ -30,6 +30,13 @@ void Bala::disparar(float time){
     x=x+direccion.x*speed*time;
     y=y+direccion.y*speed*time;
 
+    if(abs(getX())<800 && abs(getY()) < 600){
+        viva = true;
+    }
+    else{
+        viva = false;
+    }
+
 
 /*
     float sX = x - torreta.getPosX();
@@ -65,7 +72,10 @@ sf::FloatRect Bala::getGlobal(){
 void Bala::render(float ticks, sf::RenderWindow &Window){
     //if(viva)
     balaSprite.setPosition(xlast*(1-ticks) + x*ticks,ylast*(1-ticks)+y*ticks);
+    std:: cout<< viva << std::endl;
+    if(viva){
         Window.draw(balaSprite);
+    }
 }
 
 Bala::~Bala()

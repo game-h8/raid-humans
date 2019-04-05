@@ -52,3 +52,56 @@
 1554471032 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/enemigos.cpp
 	"../include/enemigos.h"
 
+1554300491 source:/home/fv/Escritorio/raid-humans/raid-humans/main.cpp
+	<SFML/Graphics.hpp>
+	"include/juego.h"
+	"include/player.h"
+	"include/Bala.h"
+	"include/Torreta.h"
+	<vector>
+
+1554473409 /home/fv/Escritorio/raid-humans/raid-humans/include/juego.h
+	<SFML/System/Clock.hpp>
+	<iostream>
+	<SFML/Graphics.hpp>
+	"player.h"
+	"Bala.h"
+	"Torreta.h"
+	"enemigos.h"
+	<vector>
+
+1554473403 /home/fv/Escritorio/raid-humans/raid-humans/include/player.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1554467934 /home/fv/Escritorio/raid-humans/raid-humans/include/Bala.h
+	<SFML/Graphics.hpp>
+	"player.h"
+	<math.h>
+
+1554467934 /home/fv/Escritorio/raid-humans/raid-humans/include/Torreta.h
+	<SFML/Graphics.hpp>
+	<iostream>
+	<math.h>
+
+1554473409 /home/fv/Escritorio/raid-humans/raid-humans/include/enemigos.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1554473920 source:/home/fv/Escritorio/raid-humans/raid-humans/src/Bala.cpp
+	"../include/Bala.h"
+	<iostream>
+	<math.h>
+
+1554473409 source:/home/fv/Escritorio/raid-humans/raid-humans/src/juego.cpp
+	"../include/juego.h"
+
+1554473403 source:/home/fv/Escritorio/raid-humans/raid-humans/src/player.cpp
+	"../include/player.h"
+
+1554467934 source:/home/fv/Escritorio/raid-humans/raid-humans/src/Torreta.cpp
+	"../include/Torreta.h"
+
+1554473409 source:/home/fv/Escritorio/raid-humans/raid-humans/src/enemigos.cpp
+	"../include/enemigos.h"
+

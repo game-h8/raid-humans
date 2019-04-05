@@ -268,7 +268,9 @@ void juego::dibujarSelector(){
 
         //Dibujar el selector en el cuadrado de la matriz
         selector.setPosition(i*32.f ,j*32.f);
+
         ventana->draw(selector);
+
 
 }
 
@@ -283,12 +285,15 @@ void juego::addTorreta(){
     int i = (posicionX/32);
     int j = (posicionY/32);
 
-    //Crea la clase torreta dandole un tamanio
-    Torreta* torreta = new Torreta("ballesta.png");
-    //Coloca la torreta en una posicion llamando a una funcion que hemos creado en la clase torreta setPos
-    torreta->setPos(sf::Vector2f(i*32.f ,j*32.f));
-    //Anade la torreta creada al vector de torretas
-    vectorTorreta.push_back(*torreta);
+    //CAMBIAR CUANDO TENGAMOS EL MAPA
+    if(i >= 0 && j >= 0 && i <= 24 && j <= 18){
+        //Crea la clase torreta dandole un tamanio
+        Torreta* torreta = new Torreta("ballesta.png");
+        //Coloca la torreta en una posicion llamando a una funcion que hemos creado en la clase torreta setPos
+        torreta->setPos(sf::Vector2f(i*32.f ,j*32.f));
+        //Anade la torreta creada al vector de torretas
+        vectorTorreta.push_back(*torreta);
+        }
 
 }
 
