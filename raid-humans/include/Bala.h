@@ -20,7 +20,7 @@ class Bala
         float angle;
         Bala(float posX, float posY);
         void disparar(float time);
-        void setPos(sf::Vector2f newPos);
+        float setPos(sf::Vector2f newPos);
         int getY();
         int getX();
         sf::FloatRect getGlobal();

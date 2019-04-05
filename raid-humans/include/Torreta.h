@@ -2,6 +2,7 @@
 #define TORRETA_H
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <math.h>
 
 class Torreta
 {
@@ -10,6 +11,7 @@ class Torreta
         int getX();
         int getY();
         void setPos(sf::Vector2f newPos);
+        void rotarTorreta(float angle);
         void draw(sf::RenderWindow &Window);
         ~Torreta();
     private:

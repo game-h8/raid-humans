@@ -19,7 +19,7 @@ Bala::Bala(float posX, float posY)
 
 void Bala::disparar(float time){
 
-    float speed=20;
+    float speed=200;
 
     sf::Vector2f newpos((cos(angle))*2, (sin(angle))*2);
     direccion = newpos;
@@ -27,8 +27,8 @@ void Bala::disparar(float time){
     xlast = x;
     ylast = y;
     //Avanzar a la siguiente posicion
-    x=x+direccion.x*speed;
-    y=y+direccion.y*speed;
+    x=x+direccion.x*speed*time;
+    y=y+direccion.y*speed*time;
 
 
 /*
@@ -42,7 +42,7 @@ void Bala::disparar(float time){
 */
 }
 
-void Bala::setPos(sf::Vector2f newPos){
+float Bala::setPos(sf::Vector2f newPos){
     balaSprite.setPosition(newPos);
     x=newPos.x;
     y=newPos.y;
@@ -50,6 +50,8 @@ void Bala::setPos(sf::Vector2f newPos){
     ylast=newPos.y;
     //Calcular angulo hacia el que ira la bala
     angle = atan2(nextPosY - y, nextPosX - x);
+    balaSprite.setRotation(angle*180/M_PI +90);//Direccion de la bala
+    return angle;
 }
 int Bala::getX(){
     return balaSprite.getPosition().x;

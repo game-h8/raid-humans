@@ -50,6 +50,7 @@ float tiempoRefresco = UPDATE_TICK_TIME;                                   //Hay
  }
  delete ventana;
  delete jugador;
+
 }
 /*
 juego::~juego()
@@ -62,12 +63,6 @@ juego::~juego()
 
 void juego:: inicializar() { //inicializar las variables del juego
 
-    //INICIO PARTE DE TORRETA Y SELECTOR Y BALAS-------------------------------
-
-
-
-    bool disparando = false;
-    //FIN PARTE DE TORRETA Y SELECTOR Y BALAS--------------------------------
 
 }
 
@@ -79,9 +74,6 @@ Vector2f v = calcularVelocidadPlayer(inputs);   //Calculamos la direccion de la 
 jugador->movePlayer(v,elapsedTime);             //Calculamos la posicion inicial y final deljugador y lo movemos
 for(int i=0; i<vectorBalas.size(); i++){
     vectorBalas[i].disparar(elapsedTime);
-    //vectorBalas[i].perseguir(enemigo.getPosX(), enemigo.getPosY());
-    //Si la bala colisiona con el enemigo, muere
-    //enemigo.colisionBala(vectorBalas[i]);
 }
 
 }
@@ -97,12 +89,8 @@ dibujarSelector();
 //Recorrer el vector de torretas y dibujar las torretas
 for(int i=0; i<vectorTorreta.size(); i++)
     vectorTorreta[i].draw(*ventana);
-
 for(int i=0; i<vectorBalas.size(); i++){
     vectorBalas[i].render(percentick, *ventana);
-    //vectorBalas[i].perseguir(enemigo.getPosX(), enemigo.getPosY());
-    //Si la bala colisiona con el enemigo, muere
-    //enemigo.colisionBala(vectorBalas[i]);
 }
 jugador->render(percentick, *ventana);
 ventana->display();
@@ -264,11 +252,18 @@ void juego::addTorreta(){
 
 void juego::disparar(){
 
-    //Recorro el vector de torretas, las cuales dispararan al centro del mapa cada x tiempo
+    //Recorro el vector de torretas, las cuales dispararan al enemigo mas cercano
     for(int i=0; i<vectorTorreta.size(); i++){
-        Bala * nuevaBala = new Bala(jugador->x, jugador->y);
-        nuevaBala->setPos(sf::Vector2f(vectorTorreta[i].getX(), vectorTorreta[i].getY()));
-        vectorBalas.push_back(*nuevaBala);
+        float angle=0;
+        /*FUNCION PARA CALCULAR EL ENEMIGO MAS CERCANO cogiendo el vector de los enemigos Y PASARLE LA POSICION A LA NUEVA BALA
+          IF HAY ALGUN ENEMIGO le paso la posicion ELSE no creo la bala */
+        if(jugador!=NULL){
+            Bala * nuevaBala = new Bala(jugador->x, jugador->y);
+            angle = nuevaBala->setPos(sf::Vector2f(vectorTorreta[i].getX(), vectorTorreta[i].getY()));
+            vectorBalas.push_back(*nuevaBala);
+            vectorTorreta[i].rotarTorreta(angle);
+        }
+
     }
 
 }
