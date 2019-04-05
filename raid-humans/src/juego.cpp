@@ -3,6 +3,7 @@
 
 
 #define SPAWN_SPEED 3000
+#define SHOOT_SPEED 4000
 #define UPDATE_TICK_TIME 1000/15
 #define kVel 100
 
@@ -61,9 +62,10 @@ inicializar();
             //le damos un objetivo al enemigo
             Vector2f obj(100.f,700.f);
             enemigosFuera.at(enemigosFuera.size()-1).setObjetivo(obj);
-
-
+            disparar();
          }
+
+
 
 float timeElapsed=updateCLock.getElapsedTime().asMilliseconds();
 float tiempoRefresco = UPDATE_TICK_TIME;                                   //Hay un bug que si utilizas el  UPDATE TIME directamente no hace la division bien
