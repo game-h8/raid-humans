@@ -65,11 +65,6 @@ void juego:: inicializar() { //inicializar las variables del juego
     //INICIO PARTE DE TORRETA Y SELECTOR Y BALAS-------------------------------
 
 
-    //Defino vector donde meto todas las balas
-    std::vector<Bala> vectorBalas;
-
-    //Defino vector donde iran las torretas
-    std::vector<Torreta> vectorTorreta;
 
     bool disparando = false;
     //FIN PARTE DE TORRETA Y SELECTOR Y BALAS--------------------------------
@@ -82,7 +77,12 @@ void juego:: update(float elapsedTime){
 vector<int> inputs= getInputs();                //Funcion para coger los botones que se pulsan
 Vector2f v = calcularVelocidadPlayer(inputs);   //Calculamos la direccion de la velocidad dependiendo de las teclas pulsadas
 jugador->movePlayer(v,elapsedTime);             //Calculamos la posicion inicial y final deljugador y lo movemos
-
+for(int i=0; i<vectorBalas.size(); i++){
+    vectorBalas[i].disparar(elapsedTime);
+    //vectorBalas[i].perseguir(enemigo.getPosX(), enemigo.getPosY());
+    //Si la bala colisiona con el enemigo, muere
+    //enemigo.colisionBala(vectorBalas[i]);
+}
 
 }
 
@@ -99,8 +99,7 @@ for(int i=0; i<vectorTorreta.size(); i++)
     vectorTorreta[i].draw(*ventana);
 
 for(int i=0; i<vectorBalas.size(); i++){
-    vectorBalas[i].draw(*ventana);
-    vectorBalas[i].disparar();
+    vectorBalas[i].render(percentick, *ventana);
     //vectorBalas[i].perseguir(enemigo.getPosX(), enemigo.getPosY());
     //Si la bala colisiona con el enemigo, muere
     //enemigo.colisionBala(vectorBalas[i]);
@@ -221,11 +220,11 @@ void juego::dibujarSelector(){
     //Dibujar selector en el mapa para poner la torreta donde marque
 
     //definir rectangulo, para selector
-    sf::RectangleShape selector(sf::Vector2f(30.f, 30.f));
+    sf::RectangleShape selector(sf::Vector2f(30.f, 32.f));
     sf::Color trasnparente(0, 0, 0, 1); //Cuadrado transparente
     selector.setFillColor(trasnparente);
     //Pintar borde del rectangulo, que sera e selector
-    selector.setOutlineThickness(4.f);
+    selector.setOutlineThickness(2.f);
     selector.setOutlineColor(sf::Color(255, 255, 255)); //Color blanco
 
         //Obtener coordenadas de la ventana
@@ -272,11 +271,4 @@ void juego::disparar(){
         vectorBalas.push_back(*nuevaBala);
     }
 
-     for(int i=0; i<vectorBalas.size(); i++){
-        vectorBalas[i].draw(*ventana);
-        vectorBalas[i].disparar();
-        //vectorBalas[i].perseguir(enemigo.getPosX(), enemigo.getPosY());
-        //Si la bala colisiona con el enemigo, muere
-        //enemigo.colisionBala(vectorBalas[i]);
-     }
 }

@@ -13,13 +13,18 @@ class Bala
         bool viva;
         float nextPosX;
         float nextPosY;
+        float x;
+        float y;
+        float xlast;
+        float ylast;
+        float angle;
         Bala(float posX, float posY);
-        void disparar();
+        void disparar(float time);
         void setPos(sf::Vector2f newPos);
         int getY();
         int getX();
         sf::FloatRect getGlobal();
-        void draw(sf::RenderWindow &Window);
+        void render(float ticks, sf::RenderWindow &Window);
         virtual ~Bala();
     private:
         sf::Texture balaTex;

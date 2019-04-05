@@ -1,5 +1,6 @@
 #include "../include/Bala.h"
 #include <iostream>
+#include <math.h>
 
 Bala::Bala(float posX, float posY)
 {
@@ -13,23 +14,26 @@ Bala::Bala(float posX, float posY)
     nextPosX = posX;
     nextPosY= posY;
 
-
     viva=true;
 }
 
-void Bala::disparar(){
-float speed=1.5;
+void Bala::disparar(float time){
 
-    float angle = atan2(nextPosY - balaSprite.getPosition().y, nextPosX - balaSprite.getPosition().x);
-    angle = angle * 180 / (atan(1) * 4);
+    float speed=20;
+
     sf::Vector2f newpos((cos(angle))*2, (sin(angle))*2);
-
     direccion = newpos;
 
-    balaSprite.move(direccion);
+    xlast = x;
+    ylast = y;
+    //Avanzar a la siguiente posicion
+    x=x+direccion.x*speed;
+    y=y+direccion.y*speed;
 
-    /*float sX = balaSprite.getPosition().x - torreta.getPosX();
-    float sY = balaSprite.getPosition().y - torreta.getPosY();
+
+/*
+    float sX = x - torreta.getPosX();
+    float sY = y - torreta.getPosY();
 
     if (sX > 320 || sX < -320 || sY > 240 || sY < -240 )
     {
@@ -40,6 +44,12 @@ float speed=1.5;
 
 void Bala::setPos(sf::Vector2f newPos){
     balaSprite.setPosition(newPos);
+    x=newPos.x;
+    y=newPos.y;
+    xlast=newPos.x;
+    ylast=newPos.y;
+    //Calcular angulo hacia el que ira la bala
+    angle = atan2(nextPosY - y, nextPosX - x);
 }
 int Bala::getX(){
     return balaSprite.getPosition().x;
@@ -50,12 +60,13 @@ int Bala::getY(){
 sf::FloatRect Bala::getGlobal(){
     return balaSprite.getGlobalBounds();
 }
-void Bala::draw(sf::RenderWindow &Window){
+void Bala::render(float ticks, sf::RenderWindow &Window){
     //if(viva)
+    balaSprite.setPosition(xlast*(1-ticks) + x*ticks,ylast*(1-ticks)+y*ticks);
         Window.draw(balaSprite);
 }
 
 Bala::~Bala()
 {
-    //dtor
+    //delete balaSprite;
 }

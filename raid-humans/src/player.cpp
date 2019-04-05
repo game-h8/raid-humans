@@ -24,6 +24,8 @@ player::player(string imgDirectory,float x2, float y2)
 
     x=x2;
     y=y2;
+    xlast=x2;
+    ylast=y2;
 
 
 
@@ -58,7 +60,7 @@ ylast=y;
 Vector2f pos;
 pos.x=xlast;
 pos.y=ylast;
- pSprite.setPosition(pos);
+pSprite.setPosition(pos);
     return pos;
 
 

@@ -7,7 +7,7 @@
 	"include/Torreta.h"
 	<vector>
 
-1554311516 /home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/include/Bala.h
+1554448211 /home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/include/Bala.h
 	<SFML/Graphics.hpp>
 	"player.h"
 	<math.h>
@@ -16,9 +16,10 @@
 	<SFML/Graphics.hpp>
 	<iostream>
 
-1554311192 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/Bala.cpp
+1554448101 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/Bala.cpp
 	"../include/Bala.h"
 	<iostream>
+	<math.h>
 
 1554304081 /home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/include/juego.h
 	<SFML/System/Clock.hpp>
@@ -33,12 +34,12 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1554310152 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/juego.cpp
+1554396873 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/juego.cpp
 	"../include/juego.h"
 
-1554305847 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/player.cpp
+1554393928 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/player.cpp
 	"../include/player.h"
 
-1554299971 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/Torreta.cpp
+1554396786 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/Torreta.cpp
 	"../include/Torreta.h"
 
