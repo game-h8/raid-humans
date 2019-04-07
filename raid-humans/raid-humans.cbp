@@ -39,8 +39,17 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="cb.bmp" />
-		<Unit filename="main.cpp" />
+		<Unit filename="Drawable.cpp" />
+		<Unit filename="Drawable.hpp" />
+		<Unit filename="PathAndObjects.png" />
+		<Unit filename="PathAndObjects.tsx" />
+		<Unit filename="TileMap.cpp" />
+		<Unit filename="TileMap.h" />
+		<Unit filename="mapa.cpp" />
+		<Unit filename="mapa.h" />
+		<Unit filename="mapaprueba.tmx" />
+		<Unit filename="tinyxml2.cpp" />
+		<Unit filename="tinyxml2.h" />
 		<Extensions>
 			<envvars />
 			<code_completion />
