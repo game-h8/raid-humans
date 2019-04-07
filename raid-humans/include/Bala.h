@@ -2,6 +2,7 @@
 #define BALA_H
 #include <SFML/Graphics.hpp>
 #include "player.h"
+#include "enemigos.h"
 #include <math.h>
 
 class Torreta;
@@ -24,6 +25,7 @@ class Bala
         int getY();
         int getX();
         sf::FloatRect getGlobal();
+        void colision(enemigos enemigo);
         void render(float ticks, sf::RenderWindow &Window);
         virtual ~Bala();
     private:

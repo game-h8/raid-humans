@@ -27,6 +27,7 @@ public:
         float danioEnemigo;
         float velocidad = 10;
 
+        sf::FloatRect getGlobal();
         Vector2f moveEnemy(float time);
         void render(float ticks, RenderWindow& ventana);
         void setObjetivo(Vector2f obj);

@@ -100,9 +100,17 @@ void juego:: update(float elapsedTime){
 
 vector<int> inputs= getInputs();                //Funcion para coger los botones que se pulsan
 Vector2f v = calcularVelocidadPlayer(inputs);   //Calculamos la direccion de la velocidad dependiendo de las teclas pulsadas
-jugador->movePlayer(v,elapsedTime);             //Calculamos la posicion inicial y final deljugador y lo movemos
+jugador->movePlayer(v,elapsedTime);
+//Calculamos la posicion inicial y final deljugador y lo movemos
 for(int i=0; i<vectorBalas.size(); i++){
     vectorBalas[i].disparar(elapsedTime);
+    for (int j=0;j<enemigosFuera.size();j++) {
+        vectorBalas[i].colision(enemigosFuera[j]);
+    }
+    if(!vectorBalas[i].viva){
+        vectorBalas.erase(vectorBalas.begin()+i);
+    }
+cout<<"Tamano vectorBalas: " <<vectorBalas.size() <<endl;
 }
 
 //movimiento enemigo
