@@ -4,12 +4,18 @@
 #include "include/Bala.h"
 #include "include/Torreta.h"
 #include <vector>
+#include "include/mapa.h"
 using namespace std;
 using namespace sf;
 int main()
 {
     juego* game = new juego(Vector2u(800,600));
 
+    /*
+    mapa mapa("resources/mapaprueba.tmx","resources/PathAndObjects.png");
+    mapa.setActivateLayer(0);
+    mapa.drawMapa(window);
+    */
 
     /*
     // Create the main window

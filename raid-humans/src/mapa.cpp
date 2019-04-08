@@ -6,37 +6,37 @@ using namespace tinyxml2;
 using namespace std;
 using namespace sf;
 
-mapa:mapa(){}
+mapa::mapa(){}
 
 mapa::~mapa(){}
 
 
 
-void mapa::setMapa()(){
+void mapa::setMapa(char *archivo, string urlTiles){
     //leemos el tmx
-    doc.LoadFile(archivo)
+    doc.LoadFile(archivo);
     cout<<"XML leido"<<endl;
     //empezamos a cargar sus params, map es lo 1o que nos encontramos en el xml
-    mapa = doc.FirstChildElement("map");
+    mapaXML = doc.FirstChildElement("map");
 
     _tileHeight = 0;
     _tileWidth  = 0;
 
     //leemos anchura y altura del mapa y los tiles
-    mapa->QueryIntAttribute("width",&_width);
-    mapa->QueryIntAttribute("height",&_height);
-    mapa->QueryIntAttribute("tilewidth",&_tileWidth);
-    mapa->QueryIntAttribute("tileheight",&_tileHeight);
+    mapaXML->QueryIntAttribute("width",&_width);
+    mapaXML->QueryIntAttribute("height",&_height);
+    mapaXML->QueryIntAttribute("tilewidth",&_tileWidth);
+    mapaXML->QueryIntAttribute("tileheight",&_tileHeight);
 
 
     // obtenemos tiles
-    imageTileset = mapa->FirstChildElement("tileset");
+    imageTileset = mapaXML->FirstChildElement("tileset");
     ficheroimg   = (string)imageTileset->FirstChildElement("image")->Attribute("source");
     imageTileset->QueryIntAttribute("tilewidth", &_tilesetWidth);
-    imageTileset->QueryIntAttribute("tileheight", &_tilesetHeight)
+    imageTileset->QueryIntAttribute("tileheight", &_tilesetHeight);
 
     // obtenemos la imagen del tileset
-    imagen = mapa->FirstChildElement("tileset")->FirstChildElement("image");
+    imagen = mapaXML->FirstChildElement("tileset")->FirstChildElement("image");
     imagen->QueryIntAttribute("width",&_imageWidth);
     imagen->QueryIntAttribute("height",&_imageHeight);
 
@@ -51,7 +51,7 @@ void mapa::setMapa()(){
     cout<<"Textura leida"<<endl;
 
     // leemos y obtenemos el numero de capas
-    layer = mapa->FirstChildElement("layer");
+    XMLElement *layer = mapaXML->FirstChildElement("layer");
     _numLayers = 0;
     while(layer){
         _numLayers++;
@@ -64,31 +64,31 @@ void mapa::setMapa()(){
     filas       = _tilesetTexture.getSize().y/_tileHeight;
     columnas    = _tilesetTexture.getSize().x/_tileWidth;
     posicion    = 0;
-    _tilesetSprite = new sf::Sprite[filas*columnas];// +1?
+    sf::Sprite _tilesetSprite[filas*columnas];// +1?
     int t = 0;
     for(int i = 0; i < filas; i++){
         for(int j = 0; j < columnas; j++){
             posicion++;
             _tilesetSprite[posicion].setTexture(_tilesetTexture);
-            _tilesetSprite[posicion].setTexture(sf::IntRect(j*_tileWidth,i*_tileHeight,_tileWidth,_tileHeight));//16*j,16*i,16,16
+            _tilesetSprite[posicion].setTextureRect(sf::IntRect(j*_tileWidth,i*_tileHeight,_tileWidth,_tileHeight));//16*j,16*i,16,16
         }
     }
-    colisionMap = new bool*[height];
-    for(int i = 0; i< height; i++){
-        colisionMap[i]=new bool[width];
+    colisionMap = new bool*[_height];
+    for(int i = 0; i< _height; i++){
+        colisionMap[i]=new bool[_width];
     }
-    int _tilemap[_numLayers][_height][_width];
+    int _tileMap[_numLayers][_height][_width];
     //cargamos los GUIDs
     XMLElement *data[_numLayers];
-    XMLElement *layer;
-    data[0] = mapa->FirstChildElement("layer")->FirstChildElement("data")->FirstChildElement("tile");
-    layer = mapa->FirstChildElement("layer");
-
-    for(int l=0,l<_numLayers;l++){
+            //XMLElement *layer;
+    data[0] = mapaXML->FirstChildElement("layer")->FirstChildElement("data")->FirstChildElement("tile");
+    layer = mapaXML->FirstChildElement("layer");
+    sf::String *nombreLayer=new sf::String[_numLayers];
+    for(int l=0;l<_numLayers;l++){
         nombreLayer[l]=(sf::String)layer->Attribute("name");
         for(int y=0;y<_height;y++){
             for(int x=0;x<_width;x++){
-                data[l]->QueryIntAttribute("gid",&_tilemap[l][y][x]);
+                data[l]->QueryIntAttribute("gid",&_tileMap[l][y][x]);
                 if(l==_numLayers-1){
                     if(_tileMap[l][y][x]!=0){
                         colisionMap[y][x]=true;
@@ -100,7 +100,7 @@ void mapa::setMapa()(){
             }
         }
         if(data[l]==0){
-            data[l+1]=layer->NexrtSiblingElement("layer")->FirstChildElement("data")->FirstChildElement("tile");
+            data[l+1]=layer->NextSiblingElement("layer")->FirstChildElement("data")->FirstChildElement("tile");
         }
     }
 //mapa loadSPrite
@@ -124,7 +124,7 @@ void mapa::setMapa()(){
     for(int l=0;l<_numLayers;l++){
         for(int y=0;y<_height;y++){
             for(int x=0;x<_width;x++){
-                gid = _tilemap[l][y][x]-1;
+                gid = _tileMap[l][y][x]-1;
                 if(gid>=filas*columnas){// if(gid>=_tilesetWidth*_tilesetHeight)?
                     cout<<"Error"<<endl;
                 }else if(gid>0){
@@ -141,7 +141,7 @@ void mapa::setMapa()(){
 void mapa::setActivateLayer(int layer){
     _activeLayer=layer;
 }
-void mapa::drawMapa(sf::RenderWindow& Window){
+void mapa::drawMapa(sf::RenderWindow &window){
     //for(int l=0;l<_numLayers;l++){
         for(int y=0;y<_height;y++){
             for(int x=0;x<_width;x++){

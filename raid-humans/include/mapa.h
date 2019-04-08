@@ -7,7 +7,7 @@ class mapa{
         mapa();
         ~mapa();
         void        setMapa(char *archivo, string urlTiles);
-        void        drawMapa();
+        void        drawMapa(sf::RenderWindow &window);
         void        setActivateLayer(int layer);
     private:
         int         _width;
@@ -18,7 +18,7 @@ class mapa{
         int         _tilesetHeight;
         int         _imageWidth;
         int         _imageHeight;
-        XMLElement  *mapa;
+        XMLElement  *mapaXML;
         XMLDocument doc;
         XMLElement  *imageTileset;
         XMLElement  *imagen;
@@ -32,7 +32,6 @@ class mapa{
         sf::Sprite  ****_tileMapSprite;
         int         gid;
         string      ficheroimg;
-        string      nombreLayer;
         int         _activeLayer;
-        bool        **colisionmap;
+        bool        **colisionMap;
 };
