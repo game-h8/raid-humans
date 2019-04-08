@@ -41,17 +41,18 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="Drawable.cpp" />
-		<Unit filename="Drawable.hpp" />
-		<Unit filename="PathAndObjects.png" />
-		<Unit filename="PathAndObjects.tsx" />
-		<Unit filename="TileMap.cpp" />
-		<Unit filename="TileMap.h" />
-		<Unit filename="mapa.cpp" />
-		<Unit filename="mapa.h" />
-		<Unit filename="mapaprueba.tmx" />
-		<Unit filename="tinyxml2.cpp" />
-		<Unit filename="tinyxml2.h" />
+		<Unit filename="cb.bmp" />
+		<Unit filename="include/Bala.h" />
+		<Unit filename="include/Torreta.h" />
+		<Unit filename="include/enemigos.h" />
+		<Unit filename="include/juego.h" />
+		<Unit filename="include/player.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="src/Bala.cpp" />
+		<Unit filename="src/Torreta.cpp" />
+		<Unit filename="src/enemigos.cpp" />
+		<Unit filename="src/juego.cpp" />
+		<Unit filename="src/player.cpp" />
 		<Extensions>
 			<envvars />
 			<code_completion />

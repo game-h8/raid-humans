@@ -1,5 +1,9 @@
 #include <SFML/Graphics.hpp>
-#include <juego.h>
+#include "include/juego.h"
+#include "include/player.h"
+#include "include/Bala.h"
+#include "include/Torreta.h"
+#include <vector>
 using namespace std;
 using namespace sf;
 int main()
@@ -44,3 +48,4 @@ int main()
     */
     return 0;
 }
+

@@ -1,4 +1,4 @@
-#include "enemigos.h"
+#include "../include/enemigos.h"
 
 using namespace sf;
 using namespace std;
@@ -111,7 +111,9 @@ Vector2f enemigos::moveEnemy(float time) {
 void enemigos::setObjetivo(Vector2f obj) {
     objetivo = obj;
 }
-
+sf::FloatRect enemigos::getGlobal(){
+    return eSprite.getGlobalBounds();
+}
 void enemigos::render(float ticks, RenderWindow &ventana) {
 
 eSprite.setPosition(xlast*(1-ticks) + x*ticks,ylast*(1-ticks)+y*ticks);

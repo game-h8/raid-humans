@@ -1,4 +1,4 @@
-#include <player.h>
+#include "../include/player.h"
 
 using namespace sf;
 using namespace std;
@@ -11,7 +11,7 @@ player::player(string imgDirectory,float x2, float y2)
 
     if (!pTexture.loadFromFile(imgDirectory))
     {
-        cerr << "Error cargando la imagen del jugador" << imgDirectory << endl;
+        cerr << "Error cargando la imagen" << imgDirectory << endl;
         exit(0);
 
     }
@@ -60,7 +60,7 @@ ylast=y;
 Vector2f pos;
 pos.x=xlast;
 pos.y=ylast;
- pSprite.setPosition(pos);
+pSprite.setPosition(pos);
     return pos;
 
 
@@ -73,9 +73,6 @@ void player:: render(float ticks, RenderWindow &ventana){
 pSprite.setPosition(xlast*(1-ticks) + x*ticks,ylast*(1-ticks)+y*ticks);
 ventana.draw(pSprite);
 }
-
-
-
 
 
 
