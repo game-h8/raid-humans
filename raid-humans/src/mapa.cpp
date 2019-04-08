@@ -1,4 +1,4 @@
-#include "mapa.h"
+#include "../include/mapa.h"
 #include <iostream>
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
