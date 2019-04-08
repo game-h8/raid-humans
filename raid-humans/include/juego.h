@@ -32,10 +32,10 @@ class juego
     private:
         RenderWindow * ventana;
         player * jugador;
-        std::vector<Torreta> vectorTorreta;
-        std::vector<Bala> vectorBalas;
-        std::vector<enemigos> enemigosFuera; //vector de enemigos que se encuentran en pantalla
-        std::vector<enemigos>enemigosEspera; //vector de enemigos para hacer spawn*/
+        vector<Torreta> vectorTorreta;
+        vector<Bala> vectorBalas;
+        vector<enemigos> enemigosFuera; //vector de enemigos que se encuentran en pantalla
+        vector<enemigos>enemigosEspera; //vector de enemigos para hacer spawn*/
 };
 
 #endif // JUEGO_H

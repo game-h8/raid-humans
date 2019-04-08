@@ -18,12 +18,12 @@
 	<iostream>
 	<math.h>
 
-1554649955 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/Bala.cpp
+1554746073 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/Bala.cpp
 	"../include/Bala.h"
 	<iostream>
 	<math.h>
 
-1554471016 /home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/include/juego.h
+1554746665 /home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/include/juego.h
 	<SFML/System/Clock.hpp>
 	<iostream>
 	<SFML/Graphics.hpp>
@@ -37,7 +37,7 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1554650044 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/juego.cpp
+1554746496 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/juego.cpp
 	"../include/juego.h"
 
 1554393928 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/player.cpp

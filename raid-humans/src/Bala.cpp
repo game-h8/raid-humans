@@ -13,7 +13,7 @@ Bala::Bala(float posX, float posY)
     balaSprite.setOrigin(sf::Vector2f(5.5,5.5));
     nextPosX = posX;
     nextPosY= posY;
-
+cout<<"Creo una bala. " <<endl;
     viva=true;
 }
 
@@ -31,20 +31,10 @@ void Bala::disparar(float time){
     y=y+direccion.y*speed*time;
 
 
-    if(x<0 || y < 0 || x>600 || y>800){
+    if(x<0 || y < 0 || x>800 || y>600){
         viva = false;
     }
 
-
-/*
-    float sX = x - torreta.getPosX();
-    float sY = y - torreta.getPosY();
-
-    if (sX > 320 || sX < -320 || sY > 240 || sY < -240 )
-    {
-        viva = false;
-    }
-*/
 }
 
 float Bala::setPos(sf::Vector2f newPos){

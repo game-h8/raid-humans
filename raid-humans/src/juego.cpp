@@ -62,6 +62,7 @@ inicializar();
             //le damos un objetivo al enemigo
             Vector2f obj(100.f,700.f);
             enemigosFuera.at(enemigosFuera.size()-1).setObjetivo(obj);
+
             disparar();
          }
 
@@ -301,7 +302,7 @@ void juego::addTorreta(){
         torreta->setPos(sf::Vector2f(i*32.f ,j*32.f));
         //Anade la torreta creada al vector de torretas
         vectorTorreta.push_back(*torreta);
-        }
+    }
 
 }
 
