@@ -1,4 +1,4 @@
-#include "player.h"
+#include <player.h>
 
 using namespace sf;
 using namespace std;
@@ -11,7 +11,7 @@ player::player(string imgDirectory,float x2, float y2)
 
     if (!pTexture.loadFromFile(imgDirectory))
     {
-        cerr << "Error cargando la imagen" << imgDirectory << endl;
+        cerr << "Error cargando la imagen del jugador" << imgDirectory << endl;
         exit(0);
 
     }
@@ -24,6 +24,8 @@ player::player(string imgDirectory,float x2, float y2)
 
     x=x2;
     y=y2;
+    xlast=x2;
+    ylast=y2;
 
 
 

@@ -30,3 +30,37 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
+1554391509 source:/home/juanmi/Documentos/raid-humans/raid-humans/main.cpp
+	<SFML/Graphics.hpp>
+	<juego.h>
+
+1554393055 /home/juanmi/Documentos/raid-humans/raid-humans/include/juego.h
+	<SFML/System/Clock.hpp>
+	<iostream>
+	<vector>
+	<stdlib.h>
+	<SFML/Graphics.hpp>
+	<player.h>
+	<enemigos.h>
+
+1554320792 /home/juanmi/Documentos/raid-humans/raid-humans/include/player.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1554396528 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/juego.cpp
+	<juego.h>
+
+1554392276 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/player.cpp
+	<player.h>
+
+1554378128 /home/juanmi/Documentos/raid-humans/raid-humans/include/enemigo.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1554396943 /home/juanmi/Documentos/raid-humans/raid-humans/include/enemigos.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1554396945 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/enemigos.cpp
+	"enemigos.h"
+
