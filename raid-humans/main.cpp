@@ -1,6 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include "include/juego.h"
-#include <player.h>
+#include <juego.h>
 using namespace std;
 using namespace sf;
 int main()
