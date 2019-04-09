@@ -143,13 +143,14 @@ for(int i=0; i<vectorTorreta.size(); i++)
 for(int i=0; i<vectorBalas.size(); i++){
     vectorBalas[i].render(percentick, *ventana);
 }
-jugador->render(percentick, *ventana);
+
 
 if (enemigosFuera.empty()==false) {
     for (int i=0;i<enemigosFuera.size();i++) {
         enemigosFuera.at(i).render(percentick, *ventana);
     }
 }
+jugador->render(percentick, *ventana);
 ventana->display();
 
 
