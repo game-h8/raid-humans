@@ -4,18 +4,20 @@
 
 
 #define UPDATE_TICK_TIME 1000/15
-#define kVel 100
+
 
 juego::juego(Vector2u resolucion)
 {
     //ctor
 inicializar();
  ventana = new RenderWindow(VideoMode(resolucion.x, resolucion.y), "Raid humans");
- jugador= new player("resources/sprites.png" ,500,400);
+
+ jugador= new player("resources/player.png" ,500,400);
 
     Clock clock;
     Clock updateCLock;
     Time tiempo = clock.getElapsedTime();
+
 
 
 
@@ -27,12 +29,16 @@ inicializar();
     {
 
         if (event.type == Event::Closed) ventana->close();
-
+        if (Keyboard::isKeyPressed(Keyboard::F6))
+            {
+                 jugador->toggleDebug();
+            }
     }
          if(clock.getElapsedTime().asMilliseconds() - tiempo.asMilliseconds() > UPDATE_TICK_TIME){
 
 
             update(updateCLock.restart().asSeconds());
+
             tiempo = clock.getElapsedTime();
 
 
@@ -42,7 +48,9 @@ float tiempoRefresco = UPDATE_TICK_TIME;                                   //Hay
 
    float percentick=min(1.f,timeElapsed/tiempoRefresco);
 
+
     renderizar(percentick);
+
 
 
 
@@ -69,8 +77,8 @@ void juego:: inicializar() { //inicializar las variables del juego
 void juego:: update(float elapsedTime){
 
 vector<int> inputs= getInputs();                //Funcion para coger los botones que se pulsan
-Vector2f v = calcularVelocidadPlayer(inputs);   //Calculamos la direccion de la velocidad dependiendo de las teclas pulsadas
-jugador->movePlayer(v,elapsedTime);             //Calculamos la posicion inicial y final deljugador y lo movemos
+jugador->calcularVelocidadPlayer(inputs,elapsedTime); //Calculamos la direccion de la velocidad dependiendo de las teclas pulsadas
+                                                    //Calculamos la posicion inicial y final deljugador y lo movemos
 
 }
 
@@ -80,7 +88,6 @@ void juego:: renderizar(float percentick){
 
 
 ventana->clear();
-
 jugador->render(percentick, *ventana);
 ventana->display();
 
@@ -116,6 +123,10 @@ vector<int> data;
                 data.push_back(0);
             }
 
+            if (Mouse::isButtonPressed(Mouse::Left)){
+                data.push_back(5);
+            }
+
             Vector2i position = Mouse::getPosition(*ventana);
 
             if(position.x > jugador->x){         //RATON MIRA DERECHA
@@ -145,36 +156,36 @@ v.y=0;
 
         case 8:
 
-         jugador->pSprite.setTextureRect(IntRect(0*75, 3*75, 75, 75));
+
             v.y-=kVel;
 
 
         break;
         case 4:
 
-          jugador->pSprite.setTextureRect(sf::IntRect(0*75, 2*75, 75, 75));
+          jugador->pSprite.setTextureRect(sf::IntRect(4, 8, 40, 60));
             v.x-=kVel;
 
         break;
         case 6 :
 
-         jugador->pSprite.setTextureRect(sf::IntRect(0*75, 2*75, 75, 75));                               //Escala por defecto
+         jugador->pSprite.setTextureRect(sf::IntRect(4, 8, 40, 60));                               //Escala por defecto
             v.x+=kVel;
 
         break;
         case 2 :
 
-         jugador->pSprite.setTextureRect(sf::IntRect(0*75, 0*75, 75, 75));
+
             v.y+=kVel;
 
         break;
         case 7 :
 
-            jugador->pSprite.setScale(1,1);
+            jugador->pSprite.setScale(-1,1);
         break;
         case 9 :
 
-            jugador->pSprite.setScale(-1,1);
+            jugador->pSprite.setScale(1,1);
         break;
 
 

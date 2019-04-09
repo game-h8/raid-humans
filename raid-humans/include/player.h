@@ -2,6 +2,10 @@
 #define PLAYER_H
 #include <iostream>
 #include<SFML/Graphics.hpp>
+#include <SFML/System/Clock.hpp>
+
+
+#define kVel 100
 
 using namespace sf;
 using namespace std;
@@ -17,6 +21,8 @@ class player
         virtual ~player();
 
         RectangleShape hitbox;
+        RectangleShape hitboxArma;
+
         Texture   pTexture;
         Sprite    pSprite;
         float     x;
@@ -24,19 +30,23 @@ class player
         float     xlast;
         float     ylast;
         Vector2f   vel;
+        int        estado;    //0-> reposo ,1-> movimiento, 2-> ataque (para renderizar)
 
 
 
 
 
     Vector2f movePlayer(Vector2f a, float time);
-    void render(float ticks, RenderWindow& ventana);
 
+    void render(float ticks, RenderWindow& ventana);
+    void calcularVelocidadPlayer(vector<int> inputs,float time);
+    void toggleDebug();
 
     protected:
     private:
 
-
+    Clock timejugador;
+    bool debug = false;
 
 
 };

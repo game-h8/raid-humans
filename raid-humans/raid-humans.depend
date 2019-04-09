@@ -30,3 +30,25 @@
 	<iostream>
 	<SFML/Graphics.hpp>
 
+1554393353 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/main.cpp
+	<SFML/Graphics.hpp>
+	"include/juego.h"
+	<player.h>
+
+1554236987 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/juego.h
+	<SFML/System/Clock.hpp>
+	<iostream>
+	<SFML/Graphics.hpp>
+	<player.h>
+
+1554760978 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/player.h
+	<iostream>
+	<SFML/Graphics.hpp>
+	<SFML/System/Clock.hpp>
+
+1554758296 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/player.cpp
+	"player.h"
+
+1554761149 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/juego.cpp
+	"../include/juego.h"
+
