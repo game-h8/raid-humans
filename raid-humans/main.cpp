@@ -5,8 +5,15 @@ using namespace std;
 using namespace sf;
 int main()
 {
-    juego* game = new juego(Vector2u(800,600));
+    juego* game = new juego(Vector2u(1200,800));
 
+
+
+    /*
+    mapa mapa("resources/mapaprueba.tmx","resources/PathAndObjects.png");
+    mapa.setActivateLayer(0);
+    mapa.drawMapa(window);
+    */
 
     /*
     // Create the main window
@@ -45,3 +52,4 @@ int main()
     */
     return 0;
 }
+
