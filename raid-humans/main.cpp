@@ -5,6 +5,7 @@ using namespace std;
 using namespace sf;
 int main()
 {
+<<<<<<< HEAD
     juego* game = new juego(Vector2u(1200,800));
 
 
@@ -15,6 +16,11 @@ int main()
     mapa.drawMapa(window);
     */
 
+=======
+    juego* game = new juego(Vector2u(800,600));
+
+
+>>>>>>> Enemigo(ataque,movimiento,yGenerar)
     /*
     // Create the main window
     sf::RenderWindow app(sf::VideoMode(800, 600), "SFML window");
