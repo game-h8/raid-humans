@@ -12,7 +12,7 @@ juego::juego(Vector2u resolucion)
     //ctor
 inicializar();
  ventana = new RenderWindow(VideoMode(resolucion.x, resolucion.y), "Raid humans");
- jugador= new player("resources/sprites.png" ,500,400);
+ jugador= new player("resources/player.png" ,500,400);
 
     Clock clock;
     Clock updateCLock;
@@ -45,7 +45,7 @@ inicializar();
             {
                  jugador->toggleDebug();
             }
-    
+
 
     }
          if(clock.getElapsedTime().asMilliseconds() - tiempo.asMilliseconds() > UPDATE_TICK_TIME){
@@ -185,7 +185,7 @@ vector<int> data;
             }
 
             if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-                
+
                 data.push_back(5);
             }
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){

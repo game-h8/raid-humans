@@ -160,16 +160,12 @@
 	<cstddef>
 	<cstdarg>
 
-1554794315 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/main.cpp
+1554796477 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/main.cpp
 	<SFML/Graphics.hpp>
 	"include/juego.h"
-	"include/player.h"
-	"include/Bala.h"
-	"include/Torreta.h"
-	<vector>
-	"include/mapa.h"
+	<player.h>
 
-1554794315 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/juego.h
+1554796198 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/juego.h
 	<SFML/System/Clock.hpp>
 	<iostream>
 	<SFML/Graphics.hpp>
@@ -179,9 +175,10 @@
 	"enemigos.h"
 	<vector>
 
-1554794315 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/player.h
+1554796322 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/player.h
 	<iostream>
 	<SFML/Graphics.hpp>
+	<SFML/System/Clock.hpp>
 
 1554794315 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/Bala.h
 	<SFML/Graphics.hpp>
@@ -235,7 +232,7 @@
 1554794315 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/enemigos.cpp
 	"../include/enemigos.h"
 
-1554794315 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/juego.cpp
+1554797462 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/juego.cpp
 	"../include/juego.h"
 
 1554794315 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/mapa.cpp
@@ -244,8 +241,8 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1554794315 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/player.cpp
-	"../include/player.h"
+1554797774 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/player.cpp
+	"player.h"
 
 1554794315 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/TileMap.cpp
 	"TileMap.h"
