@@ -98,12 +98,12 @@
 1554442284 source:/home/juanmi/Documentos/AtaqueEnemigo/gh8/raid-humans/src/player.cpp
 	<player.h>
 
-1554442278 source:/home/juanmi/Documentos/raid-humans/raid-humans/main.cpp
+1554797185 source:/home/juanmi/Documentos/raid-humans/raid-humans/main.cpp
 	<SFML/Graphics.hpp>
 	"include/juego.h"
 	<player.h>
 
-1554442284 /home/juanmi/Documentos/raid-humans/raid-humans/include/juego.h
+1554797934 /home/juanmi/Documentos/raid-humans/raid-humans/include/juego.h
 	<SFML/System/Clock.hpp>
 	<iostream>
 	<vector>
@@ -112,20 +112,23 @@
 	<player.h>
 	<enemigo.h>
 
-1554442282 /home/juanmi/Documentos/raid-humans/raid-humans/include/player.h
+1554797185 /home/juanmi/Documentos/raid-humans/raid-humans/include/player.h
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1554442284 /home/juanmi/Documentos/raid-humans/raid-humans/include/enemigo.h
+1554797185 /home/juanmi/Documentos/raid-humans/raid-humans/include/enemigo.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	<player.h>
 
-1554442284 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/juego.cpp
+1554797185 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/juego.cpp
 	<juego.h>
 	<cstddef>
 	<SFML/Graphics/Image.hpp>
 
-1554442284 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/player.cpp
+1554797185 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/player.cpp
 	<player.h>
+
+1554797185 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/enemigo.cpp
+	"enemigo.h"
 

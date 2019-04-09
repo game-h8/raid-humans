@@ -33,7 +33,7 @@ class juego
         RenderWindow * ventana;
         player * jugador;
         vector<enemigo> enemigosFuera; //vector de enemigos que se encuentran en pantalla
-        vector<enemigo>enemigosEspera; //vector de enemigos para hacer spawn*/
+        vector<enemigo>enemigosEspera; //vector de enemigos para hacer spawn
         Sprite dSprite;
         Texture dTexture;
 

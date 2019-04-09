@@ -28,10 +28,19 @@ inicializar();
     enemigo ene3(100,100);
     enemigo ene4(100,100);
 
+    enemigo ene5(700,100);
+    enemigo ene6(700,100);
+    enemigo ene7(700,100);
+    enemigo ene8(700,100);
+
     enemigosEspera.push_back(ene1);
     enemigosEspera.push_back(ene2);
     enemigosEspera.push_back(ene3);
     enemigosEspera.push_back(ene4);
+    enemigosEspera.push_back(ene5);
+    enemigosEspera.push_back(ene6);
+    enemigosEspera.push_back(ene7);
+    enemigosEspera.push_back(ene8);
 
     /*for (int i=0;i<4;i++) {
         enemigosEspera[i] = enemigo(100,100);

@@ -122,8 +122,8 @@ bool enemigo::ataque(player * p){
     return ataca;
 }
 
-void enemigo::setObjetivo(Vector2f obj) {
-    objetivo = obj;
+void enemigo::setObjetivo(Vector2f obj, Window& ventana) {
+    obj
 }
 
 void enemigo::render(float ticks, RenderWindow &ventana) {

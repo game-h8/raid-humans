@@ -32,7 +32,7 @@ public:
         Vector2f moveEnemy(float time);
         void render(float ticks, RenderWindow& ventana);
         bool ataque(player * p);
-        void setObjetivo(Vector2f obj);
+        void setObjetivo(Vector2f obj, Window& ventana);
 
 protected:
 private:
