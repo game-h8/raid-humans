@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include "../include/juego.h"
 
 
@@ -8,65 +7,32 @@
 #define UPDATE_TICK_TIME 1000/15
 #define kVel 100
 
-=======
-#include <juego.h>
-#include <cstddef>
-#include <SFML/Graphics/Image.hpp>
-
-#define UPDATE_TICK_TIME 1000/15
-#define SPAWN_SPEED 3000
-#define kVel 100
-
-using namespace std;
-
->>>>>>> Enemigo(ataque,movimiento,yGenerar)
 juego::juego(Vector2u resolucion)
 {
     //ctor
 inicializar();
  ventana = new RenderWindow(VideoMode(resolucion.x, resolucion.y), "Raid humans");
-<<<<<<< HEAD
  jugador= new player("resources/player.png" ,500,400);
-=======
- jugador= new player("resources/sprites.png" ,500,400);
->>>>>>> Enemigo(ataque,movimiento,yGenerar)
 
     Clock clock;
     Clock updateCLock;
     Time tiempo = clock.getElapsedTime();
 
-<<<<<<< HEAD
 
-=======
->>>>>>> Enemigo(ataque,movimiento,yGenerar)
     //variables de tiempo para el spawn
     Clock clockSpawn;
     Time tiempoSpawn = clock.getElapsedTime();
 
-<<<<<<< HEAD
     enemigos ene1(100,100);
     enemigos ene2(100,100);
     enemigos ene3(100,100);
     enemigos ene4(100,100);
-=======
-    enemigo ene1(100,100);
-    enemigo ene2(100,100);
-    enemigo ene3(100,100);
-    enemigo ene4(100,100);
->>>>>>> Enemigo(ataque,movimiento,yGenerar)
 
     enemigosEspera.push_back(ene1);
     enemigosEspera.push_back(ene2);
     enemigosEspera.push_back(ene3);
     enemigosEspera.push_back(ene4);
 
-<<<<<<< HEAD
-=======
-    /*for (int i=0;i<4;i++) {
-        enemigosEspera[i] = enemigo(100,100);
-    }*/
-
->>>>>>> Enemigo(ataque,movimiento,yGenerar)
 
  while(ventana->isOpen()){
 
@@ -75,14 +41,11 @@ inicializar();
     {
 
         if (event.type == Event::Closed) ventana->close();
-<<<<<<< HEAD
          if (Keyboard::isKeyPressed(Keyboard::F6))
             {
                  jugador->toggleDebug();
             }
 
-=======
->>>>>>> Enemigo(ataque,movimiento,yGenerar)
 
     }
          if(clock.getElapsedTime().asMilliseconds() - tiempo.asMilliseconds() > UPDATE_TICK_TIME){
@@ -105,16 +68,11 @@ inicializar();
             Vector2f obj(100.f,700.f);
             enemigosFuera.at(enemigosFuera.size()-1).setObjetivo(obj);
 
-<<<<<<< HEAD
             disparar();
          }
 
 
 
-=======
-
-         }
->>>>>>> Enemigo(ataque,movimiento,yGenerar)
 float timeElapsed=updateCLock.getElapsedTime().asMilliseconds();
 float tiempoRefresco = UPDATE_TICK_TIME;                                   //Hay un bug que si utilizas el  UPDATE TIME directamente no hace la division bien
 
@@ -127,10 +85,7 @@ float tiempoRefresco = UPDATE_TICK_TIME;                                   //Hay
  }
  delete ventana;
  delete jugador;
-<<<<<<< HEAD
 
-=======
->>>>>>> Enemigo(ataque,movimiento,yGenerar)
 }
 /*
 juego::~juego()
@@ -146,7 +101,6 @@ void juego:: inicializar() { //inicializar las variables del juego
 
 }
 
-<<<<<<< HEAD
 
 void juego:: update(float elapsedTime){
 
@@ -165,54 +119,14 @@ for(int i=0; i<vectorBalas.size(); i++){
     }
 cout<<"Tamano vectorBalas: " <<vectorBalas.size() <<endl;
 }
-=======
-/*void juego::meterEnemigosEspera() {
-
-    enemigosEspera->push_back(*enemigo1);
-    enemigosEspera->push_back(*enemigo2);
-    enemigosEspera->push_back(*enemigo3);
-    enemigosEspera->push_back(*enemigo4);
-
-}*/
-
-void juego:: update(float elapsedTime){
-
-//moviento jugador
-vector<int> inputs= getInputs();                //Funcion para coger los botones que se pulsan
-Vector2f v = calcularVelocidadPlayer(inputs);   //Calculamos la direccion de la velocidad dependiendo de las teclas pulsadas
-jugador->movePlayer(v,elapsedTime);            //Calculamos la posicion inicial y final deljugador y lo movemos
->>>>>>> Enemigo(ataque,movimiento,yGenerar)
 
 //movimiento enemigo
 if (enemigosFuera.empty()==false) {
     for (int i=0;i<enemigosFuera.size();i++) {
         enemigosFuera.at(i).moveEnemy(elapsedTime);
-<<<<<<< HEAD
     }
 }
 
-=======
-        enemigosFuera.at(i).ataque(jugador);
-        if(enemigosFuera.at(i).ataca==true){
-             if (!dTexture.loadFromFile("resources/hit.png")){
-                cerr << "Error cargando la imagen del golpe resources/sprites.png" << endl;
-                exit(0);
-
-            }
-
-
-            dSprite.setTexture(dTexture);
-            dSprite.setOrigin(17,48/2);
-            dSprite.setTextureRect(IntRect(0.1*35, 2.63*50, 28, 27));
-            dSprite.setPosition(jugador->xlast,jugador->ylast+25);
-        }else{
-        }
-    }
-}
-
-
-
->>>>>>> Enemigo(ataque,movimiento,yGenerar)
 }
 
 
@@ -221,7 +135,6 @@ void juego:: renderizar(float percentick){
 
 
 ventana->clear();
-<<<<<<< HEAD
 dibujarSelector();
 
 //Recorrer el vector de torretas y dibujar las torretas
@@ -230,9 +143,6 @@ for(int i=0; i<vectorTorreta.size(); i++)
 for(int i=0; i<vectorBalas.size(); i++){
     vectorBalas[i].render(percentick, *ventana);
 }
-=======
-
->>>>>>> Enemigo(ataque,movimiento,yGenerar)
 jugador->render(percentick, *ventana);
 
 if (enemigosFuera.empty()==false) {
@@ -240,21 +150,6 @@ if (enemigosFuera.empty()==false) {
         enemigosFuera.at(i).render(percentick, *ventana);
     }
 }
-<<<<<<< HEAD
-=======
-
-if (enemigosFuera.size()>0) {
-    for (int i=0;i<enemigosFuera.size();i++) {
-        if(enemigosFuera.at(i).ataca==true){
-            ventana->draw(dSprite);
-        }
-    }
-}
-
-
-
-
->>>>>>> Enemigo(ataque,movimiento,yGenerar)
 ventana->display();
 
 
@@ -289,7 +184,6 @@ vector<int> data;
                 data.push_back(0);
             }
 
-<<<<<<< HEAD
             if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
 
                 data.push_back(5);
@@ -298,8 +192,6 @@ vector<int> data;
                 addTorreta();
             }
 
-=======
->>>>>>> Enemigo(ataque,movimiento,yGenerar)
             Vector2i position = Mouse::getPosition(*ventana);
 
             if(position.x > jugador->x){         //RATON MIRA DERECHA
@@ -313,7 +205,6 @@ vector<int> data;
     return data;
 }
 
-<<<<<<< HEAD
 
 void juego::dibujarSelector(){
     //Dibujar selector en el mapa para poner la torreta donde marque
@@ -394,63 +285,5 @@ void juego::disparar(){
             vectorTorreta[i].rotarTorreta(angle);
         }
     }
-=======
-Vector2f juego::calcularVelocidadPlayer(vector<int> inputs){
-
-
-    sf::Vector2f v;
-v.x=0;
-v.y=0;
-
-
-
-    for (int i=0; i< inputs.size();i++){
-
-        switch (inputs[i]){
-
-
-        case 8:
-
-         jugador->pSprite.setTextureRect(IntRect(0*75, 3*75, 75, 75));
-            v.y-=kVel;
-
-
-        break;
-        case 4:
-
-          jugador->pSprite.setTextureRect(sf::IntRect(0*75, 2*75, 75, 75));
-            v.x-=kVel;
-
-        break;
-        case 6 :
-
-         jugador->pSprite.setTextureRect(sf::IntRect(0*75, 2*75, 75, 75));                               //Escala por defecto
-            v.x+=kVel;
-
-        break;
-        case 2 :
-
-         jugador->pSprite.setTextureRect(sf::IntRect(0*75, 0*75, 75, 75));
-            v.y+=kVel;
-
-        break;
-        case 7 :
-
-            jugador->pSprite.setScale(1,1);
-        break;
-        case 9 :
-
-            jugador->pSprite.setScale(-1,1);
-        break;
-
-
-
-
-        }
-
-
-    }
-     return v;
->>>>>>> Enemigo(ataque,movimiento,yGenerar)
 
 }

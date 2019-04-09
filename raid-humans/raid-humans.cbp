@@ -44,7 +44,6 @@
 		<Unit filename="PathAndObjects.png" />
 		<Unit filename="PathAndObjects.tsx" />
 		<Unit filename="cb.bmp" />
-<<<<<<< HEAD
 		<Unit filename="include/Bala.h" />
 		<Unit filename="include/Drawable.hpp" />
 		<Unit filename="include/TileMap.h" />
@@ -66,16 +65,6 @@
 		<Unit filename="src/player.cpp" />
 		<Unit filename="src/tinyxml2.cpp" />
 		<Unit filename="resources/sprites.png" />
-=======
-		<Unit filename="include/enemigo.h" />
-		<Unit filename="include/juego.h" />
-		<Unit filename="include/player.h" />
-		<Unit filename="main.cpp" />
-		<Unit filename="resources/sprites.png" />
-		<Unit filename="src/enemigo.cpp" />
-		<Unit filename="src/juego.cpp" />
-		<Unit filename="src/player.cpp" />
->>>>>>> Enemigo(ataque,movimiento,yGenerar)
 		<Extensions>
 			<envvars />
 			<code_completion />

@@ -1,27 +1,17 @@
-<<<<<<< HEAD
 #include <enemigo.h>
-=======
-#include "enemigo.h"
->>>>>>> Enemigo(ataque,movimiento,yGenerar)
 
 using namespace sf;
 using namespace std;
 
 enemigo::enemigo() {
-<<<<<<< HEAD
     hitbox=nullptr;
     eTexture=nullptr;
     eSprite=nullptr;
-=======
->>>>>>> Enemigo(ataque,movimiento,yGenerar)
     x=0;
     y=0;
     xlast=0;
     ylast=0;
-<<<<<<< HEAD
     vel=nullptr;
-=======
->>>>>>> Enemigo(ataque,movimiento,yGenerar)
     saludEnemigo=0;
     danioEnemigo=0;
 }
@@ -70,16 +60,11 @@ enemigo::~enemigo() {
 }
 
 
-<<<<<<< HEAD
 Vector2f enemigo::moveEnemigo(Vector2f v , float time) {
-=======
-Vector2f enemigo::moveEnemy(float time) {
->>>>>>> Enemigo(ataque,movimiento,yGenerar)
  //std::cout << "p--> x:"<< pos.x <<" y:"<< pos.y <<std::endl;
  // std::cout << "v--> x:"<< vel.x <<" y:"<< vel.y <<std::endl;
    // std::cout << "T--> "<< time <<" seg" <<std::endl;
 
-<<<<<<< HEAD
 xlast=x;
 ylast=y;
 
@@ -105,82 +90,8 @@ pos.y=ylast;
 }
 
 void enemigo::render(float ticks, RenderWindow &ventana) {
-=======
-    xlast=x;
-    ylast=y;
-
-    if(x <= objetivo.x && y <= objetivo.y) {
-        x=x+velocidad*time;
-        y=y+velocidad*time;
-
-
-
-
-                /*if(eSprite.getPosition().x>=objetivo.x && eSprite.getPosition().y>=objetivo.y) {
-                    llega=true;
-                }*/
-    }
-    if(x >= objetivo.x && y <= objetivo.y) {
-        x=x+velocidad*time;
-        y=y+velocidad*time;
-
-                /*if(eSprite.getPosition().x>=objetivo.x && eSprite.getPosition().y>=objetivo.y) {
-                    llega=true;
-                }*/
-    }
-    if(x <= objetivo.x && y >= objetivo.y) {
-        x=x+velocidad*time;
-        y=y+velocidad*time;
-
-                /*if(eSprite.getPosition().x>=objetivo.x && eSprite.getPosition().y>=objetivo.y) {
-                    llega=true;
-                }*/
-    }
-    if(x >= objetivo.x && y >= objetivo.y) {
-        x=x+velocidad*time;
-        y=y+velocidad*time;
-
-                /*if(eSprite.getPosition().x>=objetivo.x && eSprite.getPosition().y>=objetivo.y) {
-                    llega=true;
-                }*/
-    }
-    Vector2f pos;
-    pos.x=xlast;
-    pos.y=ylast;
-    eSprite.setPosition(pos);
-    return pos;
-
-
-}
-
-bool enemigo::ataque(player * p){
-    if(ataca==false){
-        if(eSprite.getGlobalBounds().intersects(p->pSprite.getGlobalBounds())){
-            ataca=true;
-        }
-    }
-    else{
-        if(!eSprite.getGlobalBounds().intersects(p->pSprite.getGlobalBounds())){
-            ataca=false;
-        }
-    }
-    return ataca;
-}
-
-void enemigo::setObjetivo(Vector2f obj) {
-    objetivo = obj;
-}
-
-void enemigo::render(float ticks, RenderWindow &ventana) {
-    //animacion
-    int state=0;
-
->>>>>>> Enemigo(ataque,movimiento,yGenerar)
 
 eSprite.setPosition(xlast*(1-ticks) + x*ticks,ylast*(1-ticks)+y*ticks);
 ventana.draw(eSprite);
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> Enemigo(ataque,movimiento,yGenerar)
