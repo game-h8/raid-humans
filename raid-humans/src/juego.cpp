@@ -2,8 +2,8 @@
 
 
 
-#define SPAWN_SPEED 3000
-#define SHOOT_SPEED 4000
+#define SPAWN_SPEED 4000
+
 #define UPDATE_TICK_TIME 1000/15
 #define kVel 100
 
@@ -21,7 +21,7 @@ inicializar();
 
 
 //creo mapa
-// mapa = new Mapa("resources/untitled2.tmx", "resources/PathAndObjects.png");
+ mapa = new Mapa("resources/untitled2.tmx", "resources/PathAndObjects.png");
  ventana = new RenderWindow(VideoMode(resolucion.x, resolucion.y), "Raid humans");
  jugador= new player("resources/player.png" ,500,400);
 
@@ -32,7 +32,7 @@ inicializar();
 
     //variables de tiempo para el spawn
     Clock clockSpawn;
-    Time tiempoSpawn = clock.getElapsedTime();
+    Time tiempoSpawn =  seconds(3.f);
 
     enemigos ene1(100,100);
     enemigos ene2(100,100);
@@ -45,13 +45,24 @@ inicializar();
     enemigosEspera.push_back(ene4);
 
 
+    //variables de tiempo para el ataque
+    Clock clockAttack;
+    Time tiempoAttack = seconds(1.f);
+
+
  while(ventana->isOpen()){
 
      Event event;
     while (ventana->pollEvent(event))
     {
 
-        if (event.type == Event::Closed) ventana->close();
+        if (event.type == Event::Closed) {
+
+             delete jugador;
+             delete mapa;
+             ventana->close();
+            delete ventana;
+        }
          if (Keyboard::isKeyPressed(Keyboard::F6))
             {
                  jugador->toggleDebug();
@@ -68,18 +79,43 @@ inicializar();
 
          }
          //temporizador para generar enemigos
-         if(clockSpawn.getElapsedTime().asMilliseconds() - tiempoSpawn.asMilliseconds() > SPAWN_SPEED){
+         if(clockSpawn.getElapsedTime() > tiempoSpawn){
 
-            tiempoSpawn = clockSpawn.getElapsedTime();
+            clockSpawn.restart();
+
             if (enemigosEspera.empty()==false) {
                 enemigosFuera.push_back(enemigosEspera.at(enemigosEspera.size()-1));
                 enemigosEspera.pop_back();
             }
+            if (enemigosFuera.empty()==false) {
+                for (int i=0;i<enemigosFuera.size()&&i<4;i++) {
+                    enemigosFuera.at(i).atacaTorretaCercana(vectorTorreta);
+                }
+}
             //le damos un objetivo al enemigo
-            Vector2f obj(100.f,700.f);
-            enemigosFuera.at(enemigosFuera.size()-1).setObjetivo(obj);
 
             disparar();
+         }
+
+          // los enemigos comprueban el ataque
+         if(clockAttack.getElapsedTime() > tiempoAttack){
+
+            clockAttack.restart();
+
+            if (enemigosFuera.empty()==false) {
+                for (int i=0;i<enemigosFuera.size();i++) {
+                    enemigosFuera.at(i).ataque(jugador);
+                    if(enemigosFuera.at(i).ataca==true){
+                        if (!dTexture.loadFromFile("resources/hit.png")){
+                            cerr << "Error cargando la imagen del golpe resources/sprites.png" << endl;
+                            exit(0);
+
+                        }
+
+                    }
+                }
+            }
+
          }
 
 
@@ -94,8 +130,7 @@ float tiempoRefresco = UPDATE_TICK_TIME;                                   //Hay
 
 
  }
- delete ventana;
- delete jugador;
+
 
 }
 /*
@@ -134,11 +169,17 @@ cout<<"Tamano vectorBalas: " <<vectorBalas.size() <<endl;
 //movimiento enemigo
 if (enemigosFuera.empty()==false) {
     for (int i=0;i<enemigosFuera.size();i++) {
-        enemigosFuera.at(i).moveEnemy(elapsedTime);
+        enemigosFuera.at(i).moveEnemy(elapsedTime, enemigosFuera, vectorTorreta, i);
+
+
+            dSprite.setTexture(dTexture);
+            dSprite.setOrigin(17,48/2);
+            dSprite.setTextureRect(IntRect(0.1*35, 2.63*50, 28, 27));
+            dSprite.setPosition(jugador->xlast,jugador->ylast+25);
+        }
     }
 }
-
-}
+//ataque de los enemigos
 
 
 void juego:: renderizar(float percentick){
@@ -158,14 +199,21 @@ for(int i=0; i<vectorTorreta.size(); i++)
 for(int i=0; i<vectorBalas.size(); i++){
     vectorBalas[i].render(percentick, *ventana);
 }
-
+jugador->render(percentick, *ventana);
 
 if (enemigosFuera.empty()==false) {
     for (int i=0;i<enemigosFuera.size();i++) {
         enemigosFuera.at(i).render(percentick, *ventana);
     }
 }
-jugador->render(percentick, *ventana);
+
+if (enemigosFuera.size()>0) {
+    for (int i=0;i<enemigosFuera.size();i++) {
+        if(enemigosFuera.at(i).ataca==true){
+            ventana->draw(dSprite);
+        }
+    }
+}
 ventana->display();
 
 
@@ -273,6 +321,7 @@ void juego::addTorreta(){
 
 }
 
+
 void juego::disparar(){
 
     //Recorro el vector de torretas, las cuales dispararan al enemigo mas cercano
@@ -302,4 +351,7 @@ void juego::disparar(){
         }
     }
 
+}
+vector<Torreta> juego::getTorretas() {
+    return vectorTorreta;
 }

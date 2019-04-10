@@ -35,3 +35,6 @@ Revisar Delete
 
 
 }
+sf::Sprite Torreta::getSprite() {
+    return torretaSprite;
+}

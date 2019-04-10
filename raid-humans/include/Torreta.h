@@ -13,6 +13,7 @@ class Torreta
         void setPos(sf::Vector2f newPos);
         void rotarTorreta(float angle);
         void draw(sf::RenderWindow &Window);
+        sf::Sprite getSprite();
         ~Torreta();
     private:
         sf::Texture torretaTex;
