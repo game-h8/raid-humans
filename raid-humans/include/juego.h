@@ -28,7 +28,7 @@ class juego
         void dibujarSelector();
         void addTorreta();
         void disparar();
-         vector<Torreta> getTorretas();
+        vector<Torreta> getTorretas();
 
 
     protected:

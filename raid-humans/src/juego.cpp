@@ -110,8 +110,10 @@ inicializar();
                          //   cerr << "Error cargando la imagen del golpe resources/sprites.png" << endl;
                          //   exit(0);
                       //  }
-                      enemigosFuera.at(i).eSprite.setColor(Color(255,0,0,155));
+                      //enemigosFuera.at(i).eSprite.setColor(Color(255,0,0,155));
 
+                    }else{
+                      //enemigosFuera.at(i).eSprite.setColor(Color(255,255,255,255));
                     }
                 }
             }

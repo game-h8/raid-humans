@@ -83,10 +83,10 @@ void enemigos::moveEnemy(float time, vector<enemigos> ene, vector<Torreta> torre
         for(int i=0; i<ene.size()&&colision==false; i++){
             for(int j=0; i<torres.size()&&colision==false; i++){
                 if(i!=a){
-                    if(eSprite.getGlobalBounds().intersects(ene.at(i).eSprite.getGlobalBounds())){
+                    if(hitbox.getGlobalBounds().intersects(ene.at(i).hitbox.getGlobalBounds())){
                         colision=true;
                     }
-                    if(eSprite.getGlobalBounds().intersects(torres.at(j).getSprite().getGlobalBounds())) {
+                    if(hitbox.getGlobalBounds().intersects(torres.at(j).getSprite().getGlobalBounds())) {
                         atacaTorre=true;
                     }
                 }
@@ -156,12 +156,12 @@ void enemigos::colisionEnemigos(Vector2f ene){
 
 bool enemigos::ataque(player * p){
     if(ataca==false){
-        if(eSprite.getGlobalBounds().intersects(p->hitboxArma.getGlobalBounds())&&p->estado==2){
+        if(hitbox.getGlobalBounds().intersects(p->hitbox.getGlobalBounds())){
             ataca=true;
         }
     }
     else{
-        if(!eSprite.getGlobalBounds().intersects(p->pSprite.getGlobalBounds())){
+        if(!hitbox.getGlobalBounds().intersects(p->hitbox.getGlobalBounds())){
             ataca=false;
         }
     }
@@ -259,6 +259,8 @@ void enemigos:: movsprites(){
              }
               else if(timeenemigo.getElapsedTime().asMilliseconds()<600){
                      eSprite.setOrigin(60,eSprite.getOrigin().y);
+                     //hitbox.setOrigin(eSprite.getOrigin());
+
                     eSprite.setTextureRect(sf::IntRect(167, 96, 99, 98));
 
              }
@@ -272,7 +274,7 @@ void enemigos:: movsprites(){
 
              else if(timeenemigo.getElapsedTime().asMilliseconds()<1000){
 
-                    eSprite.setTextureRect(sf::IntRect(108, 190, 90, 90));
+                    eSprite.setTextureRect(sf::IntRect(108, 195, 90, 90));
              }
 
 
@@ -281,6 +283,7 @@ void enemigos:: movsprites(){
              }
 
              else{
+                hitbox.setOrigin(eSprite.getGlobalBounds().width/2,eSprite.getGlobalBounds().height/2);
                   eSprite.setTextureRect(IntRect(3, 290, 59, 98));
                     eSprite.setOrigin(hitbox.getOrigin());
              timeenemigo.restart();
