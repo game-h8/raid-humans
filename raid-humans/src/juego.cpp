@@ -7,10 +7,21 @@
 #define UPDATE_TICK_TIME 1000/15
 #define kVel 100
 
+
+#include <SFML/Graphics.hpp>
+#include <iostream>
+#include "tinyxml2.h"
+#include <vector>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
 juego::juego(Vector2u resolucion)
 {
     //ctor
 inicializar();
+
+
+//creo mapa
+ mapa = new Mapa("resources/untitled2.tmx", "resources/PathAndObjects.png");
  ventana = new RenderWindow(VideoMode(resolucion.x, resolucion.y), "Raid humans");
  jugador= new player("resources/player.png" ,500,400);
 
@@ -135,6 +146,10 @@ void juego:: renderizar(float percentick){
 
 
 ventana->clear();
+
+mapa->setActivateLayer(0);
+mapa->drawMapa(*ventana);
+
 dibujarSelector();
 
 //Recorrer el vector de torretas y dibujar las torretas

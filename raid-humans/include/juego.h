@@ -10,6 +10,7 @@
 #include "Torreta.h"
 #include "enemigos.h"
 #include <vector>
+#include <Mapa.h>
 
 using namespace sf;
 
@@ -27,9 +28,11 @@ class juego
         void addTorreta();
         void disparar();
 
+
     protected:
 
     private:
+        Mapa *mapa;
         RenderWindow * ventana;
         player * jugador;
         vector<Torreta> vectorTorreta;

@@ -53,15 +53,17 @@
 1554648414 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/enemigos.cpp
 	"../include/enemigos.h"
 
-1554747800 source:/home/fv/Escritorio/raid-humans/raid-humans/main.cpp
+1554912206 source:/home/fv/Escritorio/raid-humans/raid-humans/main.cpp
 	<SFML/Graphics.hpp>
-	"include/juego.h"
-	"include/player.h"
-	"include/Bala.h"
-	"include/Torreta.h"
+	"include/Mapa.h"
+	<iostream>
+	"tinyxml2.h"
 	<vector>
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	"include/juego.h"
 
-1554747770 /home/fv/Escritorio/raid-humans/raid-humans/include/juego.h
+1554912405 /home/fv/Escritorio/raid-humans/raid-humans/include/juego.h
 	<SFML/System/Clock.hpp>
 	<iostream>
 	<SFML/Graphics.hpp>
@@ -70,10 +72,12 @@
 	"Torreta.h"
 	"enemigos.h"
 	<vector>
+	<Mapa.h>
 
-1554747775 /home/fv/Escritorio/raid-humans/raid-humans/include/player.h
+1554909942 /home/fv/Escritorio/raid-humans/raid-humans/include/player.h
 	<iostream>
 	<SFML/Graphics.hpp>
+	<SFML/System/Clock.hpp>
 
 1554747605 /home/fv/Escritorio/raid-humans/raid-humans/include/Bala.h
 	<SFML/Graphics.hpp>
@@ -95,11 +99,11 @@
 	<iostream>
 	<math.h>
 
-1554747867 source:/home/fv/Escritorio/raid-humans/raid-humans/src/juego.cpp
+1554909942 source:/home/fv/Escritorio/raid-humans/raid-humans/src/juego.cpp
 	"../include/juego.h"
 
-1554747725 source:/home/fv/Escritorio/raid-humans/raid-humans/src/player.cpp
-	"../include/player.h"
+1554909942 source:/home/fv/Escritorio/raid-humans/raid-humans/src/player.cpp
+	"player.h"
 
 1554747605 source:/home/fv/Escritorio/raid-humans/raid-humans/src/Torreta.cpp
 	"../include/Torreta.h"
@@ -116,13 +120,13 @@
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/RenderStates.hpp>
 
-1554756901 source:/home/fv/Escritorio/raid-humans/raid-humans/src/mapa.cpp
+1554909935 source:/home/fv/Escritorio/raid-humans/raid-humans/src/mapa.cpp
 	"../include/mapa.h"
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1554756901 /home/fv/Escritorio/raid-humans/raid-humans/include/mapa.h
+1554909935 /home/fv/Escritorio/raid-humans/raid-humans/include/mapa.h
 	"tinyxml2.h"
 	"SFML/Graphics.hpp"
 
@@ -264,4 +268,15 @@
 
 1554794315 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/Torreta.cpp
 	"../include/Torreta.h"
+
+1554888103 source:/home/fv/Escritorio/raid-humans/raid-humans/src/Mapa.cpp
+	"../include/Mapa.h"
+	<iostream>
+	<SFML/System.hpp>
+	<SFML/Graphics.hpp>
+	"tinyxml2.h"
+
+1554912294 /home/fv/Escritorio/raid-humans/raid-humans/include/Mapa.h
+	"tinyxml2.h"
+	"SFML/Graphics.hpp"
 
