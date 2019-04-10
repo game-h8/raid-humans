@@ -21,7 +21,7 @@ inicializar();
 
 
 //creo mapa
- mapa = new Mapa("resources/untitled2.tmx", "resources/PathAndObjects.png");
+// mapa = new Mapa("resources/untitled2.tmx", "resources/PathAndObjects.png");
  ventana = new RenderWindow(VideoMode(resolucion.x, resolucion.y), "Raid humans");
  jugador= new player("resources/player.png" ,500,400);
 
