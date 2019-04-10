@@ -2,6 +2,8 @@
 #define ENEMIGOS_H
 #include <iostream>
 #include<SFML/Graphics.hpp>
+#include <player.h>
+#include <Torreta.h>
 
 using namespace sf;
 using namespace std;
@@ -25,12 +27,18 @@ public:
         Vector2f objetivo;
         float saludEnemigo;
         float danioEnemigo;
-        float velocidad = 10;
+        float velocidad = 50;
+        bool ataca=false;
+
 
         sf::FloatRect getGlobal();
-        Vector2f moveEnemy(float time);
+        void moveEnemy(float time, vector<enemigos>, int a);
         void render(float ticks, RenderWindow& ventana);
+        void colisionEnemigos(Vector2f ene);
+        bool ataque(player * p);
         void setObjetivo(Vector2f obj);
+        void atacaTorretaCercana(vector<Torreta> vecTor);
+        void atacaJugador(player &jugador);
 
 protected:
 private:

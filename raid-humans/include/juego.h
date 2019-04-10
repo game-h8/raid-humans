@@ -20,12 +20,14 @@ class juego
         juego(Vector2u resolucion);
         void inicializar();      //inicializar las variables del juego
         void update(float elapsedTime);
+        void colisionEE();
         void renderizar(float percentick);
         vector<int> getInputs();
         Vector2f calcularVelocidadPlayer(vector<int> inputs);
         void dibujarSelector();
         void addTorreta();
         void disparar();
+        vector<Torreta> getTorretas();
 
     protected:
 
@@ -36,6 +38,8 @@ class juego
         vector<Bala> vectorBalas;
         vector<enemigos> enemigosFuera; //vector de enemigos que se encuentran en pantalla
         vector<enemigos>enemigosEspera; //vector de enemigos para hacer spawn*/
+        Sprite dSprite;
+        Texture dTexture;
 };
 
 #endif // JUEGO_H

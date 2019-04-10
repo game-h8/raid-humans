@@ -56,56 +56,89 @@ enemigos::~enemigos() {
 }
 
 
-Vector2f enemigos::moveEnemy(float time) {
- //std::cout << "p--> x:"<< pos.x <<" y:"<< pos.y <<std::endl;
- // std::cout << "v--> x:"<< vel.x <<" y:"<< vel.y <<std::endl;
-   // std::cout << "T--> "<< time <<" seg" <<std::endl;
+void enemigos::moveEnemy(float time, vector<enemigos> ene, int a) {
 
     xlast=x;
     ylast=y;
-
-    if(x <= objetivo.x && y <= objetivo.y) {
-        x=x+velocidad*time;
-        y=y+velocidad*time;
-
-
-
-
-                /*if(eSprite.getPosition().x>=objetivo.x && eSprite.getPosition().y>=objetivo.y) {
-                    llega=true;
-                }*/
-    }
-    if(x >= objetivo.x && y <= objetivo.y) {
-        x=x+velocidad*time;
-        y=y+velocidad*time;
-
-                /*if(eSprite.getPosition().x>=objetivo.x && eSprite.getPosition().y>=objetivo.y) {
-                    llega=true;
-                }*/
-    }
-    if(x <= objetivo.x && y >= objetivo.y) {
-        x=x+velocidad*time;
-        y=y+velocidad*time;
-
-                /*if(eSprite.getPosition().x>=objetivo.x && eSprite.getPosition().y>=objetivo.y) {
-                    llega=true;
-                }*/
-    }
-    if(x >= objetivo.x && y >= objetivo.y) {
-        x=x+velocidad*time;
-        y=y+velocidad*time;
-
-                /*if(eSprite.getPosition().x>=objetivo.x && eSprite.getPosition().y>=objetivo.y) {
-                    llega=true;
-                }*/
-    }
+    bool colision=false;
     Vector2f pos;
-    pos.x=xlast;
-    pos.y=ylast;
-    eSprite.setPosition(pos);
-    return pos;
 
+    for(int i=0; i<ene.size()&&colision==false; i++){
+        if(i!=a){
+            if(eSprite.getGlobalBounds().intersects(ene.at(i).eSprite.getGlobalBounds())){
+                colision=true;
+            }
+        }
+    }
+    if(colision==false){
+        if(x < objetivo.x && y < objetivo.y) {
+        x=x+velocidad*time;
+        y=y+velocidad*time;
 
+        }
+        if(x > objetivo.x && y < objetivo.y) {
+            x=x-velocidad*time;
+            y=y+velocidad*time;
+
+        }
+        if(x < objetivo.x && y > objetivo.y) {
+            x=x+velocidad*time;
+            y=y-velocidad*time;
+
+        }
+        if(x > objetivo.x && y > objetivo.y) {
+            x=x-velocidad*time;
+            y=y-velocidad*time;
+
+        }
+    }else{
+        /*if(x < objetivo.x && y < objetivo.y) {
+        x=x+(velocidad*0.5)*time;
+        y=y+velocidad*time;
+
+        }
+        if(x > objetivo.x && y < objetivo.y) {
+            x=x-(velocidad*0.5)*time;
+            y=y+velocidad*time;
+
+        }
+        if(x < objetivo.x && y > objetivo.y) {
+            x=x+(velocidad*0.5)*time;
+            y=y-velocidad*time;
+
+        }
+        if(x > objetivo.x && y > objetivo.y) {
+            x=x-(velocidad*0.5)*time;
+            y=y-velocidad*time;
+
+        }*/
+        x=x+10;
+        y=y+20;
+    }
+    //eSprite.getGlobalBounds().top;
+
+    /*Vector2f pos;
+    pos.x=x;
+    pos.y=y;*/
+    eSprite.setPosition(x,y);
+}
+
+void enemigos::colisionEnemigos(Vector2f ene){
+
+}
+
+bool enemigos::ataque(player * p){
+    if(ataca==false){
+        if(eSprite.getGlobalBounds().intersects(p->pSprite.getGlobalBounds())){
+            ataca=true;
+        }
+    }
+    else{
+        if(!eSprite.getGlobalBounds().intersects(p->pSprite.getGlobalBounds())){
+            ataca=false;
+        }
+    }
+    return ataca;
 }
 
 void enemigos::setObjetivo(Vector2f obj) {
@@ -118,4 +151,31 @@ void enemigos::render(float ticks, RenderWindow &ventana) {
 
 eSprite.setPosition(xlast*(1-ticks) + x*ticks,ylast*(1-ticks)+y*ticks);
 ventana.draw(eSprite);
+}
+
+void enemigos::atacaTorretaCercana(vector<Torreta> vecTor) {
+    vector<Torreta> torretas = vecTor;
+    float masCercanaX=0;
+    float masCercanaY=0;
+    float posibleResultado=0;
+    float mejorResultado=9999;
+    int posMasCercana=0;
+
+    if (torretas.size()>0) {
+            for (int i=0;i<torretas.size();i++) {
+                posibleResultado=fabs(fabs((x-torretas.at(i).getX()))-fabs((y-torretas.at(i).getY())));
+
+                if (posibleResultado<mejorResultado) {
+                    posMasCercana=i;
+                    mejorResultado=posibleResultado;
+                }
+            }
+            masCercanaX=torretas.at(posMasCercana).getX();
+            masCercanaY=torretas.at(posMasCercana).getY();
+            Vector2f seleccionada(masCercanaX,masCercanaY);
+            objetivo=seleccionada;
+        }
+}
+void enemigos::atacaJugador(player &jugador) {
+    objetivo=jugador.pSprite.getPosition();
 }
