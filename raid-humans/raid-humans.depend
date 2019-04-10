@@ -468,10 +468,11 @@
 	<vector>
 	<Mapa.h>
 
-1554935316 /home/fv/Escritorio/Repositorio/raid-humans/raid-humans/include/player.h
+1554938270 /home/fv/Escritorio/Repositorio/raid-humans/raid-humans/include/player.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	<SFML/System/Clock.hpp>
+	<mundo.h>
 
 1554920999 /home/fv/Escritorio/Repositorio/raid-humans/raid-humans/include/Bala.h
 	<SFML/Graphics.hpp>
@@ -547,4 +548,11 @@
 
 1554935375 source:/home/fv/Escritorio/Repositorio/raid-humans/raid-humans/src/Torreta.cpp
 	"../include/Torreta.h"
+
+1554938247 /home/fv/Escritorio/Repositorio/raid-humans/raid-humans/include/mundo.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1554938187 source:/home/fv/Escritorio/Repositorio/raid-humans/raid-humans/src/mundo.cpp
+	"mundo.h"
 

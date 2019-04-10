@@ -274,7 +274,7 @@ void player:: render(float ticks, RenderWindow &ventana){
 
 pSprite.setPosition(xlast*(1-ticks) + x*ticks,ylast*(1-ticks)+y*ticks);
 ventana.draw(pSprite);
-if(debug){
+if(mundo::getMundo()->getDebug()){
     ventana.draw(hitbox);
     ventana.draw(hitboxArma);
 }

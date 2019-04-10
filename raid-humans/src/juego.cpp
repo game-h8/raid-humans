@@ -65,7 +65,7 @@ inicializar();
         }
          if (Keyboard::isKeyPressed(Keyboard::F6))
             {
-                 jugador->toggleDebug();
+                 mundo::getMundo()->toggleDebug();
             }
 
 
