@@ -149,7 +149,7 @@ cout<<"Tamano vectorBalas: " <<vectorBalas.size() <<endl;
 //movimiento enemigo
 if (enemigosFuera.empty()==false) {
     for (int i=0;i<enemigosFuera.size();i++) {
-        enemigosFuera.at(i).moveEnemy(elapsedTime, enemigosFuera, i);
+        enemigosFuera.at(i).moveEnemy(elapsedTime, enemigosFuera, vectorTorreta, i);
 
 
             dSprite.setTexture(dTexture);

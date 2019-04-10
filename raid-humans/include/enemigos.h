@@ -29,10 +29,11 @@ public:
         float danioEnemigo;
         float velocidad = 50;
         bool ataca=false;
+        bool atacaTorre=false;
 
 
         sf::FloatRect getGlobal();
-        void moveEnemy(float time, vector<enemigos>, int a);
+        void moveEnemy(float time, vector<enemigos>, vector<Torreta>, int a);
         void render(float ticks, RenderWindow& ventana);
         void colisionEnemigos(Vector2f ene);
         bool ataque(player * p);

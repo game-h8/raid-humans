@@ -56,71 +56,78 @@ enemigos::~enemigos() {
 }
 
 
-void enemigos::moveEnemy(float time, vector<enemigos> ene, int a) {
+void enemigos::moveEnemy(float time, vector<enemigos> ene, vector<Torreta> torres, int a) {
 
     xlast=x;
     ylast=y;
     bool colision=false;
     Vector2f pos;
 
-    for(int i=0; i<ene.size()&&colision==false; i++){
-        if(i!=a){
-            if(eSprite.getGlobalBounds().intersects(ene.at(i).eSprite.getGlobalBounds())){
-                colision=true;
+    if(atacaTorre==false) {
+        for(int i=0; i<ene.size()&&colision==false; i++){
+            for(int j=0; i<torres.size()&&colision==false; i++){
+                if(i!=a){
+                    if(eSprite.getGlobalBounds().intersects(ene.at(i).eSprite.getGlobalBounds())){
+                        colision=true;
+                    }
+                    if(eSprite.getGlobalBounds().intersects(torres.at(j).getSprite().getGlobalBounds())) {
+                        atacaTorre=true;
+                    }
+                }
             }
         }
-    }
-    if(colision==false){
-        if(x < objetivo.x && y < objetivo.y) {
-        x=x+velocidad*time;
-        y=y+velocidad*time;
-
-        }
-        if(x > objetivo.x && y < objetivo.y) {
-            x=x-velocidad*time;
-            y=y+velocidad*time;
-
-        }
-        if(x < objetivo.x && y > objetivo.y) {
+        if(colision==false){
+            if(x < objetivo.x && y < objetivo.y) {
             x=x+velocidad*time;
-            y=y-velocidad*time;
-
-        }
-        if(x > objetivo.x && y > objetivo.y) {
-            x=x-velocidad*time;
-            y=y-velocidad*time;
-
-        }
-    }else{
-        /*if(x < objetivo.x && y < objetivo.y) {
-        x=x+(velocidad*0.5)*time;
-        y=y+velocidad*time;
-
-        }
-        if(x > objetivo.x && y < objetivo.y) {
-            x=x-(velocidad*0.5)*time;
             y=y+velocidad*time;
 
-        }
-        if(x < objetivo.x && y > objetivo.y) {
+            }
+            if(x > objetivo.x && y < objetivo.y) {
+                x=x-velocidad*time;
+                y=y+velocidad*time;
+
+            }
+            if(x < objetivo.x && y > objetivo.y) {
+                x=x+velocidad*time;
+                y=y-velocidad*time;
+
+            }
+            if(x > objetivo.x && y > objetivo.y) {
+                x=x-velocidad*time;
+                y=y-velocidad*time;
+
+            }
+        }else{
+            /*if(x < objetivo.x && y < objetivo.y) {
             x=x+(velocidad*0.5)*time;
-            y=y-velocidad*time;
+            y=y+velocidad*time;
 
+            }
+            if(x > objetivo.x && y < objetivo.y) {
+                x=x-(velocidad*0.5)*time;
+                y=y+velocidad*time;
+
+            }
+            if(x < objetivo.x && y > objetivo.y) {
+                x=x+(velocidad*0.5)*time;
+                y=y-velocidad*time;
+
+            }
+            if(x > objetivo.x && y > objetivo.y) {
+                x=x-(velocidad*0.5)*time;
+                y=y-velocidad*time;
+
+            }*/
+            x=x+10;
+            y=y+20;
         }
-        if(x > objetivo.x && y > objetivo.y) {
-            x=x-(velocidad*0.5)*time;
-            y=y-velocidad*time;
+        //eSprite.getGlobalBounds().top;
 
-        }*/
-        x=x+10;
-        y=y+20;
+        /*Vector2f pos;
+        pos.x=x;
+        pos.y=y;*/
     }
-    //eSprite.getGlobalBounds().top;
-
-    /*Vector2f pos;
-    pos.x=x;
-    pos.y=y;*/
-    eSprite.setPosition(x,y);
+        eSprite.setPosition(x,y);
 }
 
 void enemigos::colisionEnemigos(Vector2f ene){
