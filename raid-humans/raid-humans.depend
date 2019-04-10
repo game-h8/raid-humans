@@ -348,11 +348,12 @@
 	"enemigos.h"
 	<math.h>
 
-1554921470 /home/fv/Escritorio/raid-humans/include/enemigos.h
+1554929443 /home/fv/Escritorio/raid-humans/include/enemigos.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	<player.h>
 	<Torreta.h>
+	<math.h>
 
 1554921524 /home/fv/Escritorio/raid-humans/include/Torreta.h
 	<SFML/Graphics.hpp>
@@ -373,10 +374,10 @@
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/RenderStates.hpp>
 
-1554921424 source:/home/fv/Escritorio/raid-humans/src/enemigos.cpp
+1554934726 source:/home/fv/Escritorio/raid-humans/src/enemigos.cpp
 	"../include/enemigos.h"
 
-1554924055 source:/home/fv/Escritorio/raid-humans/src/juego.cpp
+1554933676 source:/home/fv/Escritorio/raid-humans/src/juego.cpp
 	"../include/juego.h"
 	<SFML/Graphics.hpp>
 	<iostream>

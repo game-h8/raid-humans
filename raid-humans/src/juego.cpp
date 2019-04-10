@@ -40,9 +40,9 @@ inicializar();
     enemigos ene4(100,100);
 
     enemigosEspera.push_back(ene1);
-    enemigosEspera.push_back(ene2);
-    enemigosEspera.push_back(ene3);
-    enemigosEspera.push_back(ene4);
+   // enemigosEspera.push_back(ene2);
+   // enemigosEspera.push_back(ene3);
+   // enemigosEspera.push_back(ene4);
 
 
     //variables de tiempo para el ataque
@@ -106,11 +106,11 @@ inicializar();
                 for (int i=0;i<enemigosFuera.size();i++) {
                     enemigosFuera.at(i).ataque(jugador);
                     if(enemigosFuera.at(i).ataca==true){
-                        if (!dTexture.loadFromFile("resources/hit.png")){
-                            cerr << "Error cargando la imagen del golpe resources/sprites.png" << endl;
-                            exit(0);
-
-                        }
+                       // if (!dTexture.loadFromFile("resources/hit.png")){
+                         //   cerr << "Error cargando la imagen del golpe resources/sprites.png" << endl;
+                         //   exit(0);
+                      //  }
+                      enemigosFuera.at(i).eSprite.setColor(Color(255,0,0,155));
 
                     }
                 }

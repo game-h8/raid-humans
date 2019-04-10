@@ -10,12 +10,17 @@ enemigos::enemigos() {
     ylast=0;
     saludEnemigo=0;
     danioEnemigo=0;
+
+
+
+
 }
 
 enemigos::enemigos(const enemigos& E) {
-    hitbox= E.hitbox;
+
     eTexture=E.eTexture;
     eSprite=E.eSprite;
+    hitbox=E.hitbox;
     x=E.x;
     y=E.y;
     xlast=E.xlast;
@@ -23,12 +28,15 @@ enemigos::enemigos(const enemigos& E) {
     vel=E.vel;
     saludEnemigo=E.saludEnemigo;
     danioEnemigo=E.danioEnemigo;
+    estado=1;
+
+
 }
 
 enemigos::enemigos(float x2, float y2) {
 
 
-    if (!eTexture.loadFromFile("resources/zombie.png"))
+    if (!eTexture.loadFromFile("resources/enemigo.png"))
     {
         cerr << "Error cargando la imagen del enemigo resources/sprites.png" << endl;
         exit(0);
@@ -38,7 +46,9 @@ enemigos::enemigos(float x2, float y2) {
 
     eSprite.setTexture(eTexture);
     eSprite.setOrigin(17,48/2);   // ahora es fija pero debera ser la que mande el spawn
-    eSprite.setTextureRect(IntRect(0*35, 0*48, 35, 48));
+    eSprite.setTextureRect(IntRect(3, 290, 59, 88));
+
+
 
 
     x=x2;
@@ -47,8 +57,14 @@ enemigos::enemigos(float x2, float y2) {
     ylast=y2;
 
 
+      hitbox.setSize(Vector2f(59,88));
+    hitbox.setFillColor(Color(255,0,0,155));
+    hitbox.setOrigin(eSprite.getGlobalBounds().width/2-17,eSprite.getGlobalBounds().height/2-24);
+    hitbox.setPosition(Vector2f(x,y));
+
 
     eSprite.setPosition(x,y);
+
 }
 
 enemigos::~enemigos() {
@@ -128,6 +144,10 @@ void enemigos::moveEnemy(float time, vector<enemigos> ene, vector<Torreta> torre
         pos.y=y;*/
     }
         eSprite.setPosition(x,y);
+        hitbox.setScale(eSprite.getScale());
+        hitbox.setPosition(x,y);
+
+        movsprites();
 }
 
 void enemigos::colisionEnemigos(Vector2f ene){
@@ -136,7 +156,7 @@ void enemigos::colisionEnemigos(Vector2f ene){
 
 bool enemigos::ataque(player * p){
     if(ataca==false){
-        if(eSprite.getGlobalBounds().intersects(p->pSprite.getGlobalBounds())){
+        if(eSprite.getGlobalBounds().intersects(p->hitboxArma.getGlobalBounds())&&p->estado==2){
             ataca=true;
         }
     }
@@ -158,6 +178,9 @@ void enemigos::render(float ticks, RenderWindow &ventana) {
 
 eSprite.setPosition(xlast*(1-ticks) + x*ticks,ylast*(1-ticks)+y*ticks);
 ventana.draw(eSprite);
+ventana.draw(hitbox);
+
+
 }
 
 void enemigos::atacaTorretaCercana(vector<Torreta> vecTor) {
@@ -181,8 +204,92 @@ void enemigos::atacaTorretaCercana(vector<Torreta> vecTor) {
             masCercanaY=torretas.at(posMasCercana).getY();
             Vector2f seleccionada(masCercanaX,masCercanaY);
             objetivo=seleccionada;
+            if(objetivo.x>x){
+                 eSprite.setScale(-1,1);
+            }
+            cout<<"distancia en x"<<(abs((int)objetivo.x)-abs((int)x))<<"distancia en y"<<(abs((int)objetivo.y)-abs((int)y))<<endl;
+
+
+            if((abs((int)objetivo.x)-abs((int)x))<22 &&  (abs((int)objetivo.y)-abs((int)y))<50){
+
+
+                estado=2;
+
+            }
         }
 }
 void enemigos::atacaJugador(player &jugador) {
     objetivo=jugador.pSprite.getPosition();
+}
+void enemigos:: movsprites(){
+
+
+
+
+
+
+    switch (estado){
+
+    case 0:
+
+        break;
+
+        case 1:
+
+            if(timeenemigo.getElapsedTime().asMilliseconds()<200){
+                    eSprite.setTextureRect(IntRect(3, 290, 59, 88));
+             }
+              else if(timeenemigo.getElapsedTime().asMilliseconds()<400){
+                    eSprite.setTextureRect(sf::IntRect(63, 290, 59, 88));
+             }
+
+
+              else{
+             timeenemigo.restart();
+             }
+             break;
+
+        case 2:
+
+             if(timeenemigo.getElapsedTime().asMilliseconds()<200){
+                    eSprite.setTextureRect(IntRect(2, 96, 59, 98));
+             }
+              else if(timeenemigo.getElapsedTime().asMilliseconds()<400){
+                    eSprite.setTextureRect(sf::IntRect(118, 96, 45, 98));
+             }
+              else if(timeenemigo.getElapsedTime().asMilliseconds()<600){
+                     eSprite.setOrigin(60,eSprite.getOrigin().y);
+                    eSprite.setTextureRect(sf::IntRect(167, 96, 99, 98));
+
+             }
+
+             else if(timeenemigo.getElapsedTime().asMilliseconds()<800){
+
+                    eSprite.setTextureRect(sf::IntRect(272, 96, 99, 98));
+
+             }
+
+
+             else if(timeenemigo.getElapsedTime().asMilliseconds()<1000){
+
+                    eSprite.setTextureRect(sf::IntRect(108, 190, 90, 90));
+             }
+
+
+             else if(timeenemigo.getElapsedTime().asMilliseconds()<1200){
+                    eSprite.setTextureRect(sf::IntRect(296, 190, 90, 90));
+             }
+
+             else{
+                  eSprite.setTextureRect(IntRect(3, 290, 59, 98));
+                    eSprite.setOrigin(hitbox.getOrigin());
+             timeenemigo.restart();
+
+             }
+
+           break;
+
+
+    }
+
 }
