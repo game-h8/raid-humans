@@ -510,7 +510,7 @@
 1554940120 source:/home/fv/Escritorio/Repositorio/raid-humans/raid-humans/src/enemigos.cpp
 	"../include/enemigos.h"
 
-1554940298 source:/home/fv/Escritorio/Repositorio/raid-humans/raid-humans/src/juego.cpp
+1554992077 source:/home/fv/Escritorio/Repositorio/raid-humans/raid-humans/src/juego.cpp
 	"../include/juego.h"
 	<SFML/Graphics.hpp>
 	<iostream>
