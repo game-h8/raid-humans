@@ -214,6 +214,11 @@ if (enemigosFuera.empty()==false) {
         }
 }
 recogerMoneda();
+
+for(int i = 0; i < vectorTorreta.size(); i++){
+    vectorTorreta[i].dibujarSprite();
+}
+
 }
 //ataque de los enemigos
 
@@ -344,13 +349,20 @@ void juego::addTorreta(){
     sf::Vector2i localPosition = sf::Mouse::getPosition(*ventana);
     int posicionX = localPosition.x;
     int posicionY = localPosition.y;
+    bool existe = false;
 
     //Obtener parte entera de la division
     int i = (posicionX/32);
     int j = (posicionY/32);
 
+    for(int k = 0; k < vectorTorreta.size();k++){
+        if(vectorTorreta[k].getX()/32 == i && vectorTorreta[k].getY()/32 == j){
+            existe = true;
+        }
+    }
+
     //CAMBIAR CUANDO TENGAMOS EL MAPA
-    if(i >= 0 && j >= 0 && i <= 24 && j <= 18){
+    if(i >= 0 && j >= 0 && i <= 24 && j <= 18 && !existe){
         //Crea la clase torreta dandole un tamanio
         Torreta* torreta = new Torreta();
         //Coloca la torreta en una posicion llamando a una funcion que hemos creado en la clase torreta setPos

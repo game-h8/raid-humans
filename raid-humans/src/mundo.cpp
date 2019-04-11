@@ -3,7 +3,7 @@ using namespace std;
 mundo::mundo()
 {
 
-    if(!torretaTex.loadFromFile("ballesta.png")){
+    if(!torretaTex.loadFromFile("resources/TyB.png")){
         std::cerr <<"Error al cargar la imagen";
         exit(0);
     }
@@ -15,7 +15,7 @@ mundo::mundo()
         exit(0);
     }
 
-    if(!balaTex.loadFromFile("bala.png")){
+    if(!balaTex.loadFromFile("resources/TyB.png")){
         std::cerr <<"Error al cargar la imagen de bala";
         exit(0);
     }

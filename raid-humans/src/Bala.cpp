@@ -6,17 +6,22 @@ Bala::Bala(float posX, float posY)
 {
 
     balaSprite.setTexture(mundo::getMundo()->balaTex);
-    balaSprite.scale(0.02,0.02);
+    balaSprite.setTextureRect(IntRect(276,5,96,118));
+    balaSprite.scale(0.5,0.5);
     balaSprite.setOrigin(sf::Vector2f(5.5,5.5));
     nextPosX = posX;
     nextPosY= posY;
+    hitbox.setSize(Vector2f(15,40));
+    hitbox.setFillColor(Color(255,0,0,155));
+    hitbox.setOrigin(-12,-5);
+    hitbox.setPosition(Vector2f(nextPosX,nextPosY));
 //cout<<"Creo una bala. " <<endl;
     viva=true;
 }
 
 void Bala::disparar(float time){
 
-    float speed=200;
+    float speed=100;
 
     sf::Vector2f newpos((cos(angle))*2, (sin(angle))*2);
     direccion = newpos;
@@ -27,6 +32,7 @@ void Bala::disparar(float time){
     x=x+direccion.x*speed*time;
     y=y+direccion.y*speed*time;
 
+    hitbox.setPosition(Vector2f(x,y));
 
     if(x<0 || y < 0 || x>800 || y>600){
         viva = false;
@@ -43,6 +49,7 @@ float Bala::setPos(sf::Vector2f newPos){
     //Calcular angulo hacia el que ira la bala
     angle = atan2(nextPosY - y, nextPosX - x);
     balaSprite.setRotation(angle*180/M_PI +90);//Direccion de la bala
+    hitbox.setRotation(angle*180/M_PI +90);
     return angle;
 }
 int Bala::getX(){
@@ -55,7 +62,7 @@ sf::FloatRect Bala::getGlobal(){
     return balaSprite.getGlobalBounds();
 }
 void Bala::colision(enemigos enemigo){
-    if(balaSprite.getGlobalBounds().intersects(enemigo.getGlobal())){
+    if(hitbox.getGlobalBounds().intersects(enemigo.getGlobal())){
         viva=false;
     }
 }
@@ -63,6 +70,7 @@ void Bala::render(float ticks, sf::RenderWindow &Window){
     balaSprite.setPosition(xlast*(1-ticks) + x*ticks,ylast*(1-ticks)+y*ticks);
     if(viva){
         Window.draw(balaSprite);
+        Window.draw(hitbox);
     }
 }
 

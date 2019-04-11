@@ -4,7 +4,9 @@ Torreta::Torreta()
 {
 
     torretaSprite.setTexture(mundo::getMundo()->torretaTex);
-    torretaSprite.setScale(0.06f,0.06f);
+    torretaSprite.setTextureRect(IntRect(16,5,96,118));
+    torretaSprite.setScale(0.5f,0.5f);
+
     torretaSprite.setOrigin(sf::Vector2f(15.4,15.4));
 }
 int Torreta::getX(){
@@ -16,6 +18,19 @@ int Torreta::getY(){
 void Torreta::draw(sf::RenderWindow &Window){
     Window.draw(torretaSprite);
 }
+
+void Torreta::dibujarSprite(){
+    if(timeTorreta.getElapsedTime().asMilliseconds() < 200){
+       torretaSprite.setTextureRect(IntRect(143,5,96,118));
+    }
+    else if(timeTorreta.getElapsedTime().asMilliseconds() < 400){
+        torretaSprite.setTextureRect(IntRect(16,5,96,118));
+    }
+    else{
+        timeTorreta.restart();
+    }
+}
+
 void Torreta::setPos(sf::Vector2f newPos){
     torretaSprite.setPosition(newPos);
 }

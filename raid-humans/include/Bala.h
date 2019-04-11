@@ -28,6 +28,7 @@ class Bala
         void colision(enemigos enemigo);
         void render(float ticks, sf::RenderWindow &Window);
         virtual ~Bala();
+        sf::RectangleShape hitbox;
     private:
 
         sf::Sprite balaSprite;

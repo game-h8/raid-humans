@@ -14,11 +14,13 @@ class Torreta
         void setPos(sf::Vector2f newPos);
         void rotarTorreta(float angle);
         void draw(sf::RenderWindow &Window);
+        void dibujarSprite();
         sf::Sprite getSprite();
         ~Torreta();
     private:
 
         sf::Sprite torretaSprite;
+        Clock timeTorreta;
 };
 
 #endif // TORRETA_H
