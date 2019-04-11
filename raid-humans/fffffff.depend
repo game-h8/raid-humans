@@ -1,0 +1,89 @@
+# depslib dependency file v1.0
+1554978084 source:/home/fv/Escritorio/fffffff/AssetManager.cpp
+	<SFML/Graphics.hpp>
+	"AssetManager.hpp"
+
+1554978169 /home/fv/Escritorio/fffffff/AssetManager.hpp
+	<map>
+	<SFML/Graphics.hpp>
+
+1554978098 source:/home/fv/Escritorio/fffffff/Game.cpp
+	"Game.hpp"
+	"SplashState.hpp"
+
+1554978156 /home/fv/Escritorio/fffffff/Game.hpp
+	<memory>
+	<string>
+	<SFML/Graphics.hpp>
+	"StateMachine.hpp"
+	"AssetManager.hpp"
+	"InputManager.hpp"
+
+1554978120 /home/fv/Escritorio/fffffff/StateMachine.hpp
+	<memory>
+	<stack>
+	"State.hpp"
+
+1554978126 /home/fv/Escritorio/fffffff/State.hpp
+
+1554978150 /home/fv/Escritorio/fffffff/InputManager.hpp
+	"SFML/Graphics.hpp"
+
+1554978138 /home/fv/Escritorio/fffffff/SplashState.hpp
+	<SFML/Graphics.hpp>
+	"State.hpp"
+	"Game.hpp"
+
+1554978092 source:/home/fv/Escritorio/fffffff/GameOverState.cpp
+	<sstream>
+	"DEFINITIONS.hpp"
+	"GameOverState.hpp"
+	<iostream>
+
+1489442521 /home/fv/Escritorio/fffffff/DEFINITIONS.hpp
+
+1554978162 /home/fv/Escritorio/fffffff/GameOverState.hpp
+	<SFML/Graphics.hpp>
+	"State.hpp"
+	"Game.hpp"
+
+1554978070 source:/home/fv/Escritorio/fffffff/GameState.cpp
+	<sstream>
+	"DEFINITIONS.hpp"
+	"GameState.hpp"
+	<iostream>
+
+1554978144 /home/fv/Escritorio/fffffff/GameState.hpp
+	<SFML/Graphics.hpp>
+	"State.hpp"
+	"Game.hpp"
+
+1554978078 source:/home/fv/Escritorio/fffffff/InputManager.cpp
+	"InputManager.hpp"
+
+1554978191 source:/home/fv/Escritorio/fffffff/main.cpp
+	"Game.hpp"
+	"DEFINITIONS.hpp"
+
+1554978064 source:/home/fv/Escritorio/fffffff/MainMenuState.cpp
+	<sstream>
+	"DEFINITIONS.hpp"
+	"MainMenuState.hpp"
+	"GameState.hpp"
+	<iostream>
+
+1554978132 /home/fv/Escritorio/fffffff/MainMenuState.hpp
+	<SFML/Graphics.hpp>
+	"State.hpp"
+	"Game.hpp"
+
+1554978053 source:/home/fv/Escritorio/fffffff/SplashState.cpp
+	<sstream>
+	"SplashState.hpp"
+	"DEFINITIONS.hpp"
+	"MainMenuState.hpp"
+	<iostream>
+
+1554978046 source:/home/fv/Escritorio/fffffff/StateMachine.cpp
+	"StateMachine.hpp"
+
