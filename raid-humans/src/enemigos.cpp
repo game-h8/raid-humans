@@ -74,16 +74,16 @@ void enemigos::moveEnemy(float time, vector<enemigos> ene, vector<Torreta> torre
 
     if(atacaTorre==false) {
         for(int i=0; i<ene.size()&&colision==false; i++){
-            for(int j=0; i<torres.size()&&colision==false; i++){
+            //for(int j=0; i<torres.size()&&colision==false; i++){
                 if(i!=a){
                     if(hitbox.getGlobalBounds().intersects(ene.at(i).hitbox.getGlobalBounds())){
                         colision=true;
                     }
-                    if(hitbox.getGlobalBounds().intersects(torres.at(j).getSprite().getGlobalBounds())) {
+                    /*if(hitbox.getGlobalBounds().intersects(torres.at(j).getSprite().getGlobalBounds())) {
                         atacaTorre=true;
-                    }
+                    }*/
                 }
-            }
+            //}
         }
         if(colision==false){
             if(x < objetivo.x && y < objetivo.y) {
@@ -171,7 +171,10 @@ void enemigos::render(float ticks, RenderWindow &ventana) {
 
 eSprite.setPosition(xlast*(1-ticks) + x*ticks,ylast*(1-ticks)+y*ticks);
 ventana.draw(eSprite);
-ventana.draw(hitbox);
+if(mundo::getMundo()->getDebug()){
+   ventana.draw(hitbox);
+}
+
 
 
 }
