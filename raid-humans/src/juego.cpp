@@ -398,7 +398,6 @@ void juego::recogerMoneda(){
         if(vectorMonedas[i].hitbox.getGlobalBounds().intersects(jugador->hitbox.getGlobalBounds())){
             vectorMonedas.erase(vectorMonedas.begin()+i);
             monedas+=vectorMonedas[i].valor;
-            cout<<"Monedas de jugador: "<<monedas <<endl;
         }
     }
 }

@@ -1,7 +1,7 @@
 #ifndef MONEDA_H
 #define MONEDA_H
 #include <SFML/Graphics.hpp>
-
+#include <mundo.h>
 
 class Moneda
 {

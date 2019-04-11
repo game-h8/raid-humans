@@ -1,18 +1,20 @@
 #include "Moneda.h"
 #include <iostream>
 
-Moneda::Moneda(float x, float y, int valor)
+Moneda::Moneda(float x, float y, int valorPasado)
 {
     if(!mTex.loadFromFile("resources/CoinSheet.png")){
         std::cerr <<"Error al cargar la imagen";
         exit(0);
     }
     mSprite.setTexture(mTex);
-    mSprite.setOrigin(mSprite.getGlobalBounds().width/2,mSprite.getGlobalBounds().height/2);
 
+
+valor=valorPasado;
     //Max 3000coins  min 100
     if(valor<=100){ // 1Moneda
         mSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
+
     }
     else if(valor<=300){ // 2 Monedas
         mSprite.setTextureRect(sf::IntRect(16, 0, 16, 16));
@@ -29,11 +31,12 @@ Moneda::Moneda(float x, float y, int valor)
     else{ //Lingotes
         mSprite.setTextureRect(sf::IntRect(16*2, 16, 16, 16));
     }
-
+    mSprite.setOrigin(mSprite.getGlobalBounds().width/2,mSprite.getGlobalBounds().height/2);
     mSprite.setPosition(x,y);
 
     hitbox.setSize(sf::Vector2f(mSprite.getGlobalBounds().width*2, mSprite.getGlobalBounds().height*2));
-    hitbox.setOrigin(mSprite.getGlobalBounds().width/2,mSprite.getGlobalBounds().height/2);
+    hitbox.setOrigin(hitbox.getGlobalBounds().width/2,hitbox.getGlobalBounds().height/2);
+    hitbox.setFillColor(sf::Color(255,0,0,155));
     hitbox.setPosition(sf::Vector2f(x,y));
 }
 void Moneda::movimiento(float x, float y){
@@ -42,6 +45,9 @@ void Moneda::movimiento(float x, float y){
 
 void Moneda::render(sf::RenderWindow &Window){
     Window.draw(mSprite);
+    if(mundo::getMundo()->getDebug()){
+        Window.draw(hitbox);
+    }
 }
 
 Moneda::~Moneda()

@@ -44,7 +44,7 @@
 	<SFML/System/Clock.hpp>
 	<mundo.h>
 
-1554993103 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/juego.cpp
+1554996436 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/juego.cpp
 	"../include/juego.h"
 	<SFML/Graphics.hpp>
 	<iostream>
@@ -631,10 +631,11 @@
 	<SFML/Graphics.hpp>
 	"tinyxml2.h"
 
-1554993103 /home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/include/Moneda.h
+1554996993 /home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/include/Moneda.h
 	<SFML/Graphics.hpp>
+	<mundo.h>
 
-1554993103 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/Moneda.cpp
+1554996370 source:/home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/src/Moneda.cpp
 	"Moneda.h"
 	<iostream>
 
