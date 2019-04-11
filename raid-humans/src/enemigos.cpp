@@ -171,7 +171,10 @@ void enemigos::render(float ticks, RenderWindow &ventana) {
 
 eSprite.setPosition(xlast*(1-ticks) + x*ticks,ylast*(1-ticks)+y*ticks);
 ventana.draw(eSprite);
-ventana.draw(hitbox);
+if(mundo::getMundo()->getDebug()){
+   ventana.draw(hitbox);
+}
+
 
 
 }

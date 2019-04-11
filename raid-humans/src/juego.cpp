@@ -25,6 +25,13 @@ inicializar();
  ventana = new RenderWindow(VideoMode(resolucion.x, resolucion.y), "Raid humans");
  jugador= new player("resources/player.png" ,500,400);
  monedas=0;
+
+
+ mundo::getMundo()->ventana=ventana;
+ mundo::getMundo()->jugador=jugador;
+ mundo::getMundo()->mapa=mapa;
+
+
     Clock clock;
     Clock updateCLock;
     Time tiempo = clock.getElapsedTime();
@@ -83,6 +90,7 @@ inicializar();
          if (Keyboard::isKeyPressed(Keyboard::F6))
             {
                  mundo::getMundo()->toggleDebug();
+                 mundo::getMundo()->test();
             }
 
 
@@ -389,15 +397,17 @@ void juego::disparar(){
     }
 
 }
-vector<Torreta> juego::getTorretas() {
-    return vectorTorreta;
-}
-
 void juego::recogerMoneda(){
     for(int i=0; i<vectorMonedas.size(); i++){
         if(vectorMonedas[i].hitbox.getGlobalBounds().intersects(jugador->hitbox.getGlobalBounds())){
             vectorMonedas.erase(vectorMonedas.begin()+i);
             monedas+=vectorMonedas[i].valor;
+
         }
     }
+     return v;
+
+}
+vector<Torreta> juego::getTorretas() {
+    return vectorTorreta;
 }

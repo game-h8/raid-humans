@@ -51,3 +51,8 @@ mundo::~mundo()
 {
     //dtor
 }
+
+void mundo::test(){
+
+cout << jugador->x << endl;
+}

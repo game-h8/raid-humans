@@ -3,6 +3,12 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "player.h"
+#include <Mapa.h>
+
+using namespace sf;
+class player;
+class Mapa;
 
 class mundo
 {
@@ -14,7 +20,11 @@ class mundo
 
         void toggleDebug();
         bool getDebug();
+        void test();
 
+        Mapa *mapa;
+        RenderWindow * ventana;
+        player * jugador;
 
 
         sf::Texture torretaTex;

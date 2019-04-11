@@ -8,6 +8,10 @@
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 	"include/juego.h"
+	"include/player.h"
+	"include/Bala.h"
+	"include/Torreta.h"
+	<vector>
 
 1554989822 /home/fv/Escritorio/TrabajoGrupoFV/raid-humans/raid-humans/include/Bala.h
 	<SFML/Graphics.hpp>
