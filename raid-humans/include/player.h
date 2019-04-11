@@ -1,9 +1,11 @@
+#pragma once
+
 #ifndef PLAYER_H
 #define PLAYER_H
 #include <iostream>
 #include<SFML/Graphics.hpp>
 #include <SFML/System/Clock.hpp>
-
+#include <mundo.h>
 
 #define kVel 100
 

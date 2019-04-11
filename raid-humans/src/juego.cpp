@@ -20,10 +20,18 @@ juego::juego(Vector2u resolucion)
 inicializar();
 
 
+
 //creo mapa
+
  mapa = new Mapa("resources/untitled2.tmx", "resources/PathAndObjects.png");
  ventana = new RenderWindow(VideoMode(resolucion.x, resolucion.y), "Raid humans");
  jugador= new player("resources/player.png" ,500,400);
+
+
+ mundo::getMundo()->ventana=ventana;
+ mundo::getMundo()->jugador=jugador;
+ mundo::getMundo()->mapa=mapa;
+
 
     Clock clock;
     Clock updateCLock;
@@ -40,9 +48,9 @@ inicializar();
     enemigos ene4(100,100);
 
     enemigosEspera.push_back(ene1);
-    enemigosEspera.push_back(ene2);
-    enemigosEspera.push_back(ene3);
-    enemigosEspera.push_back(ene4);
+   enemigosEspera.push_back(ene2);
+   // enemigosEspera.push_back(ene3);
+   // enemigosEspera.push_back(ene4);
 
 
     //variables de tiempo para el ataque
@@ -65,7 +73,8 @@ inicializar();
         }
          if (Keyboard::isKeyPressed(Keyboard::F6))
             {
-                 jugador->toggleDebug();
+                 mundo::getMundo()->toggleDebug();
+                 mundo::getMundo()->test();
             }
 
 
@@ -106,12 +115,14 @@ inicializar();
                 for (int i=0;i<enemigosFuera.size();i++) {
                     enemigosFuera.at(i).ataque(jugador);
                     if(enemigosFuera.at(i).ataca==true){
-                        if (!dTexture.loadFromFile("resources/hit.png")){
-                            cerr << "Error cargando la imagen del golpe resources/sprites.png" << endl;
-                            exit(0);
+                       // if (!dTexture.loadFromFile("resources/hit.png")){
+                         //   cerr << "Error cargando la imagen del golpe resources/sprites.png" << endl;
+                         //   exit(0);
+                      //  }
+                      //enemigosFuera.at(i).eSprite.setColor(Color(255,0,0,155));
 
-                        }
-
+                    }else{
+                      //enemigosFuera.at(i).eSprite.setColor(Color(255,255,255,255));
                     }
                 }
             }
@@ -166,6 +177,8 @@ for(int i=0; i<vectorBalas.size(); i++){
 cout<<"Tamano vectorBalas: " <<vectorBalas.size() <<endl;
 }
 
+
+//QUE ES ESTO? NO HACE NADA///////////////////////////////////////////////////////////////////////////////////
 //movimiento enemigo
 if (enemigosFuera.empty()==false) {
     for (int i=0;i<enemigosFuera.size();i++) {
@@ -312,11 +325,12 @@ void juego::addTorreta(){
     //CAMBIAR CUANDO TENGAMOS EL MAPA
     if(i >= 0 && j >= 0 && i <= 24 && j <= 18){
         //Crea la clase torreta dandole un tamanio
-        Torreta* torreta = new Torreta("ballesta.png");
+        Torreta* torreta = new Torreta();
         //Coloca la torreta en una posicion llamando a una funcion que hemos creado en la clase torreta setPos
         torreta->setPos(sf::Vector2f(i*32.f ,j*32.f));
         //Anade la torreta creada al vector de torretas
-        vectorTorreta.push_back(*torreta);
+       vectorTorreta.push_back(*torreta);
+
     }
 
 }

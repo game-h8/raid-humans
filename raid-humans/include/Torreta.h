@@ -3,11 +3,12 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <math.h>
+#include <mundo.h>
 
 class Torreta
 {
     public:
-        Torreta(std::string imgDirectory);
+        Torreta();
         int getX();
         int getY();
         void setPos(sf::Vector2f newPos);
@@ -16,7 +17,7 @@ class Torreta
         sf::Sprite getSprite();
         ~Torreta();
     private:
-        sf::Texture torretaTex;
+
         sf::Sprite torretaSprite;
 };
 

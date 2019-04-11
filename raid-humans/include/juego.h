@@ -28,12 +28,15 @@ class juego
         void dibujarSelector();
         void addTorreta();
         void disparar();
-         vector<Torreta> getTorretas();
+        vector<Torreta> getTorretas();
 
 
     protected:
 
     private:
+
+
+
         Mapa *mapa;
         RenderWindow * ventana;
         player * jugador;
@@ -43,6 +46,7 @@ class juego
         vector<enemigos>enemigosEspera; //vector de enemigos para hacer spawn*/
         Sprite dSprite;
         Texture dTexture;
+
 };
 
 #endif // JUEGO_H
