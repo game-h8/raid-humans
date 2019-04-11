@@ -38,6 +38,7 @@ enemigos::enemigos(float x2, float y2) {
 
 
     eSprite.setTexture(mundo::getMundo()->eTexture);
+
     eSprite.setOrigin(17,48/2);   // ahora es fija pero debera ser la que mande el spawn
     eSprite.setTextureRect(IntRect(3, 290, 59, 88));
 
@@ -50,7 +51,7 @@ enemigos::enemigos(float x2, float y2) {
     ylast=y2;
 
 
-      hitbox.setSize(Vector2f(59,88));
+    hitbox.setSize(Vector2f(59,88));
     hitbox.setFillColor(Color(255,0,0,155));
     hitbox.setOrigin(eSprite.getGlobalBounds().width/2-17,eSprite.getGlobalBounds().height/2-24);
     hitbox.setPosition(Vector2f(x,y));

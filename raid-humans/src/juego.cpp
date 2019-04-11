@@ -405,7 +405,7 @@ void juego::recogerMoneda(){
 
         }
     }
-     return v;
+
 
 }
 vector<Torreta> juego::getTorretas() {
