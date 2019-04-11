@@ -17,7 +17,7 @@ class Torreta
         void dibujarSprite();
         sf::Sprite getSprite();
 
-        Clock timeTorreta;
+        sf::Clock timeTorreta;
         ~Torreta();
                 sf::Sprite torretaSprite;
     private:

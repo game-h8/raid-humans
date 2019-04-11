@@ -5,6 +5,7 @@
 #include "enemigos.h"
 #include <math.h>
 
+class enemigos;
 class Torreta;
 class player;
 class Bala

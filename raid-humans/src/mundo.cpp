@@ -54,5 +54,5 @@ mundo::~mundo()
 
 void mundo::test(){
 
-cout << jugador->x << endl;
+cout << enemigosEspera->size() << endl;
 }

@@ -13,7 +13,7 @@ Bala::Bala(float posX, float posY)
     nextPosY= posY;
     hitbox.setSize(Vector2f(15,40));
     hitbox.setFillColor(Color(255,0,0,155));
-    hitbox.setOrigin(-12,-5);
+    hitbox.setOrigin(8,-5);
     hitbox.setPosition(Vector2f(nextPosX,nextPosY));
 //cout<<"Creo una bala. " <<endl;
     viva=true;

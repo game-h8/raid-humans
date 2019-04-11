@@ -60,6 +60,8 @@ ylast=y;
 
 
 
+
+
     vel.x=v.x;
     vel.y=v.y;
     x=x+vel.x*time ;

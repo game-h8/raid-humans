@@ -1,3 +1,5 @@
+
+
 #ifndef ENEMIGOS_H
 #define ENEMIGOS_H
 #include <iostream>
@@ -8,7 +10,8 @@
 
 using namespace sf;
 using namespace std;
-
+class player;
+class Torreta;
 class enemigos {
 
 public:

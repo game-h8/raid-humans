@@ -5,10 +5,19 @@
 #include <SFML/Graphics.hpp>
 #include "player.h"
 #include <Mapa.h>
+#include <enemigos.h>
+#include <vector>
+#include <Torreta.h>
+#include <Bala.h>
+#include <Moneda.h>
 
 using namespace sf;
+class enemigos;
 class player;
 class Mapa;
+class Moneda;
+class Bala;
+
 
 class mundo
 {
@@ -30,6 +39,13 @@ class mundo
         sf::Texture torretaTex;
         sf::Texture   eTexture;
         sf::Texture balaTex;
+
+        vector<enemigos> * enemigosFuera; //vector de enemigos que se encuentran en pantalla
+        vector<enemigos> * enemigosEspera;
+        vector<Torreta> * vectorTorreta;
+        vector<Bala> * vectorBalas;
+        vector<Moneda> * vectorMonedas;
+
 
 
     protected:

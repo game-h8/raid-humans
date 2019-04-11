@@ -24,6 +24,14 @@ inicializar();
  mapa = new Mapa("resources/untitled2.tmx", "resources/PathAndObjects.png");
  ventana = new RenderWindow(VideoMode(resolucion.x, resolucion.y), "Raid humans");
  jugador= new player("resources/player.png" ,500,400);
+ mundo::getMundo()->enemigosEspera=&enemigosEspera;
+ mundo::getMundo()->enemigosFuera=&enemigosFuera;
+ mundo::getMundo()->vectorTorreta=&vectorTorreta;
+ mundo::getMundo()->vectorMonedas=&vectorMonedas;
+ mundo::getMundo()->vectorBalas=&vectorBalas;
+
+
+
  monedas=0;
 
 
@@ -64,9 +72,10 @@ inicializar();
     vectorMonedas.push_back(m6);
 
     enemigosEspera.push_back(ene1);
-   //enemigosEspera.push_back(ene2);
-   // enemigosEspera.push_back(ene3);
+   enemigosEspera.push_back(ene2);
+    enemigosEspera.push_back(ene3);
    // enemigosEspera.push_back(ene4);
+
 
 
     //variables de tiempo para el ataque
