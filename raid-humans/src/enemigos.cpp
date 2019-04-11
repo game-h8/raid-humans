@@ -18,7 +18,7 @@ enemigos::enemigos() {
 
 enemigos::enemigos(const enemigos& E) {
 
-    eTexture=E.eTexture;
+
     eSprite=E.eSprite;
     hitbox=E.hitbox;
     x=E.x;
@@ -36,15 +36,8 @@ enemigos::enemigos(const enemigos& E) {
 enemigos::enemigos(float x2, float y2) {
 
 
-    if (!eTexture.loadFromFile("resources/enemigo.png"))
-    {
-        cerr << "Error cargando la imagen del enemigo resources/sprites.png" << endl;
-        exit(0);
 
-    }
-
-
-    eSprite.setTexture(eTexture);
+    eSprite.setTexture(mundo::getMundo()->eTexture);
     eSprite.setOrigin(17,48/2);   // ahora es fija pero debera ser la que mande el spawn
     eSprite.setTextureRect(IntRect(3, 290, 59, 88));
 

@@ -1,12 +1,9 @@
 #include "../include/Torreta.h"
 
-Torreta::Torreta(std::string imgDirectory)
+Torreta::Torreta()
 {
-    if(!torretaTex.loadFromFile(imgDirectory)){
-        std::cerr <<"Error al cargar la imagen";
-        exit(0);
-    }
-    torretaSprite.setTexture(torretaTex);
+
+    torretaSprite.setTexture(mundo::getMundo()->torretaTex);
     torretaSprite.setScale(0.06f,0.06f);
     torretaSprite.setOrigin(sf::Vector2f(15.4,15.4));
 }

@@ -18,7 +18,7 @@ public:
         ~enemigos(); //destructor
 
         RectangleShape hitbox;
-        Texture   eTexture;
+
         Sprite    eSprite;
         float     x;
         float     y;

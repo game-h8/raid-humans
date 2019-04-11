@@ -4,11 +4,8 @@
 
 Bala::Bala(float posX, float posY)
 {
-    if(!balaTex.loadFromFile("bala.png")){
-        std::cerr <<"Error al cargar la imagen de bala";
-        exit(0);
-    }
-    balaSprite.setTexture(balaTex);
+
+    balaSprite.setTexture(mundo::getMundo()->balaTex);
     balaSprite.scale(0.02,0.02);
     balaSprite.setOrigin(sf::Vector2f(5.5,5.5));
     nextPosX = posX;

@@ -29,7 +29,7 @@ class Bala
         void render(float ticks, sf::RenderWindow &Window);
         virtual ~Bala();
     private:
-        sf::Texture balaTex;
+
         sf::Sprite balaSprite;
 };
 

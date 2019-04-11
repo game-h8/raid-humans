@@ -14,11 +14,20 @@ class mundo
 
         void toggleDebug();
         bool getDebug();
+
+
+
+        sf::Texture torretaTex;
+        sf::Texture   eTexture;
+        sf::Texture balaTex;
+
+
     protected:
 
     private:
         static mundo* _instancia;
         bool debug = false;
+
 };
 
 #endif // MUNDO_H

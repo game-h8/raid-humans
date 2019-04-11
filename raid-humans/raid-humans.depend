@@ -474,25 +474,26 @@
 	<SFML/System/Clock.hpp>
 	<mundo.h>
 
-1554920999 /home/fv/Escritorio/Repositorio/raid-humans/raid-humans/include/Bala.h
+1554940384 /home/fv/Escritorio/Repositorio/raid-humans/raid-humans/include/Bala.h
 	<SFML/Graphics.hpp>
 	"player.h"
 	"enemigos.h"
 	<math.h>
 
-1554935375 /home/fv/Escritorio/Repositorio/raid-humans/raid-humans/include/enemigos.h
+1554940052 /home/fv/Escritorio/Repositorio/raid-humans/raid-humans/include/enemigos.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	<player.h>
 	<Torreta.h>
 	<math.h>
 
-1554935375 /home/fv/Escritorio/Repositorio/raid-humans/raid-humans/include/Torreta.h
+1554939002 /home/fv/Escritorio/Repositorio/raid-humans/raid-humans/include/Torreta.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<math.h>
+	<mundo.h>
 
-1554920994 source:/home/fv/Escritorio/Repositorio/raid-humans/raid-humans/src/Bala.cpp
+1554940436 source:/home/fv/Escritorio/Repositorio/raid-humans/raid-humans/src/Bala.cpp
 	"../include/Bala.h"
 	<iostream>
 	<math.h>
@@ -506,10 +507,10 @@
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/RenderStates.hpp>
 
-1554937398 source:/home/fv/Escritorio/Repositorio/raid-humans/raid-humans/src/enemigos.cpp
+1554940120 source:/home/fv/Escritorio/Repositorio/raid-humans/raid-humans/src/enemigos.cpp
 	"../include/enemigos.h"
 
-1554936808 source:/home/fv/Escritorio/Repositorio/raid-humans/raid-humans/src/juego.cpp
+1554940298 source:/home/fv/Escritorio/Repositorio/raid-humans/raid-humans/src/juego.cpp
 	"../include/juego.h"
 	<SFML/Graphics.hpp>
 	<iostream>
@@ -525,7 +526,7 @@
 	<SFML/Graphics.hpp>
 	"tinyxml2.h"
 
-1554937122 source:/home/fv/Escritorio/Repositorio/raid-humans/raid-humans/src/player.cpp
+1554938300 source:/home/fv/Escritorio/Repositorio/raid-humans/raid-humans/src/player.cpp
 	"player.h"
 
 1554920626 source:/home/fv/Escritorio/Repositorio/raid-humans/raid-humans/src/TileMap.cpp
@@ -546,13 +547,13 @@
 	<cstddef>
 	<cstdarg>
 
-1554935375 source:/home/fv/Escritorio/Repositorio/raid-humans/raid-humans/src/Torreta.cpp
+1554939004 source:/home/fv/Escritorio/Repositorio/raid-humans/raid-humans/src/Torreta.cpp
 	"../include/Torreta.h"
 
-1554938247 /home/fv/Escritorio/Repositorio/raid-humans/raid-humans/include/mundo.h
+1554940389 /home/fv/Escritorio/Repositorio/raid-humans/raid-humans/include/mundo.h
 	<iostream>
 	<SFML/Graphics.hpp>
 
-1554938187 source:/home/fv/Escritorio/Repositorio/raid-humans/raid-humans/src/mundo.cpp
+1554940407 source:/home/fv/Escritorio/Repositorio/raid-humans/raid-humans/src/mundo.cpp
 	"mundo.h"
 
