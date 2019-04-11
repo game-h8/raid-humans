@@ -9,6 +9,7 @@
 #include "Bala.h"
 #include "Torreta.h"
 #include "enemigos.h"
+#include "Moneda.h"
 #include <vector>
 #include <Mapa.h>
 
@@ -28,6 +29,7 @@ class juego
         void dibujarSelector();
         void addTorreta();
         void disparar();
+        void recogerMoneda();
         vector<Torreta> getTorretas();
 
 
@@ -39,10 +41,12 @@ class juego
         player * jugador;
         vector<Torreta> vectorTorreta;
         vector<Bala> vectorBalas;
+        vector<Moneda> vectorMonedas;
         vector<enemigos> enemigosFuera; //vector de enemigos que se encuentran en pantalla
         vector<enemigos>enemigosEspera; //vector de enemigos para hacer spawn*/
         Sprite dSprite;
         Texture dTexture;
+        int monedas;
 };
 
 #endif // JUEGO_H

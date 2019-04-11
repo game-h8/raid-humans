@@ -10,7 +10,7 @@ Bala::Bala(float posX, float posY)
     balaSprite.setOrigin(sf::Vector2f(5.5,5.5));
     nextPosX = posX;
     nextPosY= posY;
-cout<<"Creo una bala. " <<endl;
+//cout<<"Creo una bala. " <<endl;
     viva=true;
 }
 

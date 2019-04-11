@@ -3,7 +3,7 @@
 
 
 #define SPAWN_SPEED 4000
-
+#define SHOOT_SPEED 4000
 #define UPDATE_TICK_TIME 1000/15
 #define kVel 100
 
@@ -24,7 +24,7 @@ inicializar();
  mapa = new Mapa("resources/untitled2.tmx", "resources/PathAndObjects.png");
  ventana = new RenderWindow(VideoMode(resolucion.x, resolucion.y), "Raid humans");
  jugador= new player("resources/player.png" ,500,400);
-
+ monedas=0;
     Clock clock;
     Clock updateCLock;
     Time tiempo = clock.getElapsedTime();
@@ -34,10 +34,27 @@ inicializar();
     Clock clockSpawn;
     Time tiempoSpawn =  seconds(3.f);
 
+    //variables de tiempo para la bala
+    Clock clockBala;
+    Time tiempoBala = clock.getElapsedTime();
+
     enemigos ene1(100,100);
     enemigos ene2(100,100);
     enemigos ene3(100,100);
     enemigos ene4(100,100);
+
+    Moneda m1(100,300,10);
+    vectorMonedas.push_back(m1);
+    Moneda m2(200,200,150);
+    vectorMonedas.push_back(m2);
+    Moneda m3(400,300,490);
+    vectorMonedas.push_back(m3);
+    Moneda m4(500,200,4000);
+    vectorMonedas.push_back(m4);
+    Moneda m5(500,500,900);
+    vectorMonedas.push_back(m5);
+    Moneda m6(100,200,1500);
+    vectorMonedas.push_back(m6);
 
     enemigosEspera.push_back(ene1);
    enemigosEspera.push_back(ene2);
@@ -94,7 +111,7 @@ inicializar();
 }
             //le damos un objetivo al enemigo
 
-            disparar();
+
          }
 
           // los enemigos comprueban el ataque
@@ -118,6 +135,12 @@ inicializar();
                 }
             }
 
+         }
+
+        //temporizador para generar balas
+         if(clockBala.getElapsedTime().asMilliseconds() - tiempoBala.asMilliseconds() > SHOOT_SPEED){
+            tiempoBala = clockBala.getElapsedTime();
+            disparar();
          }
 
 
@@ -165,7 +188,7 @@ for(int i=0; i<vectorBalas.size(); i++){
     if(!vectorBalas[i].viva){
         vectorBalas.erase(vectorBalas.begin()+i);
     }
-cout<<"Tamano vectorBalas: " <<vectorBalas.size() <<endl;
+//cout<<"Tamano vectorBalas: " <<vectorBalas.size() <<endl;
 }
 
 
@@ -181,7 +204,8 @@ if (enemigosFuera.empty()==false) {
             dSprite.setTextureRect(IntRect(0.1*35, 2.63*50, 28, 27));
             dSprite.setPosition(jugador->xlast,jugador->ylast+25);
         }
-    }
+}
+recogerMoneda();
 }
 //ataque de los enemigos
 
@@ -217,6 +241,10 @@ if (enemigosFuera.size()>0) {
             ventana->draw(dSprite);
         }
     }
+}
+
+for(int i=0; i<vectorMonedas.size(); i++){
+    vectorMonedas[i].render(*ventana);
 }
 ventana->display();
 
@@ -344,19 +372,33 @@ void juego::disparar(){
                     float newDist=sqrt(pow(vectorTorreta[i].getX()-enemigosFuera[j].x,2) + pow(vectorTorreta[i].getY()-enemigosFuera[j].y,2));
                     if(newDist < dist){
                         dist=newDist;//si la nueva distancia es menor que la anterior, sera la nueva distancia
+                    if(dist<=300){
                         enemigoX=enemigosFuera[j].x;//Asignamos las coordenadas de ese enemigo a nuestras variables
                         enemigoY=enemigosFuera[j].y;
                     }
+                    }
                 }
             }
-            Bala * nuevaBala = new Bala(enemigoX, enemigoY);
-            angle = nuevaBala->setPos(sf::Vector2f(vectorTorreta[i].getX(), vectorTorreta[i].getY()));
-            vectorBalas.push_back(*nuevaBala);
-            vectorTorreta[i].rotarTorreta(angle);
+            if(dist<=300){
+                Bala * nuevaBala = new Bala(enemigoX, enemigoY);
+                angle = nuevaBala->setPos(sf::Vector2f(vectorTorreta[i].getX(), vectorTorreta[i].getY()));
+                vectorBalas.push_back(*nuevaBala);
+                vectorTorreta[i].rotarTorreta(angle);
+            }
         }
     }
 
 }
 vector<Torreta> juego::getTorretas() {
     return vectorTorreta;
+}
+
+void juego::recogerMoneda(){
+    for(int i=0; i<vectorMonedas.size(); i++){
+        if(vectorMonedas[i].hitbox.getGlobalBounds().intersects(jugador->hitbox.getGlobalBounds())){
+            vectorMonedas.erase(vectorMonedas.begin()+i);
+            monedas+=vectorMonedas[i].valor;
+            cout<<"Monedas de jugador: "<<monedas <<endl;
+        }
+    }
 }

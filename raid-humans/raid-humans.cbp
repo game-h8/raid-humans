@@ -47,6 +47,7 @@
 		<Unit filename="include/Bala.h" />
 		<Unit filename="include/Drawable.hpp" />
 		<Unit filename="include/Mapa.h" />
+		<Unit filename="include/Moneda.h" />
 		<Unit filename="include/TileMap.h" />
 		<Unit filename="include/Torreta.h" />
 		<Unit filename="include/enemigos.h" />
@@ -60,6 +61,7 @@
 		<Unit filename="src/Bala.cpp" />
 		<Unit filename="src/Drawable.cpp" />
 		<Unit filename="src/Mapa.cpp" />
+		<Unit filename="src/Moneda.cpp" />
 		<Unit filename="src/TileMap.cpp" />
 		<Unit filename="src/Torreta.cpp" />
 		<Unit filename="src/enemigos.cpp" />
