@@ -8,7 +8,7 @@ Bala::Bala(float posX, float posY)
     balaSprite.setTexture(mundo::getMundo()->balaTex);
     balaSprite.setTextureRect(IntRect(276,5,96,118));
     balaSprite.scale(0.5,0.5);
-    balaSprite.setOrigin(sf::Vector2f(5.5,5.5));
+  balaSprite.setOrigin(sf::Vector2f(36,36));
     nextPosX = posX;
     nextPosY= posY;
     hitbox.setSize(Vector2f(15,40));
@@ -70,7 +70,11 @@ void Bala::render(float ticks, sf::RenderWindow &Window){
     balaSprite.setPosition(xlast*(1-ticks) + x*ticks,ylast*(1-ticks)+y*ticks);
     if(viva){
         Window.draw(balaSprite);
-        Window.draw(hitbox);
+
+        if(mundo::getMundo()->getDebug()){
+   Window.draw(hitbox);
+}
+
     }
 }
 

@@ -16,11 +16,14 @@ class Torreta
         void draw(sf::RenderWindow &Window);
         void dibujarSprite();
         sf::Sprite getSprite();
+
+        Clock timeTorreta;
         ~Torreta();
+                sf::Sprite torretaSprite;
     private:
 
-        sf::Sprite torretaSprite;
-        Clock timeTorreta;
+
+
 };
 
 #endif // TORRETA_H

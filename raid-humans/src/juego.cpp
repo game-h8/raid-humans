@@ -64,7 +64,7 @@ inicializar();
     vectorMonedas.push_back(m6);
 
     enemigosEspera.push_back(ene1);
-   enemigosEspera.push_back(ene2);
+   //enemigosEspera.push_back(ene2);
    // enemigosEspera.push_back(ene3);
    // enemigosEspera.push_back(ene4);
 
@@ -235,11 +235,13 @@ mapa->drawMapa(*ventana);
 dibujarSelector();
 
 //Recorrer el vector de torretas y dibujar las torretas
-for(int i=0; i<vectorTorreta.size(); i++)
-    vectorTorreta[i].draw(*ventana);
+
 for(int i=0; i<vectorBalas.size(); i++){
     vectorBalas[i].render(percentick, *ventana);
 }
+for(int i=0; i<vectorTorreta.size(); i++)
+    vectorTorreta[i].draw(*ventana);
+
 jugador->render(percentick, *ventana);
 
 if (enemigosFuera.empty()==false) {
@@ -366,7 +368,7 @@ void juego::addTorreta(){
         //Crea la clase torreta dandole un tamanio
         Torreta* torreta = new Torreta();
         //Coloca la torreta en una posicion llamando a una funcion que hemos creado en la clase torreta setPos
-        torreta->setPos(sf::Vector2f(i*32.f ,j*32.f));
+        torreta->setPos(sf::Vector2f(i*32.f+16 ,j*32.f+16));
         //Anade la torreta creada al vector de torretas
        vectorTorreta.push_back(*torreta);
 
@@ -393,6 +395,7 @@ void juego::disparar(){
                     if(newDist < dist){
                         dist=newDist;//si la nueva distancia es menor que la anterior, sera la nueva distancia
                     if(dist<=300){
+
                         enemigoX=enemigosFuera[j].x;//Asignamos las coordenadas de ese enemigo a nuestras variables
                         enemigoY=enemigosFuera[j].y;
                     }
@@ -400,12 +403,15 @@ void juego::disparar(){
                 }
             }
             if(dist<=300){
+
                 Bala * nuevaBala = new Bala(enemigoX, enemigoY);
                 angle = nuevaBala->setPos(sf::Vector2f(vectorTorreta[i].getX(), vectorTorreta[i].getY()));
                 vectorBalas.push_back(*nuevaBala);
                 vectorTorreta[i].rotarTorreta(angle);
+                vectorTorreta[i].timeTorreta.restart(); //reseteo el sprite de torreta si dispara
             }
         }
+
     }
 
 }
