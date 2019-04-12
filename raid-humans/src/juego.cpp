@@ -3,7 +3,7 @@
 
 
 #define SPAWN_SPEED 4000
-
+#define SHOOT_SPEED 4000
 #define UPDATE_TICK_TIME 1000/15
 #define kVel 100
 
@@ -21,11 +21,29 @@ inicializar();
 
 
 
-//creo mapa
 
+//creo mapa
  mapa = new Mapa("resources/untitled2.tmx", "resources/PathAndObjects.png");
  ventana = new RenderWindow(VideoMode(resolucion.x, resolucion.y), "Raid humans");
+
  jugador= new player("resources/player.png" ,500,400);
+ mundo::getMundo()->enemigosEspera=&enemigosEspera;
+ mundo::getMundo()->enemigosFuera=&enemigosFuera;
+ mundo::getMundo()->vectorTorreta=&vectorTorreta;
+ mundo::getMundo()->vectorMonedas=&vectorMonedas;
+ mundo::getMundo()->vectorBalas=&vectorBalas;
+
+
+portada.setTexture(mundo::getMundo()->splasTexture);
+  menu.setTexture(mundo::getMundo()->splasmenu);
+  boton.setTexture(mundo::getMundo()->botoninicio);
+
+ portada.setScale((double)ventana->getSize().x/(double)portada.getTexture()->getSize().x,(double)ventana->getSize().y/(double)portada.getTexture()->getSize().y);
+ menu.setScale((double)ventana->getSize().x/(double)menu.getTexture()->getSize().x,(double)ventana->getSize().y/(double)menu.getTexture()->getSize().y);
+ boton.setPosition((double)ventana->getSize().x/2-(double)boton.getTexture()->getSize().x/2,(double)ventana->getSize().y/3);
+
+estado=new StateMachine();
+ monedas=0;
 
 
  mundo::getMundo()->ventana=ventana;
@@ -33,29 +51,35 @@ inicializar();
  mundo::getMundo()->mapa=mapa;
 
 
-    Clock clock;
-    Clock updateCLock;
-    Time tiempo = clock.getElapsedTime();
 
 
-    //variables de tiempo para el spawn
-    Clock clockSpawn;
-    Time tiempoSpawn =  seconds(3.f);
 
     enemigos ene1(100,100);
     enemigos ene2(100,100);
     enemigos ene3(100,100);
     enemigos ene4(100,100);
 
+    Moneda m1(100,300,10);
+    vectorMonedas.push_back(m1);
+    Moneda m2(200,200,150);
+    vectorMonedas.push_back(m2);
+    Moneda m3(400,300,490);
+    vectorMonedas.push_back(m3);
+    Moneda m4(500,200,4000);
+    vectorMonedas.push_back(m4);
+    Moneda m5(500,500,900);
+    vectorMonedas.push_back(m5);
+    Moneda m6(100,200,1500);
+    vectorMonedas.push_back(m6);
+
     enemigosEspera.push_back(ene1);
-   enemigosEspera.push_back(ene2);
-   // enemigosEspera.push_back(ene3);
-   // enemigosEspera.push_back(ene4);
+    enemigosEspera.push_back(ene2);
+    enemigosEspera.push_back(ene3);
+    enemigosEspera.push_back(ene4);
 
 
-    //variables de tiempo para el ataque
-    Clock clockAttack;
-    Time tiempoAttack = seconds(1.f);
+
+
 
 
  while(ventana->isOpen()){
@@ -103,7 +127,7 @@ inicializar();
 }
             //le damos un objetivo al enemigo
 
-            disparar();
+
          }
 
           // los enemigos comprueban el ataque
@@ -113,7 +137,7 @@ inicializar();
 
             if (enemigosFuera.empty()==false) {
                 for (int i=0;i<enemigosFuera.size();i++) {
-                    enemigosFuera.at(i).ataque(jugador);
+                    enemigosFuera.at(i).ataque(jugador, vectorTorreta);
                     if(enemigosFuera.at(i).ataca==true){
                        // if (!dTexture.loadFromFile("resources/hit.png")){
                          //   cerr << "Error cargando la imagen del golpe resources/sprites.png" << endl;
@@ -127,6 +151,12 @@ inicializar();
                 }
             }
 
+         }
+
+        //temporizador para generar balas
+         if(clockBala.getElapsedTime().asMilliseconds() - tiempoBala.asMilliseconds() > SHOOT_SPEED){
+            tiempoBala = clockBala.getElapsedTime();
+            disparar();
          }
 
 
@@ -161,7 +191,53 @@ void juego:: inicializar() { //inicializar las variables del juego
 
 void juego:: update(float elapsedTime){
 
-vector<int> inputs= getInputs();                //Funcion para coger los botones que se pulsan
+
+
+    if(estado->getEstado()==1){
+            /////////////////////////////
+    //////////INTRODUCCION///////////
+    ///////////////////////////
+
+    if(clock.getElapsedTime().asSeconds()>5){
+
+        estado->setEstado(2);
+    }
+
+
+
+    }else if(estado->getEstado()==2){
+
+
+     ////////////////////////////////////////
+    //////////MENU INICIAL DEL JUEGO///////////
+    //////////////////////////////////////
+
+
+
+        if(IsSpriteCLicker (boton)){
+
+                clockSpawn.restart();
+
+                clockBala.restart();
+
+                clockAttack.restart();
+
+                 estado->setEstado(3);
+
+        }
+
+
+
+
+    }else if (estado->getEstado()==3){
+     ////////////////////////////////////////
+    //////////INGAME///////////
+    //////////////////////////////////////
+
+
+
+
+      vector<int> inputs= getInputs();                //Funcion para coger los botones que se pulsan
 jugador->calcularVelocidadPlayer(inputs,elapsedTime); //Calculamos la posicion inicial y final deljugador y lo movemos
 
 
@@ -169,12 +245,13 @@ jugador->calcularVelocidadPlayer(inputs,elapsedTime); //Calculamos la posicion i
 for(int i=0; i<vectorBalas.size(); i++){
     vectorBalas[i].disparar(elapsedTime);
     for (int j=0;j<enemigosFuera.size();j++) {
-        vectorBalas[i].colision(enemigosFuera[j]);
+        vectorBalas[i].colision(j);
+
     }
     if(!vectorBalas[i].viva){
         vectorBalas.erase(vectorBalas.begin()+i);
     }
-cout<<"Tamano vectorBalas: " <<vectorBalas.size() <<endl;
+//cout<<"Tamano vectorBalas: " <<vectorBalas.size() <<endl;
 }
 
 
@@ -183,35 +260,99 @@ cout<<"Tamano vectorBalas: " <<vectorBalas.size() <<endl;
 if (enemigosFuera.empty()==false) {
     for (int i=0;i<enemigosFuera.size();i++) {
         enemigosFuera.at(i).moveEnemy(elapsedTime, enemigosFuera, vectorTorreta, i);
+        enemigosFuera.at(i). invulnerabilidad();
+        enemigosFuera.at(i).danobala();
 
-
-            dSprite.setTexture(dTexture);
+            /*dSprite.setTexture(dTexture);
             dSprite.setOrigin(17,48/2);
             dSprite.setTextureRect(IntRect(0.1*35, 2.63*50, 28, 27));
-            dSprite.setPosition(jugador->xlast,jugador->ylast+25);
+            dSprite.setPosition(jugador->xlast,jugador->ylast+25);*/
         }
+}
+recogerMoneda();
+
+for(int i = 0; i < vectorTorreta.size(); i++){
+    vectorTorreta[i].dibujarSprite();
+     vectorTorreta[i].danoenemigo();
+}
+
+
+
+
+    }else if(estado->getEstado()==4){
+     ////////////////////////////////////////
+    //////////CONSTRUCCION///////////
+    //////////////////////////////////////
+
+
     }
+
+
+    else if(estado->getEstado()==4){
+     ////////////////////////////////////////
+    //////////GAME OVER//////////
+    //////////////////////////////////////
+
+
+    }
+
+
+
+
+
+
+
 }
 //ataque de los enemigos
 
 
 void juego:: renderizar(float percentick){
-
-
-
 ventana->clear();
 
-mapa->setActivateLayer(0);
+
+ if(estado->getEstado()==1){
+            /////////////////////////////
+    //////////INTRODUCCION///////////
+    ///////////////////////////
+
+    ventana->draw(portada);
+
+
+
+
+    }else if(estado->getEstado()==2){
+
+
+     ////////////////////////////////////////
+    //////////MENU INICIAL DEL JUEGO///////////
+    //////////////////////////////////////
+
+
+     ventana->draw(menu);
+      ventana->draw(boton);
+
+
+    }else if (estado->getEstado()==3){
+     ////////////////////////////////////////
+    //////////INGAME///////////
+    //////////////////////////////////////
+
+
+
+
+       mapa->setActivateLayer(0);
 mapa->drawMapa(*ventana);
 
 dibujarSelector();
 
 //Recorrer el vector de torretas y dibujar las torretas
-for(int i=0; i<vectorTorreta.size(); i++)
-    vectorTorreta[i].draw(*ventana);
+
 for(int i=0; i<vectorBalas.size(); i++){
     vectorBalas[i].render(percentick, *ventana);
 }
+for(int i=0; i<vectorTorreta.size(); i++)
+    vectorTorreta[i].draw(*ventana);
+
 jugador->render(percentick, *ventana);
 
 if (enemigosFuera.empty()==false) {
@@ -227,6 +368,37 @@ if (enemigosFuera.size()>0) {
         }
     }
 }
+
+for(int i=0; i<vectorMonedas.size(); i++){
+    vectorMonedas[i].render(*ventana);
+}
+
+
+
+
+
+
+    }else if(estado->getEstado()==4){
+     ////////////////////////////////////////
+    //////////CONSTRUCCION///////////
+    //////////////////////////////////////
+
+
+    }
+
+
+    else if(estado->getEstado()==4){
+     ////////////////////////////////////////
+    //////////GAME OVER//////////
+    //////////////////////////////////////
+
+
+    }
+
+
+
+
+
 ventana->display();
 
 
@@ -240,19 +412,19 @@ vector<int> data;
 
 
 
-            if (Keyboard::isKeyPressed(Keyboard::Left))
+            if (Keyboard::isKeyPressed(Keyboard::A))
             {
                    data.push_back(4);                               //IZQUIERDA --> 4
             }
-            if (Keyboard::isKeyPressed(Keyboard::Right))    //DEREZHA --> 6
+            if (Keyboard::isKeyPressed(Keyboard::D))    //DEREZHA --> 6
             {
                   data.push_back(6);
             }
-            if (Keyboard::isKeyPressed(Keyboard::Up))       //ARRIBA --> 8
+            if (Keyboard::isKeyPressed(Keyboard::W))       //ARRIBA --> 8
             {
                  data.push_back(8);
             }
-            if (Keyboard::isKeyPressed(Keyboard::Down))     //ABAJO --> 2
+            if (Keyboard::isKeyPressed(Keyboard::S))     //ABAJO --> 2
             {
                 data.push_back(2);
             }
@@ -317,17 +489,24 @@ void juego::addTorreta(){
     sf::Vector2i localPosition = sf::Mouse::getPosition(*ventana);
     int posicionX = localPosition.x;
     int posicionY = localPosition.y;
+    bool existe = false;
 
     //Obtener parte entera de la division
     int i = (posicionX/32);
     int j = (posicionY/32);
 
+    for(int k = 0; k < vectorTorreta.size();k++){
+        if(vectorTorreta[k].getX()/32 == i && vectorTorreta[k].getY()/32 == j){
+            existe = true;
+        }
+    }
+
     //CAMBIAR CUANDO TENGAMOS EL MAPA
-    if(i >= 0 && j >= 0 && i <= 24 && j <= 18){
+    if(i >= 0 && j >= 0 && i <= 24 && j <= 18 && !existe){
         //Crea la clase torreta dandole un tamanio
         Torreta* torreta = new Torreta();
         //Coloca la torreta en una posicion llamando a una funcion que hemos creado en la clase torreta setPos
-        torreta->setPos(sf::Vector2f(i*32.f ,j*32.f));
+        torreta->setPos(sf::Vector2f(i*32.f+16 ,j*32.f+16));
         //Anade la torreta creada al vector de torretas
        vectorTorreta.push_back(*torreta);
 
@@ -353,19 +532,52 @@ void juego::disparar(){
                     float newDist=sqrt(pow(vectorTorreta[i].getX()-enemigosFuera[j].x,2) + pow(vectorTorreta[i].getY()-enemigosFuera[j].y,2));
                     if(newDist < dist){
                         dist=newDist;//si la nueva distancia es menor que la anterior, sera la nueva distancia
+                    if(dist<=300){
+
                         enemigoX=enemigosFuera[j].x;//Asignamos las coordenadas de ese enemigo a nuestras variables
                         enemigoY=enemigosFuera[j].y;
                     }
+                    }
                 }
             }
-            Bala * nuevaBala = new Bala(enemigoX, enemigoY);
-            angle = nuevaBala->setPos(sf::Vector2f(vectorTorreta[i].getX(), vectorTorreta[i].getY()));
-            vectorBalas.push_back(*nuevaBala);
-            vectorTorreta[i].rotarTorreta(angle);
+            if(dist<=300){
+
+                Bala * nuevaBala = new Bala(enemigoX, enemigoY);
+                angle = nuevaBala->setPos(sf::Vector2f(vectorTorreta[i].getX(), vectorTorreta[i].getY()));
+                vectorBalas.push_back(*nuevaBala);
+                vectorTorreta[i].rotarTorreta(angle);
+                vectorTorreta[i].timeTorreta.restart(); //reseteo el sprite de torreta si dispara
+            }
+        }
+
+    }
+
+}
+void juego::recogerMoneda(){
+    for(int i=0; i<vectorMonedas.size(); i++){
+        if(vectorMonedas[i].hitbox.getGlobalBounds().intersects(jugador->hitbox.getGlobalBounds())){
+            monedas+=vectorMonedas[i].valor;
+            if(vectorMonedas[i].movimiento(jugador->x, jugador->y))
+                vectorMonedas.erase(vectorMonedas.begin()+i);
         }
     }
+
 
 }
 vector<Torreta> juego::getTorretas() {
     return vectorTorreta;
+}
+
+
+
+bool juego:: IsSpriteCLicker (sf::Sprite es){
+    bool pulsado=false;
+    if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+        sf::IntRect rectangudobon (es.getPosition().x,es.getPosition().y,es.getGlobalBounds().width,es.getGlobalBounds().height);
+        if(rectangudobon.contains(sf::Mouse::getPosition(*ventana)))
+            pulsado=true;
+
+    }
+    return pulsado;
+
 }

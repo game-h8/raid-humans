@@ -5,6 +5,7 @@
 #include "enemigos.h"
 #include <math.h>
 
+class enemigos;
 class Torreta;
 class player;
 class Bala
@@ -25,9 +26,10 @@ class Bala
         int getY();
         int getX();
         sf::FloatRect getGlobal();
-        void colision(enemigos enemigo);
+        void colision(int j);
         void render(float ticks, sf::RenderWindow &Window);
         virtual ~Bala();
+        sf::RectangleShape hitbox;
     private:
 
         sf::Sprite balaSprite;

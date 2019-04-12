@@ -1,3 +1,5 @@
+
+
 #ifndef ENEMIGOS_H
 #define ENEMIGOS_H
 #include <iostream>
@@ -8,7 +10,8 @@
 
 using namespace sf;
 using namespace std;
-
+class player;
+class Torreta;
 class enemigos {
 
 public:
@@ -18,6 +21,7 @@ public:
         ~enemigos(); //destructor
 
         RectangleShape hitbox;
+        RectangleShape colision;
 
         Sprite    eSprite;
         float     x;
@@ -30,8 +34,12 @@ public:
         float saludEnemigo;
         float danioEnemigo;
         float velocidad = 50;
+        float vida = 500;
+        float money = 2000;
         bool ataca=false;
         bool atacaTorre=false;
+        bool invulnerable=false;
+
          int        estado;    //0-> reposo ,1-> movimiento, 2-> ataque (para renderizar)
 
 
@@ -39,17 +47,22 @@ public:
         void moveEnemy(float time, vector<enemigos>, vector<Torreta>, int a);
         void render(float ticks, RenderWindow& ventana);
         void colisionEnemigos(Vector2f ene);
-        bool ataque(player * p);
+        bool ataque(player * p, vector<Torreta> vecTor);
         void setObjetivo(Vector2f obj);
         void atacaTorretaCercana(vector<Torreta> vecTor);
         void atacaJugador(player &jugador);
         void movsprites();
+        bool playerHit(float dano);
+        bool balaHit(float dano);
+        void invulnerabilidad();
+        void danobala();
 
 
 protected:
 private:
-
-    Clock timeenemigo;
+     Clock timeInvul;
+     Clock  timedanobala;
+     Clock timeenemigo;
 
 
 

@@ -60,8 +60,27 @@ ylast=y;
 
 
 
+
+
     vel.x=v.x;
     vel.y=v.y;
+
+    for(int i=0;i<mundo::getMundo()->enemigosFuera->size();i++){
+
+    if(mundo::getMundo()->enemigosFuera->at(i).hitbox.getGlobalBounds().intersects(hitbox.getGlobalBounds())){
+
+        if(vel.x!=0){
+            vel.x=vel.x*0.7;
+        }
+         if(vel.y!=0){
+            vel.y=vel.y*0.7;
+        }
+    }
+}
+
+
+
+
     x=x+vel.x*time ;
     y=y +vel.y*time ;
 
@@ -159,6 +178,7 @@ v.y=0;
             if(estado!=2)
             timejugador.restart();
           estado=2;
+          ataquePlayer();
 
         break;
 
@@ -281,6 +301,30 @@ if(mundo::getMundo()->getDebug()){
 
 
 }
+
+void player::ataquePlayer(){
+
+ for(int i=0;i<mundo::getMundo()->enemigosFuera->size();i++){
+
+    if(mundo::getMundo()->enemigosFuera->at(i).hitbox.getGlobalBounds().intersects(hitboxArma.getGlobalBounds())){
+
+
+       if(mundo::getMundo()->enemigosFuera->at(i).playerHit(100)){
+            //Hitplayer es cuando el jugador le ataca, devuelve true si muere
+         mundo::getMundo()->enemigosFuera->erase(mundo::getMundo()->enemigosFuera->begin()+i);
+
+       }
+
+
+    }
+
+}
+
+
+
+}
+
+
 
 
 

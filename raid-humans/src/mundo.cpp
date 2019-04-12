@@ -3,7 +3,7 @@ using namespace std;
 mundo::mundo()
 {
 
-    if(!torretaTex.loadFromFile("ballesta.png")){
+    if(!torretaTex.loadFromFile("resources/TyB.png")){
         std::cerr <<"Error al cargar la imagen";
         exit(0);
     }
@@ -15,10 +15,33 @@ mundo::mundo()
         exit(0);
     }
 
-    if(!balaTex.loadFromFile("bala.png")){
+    if(!balaTex.loadFromFile("resources/TyB.png")){
         std::cerr <<"Error al cargar la imagen de bala";
         exit(0);
     }
+
+    if(!coinTex.loadFromFile("resources/CoinSheet.png")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+
+    if(!splasTexture.loadFromFile("resources/Splash Background.png")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+
+
+    if(!splasmenu.loadFromFile("resources/sky.png")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+
+     if(!botoninicio.loadFromFile("resources/PlayButton.png")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+
+
 
 
 
@@ -54,5 +77,5 @@ mundo::~mundo()
 
 void mundo::test(){
 
-cout << jugador->x << endl;
+cout << enemigosEspera->size() << endl;
 }
