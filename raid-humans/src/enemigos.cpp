@@ -21,6 +21,7 @@ enemigos::enemigos(const enemigos& E) {
 
     eSprite=E.eSprite;
     hitbox=E.hitbox;
+    colision=E.colision;
     x=E.x;
     y=E.y;
     xlast=E.xlast;
@@ -56,6 +57,11 @@ enemigos::enemigos(float x2, float y2) {
     hitbox.setOrigin(eSprite.getGlobalBounds().width/2-17,eSprite.getGlobalBounds().height/2-24);
     hitbox.setPosition(Vector2f(x,y));
 
+    colision.setSize(Vector2f(15,10));
+    colision.setFillColor(Color(255,255,0,155));
+    colision.setOrigin(eSprite.getGlobalBounds().width/2,eSprite.getGlobalBounds().height/2-50);
+    colision.setPosition(Vector2f(x,y));
+
 
     eSprite.setPosition(x,y);
 
@@ -70,23 +76,23 @@ void enemigos::moveEnemy(float time, vector<enemigos> ene, vector<Torreta> torre
 
     xlast=x;
     ylast=y;
-    bool colision=false;
+    bool choca=false;
     Vector2f pos;
 
     if(atacaTorre==false) {
-        for(int i=0; i<ene.size()&&colision==false; i++){
+        for(int i=0; i<ene.size()&&choca==false; i++){
             //for(int j=0; i<torres.size()&&colision==false; i++){
                 if(i!=a){
-                    if(hitbox.getGlobalBounds().intersects(ene.at(i).hitbox.getGlobalBounds())){
-                        colision=true;
+                    if(colision.getGlobalBounds().intersects(ene.at(i).colision.getGlobalBounds())){
+                        choca=true;
                     }
-                    /*if(hitbox.getGlobalBounds().intersects(torres.at(j).getSprite().getGlobalBounds())) {
-                        atacaTorre=true;
-                    }*/
+                    if(ene.at(i).atacaTorre==true) {
+                        choca=true;
+                    }
                 }
             //}
         }
-        if(colision==false){
+        if(choca==false && atacaTorre==false){
             if(x < objetivo.x && y < objetivo.y) {
             x=x+velocidad*time;
             y=y+velocidad*time;
@@ -108,28 +114,29 @@ void enemigos::moveEnemy(float time, vector<enemigos> ene, vector<Torreta> torre
 
             }
         }else{
-            /*if(x < objetivo.x && y < objetivo.y) {
-            x=x+(velocidad*0.5)*time;
-            y=y+velocidad*time;
+            if (atacaTorre==false) {
+                if(x < objetivo.x && y < objetivo.y) {
+                    x=x-2*time;
+                    y=y-3*time;
 
+                }
+                if(x > objetivo.x && y < objetivo.y) {
+                    x=x+2*time;
+                    y=y-3*time;
+
+                }
+                if(x < objetivo.x && y > objetivo.y) {
+                    x=x-2*time;
+                    y=y+3*time;
+
+
+                }
+                if(x > objetivo.x && y > objetivo.y) {
+                    x=x+2*time;
+                    y=y+3*time;
+
+                }
             }
-            if(x > objetivo.x && y < objetivo.y) {
-                x=x-(velocidad*0.5)*time;
-                y=y+velocidad*time;
-
-            }
-            if(x < objetivo.x && y > objetivo.y) {
-                x=x+(velocidad*0.5)*time;
-                y=y-velocidad*time;
-
-            }
-            if(x > objetivo.x && y > objetivo.y) {
-                x=x-(velocidad*0.5)*time;
-                y=y-velocidad*time;
-
-            }*/
-            x=x+10;
-            y=y+20;
         }
         //eSprite.getGlobalBounds().top;
 
@@ -140,6 +147,7 @@ void enemigos::moveEnemy(float time, vector<enemigos> ene, vector<Torreta> torre
         eSprite.setPosition(x,y);
         hitbox.setScale(eSprite.getScale());
         hitbox.setPosition(x,y);
+        colision.setPosition(x,y);
 
         movsprites();
 }
@@ -148,10 +156,19 @@ void enemigos::colisionEnemigos(Vector2f ene){
 
 }
 
-bool enemigos::ataque(player * p){
+bool enemigos::ataque(player * p, vector<Torreta> torres){
     if(ataca==false){
         if(hitbox.getGlobalBounds().intersects(p->hitbox.getGlobalBounds())){
             ataca=true;
+        }
+        if (ataca==false) {
+            if (torres.empty()==false) {
+                for(int i=0;i<torres.size();i++) {
+                    if (hitbox.getGlobalBounds().intersects(torres.at(i).getSprite().getGlobalBounds())) {
+                        ataca=true;
+                    }
+                }
+            }
         }
     }
     else{
@@ -175,6 +192,8 @@ ventana.draw(eSprite);
 if(mundo::getMundo()->getDebug()){
    ventana.draw(hitbox);
 }
+//ventana.draw(hitbox);
+//ventana.draw(colision);
 
 
 
@@ -205,13 +224,8 @@ void enemigos::atacaTorretaCercana(vector<Torreta> vecTor) {
                  eSprite.setScale(-1,1);
             }
             cout<<"distancia en x"<<(abs((int)objetivo.x)-abs((int)x))<<"distancia en y"<<(abs((int)objetivo.y)-abs((int)y))<<endl;
-
-
-            if((abs((int)objetivo.x)-abs((int)x))<22 &&  (abs((int)objetivo.y)-abs((int)y))<50){
-
-
-                estado=2;
-
+            if (hitbox.getGlobalBounds().intersects(torretas.at(posMasCercana).getSprite().getGlobalBounds())) {
+                atacaTorre=true;
             }
         }
 }
@@ -294,7 +308,9 @@ void enemigos::danobala(){
 
 void enemigos:: movsprites(){
 
-
+    if (atacaTorre==true) {
+        estado=2;
+    }
 
 
 
@@ -326,6 +342,7 @@ void enemigos:: movsprites(){
 
              if(timeenemigo.getElapsedTime().asMilliseconds()<200){
                     eSprite.setTextureRect(IntRect(2, 96, 59, 98));
+                    colision.setPosition(x,y);
              }
               else if(timeenemigo.getElapsedTime().asMilliseconds()<400){
                     eSprite.setTextureRect(sf::IntRect(118, 96, 45, 98));
@@ -333,6 +350,7 @@ void enemigos:: movsprites(){
               else if(timeenemigo.getElapsedTime().asMilliseconds()<600){
                      eSprite.setOrigin(60,eSprite.getOrigin().y);
                      //hitbox.setOrigin(eSprite.getOrigin());
+                     colision.setPosition(x,y);
 
                     eSprite.setTextureRect(sf::IntRect(167, 96, 99, 98));
 
@@ -341,6 +359,7 @@ void enemigos:: movsprites(){
              else if(timeenemigo.getElapsedTime().asMilliseconds()<800){
 
                     eSprite.setTextureRect(sf::IntRect(272, 96, 99, 98));
+                    colision.setPosition(x,y);
 
              }
 
@@ -348,15 +367,18 @@ void enemigos:: movsprites(){
              else if(timeenemigo.getElapsedTime().asMilliseconds()<1000){
 
                     eSprite.setTextureRect(sf::IntRect(108, 195, 90, 90));
+                    colision.setPosition(x,y);
              }
 
 
              else if(timeenemigo.getElapsedTime().asMilliseconds()<1200){
                     eSprite.setTextureRect(sf::IntRect(296, 190, 90, 90));
+                    colision.setPosition(x,y);
              }
 
              else{
                 hitbox.setOrigin(eSprite.getGlobalBounds().width/2,eSprite.getGlobalBounds().height/2);
+                colision.setPosition(x,y);
                   eSprite.setTextureRect(IntRect(3, 290, 59, 98));
                     eSprite.setOrigin(hitbox.getOrigin());
              timeenemigo.restart();

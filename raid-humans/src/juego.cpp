@@ -72,9 +72,9 @@ inicializar();
     vectorMonedas.push_back(m6);
 
     enemigosEspera.push_back(ene1);
-    //enemigosEspera.push_back(ene2);
-    //enemigosEspera.push_back(ene3);
-    //enemigosEspera.push_back(ene4);
+    enemigosEspera.push_back(ene2);
+    enemigosEspera.push_back(ene3);
+    enemigosEspera.push_back(ene4);
 
 
 
@@ -138,7 +138,7 @@ inicializar();
 
             if (enemigosFuera.empty()==false) {
                 for (int i=0;i<enemigosFuera.size();i++) {
-                    enemigosFuera.at(i).ataque(jugador);
+                    enemigosFuera.at(i).ataque(jugador, vectorTorreta);
                     if(enemigosFuera.at(i).ataca==true){
                        // if (!dTexture.loadFromFile("resources/hit.png")){
                          //   cerr << "Error cargando la imagen del golpe resources/sprites.png" << endl;

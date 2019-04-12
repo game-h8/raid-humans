@@ -21,6 +21,7 @@ public:
         ~enemigos(); //destructor
 
         RectangleShape hitbox;
+        RectangleShape colision;
 
         Sprite    eSprite;
         float     x;
@@ -46,7 +47,7 @@ public:
         void moveEnemy(float time, vector<enemigos>, vector<Torreta>, int a);
         void render(float ticks, RenderWindow& ventana);
         void colisionEnemigos(Vector2f ene);
-        bool ataque(player * p);
+        bool ataque(player * p, vector<Torreta> vecTor);
         void setObjetivo(Vector2f obj);
         void atacaTorretaCercana(vector<Torreta> vecTor);
         void atacaJugador(player &jugador);
@@ -61,7 +62,7 @@ protected:
 private:
      Clock timeInvul;
      Clock  timedanobala;
-    Clock timeenemigo;
+     Clock timeenemigo;
 
 
 
