@@ -61,21 +61,26 @@ int Bala::getY(){
 sf::FloatRect Bala::getGlobal(){
     return balaSprite.getGlobalBounds();
 }
-void Bala::colision(enemigos enemigo){
-    if(hitbox.getGlobalBounds().intersects(enemigo.getGlobal())){
+void Bala::colision(int j){
+    if(hitbox.getGlobalBounds().intersects(mundo::getMundo()->enemigosFuera->at(j).hitbox.getGlobalBounds())){
         viva=false;
+
+       if(mundo::getMundo()->enemigosFuera->at(j).balaHit(100)){
+        mundo::getMundo()->enemigosFuera->erase(mundo::getMundo()->enemigosFuera->begin()+j);
+       }
+
     }
 }
 void Bala::render(float ticks, sf::RenderWindow &Window){
     balaSprite.setPosition(xlast*(1-ticks) + x*ticks,ylast*(1-ticks)+y*ticks);
-    if(viva){
+
         Window.draw(balaSprite);
 
         if(mundo::getMundo()->getDebug()){
    Window.draw(hitbox);
 }
 
-    }
+
 }
 
 Bala::~Bala()

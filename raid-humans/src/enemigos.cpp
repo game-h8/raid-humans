@@ -218,7 +218,83 @@ void enemigos::atacaTorretaCercana(vector<Torreta> vecTor) {
 void enemigos::atacaJugador(player &jugador) {
     objetivo=jugador.pSprite.getPosition();
 }
+//Hitplayer es cuando el jugador le ataca, devuelve true si muere
+bool enemigos::playerHit(float dano){
+
+    bool muerto=false;
+
+if(invulnerable==false){
+    if(vida-dano<=0) {
+       // muere();
+        mundo::getMundo()->vectorMonedas->push_back(Moneda(x,y,money));
+       muerto=true;
+
+    }
+    else{
+        vida=vida-dano;
+        cout<<"vidaaaa"<<vida<<endl;
+        timeInvul.restart();
+        invulnerabilidad();
+        invulnerable = true;
+        }
+    }
+    return muerto;
+}
+
+void enemigos::invulnerabilidad(){
+
+
+     if (invulnerable){
+     eSprite.setColor(Color(255,0,0,155));
+
+         if(timeInvul.getElapsedTime().asMilliseconds()>=200){
+
+             eSprite.setColor(Color(255,255,255,255));
+             invulnerable=false;
+        }
+
+    }
+
+}
+
+bool enemigos::balaHit(float dano){
+
+    bool muerto=false;
+
+
+    if(vida-dano<=0) {
+       mundo::getMundo()->vectorMonedas->push_back(Moneda(x,y,money));
+       muerto=true;
+
+    }
+    else{
+        vida=vida-dano;
+
+        timedanobala.restart();
+        eSprite.setColor(Color(255,0,0,155));
+        }
+
+    return muerto;
+}
+
+void enemigos::danobala(){
+
+
+
+
+         if(timedanobala.getElapsedTime().asMilliseconds()>=200){
+
+             eSprite.setColor(Color(255,255,255,255));
+             invulnerable=false;
+        }
+
+
+
+}
+
 void enemigos:: movsprites(){
+
+
 
 
 

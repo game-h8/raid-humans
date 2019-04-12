@@ -15,7 +15,7 @@ class Moneda
         void render(sf::RenderWindow &Window);
         sf::RectangleShape hitbox;
         sf::Sprite mSprite;
-        sf::Texture mTex;
+
     protected:
 
     private:

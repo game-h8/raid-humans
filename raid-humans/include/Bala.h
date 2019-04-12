@@ -26,7 +26,7 @@ class Bala
         int getY();
         int getX();
         sf::FloatRect getGlobal();
-        void colision(enemigos enemigo);
+        void colision(int j);
         void render(float ticks, sf::RenderWindow &Window);
         virtual ~Bala();
         sf::RectangleShape hitbox;

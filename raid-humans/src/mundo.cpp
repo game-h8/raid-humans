@@ -20,6 +20,10 @@ mundo::mundo()
         exit(0);
     }
 
+    if(!coinTex.loadFromFile("resources/CoinSheet.png")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
 
 
 }

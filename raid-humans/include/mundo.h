@@ -39,6 +39,7 @@ class mundo
         sf::Texture torretaTex;
         sf::Texture   eTexture;
         sf::Texture balaTex;
+        sf::Texture coinTex;
 
         vector<enemigos> * enemigosFuera; //vector de enemigos que se encuentran en pantalla
         vector<enemigos> * enemigosEspera;

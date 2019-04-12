@@ -5,6 +5,7 @@
 		<Option title="raid-humans" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
+		<Option virtualFolders="include/;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/raid-humans" prefix_auto="1" extension_auto="1" />
@@ -66,7 +67,9 @@
 		<Unit filename="src/Torreta.cpp" />
 		<Unit filename="src/enemigos.cpp" />
 		<Unit filename="src/juego.cpp" />
-		<Unit filename="src/mundo.cpp" />
+		<Unit filename="src/mundo.cpp">
+			<Option virtualFolder="include/" />
+		</Unit>
 		<Unit filename="src/player.cpp" />
 		<Unit filename="src/tinyxml2.cpp" />
 		<Extensions>

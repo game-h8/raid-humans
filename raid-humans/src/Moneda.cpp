@@ -3,11 +3,9 @@
 
 Moneda::Moneda(float x, float y, int valorPasado)
 {
-    if(!mTex.loadFromFile("resources/CoinSheet.png")){
-        std::cerr <<"Error al cargar la imagen";
-        exit(0);
-    }
-    mSprite.setTexture(mTex);
+
+    mSprite.setTexture(mundo::getMundo()->coinTex);
+
 
 
 valor=valorPasado;
@@ -33,11 +31,16 @@ valor=valorPasado;
     }
     mSprite.setOrigin(mSprite.getGlobalBounds().width/2,mSprite.getGlobalBounds().height/2);
     mSprite.setPosition(x,y);
+    mSprite.scale((1.5),(1.5));
 
     hitbox.setSize(sf::Vector2f(mSprite.getGlobalBounds().width*2, mSprite.getGlobalBounds().height*2));
     hitbox.setOrigin(hitbox.getGlobalBounds().width/2,hitbox.getGlobalBounds().height/2);
     hitbox.setFillColor(sf::Color(255,0,0,155));
     hitbox.setPosition(sf::Vector2f(x,y));
+
+
+
+
 }
 void Moneda::movimiento(float x, float y){
 

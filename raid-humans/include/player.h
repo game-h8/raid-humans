@@ -43,6 +43,8 @@ class player
     void render(float ticks, RenderWindow& ventana);
     void calcularVelocidadPlayer(vector<int> inputs,float time);
     void toggleDebug();
+    void ataquePlayer();
+
 
     protected:
     private:

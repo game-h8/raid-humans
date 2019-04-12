@@ -72,9 +72,9 @@ inicializar();
     vectorMonedas.push_back(m6);
 
     enemigosEspera.push_back(ene1);
-   enemigosEspera.push_back(ene2);
-    enemigosEspera.push_back(ene3);
-   // enemigosEspera.push_back(ene4);
+    //enemigosEspera.push_back(ene2);
+    //enemigosEspera.push_back(ene3);
+    //enemigosEspera.push_back(ene4);
 
 
 
@@ -200,7 +200,8 @@ jugador->calcularVelocidadPlayer(inputs,elapsedTime); //Calculamos la posicion i
 for(int i=0; i<vectorBalas.size(); i++){
     vectorBalas[i].disparar(elapsedTime);
     for (int j=0;j<enemigosFuera.size();j++) {
-        vectorBalas[i].colision(enemigosFuera[j]);
+        vectorBalas[i].colision(j);
+
     }
     if(!vectorBalas[i].viva){
         vectorBalas.erase(vectorBalas.begin()+i);
@@ -214,8 +215,8 @@ for(int i=0; i<vectorBalas.size(); i++){
 if (enemigosFuera.empty()==false) {
     for (int i=0;i<enemigosFuera.size();i++) {
         enemigosFuera.at(i).moveEnemy(elapsedTime, enemigosFuera, vectorTorreta, i);
-
-
+        enemigosFuera.at(i). invulnerabilidad();
+        enemigosFuera.at(i).danobala();
             dSprite.setTexture(dTexture);
             dSprite.setOrigin(17,48/2);
             dSprite.setTextureRect(IntRect(0.1*35, 2.63*50, 28, 27));
@@ -283,19 +284,19 @@ vector<int> data;
 
 
 
-            if (Keyboard::isKeyPressed(Keyboard::Left))
+            if (Keyboard::isKeyPressed(Keyboard::A))
             {
                    data.push_back(4);                               //IZQUIERDA --> 4
             }
-            if (Keyboard::isKeyPressed(Keyboard::Right))    //DEREZHA --> 6
+            if (Keyboard::isKeyPressed(Keyboard::D))    //DEREZHA --> 6
             {
                   data.push_back(6);
             }
-            if (Keyboard::isKeyPressed(Keyboard::Up))       //ARRIBA --> 8
+            if (Keyboard::isKeyPressed(Keyboard::W))       //ARRIBA --> 8
             {
                  data.push_back(8);
             }
-            if (Keyboard::isKeyPressed(Keyboard::Down))     //ABAJO --> 2
+            if (Keyboard::isKeyPressed(Keyboard::S))     //ABAJO --> 2
             {
                 data.push_back(2);
             }

@@ -33,8 +33,12 @@ public:
         float saludEnemigo;
         float danioEnemigo;
         float velocidad = 50;
+        float vida = 500;
+        float money = 2000;
         bool ataca=false;
         bool atacaTorre=false;
+        bool invulnerable=false;
+
          int        estado;    //0-> reposo ,1-> movimiento, 2-> ataque (para renderizar)
 
 
@@ -47,11 +51,16 @@ public:
         void atacaTorretaCercana(vector<Torreta> vecTor);
         void atacaJugador(player &jugador);
         void movsprites();
+        bool playerHit(float dano);
+        bool balaHit(float dano);
+        void invulnerabilidad();
+        void danobala();
 
 
 protected:
 private:
-
+     Clock timeInvul;
+     Clock  timedanobala;
     Clock timeenemigo;
 
 
