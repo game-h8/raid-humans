@@ -217,10 +217,10 @@ if (enemigosFuera.empty()==false) {
         enemigosFuera.at(i).moveEnemy(elapsedTime, enemigosFuera, vectorTorreta, i);
         enemigosFuera.at(i). invulnerabilidad();
         enemigosFuera.at(i).danobala();
-            dSprite.setTexture(dTexture);
+            /*dSprite.setTexture(dTexture);
             dSprite.setOrigin(17,48/2);
             dSprite.setTextureRect(IntRect(0.1*35, 2.63*50, 28, 27));
-            dSprite.setPosition(jugador->xlast,jugador->ylast+25);
+            dSprite.setPosition(jugador->xlast,jugador->ylast+25);*/
         }
 }
 recogerMoneda();
