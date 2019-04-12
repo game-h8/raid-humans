@@ -428,9 +428,9 @@ void juego::disparar(){
 void juego::recogerMoneda(){
     for(int i=0; i<vectorMonedas.size(); i++){
         if(vectorMonedas[i].hitbox.getGlobalBounds().intersects(jugador->hitbox.getGlobalBounds())){
-            vectorMonedas.erase(vectorMonedas.begin()+i);
             monedas+=vectorMonedas[i].valor;
-
+            if(vectorMonedas[i].movimiento(jugador->x, jugador->y))
+                vectorMonedas.erase(vectorMonedas.begin()+i);
         }
     }
 

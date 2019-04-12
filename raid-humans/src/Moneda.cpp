@@ -7,7 +7,6 @@ Moneda::Moneda(float x, float y, int valorPasado)
     mSprite.setTexture(mundo::getMundo()->coinTex);
 
 
-
 valor=valorPasado;
     //Max 3000coins  min 100
     if(valor<=100){ // 1Moneda
@@ -33,7 +32,7 @@ valor=valorPasado;
     mSprite.setPosition(x,y);
     mSprite.scale((1.5),(1.5));
 
-    hitbox.setSize(sf::Vector2f(mSprite.getGlobalBounds().width*2, mSprite.getGlobalBounds().height*2));
+    hitbox.setSize(sf::Vector2f(mSprite.getGlobalBounds().width*4, mSprite.getGlobalBounds().height*4));
     hitbox.setOrigin(hitbox.getGlobalBounds().width/2,hitbox.getGlobalBounds().height/2);
     hitbox.setFillColor(sf::Color(255,0,0,155));
     hitbox.setPosition(sf::Vector2f(x,y));
@@ -42,7 +41,17 @@ valor=valorPasado;
 
 
 }
-void Moneda::movimiento(float x, float y){
+bool Moneda::movimiento(float xJugador, float yJugador){
+
+    float angle = atan2(yJugador - mSprite.getPosition().y, xJugador - mSprite.getPosition().x);
+    sf::Vector2f newpos((cos(angle))*2, (sin(angle))*2);
+    mSprite.move(newpos.x*6, newpos.y*6);
+
+    if(abs(int(xJugador - mSprite.getPosition().x)) <=4 && abs(int(yJugador - mSprite.getPosition().y)) <=4){
+        return true;
+    }
+    else
+        return false;
 
 }
 
