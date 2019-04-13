@@ -11,6 +11,6 @@ using namespace std;
 using namespace sf;
 int main()
 {
-    juego* game = new juego(Vector2u(800,600));
+    juego* game = new juego(Vector2u(800,800));
 
 }

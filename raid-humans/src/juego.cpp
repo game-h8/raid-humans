@@ -17,13 +17,13 @@
 juego::juego(Vector2u resolucion)
 {
     //ctor
-inicializar();
+
 
 
 
 
 //creo mapa
- mapa = new Mapa("resources/untitled2.tmx", "resources/PathAndObjects.png");
+ mapa = new Mapa("resources/mapaok.tmx", "resources/PathAndObjects.png");
  ventana = new RenderWindow(VideoMode(resolucion.x, resolucion.y), "Raid humans");
 
  jugador= new player("resources/player.png" ,500,400);
@@ -42,6 +42,25 @@ portada.setTexture(mundo::getMundo()->splasTexture);
  menu.setScale((double)ventana->getSize().x/(double)menu.getTexture()->getSize().x,(double)ventana->getSize().y/(double)menu.getTexture()->getSize().y);
  boton.setPosition((double)ventana->getSize().x/2-(double)boton.getTexture()->getSize().x/2,(double)ventana->getSize().y/3);
 
+
+    torretaCompra1.setTexture(mundo::getMundo()->botoninicio);
+    torretaCompra2.setTexture(mundo::getMundo()->botoninicio);
+    espadaCompra.setTexture(mundo::getMundo()->botoninicio);
+    continuarRonda.setTexture(mundo::getMundo()->botoninicio);
+
+    torretaCompra1.setPosition(10,100);
+    torretaCompra2.setPosition(150, 300);
+    espadaCompra.setPosition(250,500);
+    continuarRonda.setPosition(500,700);
+
+    torretaFantasma.setTexture((mundo::getMundo()->torretaTex));
+    torretaFantasma.setColor(Color(255,255,255,155));
+    torretaFantasma.setTextureRect(IntRect(16,5,96,118));
+    torretaFantasma.setScale(0.4f,0.4f);
+    torretaFantasma.setOrigin(sf::Vector2f(96/2,118/2));
+
+
+
 estado=new StateMachine();
  monedas=0;
 
@@ -54,28 +73,6 @@ estado=new StateMachine();
 
 
 
-    enemigos ene1(100,100);
-    enemigos ene2(100,100);
-    enemigos ene3(100,100);
-    enemigos ene4(100,100);
-
-    Moneda m1(100,300,10);
-    vectorMonedas.push_back(m1);
-    Moneda m2(200,200,150);
-    vectorMonedas.push_back(m2);
-    Moneda m3(400,300,490);
-    vectorMonedas.push_back(m3);
-    Moneda m4(500,200,4000);
-    vectorMonedas.push_back(m4);
-    Moneda m5(500,500,900);
-    vectorMonedas.push_back(m5);
-    Moneda m6(100,200,1500);
-    vectorMonedas.push_back(m6);
-
-    enemigosEspera.push_back(ene1);
-    enemigosEspera.push_back(ene2);
-    enemigosEspera.push_back(ene3);
-    enemigosEspera.push_back(ene4);
 
 
 
@@ -111,53 +108,7 @@ estado=new StateMachine();
 
 
          }
-         //temporizador para generar enemigos
-         if(clockSpawn.getElapsedTime() > tiempoSpawn){
 
-            clockSpawn.restart();
-
-            if (enemigosEspera.empty()==false) {
-                enemigosFuera.push_back(enemigosEspera.at(enemigosEspera.size()-1));
-                enemigosEspera.pop_back();
-            }
-            if (enemigosFuera.empty()==false) {
-                for (int i=0;i<enemigosFuera.size()&&i<4;i++) {
-                    enemigosFuera.at(i).atacaTorretaCercana(vectorTorreta);
-                }
-}
-            //le damos un objetivo al enemigo
-
-
-         }
-
-          // los enemigos comprueban el ataque
-         if(clockAttack.getElapsedTime() > tiempoAttack){
-
-            clockAttack.restart();
-
-            if (enemigosFuera.empty()==false) {
-                for (int i=0;i<enemigosFuera.size();i++) {
-                    enemigosFuera.at(i).ataque(jugador, vectorTorreta);
-                    if(enemigosFuera.at(i).ataca==true){
-                       // if (!dTexture.loadFromFile("resources/hit.png")){
-                         //   cerr << "Error cargando la imagen del golpe resources/sprites.png" << endl;
-                         //   exit(0);
-                      //  }
-                      //enemigosFuera.at(i).eSprite.setColor(Color(255,0,0,155));
-
-                    }else{
-                      //enemigosFuera.at(i).eSprite.setColor(Color(255,255,255,255));
-                    }
-                }
-            }
-
-         }
-
-        //temporizador para generar balas
-         if(clockBala.getElapsedTime().asMilliseconds() - tiempoBala.asMilliseconds() > SHOOT_SPEED){
-            tiempoBala = clockBala.getElapsedTime();
-            disparar();
-         }
 
 
 
@@ -186,12 +137,41 @@ juego::~juego()
 void juego:: inicializar() { //inicializar las variables del juego
 
 
+
+    if (estado->getEstado() == 3 && estado->getModo()==false){
+
+        enemigos ene1(100,100);
+        enemigos ene2(100,100);
+        enemigos ene3(100,100);
+        enemigos ene4(100,100);
+
+        Moneda m1(100,300,10);
+        vectorMonedas.push_back(m1);
+        Moneda m2(200,200,150);
+        vectorMonedas.push_back(m2);
+        Moneda m3(400,300,490);
+        vectorMonedas.push_back(m3);
+        Moneda m4(500,200,4000);
+        vectorMonedas.push_back(m4);
+        Moneda m5(500,500,900);
+        vectorMonedas.push_back(m5);
+        Moneda m6(100,200,1500);
+        vectorMonedas.push_back(m6);
+
+        enemigosEspera.push_back(ene1);
+        enemigosEspera.push_back(ene2);
+        enemigosEspera.push_back(ene3);
+        enemigosEspera.push_back(ene4);
+
+    }
+
 }
 
 
 void juego:: update(float elapsedTime){
 
-
+//cout << "modo-> " << estado->getModo() << endl;
+//cout << "estado-> " << estado->getEstado() << endl;
 
     if(estado->getEstado()==1){
             /////////////////////////////
@@ -224,6 +204,7 @@ void juego:: update(float elapsedTime){
 
                  estado->setEstado(3);
 
+
         }
 
 
@@ -235,60 +216,137 @@ void juego:: update(float elapsedTime){
     //////////////////////////////////////
 
 
+        if(estado->getModo()==true){
+
+            ////////////////////
+            ////MODO COMPRA/////
+            ////////////////////
+
+           if(estado->getColocando() && sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+
+            addTorreta();
+            estado->toggleColocar();
+           }
+           if(!estado->getColocando() && (IsSpriteCLicker (torretaCompra1) || IsSpriteCLicker(torretaCompra2))){
+                estado->toggleColocar();
+           }
 
 
-      vector<int> inputs= getInputs();                //Funcion para coger los botones que se pulsan
-jugador->calcularVelocidadPlayer(inputs,elapsedTime); //Calculamos la posicion inicial y final deljugador y lo movemos
+          if(IsSpriteCLicker (continuarRonda)){
+                if(estado->getColocando()){
+                    estado->toggleColocar();
+                }else{
+                    estado->toggleModo();
+                    inicializar();
+                }
+
+          }
 
 
 
-for(int i=0; i<vectorBalas.size(); i++){
-    vectorBalas[i].disparar(elapsedTime);
-    for (int j=0;j<enemigosFuera.size();j++) {
-        vectorBalas[i].colision(j);
+        }else{
 
-    }
-    if(!vectorBalas[i].viva){
-        vectorBalas.erase(vectorBalas.begin()+i);
-    }
-//cout<<"Tamano vectorBalas: " <<vectorBalas.size() <<endl;
-}
+            ////////////////////
+            ////MODO BATALLA/////
+            ////////////////////
 
 
-//QUE ES ESTO? NO HACE NADA///////////////////////////////////////////////////////////////////////////////////
-//movimiento enemigo
-if (enemigosFuera.empty()==false) {
-    for (int i=0;i<enemigosFuera.size();i++) {
-        enemigosFuera.at(i).moveEnemy(elapsedTime, enemigosFuera, vectorTorreta, i);
-        enemigosFuera.at(i). invulnerabilidad();
-        enemigosFuera.at(i).danobala();
 
-            /*dSprite.setTexture(dTexture);
-            dSprite.setOrigin(17,48/2);
-            dSprite.setTextureRect(IntRect(0.1*35, 2.63*50, 28, 27));
-            dSprite.setPosition(jugador->xlast,jugador->ylast+25);*/
+
+            vector<int> inputs= getInputs();                //Funcion para coger los botones que se pulsan
+            jugador->calcularVelocidadPlayer(inputs,elapsedTime); //Calculamos la posicion inicial y final deljugador y lo movemos
+
+
+
+            for(int i=0; i<vectorBalas.size(); i++){
+                vectorBalas[i].disparar(elapsedTime);
+                for (int j=0;j<enemigosFuera.size();j++) {
+                    vectorBalas[i].colision(j);
+
+                }
+                if(!vectorBalas[i].viva){
+                    vectorBalas.erase(vectorBalas.begin()+i);
+                }
+            //cout<<"Tamano vectorBalas: " <<vectorBalas.size() <<endl;
+            }
+
+
+
+            //movimiento enemigo
+            if (enemigosFuera.empty()==false) {
+                for (int i=0;i<enemigosFuera.size();i++) {
+                    enemigosFuera.at(i).moveEnemy(elapsedTime, enemigosFuera, vectorTorreta, i);
+                    enemigosFuera.at(i). invulnerabilidad();
+                    enemigosFuera.at(i).danobala();
+
+                        /*dSprite.setTexture(dTexture);
+                        dSprite.setOrigin(17,48/2);
+                        dSprite.setTextureRect(IntRect(0.1*35, 2.63*50, 28, 27));
+                        dSprite.setPosition(jugador->xlast,jugador->ylast+25);*/
+                    }
+            }
+            recogerMoneda();
+
+            for(int i = 0; i < vectorTorreta.size(); i++){
+                vectorTorreta[i].dibujarSprite();
+                vectorTorreta[i].danoenemigo();
+            }
+
+
+                     //temporizador para generar enemigos
+                     if(clockSpawn.getElapsedTime() > tiempoSpawn){
+
+                        clockSpawn.restart();
+
+                        if (enemigosEspera.empty()==false) {
+                            enemigosFuera.push_back(enemigosEspera.at(enemigosEspera.size()-1));
+                            enemigosEspera.pop_back();
+                        }
+                        if (enemigosFuera.empty()==false) {
+                            for (int i=0;i<enemigosFuera.size()&&i<4;i++) {
+                                enemigosFuera.at(i).atacaTorretaCercana(vectorTorreta);
+                            }
+            }
+                        //le damos un objetivo al enemigo
+
+
+                     }
+
+                      // los enemigos comprueban el ataque
+                     if(clockAttack.getElapsedTime() > tiempoAttack){
+
+                        clockAttack.restart();
+
+                        if (enemigosFuera.empty()==false) {
+                            for (int i=0;i<enemigosFuera.size();i++) {
+                                enemigosFuera.at(i).ataque(jugador, vectorTorreta);
+                                if(enemigosFuera.at(i).ataca==true){
+                                   // if (!dTexture.loadFromFile("resources/hit.png")){
+                                     //   cerr << "Error cargando la imagen del golpe resources/sprites.png" << endl;
+                                     //   exit(0);
+                                  //  }
+                                  //enemigosFuera.at(i).eSprite.setColor(Color(255,0,0,155));
+
+                                }else{
+                                  //enemigosFuera.at(i).eSprite.setColor(Color(255,255,255,255));
+                                }
+                            }
+                        }
+
+                     }
+
+                    //temporizador para generar balas
+                     if(clockBala.getElapsedTime().asMilliseconds() - tiempoBala.asMilliseconds() > SHOOT_SPEED){
+                        tiempoBala = clockBala.getElapsedTime();
+                        disparar();
+                     }
+
+
+
         }
-}
-recogerMoneda();
-
-for(int i = 0; i < vectorTorreta.size(); i++){
-    vectorTorreta[i].dibujarSprite();
-     vectorTorreta[i].danoenemigo();
-}
-
-
 
 
     }else if(estado->getEstado()==4){
-     ////////////////////////////////////////
-    //////////CONSTRUCCION///////////
-    //////////////////////////////////////
-
-
-    }
-
-
-    else if(estado->getEstado()==4){
      ////////////////////////////////////////
     //////////GAME OVER//////////
     //////////////////////////////////////
@@ -329,7 +387,7 @@ ventana->clear();
 
 
      ventana->draw(menu);
-      ventana->draw(boton);
+     ventana->draw(boton);
 
 
     }else if (estado->getEstado()==3){
@@ -340,10 +398,12 @@ ventana->clear();
 
 
 
-       mapa->setActivateLayer(0);
-mapa->drawMapa(*ventana);
 
-dibujarSelector();
+
+
+       mapa->setActivateLayer(0);
+       mapa->drawMapa(*ventana);
+
 
 //Recorrer el vector de torretas y dibujar las torretas
 
@@ -378,6 +438,29 @@ for(int i=0; i<vectorMonedas.size(); i++){
 
 
 
+                    if(estado->getModo()==true){
+
+                        ////////////////////
+                        ////MODO COMPRA/////
+                        ////////////////////
+                        if(estado->getColocando()){
+                             dibujarSelector();
+
+                        }else{
+
+                            ventana->draw(torretaCompra1);
+                            ventana->draw(torretaCompra2);
+                            ventana->draw(espadaCompra);
+                            ventana->draw(continuarRonda);
+
+                        }
+
+                    }
+
+
+
+
+
     }else if(estado->getEstado()==4){
      ////////////////////////////////////////
     //////////CONSTRUCCION///////////
@@ -387,7 +470,7 @@ for(int i=0; i<vectorMonedas.size(); i++){
     }
 
 
-    else if(estado->getEstado()==4){
+    else if(estado->getEstado()==5){
      ////////////////////////////////////////
     //////////GAME OVER//////////
     //////////////////////////////////////
@@ -438,7 +521,7 @@ vector<int> data;
                 data.push_back(5);
             }
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-                addTorreta();
+               if(mundo::getMundo()->getDebug()) addTorreta();
             }
 
             Vector2i position = Mouse::getPosition(*ventana);
@@ -477,8 +560,9 @@ void juego::dibujarSelector(){
 
         //Dibujar el selector en el cuadrado de la matriz
         selector.setPosition(i*32.f ,j*32.f);
-
+        torretaFantasma.setPosition(i*32.f+16.f ,j*32.f+15.f);
         ventana->draw(selector);
+        ventana->draw(torretaFantasma);
 
 
 }

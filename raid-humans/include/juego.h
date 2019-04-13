@@ -72,6 +72,12 @@ class juego
         sf::Sprite portada;
         sf::Sprite menu;
         sf::Sprite boton;
+        sf::Sprite torretaCompra1;
+        sf::Sprite torretaCompra2;
+        sf::Sprite espadaCompra;
+        sf::Sprite continuarRonda;
+
+        sf::Sprite torretaFantasma; //la que te sigue al comprar
 };
 #endif // JUEGO_H
 
