@@ -4,15 +4,9 @@ Torreta::Torreta()
 {
 
     torretaSprite.setTexture(mundo::getMundo()->torretaTex);
-    if(mundo::getMundo()->tipoTorreta==1){
-        torretaSprite.setTextureRect(IntRect(0,0,128,128));
-    }
-    else if(mundo::getMundo()->tipoTorreta==2){
-        torretaSprite.setTextureRect(IntRect(128*3,0,128,128));
-    }
+    torretaSprite.setTextureRect(IntRect(16,5,96,118));
     torretaSprite.setScale(0.4f,0.4f);
-    torretaSprite.setOrigin(sf::Vector2f(128/2,128/2));
-    tipo=mundo::getMundo()->tipoTorreta;
+    torretaSprite.setOrigin(sf::Vector2f(96/2,118/2));
 }
 int Torreta::getX(){
     return torretaSprite.getPosition().x;
@@ -26,22 +20,12 @@ void Torreta::draw(sf::RenderWindow &Window){
 
 void Torreta::dibujarSprite(){
     if(timeTorreta.getElapsedTime().asMilliseconds() < 200){
-        if(tipo==1){
-            torretaSprite.setTextureRect(IntRect(128,0,128,128));
-        }
-        else if(tipo==2){
-            torretaSprite.setTextureRect(IntRect(0,128,128,128));
-        }
-
+       torretaSprite.setTextureRect(IntRect(143,5,96,118));
     }
     else if(timeTorreta.getElapsedTime().asMilliseconds() < 400){
-        if(tipo==1){
-            torretaSprite.setTextureRect(IntRect(0,0,128,128));
-        }
-        else if(tipo==2){
-            torretaSprite.setTextureRect(IntRect(128*3,0,128,128));
-        }
+        torretaSprite.setTextureRect(IntRect(16,5,96,118));
     }
+
 }
 
 void Torreta::setPos(sf::Vector2f newPos){
@@ -62,4 +46,37 @@ Revisar Delete
 }
 sf::Sprite Torreta::getSprite() {
     return torretaSprite;
+}
+bool Torreta:: enemigohit(float dano){
+
+bool muerto=false;
+
+
+    if(vida-dano<=0) {
+       // muere();
+
+       muerto=true;
+
+    }
+    else{
+        vida=vida-dano;
+
+    timedanoTorreta.restart();
+
+       torretaSprite.setColor(Color(255,0,0,155));
+        }
+
+    return muerto;
+
+
+}
+void Torreta:: danoenemigo(){
+
+     if(timedanoTorreta.getElapsedTime().asMilliseconds()>=200){
+
+             torretaSprite.setColor(Color(255,255,255,255));
+
+        }
+
+
 }

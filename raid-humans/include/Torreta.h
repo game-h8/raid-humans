@@ -11,18 +11,20 @@ class Torreta
         Torreta();
         int getX();
         int getY();
-        int tipo;
-        float x;
-        float y;
+        float vida=500;
         void setPos(sf::Vector2f newPos);
         void rotarTorreta(float angle);
         void draw(sf::RenderWindow &Window);
         void dibujarSprite();
+        void danoenemigo();
+        bool enemigohit(float dano);
         sf::Sprite getSprite();
 
         sf::Clock timeTorreta;
+        sf::Clock timedanoTorreta;
         ~Torreta();
                 sf::Sprite torretaSprite;
+
     private:
 
 
