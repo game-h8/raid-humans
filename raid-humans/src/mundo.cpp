@@ -25,7 +25,28 @@ mundo::mundo()
         exit(0);
     }
 
+    if(!splasTexture.loadFromFile("resources/Splash Background.png")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
 
+
+    if(!splasmenu.loadFromFile("resources/sky.png")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+
+     if(!botoninicio.loadFromFile("resources/PlayButton.png")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+
+tipoTorreta=1;
+
+}
+
+void mundo::cambiarTipoTorreta(int tipo){
+    tipoTorreta=tipo;
 }
 
 mundo * mundo::_instancia=NULL;

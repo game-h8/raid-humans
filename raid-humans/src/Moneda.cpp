@@ -45,13 +45,15 @@ bool Moneda::movimiento(float xJugador, float yJugador){
 
     float angle = atan2(yJugador - mSprite.getPosition().y, xJugador - mSprite.getPosition().x);
     sf::Vector2f newpos((cos(angle))*2, (sin(angle))*2);
-    mSprite.move(newpos.x*6, newpos.y*6);
+    mSprite.move(newpos.x*2, newpos.y*2);
+    hitbox.move(newpos.x*2, newpos.y*2);
 
-    if(abs(int(xJugador - mSprite.getPosition().x)) <=4 && abs(int(yJugador - mSprite.getPosition().y)) <=4){
+    if(abs(int(xJugador - mSprite.getPosition().x)) <=8 && abs(int(yJugador - mSprite.getPosition().y)) <=8){
         return true;
     }
     else
         return false;
+
 
 }
 

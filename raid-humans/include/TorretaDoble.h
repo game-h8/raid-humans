@@ -1,35 +1,30 @@
-#ifndef TORRETA_H
-#define TORRETA_H
+#ifndef TORRETADOBLE_H
+#define TORRETADOBLE_H
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <math.h>
 #include <mundo.h>
 
-class Torreta
+class TorretaDoble
 {
     public:
-        Torreta();
-        int getX();
-        int getY();
-        float vida=500;
-        int tipo;
+        TorretaDoble();
+        float x;
+        float y;
         void setPos(sf::Vector2f newPos);
         void rotarTorreta(float angle);
         void draw(sf::RenderWindow &Window);
         void dibujarSprite();
-        void danoenemigo();
-        bool enemigohit(float dano);
         sf::Sprite getSprite();
-
         sf::Clock timeTorreta;
-        sf::Clock timedanoTorreta;
         ~Torreta();
-                sf::Sprite torretaSprite;
+        sf::Sprite torretaSprite;
+
+        virtual ~TorretaDoble();
+
+    protected:
 
     private:
-
-
-
 };
 
-#endif // TORRETA_H
+#endif // TORRETADOBLE_H
