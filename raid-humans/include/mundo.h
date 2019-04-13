@@ -10,6 +10,7 @@
 #include <Torreta.h>
 #include <Bala.h>
 #include <Moneda.h>
+#include <BalaMisil.h>
 
 using namespace sf;
 class enemigos;
@@ -17,7 +18,7 @@ class player;
 class Mapa;
 class Moneda;
 class Bala;
-
+class BalaMisil;
 
 class mundo
 {
@@ -30,6 +31,7 @@ class mundo
         void toggleDebug();
         bool getDebug();
         void test();
+        void cambiarTipoTorreta();
 
         Mapa *mapa;
         RenderWindow * ventana;
@@ -40,17 +42,16 @@ class mundo
         sf::Texture   eTexture;
         sf::Texture balaTex;
         sf::Texture coinTex;
-        sf::Texture splasTexture;
-        sf::Texture splasmenu;
-        sf::Texture botoninicio;
-
+        sf::Texture torretaDobleTex;
 
         vector<enemigos> * enemigosFuera; //vector de enemigos que se encuentran en pantalla
         vector<enemigos> * enemigosEspera;
         vector<Torreta> * vectorTorreta;
         vector<Bala> * vectorBalas;
+        vector<BalaMisil> * vectorBalasMisil;
         vector<Moneda> * vectorMonedas;
 
+        int tipoTorreta;
 
 
     protected:

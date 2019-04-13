@@ -25,29 +25,22 @@ mundo::mundo()
         exit(0);
     }
 
-    if(!splasTexture.loadFromFile("resources/Splash Background.png")){
-        std::cerr <<"Error al cargar la imagen";
-        exit(0);
-    }
-
-
-    if(!splasmenu.loadFromFile("resources/sky.png")){
-        std::cerr <<"Error al cargar la imagen";
-        exit(0);
-    }
-
-     if(!botoninicio.loadFromFile("resources/PlayButton.png")){
-        std::cerr <<"Error al cargar la imagen";
-        exit(0);
-    }
-
-
-
+tipoTorreta=1;
 
 
 }
 
 mundo * mundo::_instancia=NULL;
+
+void mundo::cambiarTipoTorreta(){
+    if(tipoTorreta==1){
+            tipoTorreta=2;
+            cout <<"Tipo de torreta: "<<tipoTorreta<<endl;
+    }
+    else{
+        tipoTorreta=1;
+    }
+}
 
 mundo * mundo::getMundo(){
 
