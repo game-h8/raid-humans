@@ -32,7 +32,7 @@ juego::juego(Vector2u resolucion)
  mundo::getMundo()->vectorTorreta=&vectorTorreta;
  mundo::getMundo()->vectorMonedas=&vectorMonedas;
  mundo::getMundo()->vectorBalas=&vectorBalas;
-
+ mundo::getMundo()->vectorBalasMisil=&vectorBalasMisil;
 
 portada.setTexture(mundo::getMundo()->splasTexture);
   menu.setTexture(mundo::getMundo()->splasmenu);
@@ -227,8 +227,14 @@ void juego:: update(float elapsedTime){
             addTorreta();
             estado->toggleColocar();
            }
-           if(!estado->getColocando() && (IsSpriteCLicker (torretaCompra1) || IsSpriteCLicker(torretaCompra2))){
+           if(!estado->getColocando() && (IsSpriteCLicker (torretaCompra1) )){
                 estado->toggleColocar();
+                mundo::getMundo()->cambiarTipoTorreta(1);
+
+           }
+           else if(!estado->getColocando() && (IsSpriteCLicker (torretaCompra2) )){
+                estado->toggleColocar();
+                 mundo::getMundo()->cambiarTipoTorreta(2);
            }
 
 
@@ -269,8 +275,16 @@ void juego:: update(float elapsedTime){
                 }
             //cout<<"Tamano vectorBalas: " <<vectorBalas.size() <<endl;
             }
+            for(int i=0; i<vectorBalasMisil.size(); i++){
+                vectorBalasMisil[i].disparar(elapsedTime);
+                for (int j=0;j<enemigosFuera.size();j++) {
+                    vectorBalasMisil[i].colision(j);
 
-
+                }
+                if(!vectorBalasMisil[i].viva){
+                    vectorBalasMisil.erase(vectorBalasMisil.begin()+i);
+                }
+            }
 
             //movimiento enemigo
             if (enemigosFuera.empty()==false) {
@@ -410,6 +424,9 @@ ventana->clear();
 for(int i=0; i<vectorBalas.size(); i++){
     vectorBalas[i].render(percentick, *ventana);
 }
+for(int i=0; i<vectorBalasMisil.size(); i++){
+    vectorBalasMisil[i].render(percentick, *ventana);
+}
 for(int i=0; i<vectorTorreta.size(); i++)
     vectorTorreta[i].draw(*ventana);
 
@@ -542,7 +559,7 @@ void juego::dibujarSelector(){
     //Dibujar selector en el mapa para poner la torreta donde marque
 
     //definir rectangulo, para selector
-    sf::RectangleShape selector(sf::Vector2f(30.f, 32.f));
+    sf::RectangleShape selector(sf::Vector2f(32.f, 32.f));
     sf::Color trasnparente(0, 0, 0, 1); //Cuadrado transparente
     selector.setFillColor(trasnparente);
     //Pintar borde del rectangulo, que sera e selector
@@ -625,12 +642,21 @@ void juego::disparar(){
                 }
             }
             if(dist<=300){
+                if(vectorTorreta[i].tipo == 1){
+                    Bala * nuevaBala = new Bala(enemigoX, enemigoY);
+                    angle = nuevaBala->setPos(sf::Vector2f(vectorTorreta[i].getX(), vectorTorreta[i].getY()));
+                    vectorBalas.push_back(*nuevaBala);
+                    vectorTorreta[i].rotarTorreta(angle);
+                    vectorTorreta[i].timeTorreta.restart(); //reseteo el sprite de torreta si dispara
+                }
+                else if(vectorTorreta[i].tipo==2){
+                    BalaMisil * nuevaBala = new BalaMisil(enemigoX, enemigoY);
+                    angle = nuevaBala->setPos(sf::Vector2f(vectorTorreta[i].getX(), vectorTorreta[i].getY()));
+                    vectorBalasMisil.push_back(*nuevaBala);
+                    vectorTorreta[i].rotarTorreta(angle);
+                    vectorTorreta[i].timeTorreta.restart(); //reseteo el sprite de torreta si dispara
+                }
 
-                Bala * nuevaBala = new Bala(enemigoX, enemigoY);
-                angle = nuevaBala->setPos(sf::Vector2f(vectorTorreta[i].getX(), vectorTorreta[i].getY()));
-                vectorBalas.push_back(*nuevaBala);
-                vectorTorreta[i].rotarTorreta(angle);
-                vectorTorreta[i].timeTorreta.restart(); //reseteo el sprite de torreta si dispara
             }
         }
 

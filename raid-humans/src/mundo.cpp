@@ -41,10 +41,12 @@ mundo::mundo()
         exit(0);
     }
 
+tipoTorreta=1;
 
+}
 
-
-
+void mundo::cambiarTipoTorreta(int tipo){
+    tipoTorreta=tipo;
 }
 
 mundo * mundo::_instancia=NULL;
@@ -78,15 +80,4 @@ mundo::~mundo()
 void mundo::test(){
 
 cout << enemigosEspera->size() << endl;
-}
-
-tipoTorreta=1;
-void mundo::cambiarTipoTorreta(){
-    if(tipoTorreta==1){
-            cout <<"Tipo de torreta: "<<tipoTorreta<<endl;
-            tipoTorreta=2;
-    }
-    else{
-        tipoTorreta=1;
-    }
 }

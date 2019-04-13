@@ -13,6 +13,7 @@
 #include <vector>
 #include <Mapa.h>
 #include <StateMachine.h>
+#include <BalaMisil.h>
 
 using namespace sf;
 
@@ -47,6 +48,7 @@ class juego
         vector<Moneda> vectorMonedas;
         vector<enemigos> enemigosFuera; //vector de enemigos que se encuentran en pantalla
         vector<enemigos>enemigosEspera; //vector de enemigos para hacer spawn*/
+        vector<BalaMisil> vectorBalasMisil;
         Sprite dSprite;
         Texture dTexture;
         int monedas;

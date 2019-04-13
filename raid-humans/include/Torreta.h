@@ -12,6 +12,7 @@ class Torreta
         int getX();
         int getY();
         float vida=500;
+        int tipo;
         void setPos(sf::Vector2f newPos);
         void rotarTorreta(float angle);
         void draw(sf::RenderWindow &Window);
