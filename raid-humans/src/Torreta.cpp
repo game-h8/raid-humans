@@ -63,3 +63,37 @@ Revisar Delete
 sf::Sprite Torreta::getSprite() {
     return torretaSprite;
 }
+
+bool Torreta:: enemigohit(float dano){
+
+bool muerto=false;
+
+    if(vida-dano<=0) {
+
+       // muere();
+
+
+       muerto=true;
+    }
+    else{
+        vida=vida-dano;
+
+
+    timedanoTorreta.restart();
+        }
+       torretaSprite.setColor(Color(255,0,0,155));
+    return muerto;
+
+
+}
+
+void Torreta:: danoenemigo(){
+
+     if(timedanoTorreta.getElapsedTime().asMilliseconds()>=200){
+             torretaSprite.setColor(Color(255,255,255,255));
+
+
+        }
+
+
+}

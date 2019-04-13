@@ -25,22 +25,29 @@ mundo::mundo()
         exit(0);
     }
 
-tipoTorreta=1;
+    if(!splasTexture.loadFromFile("resources/Splash Background.png")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+
+
+    if(!splasmenu.loadFromFile("resources/sky.png")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+
+     if(!botoninicio.loadFromFile("resources/PlayButton.png")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+
+
+
 
 
 }
 
 mundo * mundo::_instancia=NULL;
-
-void mundo::cambiarTipoTorreta(){
-    if(tipoTorreta==1){
-            tipoTorreta=2;
-            cout <<"Tipo de torreta: "<<tipoTorreta<<endl;
-    }
-    else{
-        tipoTorreta=1;
-    }
-}
 
 mundo * mundo::getMundo(){
 
@@ -71,4 +78,15 @@ mundo::~mundo()
 void mundo::test(){
 
 cout << enemigosEspera->size() << endl;
+}
+
+tipoTorreta=1;
+void mundo::cambiarTipoTorreta(){
+    if(tipoTorreta==1){
+            cout <<"Tipo de torreta: "<<tipoTorreta<<endl;
+            tipoTorreta=2;
+    }
+    else{
+        tipoTorreta=1;
+    }
 }
