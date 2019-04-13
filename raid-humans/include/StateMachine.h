@@ -1,7 +1,7 @@
 #ifndef STATEMACHINE_H
 #define STATEMACHINE_H
 
-
+#include <iostream>
 class StateMachine
 {
     public:

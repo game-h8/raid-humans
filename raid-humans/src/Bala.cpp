@@ -34,7 +34,7 @@ void Bala::disparar(float time){
 
     hitbox.setPosition(Vector2f(x,y));
 
-    if(x<0 || y < 0 || x>800 || y>600){
+    if(x<0 || y < 0 || x>mundo::getMundo()->ventana->getSize().x|| y>mundo::getMundo()->ventana->getSize().y){
         viva = false;
     }
 

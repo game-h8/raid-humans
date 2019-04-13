@@ -3,7 +3,7 @@ using namespace std;
 mundo::mundo()
 {
 
-    if(!torretaTex.loadFromFile("resources/TyB.png")){
+     if(!torretaTex.loadFromFile("resources/TyB.png")){
         std::cerr <<"Error al cargar la imagen";
         exit(0);
     }
@@ -40,6 +40,27 @@ mundo::mundo()
         std::cerr <<"Error al cargar la imagen";
         exit(0);
     }
+
+
+
+     if(!compratorreta1.loadFromFile("resources/MejorTorreta1.jpg")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+     if(!compratorreta2.loadFromFile("resources/MejorTorreta2.jpg")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+     if(!compramejora.loadFromFile("resources/MejorEspada.jpg")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+     if(!botoncambioestado.loadFromFile("resources/Play.jpg")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+
+
 
 tipoTorreta=1;
 

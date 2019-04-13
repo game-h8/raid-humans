@@ -40,7 +40,7 @@ void StateMachine::toggleColocar(){
 if(colocandoTurret) colocandoTurret = false;
 else colocandoTurret = true;
 
-
+std::cout << colocandoTurret << std::endl;
 }
 
 void StateMachine::setEstado(int i){

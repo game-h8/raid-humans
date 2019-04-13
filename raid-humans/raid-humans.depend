@@ -184,7 +184,7 @@
 	<cstddef>
 	<cstdarg>
 
-1555013482 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/main.cpp
+1555181500 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/main.cpp
 	<SFML/Graphics.hpp>
 	"include/Mapa.h"
 	<iostream>
@@ -194,7 +194,7 @@
 	<SFML/Window.hpp>
 	"include/juego.h"
 
-1555111514 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/juego.h
+1555181500 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/juego.h
 	<SFML/System/Clock.hpp>
 	<iostream>
 	<SFML/Graphics.hpp>
@@ -206,8 +206,9 @@
 	<vector>
 	<Mapa.h>
 	<StateMachine.h>
+	<BalaMisil.h>
 
-1555023627 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/player.h
+1555181907 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/player.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	<SFML/System/Clock.hpp>
@@ -226,7 +227,7 @@
 	<Torreta.h>
 	<math.h>
 
-1555096530 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/Torreta.h
+1555181500 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/Torreta.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<math.h>
@@ -252,7 +253,7 @@
 	<android/log.h>
 	<assert.h>
 
-1555027710 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/Bala.cpp
+1555183827 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/Bala.cpp
 	"../include/Bala.h"
 	<iostream>
 	<math.h>
@@ -266,10 +267,10 @@
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/RenderStates.hpp>
 
-1555104369 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/enemigos.cpp
+1555181500 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/enemigos.cpp
 	"../include/enemigos.h"
 
-1555111627 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/juego.cpp
+1555183593 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/juego.cpp
 	"../include/juego.h"
 	<SFML/Graphics.hpp>
 	<iostream>
@@ -284,7 +285,7 @@
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 
-1555025535 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/player.cpp
+1555181846 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/player.cpp
 	"player.h"
 
 1554794315 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/TileMap.cpp
@@ -305,7 +306,7 @@
 	<cstddef>
 	<cstdarg>
 
-1555096490 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/Torreta.cpp
+1555181500 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/Torreta.cpp
 	"../include/Torreta.h"
 
 1554888103 source:/home/fv/Escritorio/raid-humans/raid-humans/src/Mapa.cpp
@@ -947,7 +948,7 @@
 1555000642 source:/home/fv/Escritorio/NuevaC/raid-humans/src/Torreta.cpp
 	"../include/Torreta.h"
 
-1555108879 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/mundo.h
+1555182362 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/mundo.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	"player.h"
@@ -957,6 +958,7 @@
 	<Torreta.h>
 	<Bala.h>
 	<Moneda.h>
+	<BalaMisil.h>
 
 1555093530 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/Moneda.h
 	<SFML/Graphics.hpp>
@@ -970,11 +972,11 @@
 	<SFML/Graphics.hpp>
 	"tinyxml2.h"
 
-1555094196 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/Moneda.cpp
+1555181500 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/Moneda.cpp
 	"Moneda.h"
 	<iostream>
 
-1555108952 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/mundo.cpp
+1555184922 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/mundo.cpp
 	"mundo.h"
 
 1555028856 /home/fv/Escritorio/raid-humans/include/mundo.h
@@ -1146,10 +1148,11 @@
 1555058778 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/Torreta.cpp
 	"../include/Torreta.h"
 
-1555105560 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/StateMachine.cpp
+1555183070 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/StateMachine.cpp
 	"StateMachine.h"
 
-1555105581 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/StateMachine.h
+1555183124 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/StateMachine.h
+	<iostream>
 
 1555171172 source:/home/fv/Escritorio/Carpeta sin título 2/raid-humans/main.cpp
 	<SFML/Graphics.hpp>
@@ -1316,5 +1319,14 @@
 	"StateMachine.h"
 
 1555176448 source:/home/fv/Escritorio/PracticaFV/PracticaFV/raid-humans/raid-humans/src/BalaMisil.cpp
+	"BalaMisil.h"
+
+1555181500 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/BalaMisil.h
+	<SFML/Graphics.hpp>
+	"player.h"
+	"enemigos.h"
+	<math.h>
+
+1555184002 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/BalaMisil.cpp
 	"BalaMisil.h"
 

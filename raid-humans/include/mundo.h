@@ -38,13 +38,17 @@ class mundo
         player * jugador;
 
 
-        sf::Texture torretaTex;
+         sf::Texture torretaTex;
         sf::Texture   eTexture;
         sf::Texture balaTex;
         sf::Texture coinTex;
         sf::Texture splasTexture;
         sf::Texture splasmenu;
         sf::Texture botoninicio;
+        sf::Texture compratorreta1;
+        sf::Texture compratorreta2;
+         sf::Texture compramejora;
+         sf::Texture botoncambioestado;
 
         int tipoTorreta;
 

@@ -26,7 +26,7 @@ juego::juego(Vector2u resolucion)
  mapa = new Mapa("resources/mapaok.tmx", "resources/PathAndObjects.png");
  ventana = new RenderWindow(VideoMode(resolucion.x, resolucion.y), "Raid humans");
 
- jugador= new player("resources/player.png" ,500,400);
+ jugador= new player("resources/player2.png" ,500,400);
  mundo::getMundo()->enemigosEspera=&enemigosEspera;
  mundo::getMundo()->enemigosFuera=&enemigosFuera;
  mundo::getMundo()->vectorTorreta=&vectorTorreta;
@@ -43,15 +43,16 @@ portada.setTexture(mundo::getMundo()->splasTexture);
  boton.setPosition((double)ventana->getSize().x/2-(double)boton.getTexture()->getSize().x/2,(double)ventana->getSize().y/3);
 
 
-    torretaCompra1.setTexture(mundo::getMundo()->botoninicio);
-    torretaCompra2.setTexture(mundo::getMundo()->botoninicio);
-    espadaCompra.setTexture(mundo::getMundo()->botoninicio);
-    continuarRonda.setTexture(mundo::getMundo()->botoninicio);
+    torretaCompra1.setTexture(mundo::getMundo()->compratorreta1);
+    torretaCompra2.setTexture(mundo::getMundo()->compratorreta2);
+    espadaCompra.setTexture(mundo::getMundo()->compramejora);
+    continuarRonda.setTexture(mundo::getMundo()->botoncambioestado);
 
-    torretaCompra1.setPosition(10,100);
-    torretaCompra2.setPosition(150, 300);
-    espadaCompra.setPosition(250,500);
-    continuarRonda.setPosition(500,700);
+   torretaCompra1.setPosition(30,600);
+    torretaCompra2.setPosition(230, 600);
+    espadaCompra.setPosition(430,600);
+    continuarRonda.setPosition(630,600);
+
 
     torretaFantasma.setTexture((mundo::getMundo()->torretaTex));
     torretaFantasma.setColor(Color(255,255,255,155));
@@ -228,14 +229,36 @@ void juego:: update(float elapsedTime){
             estado->toggleColocar();
            }
            if(!estado->getColocando() && (IsSpriteCLicker (torretaCompra1) )){
+
                 estado->toggleColocar();
                 mundo::getMundo()->cambiarTipoTorreta(1);
+
 
            }
            else if(!estado->getColocando() && (IsSpriteCLicker (torretaCompra2) )){
                 estado->toggleColocar();
-                 mundo::getMundo()->cambiarTipoTorreta(2);
+                mundo::getMundo()->cambiarTipoTorreta(2);
+           }else if  (IsSpriteCLicker(espadaCompra)){
+               mundo::getMundo()->jugador->nivel=2;
+
            }
+
+           if(estado->getColocando()){
+            torretaCompra1.setPosition(-200,-200);
+            torretaCompra2.setPosition(-200, -200);
+            espadaCompra.setPosition(-200,-200);
+            continuarRonda.setPosition(-200,-200);
+
+           }else{
+
+
+            torretaCompra1.setPosition(30,600);
+            torretaCompra2.setPosition(230, 600);
+            espadaCompra.setPosition(430,600);
+            continuarRonda.setPosition(630,600);
+           }
+
+
 
 
           if(IsSpriteCLicker (continuarRonda)){
@@ -469,6 +492,7 @@ for(int i=0; i<vectorMonedas.size(); i++){
                             ventana->draw(torretaCompra2);
                             ventana->draw(espadaCompra);
                             ventana->draw(continuarRonda);
+                            jugador->render(percentick, *ventana);
 
                         }
 
@@ -603,7 +627,7 @@ void juego::addTorreta(){
     }
 
     //CAMBIAR CUANDO TENGAMOS EL MAPA
-    if(i >= 0 && j >= 0 && i <= 24 && j <= 18 && !existe){
+    if(i >= 0 && j >= 0 && i <= 25 && j <= 25 && !existe){
         //Crea la clase torreta dandole un tamanio
         Torreta* torreta = new Torreta();
         //Coloca la torreta en una posicion llamando a una funcion que hemos creado en la clase torreta setPos
