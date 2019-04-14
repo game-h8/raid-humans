@@ -36,6 +36,7 @@ class juego
         bool IsSpriteCLicker(sf::Sprite es);
 
 
+
     protected:
 
     private:

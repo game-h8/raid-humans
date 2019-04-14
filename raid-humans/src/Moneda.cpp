@@ -1,6 +1,6 @@
 #include "Moneda.h"
 #include <iostream>
-
+using namespace sf;
 Moneda::Moneda(float x, float y, int valorPasado)
 {
 
@@ -41,6 +41,35 @@ valor=valorPasado;
 
 
 }
+
+
+bool Moneda::checkMuerte(){
+
+
+    if(timeMoneda.getElapsedTime().asSeconds()>tiempoParpadeo.asSeconds()){
+
+        if(parpadeo.getElapsedTime().asSeconds()>tiempoentreparpadeo.asSeconds()){
+
+            mSprite.setColor(Color(255,255,255,0));
+            parpadeo.restart();
+
+        }else{
+
+            mSprite.setColor(Color(255,255,255,255));
+        }
+
+    }
+    if(timeMoneda.getElapsedTime().asSeconds() > tiempomuerte.asSeconds()){
+
+        return true;
+
+    }
+return false;
+}
+
+
+
+
 bool Moneda::movimiento(float xJugador, float yJugador){
 
     float angle = atan2(yJugador - mSprite.getPosition().y, xJugador - mSprite.getPosition().x);

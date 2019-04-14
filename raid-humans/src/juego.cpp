@@ -216,7 +216,7 @@ void juego:: update(float elapsedTime){
     //////////INGAME///////////
     //////////////////////////////////////
 
-
+   cout << estado->getColocando() << endl;
         if(estado->getModo()==true){
 
             ////////////////////
@@ -226,17 +226,20 @@ void juego:: update(float elapsedTime){
            if(estado->getColocando() && sf::Mouse::isButtonPressed(sf::Mouse::Left)){
 
             addTorreta();
-            estado->toggleColocar();
+            estado->comprando();
+            sf::sleep(seconds(0.100));
            }
-           if(!estado->getColocando() && (IsSpriteCLicker (torretaCompra1) )){
+           if((IsSpriteCLicker (torretaCompra1) ) && !estado->getColocando()){
 
-                estado->toggleColocar();
+                estado->colocando();
+                 sf::sleep(seconds(0.100));
                 mundo::getMundo()->cambiarTipoTorreta(1);
 
 
            }
-           else if(!estado->getColocando() && (IsSpriteCLicker (torretaCompra2) )){
-                estado->toggleColocar();
+           else if((IsSpriteCLicker (torretaCompra2) && !estado->getColocando())){
+                estado->colocando();
+                 sf::sleep(seconds(0.100));
                 mundo::getMundo()->cambiarTipoTorreta(2);
            }else if  (IsSpriteCLicker(espadaCompra)){
                mundo::getMundo()->jugador->nivel=2;
@@ -263,7 +266,7 @@ void juego:: update(float elapsedTime){
 
           if(IsSpriteCLicker (continuarRonda)){
                 if(estado->getColocando()){
-                    estado->toggleColocar();
+                    estado->comprando();
                 }else{
                     estado->toggleModo();
                     inicializar();
@@ -378,6 +381,14 @@ void juego:: update(float elapsedTime){
                         disparar();
                      }
 
+
+
+                    for(int i=0; i<vectorMonedas.size(); i++){
+                        if(vectorMonedas.at(i).checkMuerte()){
+                            vectorMonedas.erase(vectorMonedas.begin()+i);
+                        }
+
+                    }
 
 
         }

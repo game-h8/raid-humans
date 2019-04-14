@@ -12,7 +12,8 @@ class StateMachine
         int getEstado();
         bool getModo();
         void toggleModo();
-        void toggleColocar();
+        void colocando();
+        void comprando();
         bool getColocando();
 
     protected:
