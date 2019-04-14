@@ -56,6 +56,7 @@ public:
         bool balaHit(float dano);
         void invulnerabilidad();
         void danobala();
+        void seleccionaAtaque(vector<Torreta> vecTor, player &jugador);
 
 
 protected:

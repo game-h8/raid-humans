@@ -157,6 +157,10 @@ void juego:: inicializar() { //inicializar las variables del juego
         enemigos ene2(100,100);
         enemigos ene3(100,100);
         enemigos ene4(100,100);
+        enemigos ene5(100,100);
+        enemigos ene6(100,100);
+        enemigos ene7(100,100);
+        enemigos ene8(100,100);
 
         Moneda m1(100,300,10);
         vectorMonedas.push_back(m1);
@@ -175,6 +179,10 @@ void juego:: inicializar() { //inicializar las variables del juego
         enemigosEspera.push_back(ene2);
         enemigosEspera.push_back(ene3);
         enemigosEspera.push_back(ene4);
+        enemigosEspera.push_back(ene5);
+        enemigosEspera.push_back(ene6);
+        enemigosEspera.push_back(ene7);
+        enemigosEspera.push_back(ene8);
 
     }
 
@@ -400,7 +408,7 @@ void juego:: update(float elapsedTime){
                         }
                         if (enemigosFuera.empty()==false) {
                             for (int i=0;i<enemigosFuera.size()&&i<4;i++) {
-                                enemigosFuera.at(i).atacaTorretaCercana(vectorTorreta);
+                                enemigosFuera.at(i).seleccionaAtaque(vectorTorreta, *jugador);
                             }
             }
                         //le damos un objetivo al enemigo
@@ -415,7 +423,7 @@ void juego:: update(float elapsedTime){
 
                         if (enemigosFuera.empty()==false) {
                             for (int i=0;i<enemigosFuera.size();i++) {
-                                enemigosFuera.at(i).ataque(jugador, vectorTorreta);
+                                enemigosFuera.at(i).seleccionaAtaque(vectorTorreta, *jugador);
                                 if(enemigosFuera.at(i).ataca==true){
                                    // if (!dTexture.loadFromFile("resources/hit.png")){
                                      //   cerr << "Error cargando la imagen del golpe resources/sprites.png" << endl;

@@ -80,7 +80,7 @@ void enemigos::moveEnemy(float time, vector<enemigos> ene, vector<Torreta> torre
     Vector2f pos;
 
     if(atacaTorre==false) {
-        for(int i=0; i<ene.size()&&choca==false; i++){
+        /*for(int i=0; i<ene.size()&&choca==false; i++){
             //for(int j=0; i<torres.size()&&colision==false; i++){
                 if(i!=a){
                     if(colision.getGlobalBounds().intersects(ene.at(i).colision.getGlobalBounds())){
@@ -91,7 +91,7 @@ void enemigos::moveEnemy(float time, vector<enemigos> ene, vector<Torreta> torre
                     }
                 }
             //}
-        }
+        }*/
         if(choca==false && atacaTorre==false){
             if(x < objetivo.x && y < objetivo.y) {
             x=x+velocidad*time;
@@ -230,11 +230,11 @@ void enemigos::atacaTorretaCercana(vector<Torreta> vecTor) {
             }
             cout<<"distancia en x"<<(abs((int)objetivo.x)-abs((int)x))<<"distancia en y"<<(abs((int)objetivo.y)-abs((int)y))<<endl;
             if (hitbox.getGlobalBounds().intersects(torretas->at(posMasCercana).getSprite().getGlobalBounds())) {
-                atacaTorre=true;
+                estado=2;
             cout<<"vida de la torreta"<<mundo::getMundo()->vectorTorreta->at(posMasCercana).vida<<endl;
 
                if (mundo::getMundo()->vectorTorreta->at(posMasCercana).enemigohit(100) && timeenemigo.getElapsedTime().asMilliseconds()>600){
-
+                estado=1;
                 mundo::getMundo()->vectorTorreta->erase(mundo::getMundo()->vectorTorreta->begin()+posMasCercana);
                }
 
@@ -245,6 +245,12 @@ void enemigos::atacaTorretaCercana(vector<Torreta> vecTor) {
 }
 void enemigos::atacaJugador(player &jugador) {
     objetivo=jugador.pSprite.getPosition();
+    if (hitbox.getGlobalBounds().intersects(jugador.pSprite.getGlobalBounds())) {
+        estado=2;
+    }
+    else {
+        estado=1;
+    }
 }
 //Hitplayer es cuando el jugador le ataca, devuelve true si muere
 bool enemigos::playerHit(float dano){
@@ -403,5 +409,15 @@ void enemigos:: movsprites(){
 
 
     }
+
+}
+void enemigos::seleccionaAtaque(vector<Torreta> vecTor, player &jugador){
+    if (vecTor.empty()==false) {
+        atacaTorretaCercana(vecTor);
+    }
+    else{
+        atacaJugador(jugador);
+    }
+
 
 }
