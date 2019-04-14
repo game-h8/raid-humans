@@ -299,6 +299,29 @@ void juego:: update(float elapsedTime){
 
    cout << mundo::getMundo()->getCoins() << endl;
 
+                for(int i=0; i<vectorBalas.size(); i++){
+                   vectorBalas[i].disparar(elapsedTime);
+                for (int j=0;j<enemigosFuera.size();j++) {
+                    vectorBalas[i].colision(j);
+
+                }
+                    if(!vectorBalas[i].viva){
+                        vectorBalas.erase(vectorBalas.begin()+i);
+                    }
+            //cout<<"Tamano vectorBalas: " <<vectorBalas.size() <<endl;
+                }
+                for(int i=0; i<vectorBalasMisil.size(); i++){
+                    vectorBalasMisil[i].disparar(elapsedTime);
+                    for (int j=0;j<enemigosFuera.size();j++) {
+                        vectorBalasMisil[i].colision(j);
+
+                    }
+                    if(!vectorBalasMisil[i].viva){
+                        vectorBalasMisil.erase(vectorBalasMisil.begin()+i);
+                    }
+                }
+
+
         if(estado->getModo()==true){
 
             ////////////////////
@@ -307,7 +330,14 @@ void juego:: update(float elapsedTime){
 
             vector<int> inputs= getInputs();                //Funcion para coger los botones que se pulsan
             jugador->calcularVelocidadPlayer(inputs,elapsedTime); //Calculamos la posicion inicial y final deljugador y lo movemos
+            recogerMoneda();
 
+                    for(int i=0; i<vectorMonedas.size(); i++){
+                        if(vectorMonedas.at(i).checkMuerte()){
+                            vectorMonedas.erase(vectorMonedas.begin()+i);
+                        }
+
+                    }
             //Pintar candado cuando no se puede comprar
 
            if(mundo::getMundo()->getCoins()>=100){
@@ -330,9 +360,11 @@ void juego:: update(float elapsedTime){
 
             //Colocar torreta
            if(estado->getColocando() && sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-                addTorreta();
-                estado->comprando();
-                sf::sleep(seconds(0.100));
+                if(!IsSpriteCLicker(mundo::getMundo()->castillo->castilloSprite) && !addTorreta()){
+                    estado->comprando();
+                    sf::sleep(seconds(0.100));
+                }
+
            }
 
            //Hacer clic en el boton de compra de torreta 1
@@ -411,27 +443,7 @@ void juego:: update(float elapsedTime){
 
 
 
-            for(int i=0; i<vectorBalas.size(); i++){
-                vectorBalas[i].disparar(elapsedTime);
-                for (int j=0;j<enemigosFuera.size();j++) {
-                    vectorBalas[i].colision(j);
 
-                }
-                if(!vectorBalas[i].viva){
-                    vectorBalas.erase(vectorBalas.begin()+i);
-                }
-            //cout<<"Tamano vectorBalas: " <<vectorBalas.size() <<endl;
-            }
-            for(int i=0; i<vectorBalasMisil.size(); i++){
-                vectorBalasMisil[i].disparar(elapsedTime);
-                for (int j=0;j<enemigosFuera.size();j++) {
-                    vectorBalasMisil[i].colision(j);
-
-                }
-                if(!vectorBalasMisil[i].viva){
-                    vectorBalasMisil.erase(vectorBalasMisil.begin()+i);
-                }
-            }
 
             //movimiento enemigo
             if (enemigosFuera.empty()==false) {
@@ -528,6 +540,8 @@ void juego:: update(float elapsedTime){
                     }
    if(enemigosEspera.size() == 0 && enemigosFuera.size() == 0){
         cout <<"CAMBIO DE RONDA DIN DIN DIN" << endl;
+
+
         estado->toggleModo();
 
    }
@@ -597,12 +611,6 @@ ventana->clear();
 
 //Recorrer el vector de torretas y dibujar las torretas
 
-for(int i=0; i<vectorBalas.size(); i++){
-    vectorBalas[i].render(percentick, *ventana);
-}
-for(int i=0; i<vectorBalasMisil.size(); i++){
-    vectorBalasMisil[i].render(percentick, *ventana);
-}
 for(int i=0; i<vectorTorreta.size(); i++)
     vectorTorreta[i].draw(*ventana);
 
@@ -624,6 +632,12 @@ if (enemigosFuera.size()>0) {
 
 
 
+for(int i=0; i<vectorBalas.size(); i++){
+    vectorBalas[i].render(percentick, *ventana);
+}
+for(int i=0; i<vectorBalasMisil.size(); i++){
+    vectorBalasMisil[i].render(percentick, *ventana);
+}
 
 for(int i=0; i<vectorMonedas.size(); i++){
     vectorMonedas[i].render(*ventana);
@@ -653,7 +667,6 @@ for(int i=0; i<vectorMonedas.size(); i++){
                         }
 
                     }
-
 
 castillo->draw(*ventana);
 
