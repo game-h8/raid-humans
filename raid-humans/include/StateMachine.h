@@ -14,6 +14,8 @@ class StateMachine
         void toggleModo();
         void colocando();
         void comprando();
+        int getRonda();
+
         bool getColocando();
 
     protected:

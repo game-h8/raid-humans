@@ -91,6 +91,16 @@ if(y>mundo::getMundo()->ventana->getSize().y - mundo::getMundo()->jugador->hitbo
     y=ylast;
 }
 
+if(x>mundo::getMundo()->castillo->hitbox.getPosition().x){
+    if(ylast>mundo::getMundo()->castillo->hitbox.getPosition().y + 30 && ylast < mundo::getMundo()->castillo->hitbox.getPosition().y + mundo::getMundo()->castillo->hitbox.getGlobalBounds().height){
+        x=xlast;
+    }
+}
+if(y>mundo::getMundo()->castillo->hitbox.getPosition().y + 30 && y < mundo::getMundo()->castillo->hitbox.getPosition().y + mundo::getMundo()->castillo->hitbox.getGlobalBounds().height){
+    if(x>mundo::getMundo()->castillo->hitbox.getPosition().x){
+            y=ylast;
+    }
+}
 
 
 

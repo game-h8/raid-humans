@@ -41,6 +41,7 @@ juego::juego(Vector2u resolucion)
  mundo::getMundo()->vectorMonedas=&vectorMonedas;
  mundo::getMundo()->vectorBalas=&vectorBalas;
  mundo::getMundo()->vectorBalasMisil=&vectorBalasMisil;
+ mundo::getMundo()->castillo=castillo;
 
 portada.setTexture(mundo::getMundo()->splasTexture);
   menu.setTexture(mundo::getMundo()->splasmenu);
@@ -297,6 +298,7 @@ void juego:: update(float elapsedTime){
     mundo::getMundo()->dinero.setString(ss.str());
 
    cout << mundo::getMundo()->getCoins() << endl;
+
         if(estado->getModo()==true){
 
             ////////////////////
@@ -450,10 +452,11 @@ void juego:: update(float elapsedTime){
                 vectorTorreta[i].dibujarSprite();
                 vectorTorreta[i].danoenemigo();
             }
+            cout<<"Ronda: " <<estado->getRonda() <<endl;
 
 
                      //temporizador para generar enemigos
-                     if(clockSpawn.getElapsedTime() > tiempoSpawn){
+                     if(clockSpawn.getElapsedTime() > tiempoSpawn && estado->getRonda() == 1){
 
                         clockSpawn.restart();
 
@@ -465,11 +468,26 @@ void juego:: update(float elapsedTime){
                             for (int i=0;i<enemigosFuera.size()&&i<4;i++) {
                                 enemigosFuera.at(i).seleccionaAtaque(vectorTorreta, *jugador);
                             }
-            }
+                        }
                         //le damos un objetivo al enemigo
 
 
                      }
+                     else if(clockSpawn.getElapsedTime() > tiempoSpawn2 && estado->getRonda() == 2){
+                        clockSpawn.restart();
+
+                        if (enemigosEspera.empty()==false) {
+                            enemigosFuera.push_back(enemigosEspera.at(enemigosEspera.size()-1));
+                            enemigosEspera.pop_back();
+                        }
+                        if (enemigosFuera.empty()==false) {
+                            for (int i=0;i<enemigosFuera.size()&&i<4;i++) {
+                                enemigosFuera.at(i).seleccionaAtaque(vectorTorreta, *jugador);
+                            }
+                        }
+                        //le damos un objetivo al enemigo
+                     }
+
 
                       // los enemigos comprueban el ataque
                      if(clockAttack.getElapsedTime() > tiempoAttack){
@@ -508,7 +526,11 @@ void juego:: update(float elapsedTime){
                         }
 
                     }
+   if(enemigosEspera.size() == 0 && enemigosFuera.size() == 0){
+        cout <<"CAMBIO DE RONDA DIN DIN DIN" << endl;
+        estado->toggleModo();
 
+   }
 
         }
 
@@ -606,7 +628,7 @@ if (enemigosFuera.size()>0) {
 for(int i=0; i<vectorMonedas.size(); i++){
     vectorMonedas[i].render(*ventana);
 }
-castillo->draw(*ventana);
+
 
 
 
@@ -633,7 +655,7 @@ castillo->draw(*ventana);
                     }
 
 
-
+castillo->draw(*ventana);
 
       ventana->draw(mundo::getMundo()->dinero);
 
@@ -694,6 +716,7 @@ vector<int> data;
                if(mundo::getMundo()->getDebug()) addTorreta();
             }
 
+
             Vector2i position = Mouse::getPosition(*ventana);
 
             if(position.x > jugador->x){         //RATON MIRA DERECHA
@@ -737,7 +760,7 @@ void juego::dibujarSelector(){
 
 }
 
-void juego::addTorreta(){
+bool juego::addTorreta(){
 
     //Obtener coordenadas de la ventana
     sf::Vector2i localPosition = sf::Mouse::getPosition(*ventana);
@@ -765,6 +788,7 @@ void juego::addTorreta(){
        vectorTorreta.push_back(*torreta);
 
     }
+    return existe;
 
 }
 

@@ -32,7 +32,7 @@ class juego
         vector<int> getInputs();
         Vector2f calcularVelocidadPlayer(vector<int> inputs);
         void dibujarSelector();
-        void addTorreta();
+        bool addTorreta();
         void disparar();
         void recogerMoneda();
         vector<Torreta> getTorretas();
@@ -66,7 +66,8 @@ class juego
 
         //variables de tiempo para el spawn
         Clock clockSpawn;
-        Time tiempoSpawn =  seconds(3.f);
+        Time tiempoSpawn =  seconds(4.f);
+        Time tiempoSpawn2= seconds(2.f);
 
         //variables de tiempo para la bala
         Clock clockBala;

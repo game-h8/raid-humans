@@ -30,7 +30,7 @@ return colocandoTurret;
 void StateMachine::toggleModo(){
 
 if(compra) compra = false;
-else compra = true;
+else {compra = true; ronda+=1;}
 
 
 }
@@ -52,6 +52,10 @@ void StateMachine::setEstado(int i){
     if(i>0&&i<=5)
     estado= i;
 
+}
+
+int StateMachine::getRonda(){
+    return ronda;
 }
 
 
