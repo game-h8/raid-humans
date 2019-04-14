@@ -3,11 +3,15 @@ using namespace std;
 mundo::mundo()
 {
 
-    if(!torretaTex.loadFromFile("resources/TyB.png")){
+     if(!torretaTex.loadFromFile("resources/TyB.png")){
         std::cerr <<"Error al cargar la imagen";
         exit(0);
     }
 
+    if(!castilloTex.loadFromFile("resources/Castillo.png")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
 
     if (!eTexture.loadFromFile("resources/enemigo.png"))
     {
@@ -41,7 +45,65 @@ mundo::mundo()
         exit(0);
     }
 
+
+
+     if(!compratorreta1.loadFromFile("resources/MejorTorreta1.jpg")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+     if(!compratorreta2.loadFromFile("resources/MejorTorreta2.jpg")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+     if(!compramejora.loadFromFile("resources/MejorEspada.jpg")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+     if(!botoncambioestado.loadFromFile("resources/Play.jpg")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+       if(!compratorreta1no.loadFromFile("resources/MejorTorreta1Bloqueda.jpg")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+     if(!compratorreta2no.loadFromFile("resources/MejorTorreta2Bloqueda.jpg")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+     if(!compramejorano.loadFromFile("resources/MejorEspadaBloqueda.jpg")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+
+    if(!font.loadFromFile("resources/fuente/Marker Felt.ttf")){
+         std::cerr <<"Error al cargar la fuente";
+        exit(0);
+    }
+    dinero.setFont(font);
+
+
 tipoTorreta=1;
+monedas=200;
+
+}
+
+int mundo::getCoins(){
+return monedas;
+}
+
+bool mundo::gastaCoins(int coins){
+    if(monedas-coins<0){
+        return false;
+    }
+    else{
+        monedas = monedas - coins;
+    }
+    return true;
+}
+
+void mundo::addCoins(int coins){
+   monedas = monedas + coins;
 
 }
 

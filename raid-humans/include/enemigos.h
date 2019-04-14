@@ -35,7 +35,7 @@ public:
         float danioEnemigo;
         float velocidad = 50;
         float vida = 500;
-        float money = 2000;
+        float money;
         bool ataca=false;
         bool atacaTorre=false;
         bool invulnerable=false;

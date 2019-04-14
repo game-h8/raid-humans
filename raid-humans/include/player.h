@@ -33,6 +33,7 @@ class player
         float     ylast;
         Vector2f   vel;
         int        estado;    //0-> reposo ,1-> movimiento, 2-> ataque (para renderizar)
+        int nivel=1;
 
 
 

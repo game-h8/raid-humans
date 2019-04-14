@@ -35,13 +35,17 @@ else compra = true;
 
 }
 
-void StateMachine::toggleColocar(){
+void StateMachine::colocando(){
 
-if(colocandoTurret) colocandoTurret = false;
-else colocandoTurret = true;
-
-
+colocandoTurret =true;
 }
+
+
+void StateMachine::comprando(){
+colocandoTurret = false;
+}
+
+
 
 void StateMachine::setEstado(int i){
 

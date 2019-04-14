@@ -13,7 +13,6 @@ enemigos::enemigos() {
 
 
 
-
 }
 
 enemigos::enemigos(const enemigos& E) {
@@ -31,6 +30,7 @@ enemigos::enemigos(const enemigos& E) {
     danioEnemigo=E.danioEnemigo;
     estado=1;
 
+    money=rand()%60;
 
 }
 
@@ -310,7 +310,7 @@ void enemigos::danobala(){
 
 
 
-         if(timedanobala.getElapsedTime().asMilliseconds()>=200){
+         if(timedanobala.getElapsedTime().asMilliseconds()>=200 && invulnerable==false){
 
              eSprite.setColor(Color(255,255,255,255));
 

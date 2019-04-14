@@ -4,6 +4,7 @@
 
 #include <SFML/System/Clock.hpp>
 #include <iostream>
+
 #include <SFML/Graphics.hpp>
 #include "player.h"
 #include "Bala.h"
@@ -14,6 +15,8 @@
 #include <Mapa.h>
 #include <StateMachine.h>
 #include <BalaMisil.h>
+#include <Castillo.h>
+#include <sstream>
 
 using namespace sf;
 
@@ -36,6 +39,7 @@ class juego
         bool IsSpriteCLicker(sf::Sprite es);
 
 
+
     protected:
 
     private:
@@ -43,6 +47,7 @@ class juego
         RenderWindow * ventana;
         player * jugador;
         StateMachine * estado;
+        Castillo * castillo;
         vector<Torreta> vectorTorreta;
         vector<Bala> vectorBalas;
         vector<Moneda> vectorMonedas;
@@ -51,7 +56,8 @@ class juego
         vector<BalaMisil> vectorBalasMisil;
         Sprite dSprite;
         Texture dTexture;
-        int monedas;
+        sf::Text titulo;
+
 
         Clock clock;
         Clock updateCLock;
@@ -77,6 +83,7 @@ class juego
         sf::Sprite torretaCompra1;
         sf::Sprite torretaCompra2;
         sf::Sprite espadaCompra;
+
         sf::Sprite continuarRonda;
 
         sf::Sprite torretaFantasma; //la que te sigue al comprar

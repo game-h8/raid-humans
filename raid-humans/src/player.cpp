@@ -84,7 +84,12 @@ ylast=y;
     x=x+vel.x*time ;
     y=y +vel.y*time ;
 
-
+if(x>mundo::getMundo()->ventana->getSize().x - mundo::getMundo()->jugador->hitbox.getGlobalBounds().width/2 || x<mundo::getMundo()->jugador->hitbox.getGlobalBounds().width/2){
+    x=xlast;
+}
+if(y>mundo::getMundo()->ventana->getSize().y - mundo::getMundo()->jugador->hitbox.getGlobalBounds().height/2 || y<mundo::getMundo()->jugador->hitbox.getGlobalBounds().height/2){
+    y=ylast;
+}
 
 
 
@@ -192,91 +197,184 @@ v.y=0;
 
 
     }
-    switch (estado){
-
-    case 0:
-        if(timejugador.getElapsedTime().asMilliseconds()<200){
-                pSprite.setTextureRect(sf::IntRect(4, 8, 41, 65));
+     if(nivel==1){
 
 
-        }else if(timejugador.getElapsedTime().asMilliseconds()<400){
-            pSprite.setTextureRect(sf::IntRect(4+41, 8, 41, 65));
-        }
-        else if(timejugador.getElapsedTime().asMilliseconds()<600){
-                pSprite.setTextureRect(sf::IntRect(4+41*2, 8, 41, 65));
+        switch (estado){
 
-        }
-        else if(timejugador.getElapsedTime().asMilliseconds()<800){
-                pSprite.setTextureRect(sf::IntRect(4+41*3, 8, 41, 65));
-        }
-        else if(timejugador.getElapsedTime().asMilliseconds()<1000){
-                pSprite.setTextureRect(sf::IntRect(4+41*2, 8, 41, 65));
-
-        }
-
-        else if(timejugador.getElapsedTime().asMilliseconds()<1200){
-            pSprite.setTextureRect(sf::IntRect(4+41, 8, 41, 65));
-        }else{
-        timejugador.restart();
-        }
-        break;
-
-        case 1:
-
+        case 0:
             if(timejugador.getElapsedTime().asMilliseconds()<200){
-                    pSprite.setTextureRect(sf::IntRect(276, 178, 41, 65));
-             }
-              else if(timejugador.getElapsedTime().asMilliseconds()<400){
-                    pSprite.setTextureRect(sf::IntRect(276+47, 178, 41, 65));
-             }
-             else if(timejugador.getElapsedTime().asMilliseconds()<600){
-                    pSprite.setTextureRect(sf::IntRect(276+47*2, 178, 41, 65));
-             }
-              else if(timejugador.getElapsedTime().asMilliseconds()<800){
-                    pSprite.setTextureRect(sf::IntRect(276+47, 178, 41, 65));
-             }
-
-              else{
-             timejugador.restart();
-             }
-             break;
-
-        case 2:
-
-            if(timejugador.getElapsedTime().asMilliseconds()<100){
-                    pSprite.setTextureRect(sf::IntRect(10, 98, 50, 65));
-
-             }
-             else if(timejugador.getElapsedTime().asMilliseconds()<200){
-                    pSprite.setTextureRect(sf::IntRect(62, 98, 50, 65));
-             }
-
-             else if(timejugador.getElapsedTime().asMilliseconds()<300){
-                    pSprite.setOrigin(60,pSprite.getOrigin().y);
-                    pSprite.setTextureRect(sf::IntRect(226, 99, 60, 70));
+                    pSprite.setTextureRect(sf::IntRect(4, 8, 41, 65));
 
 
-             }
+            }else if(timejugador.getElapsedTime().asMilliseconds()<400){
+                pSprite.setTextureRect(sf::IntRect(4+41, 8, 41, 65));
+            }
+            else if(timejugador.getElapsedTime().asMilliseconds()<600){
+                    pSprite.setTextureRect(sf::IntRect(4+41*2, 8, 41, 65));
 
-              else if(timejugador.getElapsedTime().asMilliseconds()<400){
-                    pSprite.setTextureRect(sf::IntRect(294, 98, 50, 80));
-             }
-              else if(timejugador.getElapsedTime().asMilliseconds()<500){
+            }
+            else if(timejugador.getElapsedTime().asMilliseconds()<800){
+                    pSprite.setTextureRect(sf::IntRect(4+41*3, 8, 41, 65));
+            }
+            else if(timejugador.getElapsedTime().asMilliseconds()<1000){
+                    pSprite.setTextureRect(sf::IntRect(4+41*2, 8, 41, 65));
 
-                    pSprite.setTextureRect(sf::IntRect(353, 98, 50, 80));
+            }
+
+            else if(timejugador.getElapsedTime().asMilliseconds()<1200){
+                pSprite.setTextureRect(sf::IntRect(4+41, 8, 41, 65));
+            }else{
+            timejugador.restart();
+            }
+            break;
+
+            case 1:
+
+                if(timejugador.getElapsedTime().asMilliseconds()<200){
+                        pSprite.setTextureRect(sf::IntRect(276, 178, 41, 65));
+                 }
+                  else if(timejugador.getElapsedTime().asMilliseconds()<400){
+                        pSprite.setTextureRect(sf::IntRect(276+47, 178, 41, 65));
+                 }
+                 else if(timejugador.getElapsedTime().asMilliseconds()<600){
+                        pSprite.setTextureRect(sf::IntRect(276+47*2, 178, 41, 65));
+                 }
+                  else if(timejugador.getElapsedTime().asMilliseconds()<800){
+                        pSprite.setTextureRect(sf::IntRect(276+47, 178, 41, 65));
+                 }
+
+                  else{
+                 timejugador.restart();
+                 }
+                 break;
+
+            case 2:
+
+                if(timejugador.getElapsedTime().asMilliseconds()<100){
+                        pSprite.setTextureRect(sf::IntRect(10, 98, 50, 65));
+
+                 }
+                 else if(timejugador.getElapsedTime().asMilliseconds()<200){
+                        pSprite.setTextureRect(sf::IntRect(62, 98, 50, 65));
+                 }
+
+                 else if(timejugador.getElapsedTime().asMilliseconds()<300){
+                        pSprite.setOrigin(60,pSprite.getOrigin().y);
+                        pSprite.setTextureRect(sf::IntRect(226, 99, 60, 70));
 
 
-             }
+                 }
+
+                  else if(timejugador.getElapsedTime().asMilliseconds()<400){
+                        pSprite.setTextureRect(sf::IntRect(294, 98, 50, 80));
+                 }
+                  else if(timejugador.getElapsedTime().asMilliseconds()<500){
+
+                        pSprite.setTextureRect(sf::IntRect(353, 98, 50, 80));
 
 
-            else{
-             pSprite.setTextureRect(sf::IntRect(4, 8, 41, 65));
-             pSprite.setOrigin(hitbox.getOrigin());
-             timejugador.restart();
-             estado=4;
+                 }
 
-             }
 
+                else{
+                 pSprite.setTextureRect(sf::IntRect(4, 8, 41, 65));
+                 pSprite.setOrigin(hitbox.getOrigin());
+                 timejugador.restart();
+                 estado=4;
+
+                 }
+
+
+        }
+    }
+
+    if(nivel==2){
+         switch (estado){
+
+        case 0:
+            if(timejugador.getElapsedTime().asMilliseconds()<200){
+                    pSprite.setTextureRect(sf::IntRect(10, 258, 41, 77));
+
+
+            }else if(timejugador.getElapsedTime().asMilliseconds()<400){
+                pSprite.setTextureRect(sf::IntRect(50, 258, 41, 77));
+            }
+            else if(timejugador.getElapsedTime().asMilliseconds()<600){
+                    pSprite.setTextureRect(sf::IntRect(92, 258, 41, 77));
+
+            }
+            else if(timejugador.getElapsedTime().asMilliseconds()<800){
+                    pSprite.setTextureRect(sf::IntRect(133, 258, 41, 77));
+            }
+
+
+            else if(timejugador.getElapsedTime().asMilliseconds()<1000){
+                pSprite.setTextureRect(sf::IntRect(50, 258, 41, 77));
+
+            }else{
+            timejugador.restart();
+            }
+            break;
+
+            case 1:
+
+                if(timejugador.getElapsedTime().asMilliseconds()<200){
+                        pSprite.setTextureRect(sf::IntRect(276, 258, 41, 77));
+                 }
+                  else if(timejugador.getElapsedTime().asMilliseconds()<400){
+                        pSprite.setTextureRect(sf::IntRect(276+47, 258, 41, 77));
+                 }
+                 else if(timejugador.getElapsedTime().asMilliseconds()<600){
+                        pSprite.setTextureRect(sf::IntRect(276+47*2, 258, 41, 77));
+                 }
+                  else if(timejugador.getElapsedTime().asMilliseconds()<800){
+                        pSprite.setTextureRect(sf::IntRect(276+47, 258, 41, 77));
+                 }
+
+                  else{
+                 timejugador.restart();
+                 }
+                 break;
+
+            case 2:
+
+                if(timejugador.getElapsedTime().asMilliseconds()<100){
+                        pSprite.setTextureRect(sf::IntRect(5, 344, 54, 90));
+
+                 }
+                 else if(timejugador.getElapsedTime().asMilliseconds()<200){
+                        pSprite.setTextureRect(sf::IntRect(65, 344, 54, 90));
+                 }
+
+                 else if(timejugador.getElapsedTime().asMilliseconds()<300){
+                        pSprite.setOrigin(60,pSprite.getOrigin().y);
+                        pSprite.setTextureRect(sf::IntRect(240, 371, 68, 66));
+
+
+                 }
+
+                  else if(timejugador.getElapsedTime().asMilliseconds()<400){
+                        pSprite.setTextureRect(sf::IntRect(312, 371, 68, 66));
+                 }
+                  else if(timejugador.getElapsedTime().asMilliseconds()<500){
+
+                        pSprite.setTextureRect(sf::IntRect(378, 371, 68, 66));
+
+
+                 }
+
+
+                else{
+                pSprite.setTextureRect(sf::IntRect(10, 258, 41, 77));
+                 pSprite.setOrigin(hitbox.getOrigin());
+                 timejugador.restart();
+                 estado=4;
+
+                 }
+
+
+        }
 
     }
 
