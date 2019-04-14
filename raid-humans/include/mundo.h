@@ -11,6 +11,7 @@
 #include <Bala.h>
 #include <Moneda.h>
 #include <BalaMisil.h>
+#include <Castillo.h>
 
 using namespace sf;
 class enemigos;
@@ -19,6 +20,7 @@ class Mapa;
 class Moneda;
 class Bala;
 class BalaMisil;
+class Castillo;
 
 class mundo
 {
@@ -38,9 +40,11 @@ class mundo
         Mapa *mapa;
         RenderWindow * ventana;
         player * jugador;
+        Castillo *castillo;
 
 
         sf::Texture torretaTex;
+        sf::Texture castilloTex;
         sf::Texture   eTexture;
         sf::Texture balaTex;
         sf::Texture coinTex;

@@ -25,7 +25,15 @@ juego::juego(Vector2u resolucion)
 //creo mapa
  mapa = new Mapa("resources/mapaok.tmx", "resources/PathAndObjects.png");
  ventana = new RenderWindow(VideoMode(resolucion.x, resolucion.y), "Raid humans");
+ castillo = new Castillo();
+ jugador= new player("resources/player2.png" ,500,400);
 
+ mundo::getMundo()->enemigosEspera=&enemigosEspera;
+ mundo::getMundo()->enemigosFuera=&enemigosFuera;
+ mundo::getMundo()->vectorTorreta=&vectorTorreta;
+ mundo::getMundo()->vectorMonedas=&vectorMonedas;
+ mundo::getMundo()->vectorBalas=&vectorBalas;
+ mundo::getMundo()->vectorBalasMisil=&vectorBalasMisil;
  jugador= new player("resources/player2.png" ,500,400);
  mundo::getMundo()->enemigosEspera=&enemigosEspera;
  mundo::getMundo()->enemigosFuera=&enemigosFuera;
@@ -33,6 +41,53 @@ juego::juego(Vector2u resolucion)
  mundo::getMundo()->vectorMonedas=&vectorMonedas;
  mundo::getMundo()->vectorBalas=&vectorBalas;
  mundo::getMundo()->vectorBalasMisil=&vectorBalasMisil;
+
+portada.setTexture(mundo::getMundo()->splasTexture);
+  menu.setTexture(mundo::getMundo()->splasmenu);
+  boton.setTexture(mundo::getMundo()->botoninicio);
+
+ portada.setScale((double)ventana->getSize().x/(double)portada.getTexture()->getSize().x,(double)ventana->getSize().y/(double)portada.getTexture()->getSize().y);
+ menu.setScale((double)ventana->getSize().x/(double)menu.getTexture()->getSize().x,(double)ventana->getSize().y/(double)menu.getTexture()->getSize().y);
+ boton.setPosition((double)ventana->getSize().x/2-(double)boton.getTexture()->getSize().x/2,(double)ventana->getSize().y/3);
+titulo.setFont(mundo::getMundo()->font);
+titulo.setCharacterSize(120);
+titulo.setString("Raid Humans");
+titulo.setColor(Color::Black);
+titulo.setPosition((double)ventana->getSize().x/2 - (double)titulo.getGlobalBounds().width/2,(double)ventana->getSize().y*1/4 );
+
+    torretaCompra1.setTexture(mundo::getMundo()->compratorreta1);
+    torretaCompra2.setTexture(mundo::getMundo()->compratorreta2);
+    espadaCompra.setTexture(mundo::getMundo()->compramejora);
+    continuarRonda.setTexture(mundo::getMundo()->botoncambioestado);
+
+
+
+
+    torretaCompra1.setPosition(30,600);
+    torretaCompra2.setPosition(230, 600);
+    espadaCompra.setPosition(430,600);
+
+
+
+    mundo::getMundo()->dinero.setPosition(ventana->getSize().x-ventana->getSize().x/8,ventana->getSize().y/9);
+    mundo::getMundo()->dinero.setColor((sf::Color::Black));
+    mundo::getMundo()->dinero.setCharacterSize(30);
+
+    continuarRonda.setPosition(630,600);
+
+
+    torretaFantasma.setTexture((mundo::getMundo()->torretaTex));
+    torretaFantasma.setColor(Color(255,255,255,155));
+    torretaFantasma.setTextureRect(IntRect(16,5,96,118));
+    torretaFantasma.setScale(0.4f,0.4f);
+    torretaFantasma.setOrigin(sf::Vector2f(96/2,118/2));
+
+
+
+
+estado=new StateMachine();
+
+
 
 portada.setTexture(mundo::getMundo()->splasTexture);
   menu.setTexture(mundo::getMundo()->splasmenu);
@@ -517,6 +572,35 @@ ventana->clear();
        mapa->drawMapa(*ventana);
 
 
+
+    }else if(estado->getEstado()==2){
+
+
+     ////////////////////////////////////////
+    //////////MENU INICIAL DEL JUEGO///////////
+    //////////////////////////////////////
+
+
+     ventana->draw(menu);
+     ventana->draw(boton);
+     ventana->draw(titulo);
+
+
+    }else if (estado->getEstado()==3){
+     ////////////////////////////////////////
+    //////////INGAME///////////
+    //////////////////////////////////////
+
+
+
+
+
+
+
+       mapa->setActivateLayer(0);
+       mapa->drawMapa(*ventana);
+
+
 //Recorrer el vector de torretas y dibujar las torretas
 
 for(int i=0; i<vectorBalas.size(); i++){
@@ -548,6 +632,61 @@ for(int i=0; i<vectorMonedas.size(); i++){
     vectorMonedas[i].render(*ventana);
 }
 
+
+
+
+
+
+                    if(estado->getModo()==true){
+
+                        ////////////////////
+                        ////MODO COMPRA/////
+                        ////////////////////
+                        if(estado->getColocando()){
+                             dibujarSelector();
+
+                        }else{
+                            jugador->render(percentick, *ventana);
+                            ventana->draw(torretaCompra1);
+                            ventana->draw(torretaCompra2);
+                            ventana->draw(espadaCompra);
+                            ventana->draw(continuarRonda);
+
+
+                        }
+
+                    }
+
+
+
+
+      ventana->draw(mundo::getMundo()->dinero);
+    }else if(estado->getEstado()==4){
+     ////////////////////////////////////////
+    //////////CONSTRUCCION///////////
+    //////////////////////////////////////
+
+
+    }
+
+
+    else if(estado->getEstado()==5){
+     ////////////////////////////////////////
+    //////////GAME OVER//////////
+    //////////////////////////////////////
+
+
+    }
+
+
+
+
+
+
+for(int i=0; i<vectorMonedas.size(); i++){
+    vectorMonedas[i].render(*ventana);
+}
+castillo->draw(*ventana);
 
 
 

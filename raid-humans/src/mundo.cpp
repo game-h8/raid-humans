@@ -8,6 +8,10 @@ mundo::mundo()
         exit(0);
     }
 
+    if(!castilloTex.loadFromFile("resources/Castillo.png")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
 
     if (!eTexture.loadFromFile("resources/enemigo.png"))
     {

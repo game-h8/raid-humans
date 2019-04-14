@@ -5,12 +5,12 @@ BalaMisil::BalaMisil(float posX, float posY)
     balaSprite.setTexture(mundo::getMundo()->balaTex);
     balaSprite.setTextureRect(IntRect(128,128,128,128));
     balaSprite.scale(0.5,0.5);
-    balaSprite.setOrigin(sf::Vector2f(36,36));
+    balaSprite.setOrigin(sf::Vector2f(65,36));
     nextPosX = posX;
     nextPosY= posY;
     hitbox.setSize(Vector2f(16,44));
     hitbox.setFillColor(Color(255,0,0,155));
-    hitbox.setOrigin(-8,0);
+    hitbox.setOrigin(9,0);
     hitbox.setPosition(Vector2f(nextPosX,nextPosY));
 
     viva=true;

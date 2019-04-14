@@ -13,7 +13,6 @@ enemigos::enemigos() {
 
 
 
-
 }
 
 enemigos::enemigos(const enemigos& E) {
@@ -31,6 +30,7 @@ enemigos::enemigos(const enemigos& E) {
     danioEnemigo=E.danioEnemigo;
     estado=1;
 
+    money=rand()%60;
 
 }
 

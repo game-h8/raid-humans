@@ -84,7 +84,12 @@ ylast=y;
     x=x+vel.x*time ;
     y=y +vel.y*time ;
 
-
+if(x>mundo::getMundo()->ventana->getSize().x - mundo::getMundo()->jugador->hitbox.getGlobalBounds().width/2 || x<mundo::getMundo()->jugador->hitbox.getGlobalBounds().width/2){
+    x=xlast;
+}
+if(y>mundo::getMundo()->ventana->getSize().y - mundo::getMundo()->jugador->hitbox.getGlobalBounds().height/2 || y<mundo::getMundo()->jugador->hitbox.getGlobalBounds().height/2){
+    y=ylast;
+}
 
 
 

@@ -15,6 +15,7 @@
 #include <Mapa.h>
 #include <StateMachine.h>
 #include <BalaMisil.h>
+#include <Castillo.h>
 #include <sstream>
 
 using namespace sf;
@@ -46,6 +47,7 @@ class juego
         RenderWindow * ventana;
         player * jugador;
         StateMachine * estado;
+        Castillo * castillo;
         vector<Torreta> vectorTorreta;
         vector<Bala> vectorBalas;
         vector<Moneda> vectorMonedas;
@@ -54,6 +56,7 @@ class juego
         vector<BalaMisil> vectorBalasMisil;
         Sprite dSprite;
         Texture dTexture;
+        sf::Text titulo;
 
 
         Clock clock;

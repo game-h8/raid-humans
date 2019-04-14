@@ -9,20 +9,13 @@ Moneda::Moneda(float x, float y, int valorPasado)
 
 valor=valorPasado;
     //Max 3000coins  min 100
-    if(valor<=100){ // 1Moneda
-        mSprite.setTextureRect(sf::IntRect(0, 0, 16, 16));
-
-    }
-    else if(valor<=300){ // 2 Monedas
-        mSprite.setTextureRect(sf::IntRect(16, 0, 16, 16));
-    }
-    else if(valor<=500){ //Monton pequenio
+    if(valor<=5){ //Monton pequenio
         mSprite.setTextureRect(sf::IntRect(16*2, 0, 16, 16));
     }
-    else if(valor<=1000){ //Monton grande
+    else if(valor<=10){ //Monton grande
         mSprite.setTextureRect(sf::IntRect(16*3, 0, 16, 16));
     }
-    else if(valor<=2000){ //Monton enorme
+    else if(valor<=50){ //Monton enorme
         mSprite.setTextureRect(sf::IntRect(0, 16, 16, 16));
     }
     else{ //Lingotes
