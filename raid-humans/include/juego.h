@@ -4,6 +4,7 @@
 
 #include <SFML/System/Clock.hpp>
 #include <iostream>
+
 #include <SFML/Graphics.hpp>
 #include "player.h"
 #include "Bala.h"
@@ -14,6 +15,7 @@
 #include <Mapa.h>
 #include <StateMachine.h>
 #include <BalaMisil.h>
+#include <sstream>
 
 using namespace sf;
 

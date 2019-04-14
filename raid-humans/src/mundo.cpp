@@ -72,6 +72,11 @@ mundo::mundo()
         exit(0);
     }
 
+    if(!font.loadFromFile("resources/fuente/Marker Felt.ttf")){
+         std::cerr <<"Error al cargar la fuente";
+        exit(0);
+    }
+    dinero.setFont(font);
 
 
 tipoTorreta=1;

@@ -196,7 +196,7 @@
 	<android/log.h>
 	<assert.h>
 
-1555238106 /home/fv/Escritorio/raid-humans/include/juego.h
+1555242830 /home/fv/Escritorio/raid-humans/include/juego.h
 	<SFML/System/Clock.hpp>
 	<iostream>
 	<SFML/Graphics.hpp>
@@ -209,6 +209,7 @@
 	<Mapa.h>
 	<StateMachine.h>
 	<BalaMisil.h>
+	<sstream>
 
 1555181907 /home/fv/Escritorio/raid-humans/include/player.h
 	<iostream>
@@ -216,7 +217,7 @@
 	<SFML/System/Clock.hpp>
 	<mundo.h>
 
-1555237321 /home/fv/Escritorio/raid-humans/include/mundo.h
+1555241609 /home/fv/Escritorio/raid-humans/include/mundo.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	"player.h"
@@ -300,7 +301,7 @@
 	"Moneda.h"
 	<iostream>
 
-1555237415 source:/home/fv/Escritorio/raid-humans/src/mundo.cpp
+1555241672 source:/home/fv/Escritorio/raid-humans/src/mundo.cpp
 	"mundo.h"
 
 1555181846 source:/home/fv/Escritorio/raid-humans/src/player.cpp

@@ -51,11 +51,15 @@ portada.setTexture(mundo::getMundo()->splasTexture);
 
 
 
-   torretaCompra1.setPosition(30,600);
+    torretaCompra1.setPosition(30,600);
     torretaCompra2.setPosition(230, 600);
     espadaCompra.setPosition(430,600);
 
 
+
+    mundo::getMundo()->dinero.setPosition(ventana->getSize().x-ventana->getSize().x/8,ventana->getSize().y/9);
+    mundo::getMundo()->dinero.setColor((sf::Color::Black));
+    mundo::getMundo()->dinero.setCharacterSize(30);
 
     continuarRonda.setPosition(630,600);
 
@@ -65,6 +69,7 @@ portada.setTexture(mundo::getMundo()->splasTexture);
     torretaFantasma.setTextureRect(IntRect(16,5,96,118));
     torretaFantasma.setScale(0.4f,0.4f);
     torretaFantasma.setOrigin(sf::Vector2f(96/2,118/2));
+
 
 
 
@@ -222,6 +227,11 @@ void juego:: update(float elapsedTime){
      ////////////////////////////////////////
     //////////INGAME///////////
     //////////////////////////////////////
+    std::stringstream ss;
+    ss << mundo::getMundo()->getCoins();
+
+
+    mundo::getMundo()->dinero.setString(ss.str());
 
    cout << mundo::getMundo()->getCoins() << endl;
         if(estado->getModo()==true){
@@ -558,7 +568,7 @@ for(int i=0; i<vectorMonedas.size(); i++){
 
 
 
-
+      ventana->draw(mundo::getMundo()->dinero);
     }else if(estado->getEstado()==4){
      ////////////////////////////////////////
     //////////CONSTRUCCION///////////

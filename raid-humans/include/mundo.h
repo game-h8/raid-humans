@@ -55,6 +55,8 @@ class mundo
         sf::Texture compratorreta2no;
         sf::Texture compramejorano;
 
+        sf::Text dinero;
+        sf::Font font;
         int tipoTorreta;
         int monedas;
 
