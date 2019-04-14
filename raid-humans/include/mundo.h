@@ -32,13 +32,15 @@ class mundo
         bool getDebug();
         void test();
         void cambiarTipoTorreta(int tipo);
-
+        int getCoins();
+        bool gastaCoins(int coins);
+        void addCoins(int coins);
         Mapa *mapa;
         RenderWindow * ventana;
         player * jugador;
 
 
-         sf::Texture torretaTex;
+        sf::Texture torretaTex;
         sf::Texture   eTexture;
         sf::Texture balaTex;
         sf::Texture coinTex;
@@ -47,11 +49,14 @@ class mundo
         sf::Texture botoninicio;
         sf::Texture compratorreta1;
         sf::Texture compratorreta2;
-         sf::Texture compramejora;
-         sf::Texture botoncambioestado;
+        sf::Texture compramejora;
+        sf::Texture botoncambioestado;
+        sf::Texture compratorreta1no;
+        sf::Texture compratorreta2no;
+        sf::Texture compramejorano;
 
         int tipoTorreta;
-
+        int monedas;
 
         vector<enemigos> * enemigosFuera; //vector de enemigos que se encuentran en pantalla
         vector<enemigos> * enemigosEspera;

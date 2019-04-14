@@ -48,9 +48,15 @@ portada.setTexture(mundo::getMundo()->splasTexture);
     espadaCompra.setTexture(mundo::getMundo()->compramejora);
     continuarRonda.setTexture(mundo::getMundo()->botoncambioestado);
 
+
+
+
    torretaCompra1.setPosition(30,600);
     torretaCompra2.setPosition(230, 600);
     espadaCompra.setPosition(430,600);
+
+
+
     continuarRonda.setPosition(630,600);
 
 
@@ -63,7 +69,7 @@ portada.setTexture(mundo::getMundo()->splasTexture);
 
 
 estado=new StateMachine();
- monedas=0;
+
 
 
  mundo::getMundo()->ventana=ventana;
@@ -97,6 +103,7 @@ estado=new StateMachine();
             {
                  mundo::getMundo()->toggleDebug();
                  mundo::getMundo()->test();
+                 mundo::getMundo()->addCoins(500);
             }
 
 
@@ -216,36 +223,75 @@ void juego:: update(float elapsedTime){
     //////////INGAME///////////
     //////////////////////////////////////
 
-   cout << estado->getColocando() << endl;
+   cout << mundo::getMundo()->getCoins() << endl;
         if(estado->getModo()==true){
 
             ////////////////////
             ////MODO COMPRA/////
             ////////////////////
 
+            vector<int> inputs= getInputs();                //Funcion para coger los botones que se pulsan
+            jugador->calcularVelocidadPlayer(inputs,elapsedTime); //Calculamos la posicion inicial y final deljugador y lo movemos
+
+            //Pintar candado cuando no se puede comprar
+
+           if(mundo::getMundo()->getCoins()>=100){
+                torretaCompra1.setTexture(mundo::getMundo()->compratorreta1);
+           }else{
+                torretaCompra1.setTexture(mundo::getMundo()->compratorreta1no);
+           }
+
+           if(mundo::getMundo()->getCoins()>=200){
+                torretaCompra2.setTexture(mundo::getMundo()->compratorreta2);
+           }else{
+                torretaCompra2.setTexture(mundo::getMundo()->compratorreta2no);
+           }
+
+           if(mundo::getMundo()->getCoins()>=500 && mundo::getMundo()->jugador->nivel<2){
+                espadaCompra.setTexture(mundo::getMundo()->compramejora);
+           }else{
+                espadaCompra.setTexture(mundo::getMundo()->compramejorano);
+           }
+
+            //Colocar torreta
            if(estado->getColocando() && sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-
-            addTorreta();
-            estado->comprando();
-            sf::sleep(seconds(0.100));
-           }
-           if((IsSpriteCLicker (torretaCompra1) ) && !estado->getColocando()){
-
-                estado->colocando();
-                 sf::sleep(seconds(0.100));
-                mundo::getMundo()->cambiarTipoTorreta(1);
-
-
-           }
-           else if((IsSpriteCLicker (torretaCompra2) && !estado->getColocando())){
-                estado->colocando();
-                 sf::sleep(seconds(0.100));
-                mundo::getMundo()->cambiarTipoTorreta(2);
-           }else if  (IsSpriteCLicker(espadaCompra)){
-               mundo::getMundo()->jugador->nivel=2;
-
+                addTorreta();
+                estado->comprando();
+                sf::sleep(seconds(0.100));
            }
 
+           //Hacer clic en el boton de compra de torreta 1
+           if(IsSpriteCLicker (torretaCompra1)  && !estado->getColocando()){
+                if(mundo::getMundo()->gastaCoins(100)){
+                    estado->colocando();
+                    sf::sleep(seconds(0.100));
+                    mundo::getMundo()->cambiarTipoTorreta(1);
+                    torretaFantasma.setTextureRect(IntRect(128,0,128,128));
+                }
+           }
+
+
+           //hacer clic en el boton de compra 2
+           else if(IsSpriteCLicker (torretaCompra2) && !estado->getColocando()){
+                  if(mundo::getMundo()->gastaCoins(200)){
+                    estado->colocando();
+                    sf::sleep(seconds(0.100));
+                    mundo::getMundo()->cambiarTipoTorreta(2);
+
+                    torretaFantasma.setTextureRect(IntRect(0,128,128,128));
+                  }
+
+            //Hacer clic en el boton de mejora de arma
+           }else if  (IsSpriteCLicker(espadaCompra) && mundo::getMundo()->jugador->nivel<2){
+               if(mundo::getMundo()->gastaCoins(500)){
+                  mundo::getMundo()->jugador->nivel=2;
+               }
+
+
+           }
+
+
+            //Mover botones para que no se buguee
            if(estado->getColocando()){
             torretaCompra1.setPosition(-200,-200);
             torretaCompra2.setPosition(-200, -200);
@@ -316,7 +362,7 @@ void juego:: update(float elapsedTime){
             if (enemigosFuera.empty()==false) {
                 for (int i=0;i<enemigosFuera.size();i++) {
                     enemigosFuera.at(i).moveEnemy(elapsedTime, enemigosFuera, vectorTorreta, i);
-                    enemigosFuera.at(i). invulnerabilidad();
+                    enemigosFuera.at(i).invulnerabilidad();
                     enemigosFuera.at(i).danobala();
 
                         /*dSprite.setTexture(dTexture);
@@ -498,12 +544,12 @@ for(int i=0; i<vectorMonedas.size(); i++){
                              dibujarSelector();
 
                         }else{
-
+                            jugador->render(percentick, *ventana);
                             ventana->draw(torretaCompra1);
                             ventana->draw(torretaCompra2);
                             ventana->draw(espadaCompra);
                             ventana->draw(continuarRonda);
-                            jugador->render(percentick, *ventana);
+
 
                         }
 
@@ -612,7 +658,7 @@ void juego::dibujarSelector(){
 
         //Dibujar el selector en el cuadrado de la matriz
         selector.setPosition(i*32.f ,j*32.f);
-        torretaFantasma.setPosition(i*32.f+16.f ,j*32.f+15.f);
+        torretaFantasma.setPosition(i*32.f+10.f ,j*32.f+14.f);
         ventana->draw(selector);
         ventana->draw(torretaFantasma);
 
@@ -701,9 +747,12 @@ void juego::disparar(){
 void juego::recogerMoneda(){
     for(int i=0; i<vectorMonedas.size(); i++){
         if(vectorMonedas[i].hitbox.getGlobalBounds().intersects(jugador->hitbox.getGlobalBounds())){
-            monedas+=vectorMonedas[i].valor;
-            if(vectorMonedas[i].movimiento(jugador->x, jugador->y))
+
+            if(vectorMonedas[i].movimiento(jugador->x, jugador->y)){
+                 mundo::getMundo()->addCoins(vectorMonedas[i].valor);
                 vectorMonedas.erase(vectorMonedas.begin()+i);
+            }
+
         }
     }
 

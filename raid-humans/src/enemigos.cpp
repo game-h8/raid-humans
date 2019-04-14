@@ -310,7 +310,7 @@ void enemigos::danobala(){
 
 
 
-         if(timedanobala.getElapsedTime().asMilliseconds()>=200){
+         if(timedanobala.getElapsedTime().asMilliseconds()>=200 && invulnerable==false){
 
              eSprite.setColor(Color(255,255,255,255));
 

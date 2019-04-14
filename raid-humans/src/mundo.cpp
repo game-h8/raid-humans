@@ -59,10 +59,42 @@ mundo::mundo()
         std::cerr <<"Error al cargar la imagen";
         exit(0);
     }
+       if(!compratorreta1no.loadFromFile("resources/MejorTorreta1Bloqueda.jpg")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+     if(!compratorreta2no.loadFromFile("resources/MejorTorreta2Bloqueda.jpg")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+     if(!compramejorano.loadFromFile("resources/MejorEspadaBloqueda.jpg")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
 
 
 
 tipoTorreta=1;
+monedas=200;
+
+}
+
+int mundo::getCoins(){
+return monedas;
+}
+
+bool mundo::gastaCoins(int coins){
+    if(monedas-coins<0){
+        return false;
+    }
+    else{
+        monedas = monedas - coins;
+    }
+    return true;
+}
+
+void mundo::addCoins(int coins){
+   monedas = monedas + coins;
 
 }
 

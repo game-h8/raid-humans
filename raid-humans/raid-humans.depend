@@ -29,7 +29,7 @@
 	<android/log.h>
 	<assert.h>
 
-1555181500 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/juego.h
+1555201258 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/juego.h
 	<SFML/System/Clock.hpp>
 	<iostream>
 	<SFML/Graphics.hpp>
@@ -49,7 +49,7 @@
 	<SFML/System/Clock.hpp>
 	<mundo.h>
 
-1555182362 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/mundo.h
+1555190357 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/mundo.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	"player.h"
@@ -80,10 +80,12 @@
 	"enemigos.h"
 	<math.h>
 
-1555093530 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/Moneda.h
+1555202388 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/Moneda.h
 	<SFML/Graphics.hpp>
 	<mundo.h>
 	<math.h>
+	<SFML/System/Clock.hpp>
+	<SFML/System/Time.hpp>
 
 1555181500 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/BalaMisil.h
 	<SFML/Graphics.hpp>
@@ -91,7 +93,7 @@
 	"enemigos.h"
 	<math.h>
 
-1555183124 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/StateMachine.h
+1555190460 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/StateMachine.h
 	<iostream>
 
 1555183827 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/Bala.cpp
@@ -114,7 +116,7 @@
 1555181500 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/enemigos.cpp
 	"../include/enemigos.h"
 
-1555183593 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/juego.cpp
+1555202595 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/juego.cpp
 	"../include/juego.h"
 	<SFML/Graphics.hpp>
 	<iostream>
@@ -130,7 +132,7 @@
 	<SFML/Graphics.hpp>
 	"tinyxml2.h"
 
-1555181500 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/Moneda.cpp
+1555202524 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/Moneda.cpp
 	"Moneda.h"
 	<iostream>
 
@@ -194,7 +196,7 @@
 	<android/log.h>
 	<assert.h>
 
-1555201258 /home/fv/Escritorio/raid-humans/include/juego.h
+1555238106 /home/fv/Escritorio/raid-humans/include/juego.h
 	<SFML/System/Clock.hpp>
 	<iostream>
 	<SFML/Graphics.hpp>
@@ -214,7 +216,7 @@
 	<SFML/System/Clock.hpp>
 	<mundo.h>
 
-1555190357 /home/fv/Escritorio/raid-humans/include/mundo.h
+1555237321 /home/fv/Escritorio/raid-humans/include/mundo.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	"player.h"
@@ -275,10 +277,10 @@
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/RenderStates.hpp>
 
-1555181500 source:/home/fv/Escritorio/raid-humans/src/enemigos.cpp
+1555238459 source:/home/fv/Escritorio/raid-humans/src/enemigos.cpp
 	"../include/enemigos.h"
 
-1555200795 source:/home/fv/Escritorio/raid-humans/src/juego.cpp
+1555238301 source:/home/fv/Escritorio/raid-humans/src/juego.cpp
 	"../include/juego.h"
 	<SFML/Graphics.hpp>
 	<iostream>
@@ -298,7 +300,7 @@
 	"Moneda.h"
 	<iostream>
 
-1555184922 source:/home/fv/Escritorio/raid-humans/src/mundo.cpp
+1555237415 source:/home/fv/Escritorio/raid-humans/src/mundo.cpp
 	"mundo.h"
 
 1555181846 source:/home/fv/Escritorio/raid-humans/src/player.cpp

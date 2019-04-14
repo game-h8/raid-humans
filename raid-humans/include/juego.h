@@ -52,7 +52,7 @@ class juego
         vector<BalaMisil> vectorBalasMisil;
         Sprite dSprite;
         Texture dTexture;
-        int monedas;
+
 
         Clock clock;
         Clock updateCLock;
@@ -78,6 +78,7 @@ class juego
         sf::Sprite torretaCompra1;
         sf::Sprite torretaCompra2;
         sf::Sprite espadaCompra;
+
         sf::Sprite continuarRonda;
 
         sf::Sprite torretaFantasma; //la que te sigue al comprar
