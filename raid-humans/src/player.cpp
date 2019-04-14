@@ -93,6 +93,8 @@ if(y>mundo::getMundo()->ventana->getSize().y - mundo::getMundo()->jugador->hitbo
 
 
 
+
+
 Vector2f pos;
 pos.x=xlast;
 pos.y=ylast;

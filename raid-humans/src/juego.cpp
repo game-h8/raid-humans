@@ -95,7 +95,7 @@ portada.setTexture(mundo::getMundo()->splasTexture);
 
  portada.setScale((double)ventana->getSize().x/(double)portada.getTexture()->getSize().x,(double)ventana->getSize().y/(double)portada.getTexture()->getSize().y);
  menu.setScale((double)ventana->getSize().x/(double)menu.getTexture()->getSize().x,(double)ventana->getSize().y/(double)menu.getTexture()->getSize().y);
- boton.setPosition((double)ventana->getSize().x/2-(double)boton.getTexture()->getSize().x/2,(double)ventana->getSize().y/3);
+ boton.setPosition((double)ventana->getSize().x/2-(double)boton.getTexture()->getSize().x/2,(double)ventana->getSize().y/2);
 
 
     torretaCompra1.setTexture(mundo::getMundo()->compratorreta1);
@@ -555,34 +555,6 @@ ventana->clear();
 
      ventana->draw(menu);
      ventana->draw(boton);
-
-
-    }else if (estado->getEstado()==3){
-     ////////////////////////////////////////
-    //////////INGAME///////////
-    //////////////////////////////////////
-
-
-
-
-
-
-
-       mapa->setActivateLayer(0);
-       mapa->drawMapa(*ventana);
-
-
-
-    }else if(estado->getEstado()==2){
-
-
-     ////////////////////////////////////////
-    //////////MENU INICIAL DEL JUEGO///////////
-    //////////////////////////////////////
-
-
-     ventana->draw(menu);
-     ventana->draw(boton);
      ventana->draw(titulo);
 
 
@@ -628,58 +600,6 @@ if (enemigosFuera.size()>0) {
     }
 }
 
-for(int i=0; i<vectorMonedas.size(); i++){
-    vectorMonedas[i].render(*ventana);
-}
-
-
-
-
-
-
-                    if(estado->getModo()==true){
-
-                        ////////////////////
-                        ////MODO COMPRA/////
-                        ////////////////////
-                        if(estado->getColocando()){
-                             dibujarSelector();
-
-                        }else{
-                            jugador->render(percentick, *ventana);
-                            ventana->draw(torretaCompra1);
-                            ventana->draw(torretaCompra2);
-                            ventana->draw(espadaCompra);
-                            ventana->draw(continuarRonda);
-
-
-                        }
-
-                    }
-
-
-
-
-      ventana->draw(mundo::getMundo()->dinero);
-    }else if(estado->getEstado()==4){
-     ////////////////////////////////////////
-    //////////CONSTRUCCION///////////
-    //////////////////////////////////////
-
-
-    }
-
-
-    else if(estado->getEstado()==5){
-     ////////////////////////////////////////
-    //////////GAME OVER//////////
-    //////////////////////////////////////
-
-
-    }
-
-
-
 
 
 
@@ -716,11 +636,6 @@ castillo->draw(*ventana);
 
 
       ventana->draw(mundo::getMundo()->dinero);
-    }else if(estado->getEstado()==4){
-     ////////////////////////////////////////
-    //////////CONSTRUCCION///////////
-    //////////////////////////////////////
-
 
     }
 
