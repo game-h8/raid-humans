@@ -26,7 +26,7 @@ juego::juego(Vector2u resolucion)
  mapa = new Mapa("resources/mapaok.tmx", "resources/PathAndObjects.png");
  ventana = new RenderWindow(VideoMode(resolucion.x, resolucion.y), "Raid humans");
  castillo = new Castillo();
-
+ hud = new Hud();
  jugador= new player("resources/player2.png" ,500,400);
  mundo::getMundo()->enemigosEspera=&enemigosEspera;
  mundo::getMundo()->enemigosFuera=&enemigosFuera;
@@ -276,7 +276,7 @@ void juego:: update(float elapsedTime){
     std::stringstream ss;
     ss << mundo::getMundo()->getCoins();
 
-
+    hud->updateHud();
     mundo::getMundo()->dinero.setString(ss.str());
 
    //cout << mundo::getMundo()->getCoins() << endl;
@@ -689,7 +689,7 @@ for(int i=0; i<vectorMonedas.size(); i++){
                     }
 
 castillo->draw(*ventana);
-
+hud->draw(*ventana);
       ventana->draw(mundo::getMundo()->dinero);
 
     }

@@ -17,7 +17,7 @@
 #include <BalaMisil.h>
 #include <Castillo.h>
 #include <sstream>
-
+#include "Hud.h"
 using namespace sf;
 
 
@@ -90,6 +90,8 @@ class juego
         sf::Sprite continuarRonda;
 
         sf::Sprite torretaFantasma; //la que te sigue al comprar
+
+        Hud * hud;
 };
 #endif // JUEGO_H
 
