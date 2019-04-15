@@ -6,7 +6,7 @@
 #define SHOOT_SPEED 4000
 #define UPDATE_TICK_TIME 1000/15
 #define kVel 100
-
+#define RONDAFINAL 2
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -26,14 +26,7 @@ juego::juego(Vector2u resolucion)
  mapa = new Mapa("resources/mapaok.tmx", "resources/PathAndObjects.png");
  ventana = new RenderWindow(VideoMode(resolucion.x, resolucion.y), "Raid humans");
  castillo = new Castillo();
- jugador= new player("resources/player2.png" ,500,400);
 
- mundo::getMundo()->enemigosEspera=&enemigosEspera;
- mundo::getMundo()->enemigosFuera=&enemigosFuera;
- mundo::getMundo()->vectorTorreta=&vectorTorreta;
- mundo::getMundo()->vectorMonedas=&vectorMonedas;
- mundo::getMundo()->vectorBalas=&vectorBalas;
- mundo::getMundo()->vectorBalasMisil=&vectorBalasMisil;
  jugador= new player("resources/player2.png" ,500,400);
  mundo::getMundo()->enemigosEspera=&enemigosEspera;
  mundo::getMundo()->enemigosFuera=&enemigosFuera;
@@ -165,6 +158,7 @@ estado=new StateMachine();
                  mundo::getMundo()->toggleDebug();
                  mundo::getMundo()->test();
                  mundo::getMundo()->addCoins(500);
+                 jugador->toggleInvul();
             }
 
 
@@ -209,27 +203,15 @@ void juego:: inicializar() { //inicializar las variables del juego
 
     if (estado->getEstado() == 3 && estado->getModo()==false){
 
-        enemigos ene1(0,200);
-        enemigos ene2(0,300);
-        enemigos ene3(0,400);
-        enemigos ene4(0,500);
-        enemigos ene5(0,300);
-        enemigos ene6(0,200);
-        enemigos ene7(0,500);
-        enemigos ene8(0,300);
+        enemigos ene1(100,100);
+        enemigos ene2(100,100);
+        enemigos ene3(100,100);
+        enemigos ene4(100,100);
+        enemigos ene5(100,100);
+        enemigos ene6(100,100);
+        enemigos ene7(100,100);
+        enemigos ene8(100,100);
 
-        Moneda m1(100,300,10);
-        vectorMonedas.push_back(m1);
-        Moneda m2(200,200,150);
-        vectorMonedas.push_back(m2);
-        Moneda m3(400,300,490);
-        vectorMonedas.push_back(m3);
-        Moneda m4(500,200,4000);
-        vectorMonedas.push_back(m4);
-        Moneda m5(500,500,900);
-        vectorMonedas.push_back(m5);
-        Moneda m6(100,200,1500);
-        vectorMonedas.push_back(m6);
 
         enemigosEspera.push_back(ene1);
         enemigosEspera.push_back(ene2);
@@ -297,7 +279,7 @@ void juego:: update(float elapsedTime){
 
     mundo::getMundo()->dinero.setString(ss.str());
 
-   cout << mundo::getMundo()->getCoins() << endl;
+   //cout << mundo::getMundo()->getCoins() << endl;
 
                 for(int i=0; i<vectorBalas.size(); i++){
                    vectorBalas[i].disparar(elapsedTime);
@@ -320,6 +302,8 @@ void juego:: update(float elapsedTime){
                         vectorBalasMisil.erase(vectorBalasMisil.begin()+i);
                     }
                 }
+
+        checkGameover();
 
 
         if(estado->getModo()==true){
@@ -437,13 +421,12 @@ void juego:: update(float elapsedTime){
 
 
 
-
             vector<int> inputs= getInputs();                //Funcion para coger los botones que se pulsan
             jugador->calcularVelocidadPlayer(inputs,elapsedTime); //Calculamos la posicion inicial y final deljugador y lo movemos
 
 
 
-
+            jugador->invulnerabilidad();
 
             //movimiento enemigo
             if (enemigosFuera.empty()==false) {
@@ -464,7 +447,6 @@ void juego:: update(float elapsedTime){
                 vectorTorreta[i].dibujarSprite();
                 vectorTorreta[i].danoenemigo();
             }
-            cout<<"Ronda: " <<estado->getRonda() <<endl;
 
 
                      //temporizador para generar enemigos
@@ -541,6 +523,7 @@ void juego:: update(float elapsedTime){
    if(enemigosEspera.size() == 0 && enemigosFuera.size() == 0){
         cout <<"CAMBIO DE RONDA DIN DIN DIN" << endl;
 
+         mundo::getMundo()->vectorMonedas->push_back(Moneda(400,400,50*estado->getRonda()));
 
         estado->toggleModo();
 
@@ -553,6 +536,43 @@ void juego:: update(float elapsedTime){
      ////////////////////////////////////////
     //////////GAME OVER//////////
     //////////////////////////////////////
+
+
+        if (enemigosFuera.empty()==false) {
+            for (int i=0;i<enemigosFuera.size();i++) {
+               enemigosFuera.erase(enemigosFuera.begin()+i);
+            }
+        }
+
+
+        if (vectorMonedas.empty()==false) {
+            for (int i=0;i<vectorMonedas.size();i++) {
+               vectorMonedas.erase(vectorMonedas.begin()+i);
+            }
+        }
+
+        if (vectorTorreta.empty()==false) {
+            for (int i=0;i<vectorTorreta.size();i++) {
+               vectorTorreta.erase(vectorTorreta.begin()+i);
+            }
+        }
+
+
+        if (vectorBalasMisil.empty()==false) {
+            for (int i=0;i<vectorBalasMisil.size();i++) {
+              vectorBalasMisil.erase(vectorBalasMisil.begin()+i);
+            }
+        }
+
+
+        if (enemigosEspera.empty()==false) {
+            for (int i=0;i<enemigosEspera.size();i++) {
+               enemigosEspera.erase(enemigosEspera.begin()+i);
+            }
+        }
+
+        titulo.setString("GG ez");
+
 
 
     }
@@ -679,6 +699,8 @@ castillo->draw(*ventana);
      ////////////////////////////////////////
     //////////GAME OVER//////////
     //////////////////////////////////////
+        titulo.setColor(Color::White);
+        ventana->draw(titulo);
 
 
     }
@@ -882,5 +904,17 @@ bool juego:: IsSpriteCLicker (sf::Sprite es){
 
     }
     return pulsado;
+
+}
+
+void juego::checkGameover(){
+
+    if(jugador->salud <= 0 || mundo::getMundo()->castillo->vida<=0 || estado->getRonda()>RONDAFINAL){
+
+                estado->setEstado(5);
+
+    }
+
+
 
 }

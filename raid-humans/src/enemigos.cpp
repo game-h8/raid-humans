@@ -3,6 +3,8 @@
 using namespace sf;
 using namespace std;
 
+
+#define DMG 100
 enemigos::enemigos() {
     x=0;
     y=0;
@@ -64,7 +66,6 @@ enemigos::enemigos(float x2, float y2) {
 
 
     eSprite.setPosition(x,y);
-    eSprite.scale(-1.f,1.f);
 
 }
 
@@ -234,7 +235,7 @@ void enemigos::atacaTorretaCercana(vector<Torreta> vecTor) {
                 estado=2;
             cout<<"vida de la torreta"<<mundo::getMundo()->vectorTorreta->at(posMasCercana).vida<<endl;
 
-               if (mundo::getMundo()->vectorTorreta->at(posMasCercana).enemigohit(100) && timeenemigo.getElapsedTime().asMilliseconds()>600){
+               if (mundo::getMundo()->vectorTorreta->at(posMasCercana).enemigohit(DMG) && timeenemigo.getElapsedTime().asMilliseconds()>600){
                 estado=1;
                 mundo::getMundo()->vectorTorreta->erase(mundo::getMundo()->vectorTorreta->begin()+posMasCercana);
                }
@@ -247,6 +248,9 @@ void enemigos::atacaTorretaCercana(vector<Torreta> vecTor) {
 void enemigos::atacaJugador(player &jugador) {
     objetivo=jugador.pSprite.getPosition();
     if (hitbox.getGlobalBounds().intersects(jugador.pSprite.getGlobalBounds())) {
+
+     mundo::getMundo()->jugador->enemigohit(DMG) && timeenemigo.getElapsedTime().asMilliseconds()>600;
+
         estado=2;
     }
     else {

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <math.h>
 
+#define BDMG 100
 Bala::Bala(float posX, float posY)
 {
 
@@ -65,7 +66,7 @@ void Bala::colision(int j){
     if(hitbox.getGlobalBounds().intersects(mundo::getMundo()->enemigosFuera->at(j).hitbox.getGlobalBounds())){
         viva=false;
 
-       if(mundo::getMundo()->enemigosFuera->at(j).balaHit(100)){
+       if(mundo::getMundo()->enemigosFuera->at(j).balaHit(BDMG)){
         mundo::getMundo()->enemigosFuera->erase(mundo::getMundo()->enemigosFuera->begin()+j);
        }
 

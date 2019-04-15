@@ -6,7 +6,6 @@
 #include "player.h"
 #include <Mapa.h>
 #include <enemigos.h>
-#include <enemigos2.h>
 #include <vector>
 #include <Torreta.h>
 #include <Bala.h>
@@ -16,7 +15,6 @@
 
 using namespace sf;
 class enemigos;
-class enemigos2;
 class player;
 class Mapa;
 class Moneda;
@@ -49,7 +47,6 @@ class mundo
         sf::Texture torretaTex;
         sf::Texture castilloTex;
         sf::Texture   eTexture;
-        sf::Texture eTexture2;
         sf::Texture balaTex;
         sf::Texture coinTex;
         sf::Texture splasTexture;
@@ -70,8 +67,6 @@ class mundo
 
         vector<enemigos> * enemigosFuera; //vector de enemigos que se encuentran en pantalla
         vector<enemigos> * enemigosEspera;
-        vector<enemigos2> * enemigosFuera2;
-        vector<enemigos2> * enemigosEspera2;
         vector<Torreta> * vectorTorreta;
         vector<Bala> * vectorBalas;
         vector<BalaMisil> * vectorBalasMisil;

@@ -3,6 +3,7 @@
 StateMachine::StateMachine()
 {
     estado=1;
+
 }
 
 StateMachine::~StateMachine()

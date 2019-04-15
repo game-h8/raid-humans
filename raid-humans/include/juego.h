@@ -35,9 +35,10 @@ class juego
         bool addTorreta();
         void disparar();
         void recogerMoneda();
+        void checkGameover();
         vector<Torreta> getTorretas();
         bool IsSpriteCLicker(sf::Sprite es);
-
+        void togleInvul();
 
 
     protected:
@@ -54,6 +55,7 @@ class juego
         vector<enemigos> enemigosFuera; //vector de enemigos que se encuentran en pantalla
         vector<enemigos>enemigosEspera; //vector de enemigos para hacer spawn*/
         vector<BalaMisil> vectorBalasMisil;
+
         Sprite dSprite;
         Texture dTexture;
         sf::Text titulo;

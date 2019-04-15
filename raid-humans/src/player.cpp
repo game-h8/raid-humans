@@ -3,7 +3,8 @@
 using namespace sf;
 using namespace std;
 
-
+#define TIEMPOINVULNERABLE 1000 //ms de tiempo invulnerable
+#define BASEDMG 100
 #define kVmax 300
 player::player(string imgDirectory,float x2, float y2)
 {
@@ -122,13 +123,57 @@ hitboxArma.setPosition(x,y);
 
      }
 
+bool player::enemigohit(float dano){
+cout << salud << endl;
+bool muerto=false;
+
+    if(!invulnerable){
+         if(salud-dano<=0) {
+
+           // muere();
+
+           salud=salud-dano;
+           muerto=true;
+        }
+        else{
+            salud=salud-dano;
+            invulnerable=true;
+            timeinvul.restart();
+
+        }
+    }
+
+
+    return muerto;
+
+
+}
+
+
+void player::invulnerabilidad(){
+
+
+     if (invulnerable && !mundo::getMundo()->getDebug()){
+     pSprite.setColor(Color(255,255,255,155));
+
+         if(timeinvul.getElapsedTime().asMilliseconds()>=TIEMPOINVULNERABLE){
+
+             pSprite.setColor(Color(255,255,255,255));
+             invulnerable=false;
+        }
+
+    }
+
+}
+
+
 void player::toggleDebug(){
 
-if(debug){
-    debug = false;
-}else{
-debug=true;
-}
+    if(debug){
+        debug = false;
+    }else{
+    debug=true;
+    }
 
 }
 
@@ -412,6 +457,8 @@ if(mundo::getMundo()->getDebug()){
 
 }
 
+
+
 void player::ataquePlayer(){
 
  for(int i=0;i<mundo::getMundo()->enemigosFuera->size();i++){
@@ -419,7 +466,7 @@ void player::ataquePlayer(){
     if(mundo::getMundo()->enemigosFuera->at(i).hitbox.getGlobalBounds().intersects(hitboxArma.getGlobalBounds())){
 
 
-       if(mundo::getMundo()->enemigosFuera->at(i).playerHit(100)){
+       if(mundo::getMundo()->enemigosFuera->at(i).playerHit(BASEDMG*nivel)){
             //Hitplayer es cuando el jugador le ataca, devuelve true si muere
          mundo::getMundo()->enemigosFuera->erase(mundo::getMundo()->enemigosFuera->begin()+i);
 
@@ -434,6 +481,15 @@ void player::ataquePlayer(){
 
 }
 
+void player::toggleInvul(){
+
+if(invulnerable){
+    invulnerable=false;
+}else{
+    invulnerable=true;
+}
+
+}
 
 
 
