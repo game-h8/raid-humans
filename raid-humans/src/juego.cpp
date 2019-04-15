@@ -209,14 +209,14 @@ void juego:: inicializar() { //inicializar las variables del juego
 
     if (estado->getEstado() == 3 && estado->getModo()==false){
 
-        enemigos ene1(100,100);
-        enemigos ene2(100,100);
-        enemigos ene3(100,100);
-        enemigos ene4(100,100);
-        enemigos ene5(100,100);
-        enemigos ene6(100,100);
-        enemigos ene7(100,100);
-        enemigos ene8(100,100);
+        enemigos ene1(0,200);
+        enemigos ene2(0,300);
+        enemigos ene3(0,400);
+        enemigos ene4(0,500);
+        enemigos ene5(0,300);
+        enemigos ene6(0,200);
+        enemigos ene7(0,500);
+        enemigos ene8(0,300);
 
         Moneda m1(100,300,10);
         vectorMonedas.push_back(m1);

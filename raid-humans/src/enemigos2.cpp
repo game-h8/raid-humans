@@ -1,9 +1,9 @@
-#include "../include/enemigos.h"
+#include "../include/enemigos2.h"
 
 using namespace sf;
 using namespace std;
 
-enemigos::enemigos() {
+enemigos2::enemigos2() {
     x=0;
     y=0;
     xlast=0;
@@ -13,9 +13,10 @@ enemigos::enemigos() {
 
 
 
+
 }
 
-enemigos::enemigos(const enemigos& E) {
+enemigos2::enemigos2(const enemigos2& E) {
 
 
     eSprite=E.eSprite;
@@ -30,18 +31,16 @@ enemigos::enemigos(const enemigos& E) {
     danioEnemigo=E.danioEnemigo;
     estado=1;
 
-    money=rand()%60;
 
 }
 
-enemigos::enemigos(float x2, float y2) {
+enemigos2::enemigos2(float x2, float y2) {
 
 
 
-    eSprite.setTexture(mundo::getMundo()->eTexture);
+    eSprite.setTexture(mundo::getMundo()->eTexture2);
 
     eSprite.setOrigin(17,48/2);   // ahora es fija pero debera ser la que mande el spawn
-    eSprite.setTextureRect(IntRect(3, 290, 59, 88));
 
 
 
@@ -64,36 +63,34 @@ enemigos::enemigos(float x2, float y2) {
 
 
     eSprite.setPosition(x,y);
-    eSprite.scale(-1.f,1.f);
 
 }
 
-enemigos::~enemigos() {
+enemigos2::~enemigos2() {
 
 }
 
 
-void enemigos::moveEnemy(float time, vector<enemigos> ene, vector<Torreta> torres, int a) {
+void enemigos2::moveEnemy(float time, vector<enemigos2> ene, int a) {
 
     xlast=x;
     ylast=y;
     bool choca=false;
     Vector2f pos;
-
-    if(atacaTorre==false) {
-        /*for(int i=0; i<ene.size()&&choca==false; i++){
+    //if(ataca==false) {
+        for(int i=0; i<ene.size()&&choca==false; i++){
             //for(int j=0; i<torres.size()&&colision==false; i++){
                 if(i!=a){
                     if(colision.getGlobalBounds().intersects(ene.at(i).colision.getGlobalBounds())){
                         choca=true;
                     }
-                    if(ene.at(i).atacaTorre==true) {
+                    if(ene.at(i).ataca==true) {
                         choca=true;
                     }
                 }
             //}
-        }*/
-        if(choca==false && atacaTorre==false){
+        }
+        //if(choca==false && ataca==false){
             if(x < objetivo.x && y < objetivo.y) {
             x=x+velocidad*time;
             y=y+velocidad*time;
@@ -114,8 +111,9 @@ void enemigos::moveEnemy(float time, vector<enemigos> ene, vector<Torreta> torre
                 y=y-velocidad*time;
 
             }
-        }else{
-            if (atacaTorre==false) {
+        /*}else{
+            if ((ataca==false && choca==true) || (ataca==true && choca==true)) {
+                    cout<< "caca" <<endl;
                 if(x < objetivo.x && y < objetivo.y) {
                     x=x-2*time;
                     y=y-3*time;
@@ -138,13 +136,13 @@ void enemigos::moveEnemy(float time, vector<enemigos> ene, vector<Torreta> torre
 
                 }
             }
-        }
+        }*/
         //eSprite.getGlobalBounds().top;
 
         /*Vector2f pos;
         pos.x=x;
         pos.y=y;*/
-    }
+    //}
         eSprite.setPosition(x,y);
         hitbox.setScale(eSprite.getScale());
         hitbox.setPosition(x,y);
@@ -153,11 +151,11 @@ void enemigos::moveEnemy(float time, vector<enemigos> ene, vector<Torreta> torre
         movsprites();
 }
 
-void enemigos::colisionEnemigos(Vector2f ene){
+void enemigos2::colisionEnemigos(Vector2f ene){
 
 }
 
-bool enemigos::ataque(player * p, vector<Torreta> torres){
+bool enemigos2::ataque(player * p, vector<Torreta> torres){
     if(ataca==false){
         if(hitbox.getGlobalBounds().intersects(p->hitbox.getGlobalBounds())){
             ataca=true;
@@ -181,13 +179,13 @@ bool enemigos::ataque(player * p, vector<Torreta> torres){
     return ataca;
 }
 
-void enemigos::setObjetivo(Vector2f obj) {
+void enemigos2::setObjetivo(Vector2f obj) {
     objetivo = obj;
 }
-sf::FloatRect enemigos::getGlobal(){
+sf::FloatRect enemigos2::getGlobal(){
     return eSprite.getGlobalBounds();
 }
-void enemigos::render(float ticks, RenderWindow &ventana) {
+void enemigos2::render(float ticks, RenderWindow &ventana) {
 
 eSprite.setPosition(xlast*(1-ticks) + x*ticks,ylast*(1-ticks)+y*ticks);
 ventana.draw(eSprite);
@@ -203,58 +201,11 @@ if(mundo::getMundo()->getDebug()){
 
 }
 
-void enemigos::atacaTorretaCercana(vector<Torreta> vecTor) {
-    vector<Torreta>* torretas = mundo::getMundo()->vectorTorreta ;
-
-    float masCercanaX=0;
-    float masCercanaY=0;
-    float posibleResultado=0;
-    float mejorResultado=9999;
-    int posMasCercana=0;
-
-    if (torretas->size()>0) {
-            cout<<"numero de torretas"<<torretas->size()<<endl;
-            for (int i=0;i<torretas->size();i++) {
-                posibleResultado=fabs(fabs((x-torretas->at(i).getX()))-fabs((y-torretas->at(i).getY())));
-
-                if (posibleResultado<mejorResultado) {
-                    posMasCercana=i;
-                    mejorResultado=posibleResultado;
-                }
-            }
-            masCercanaX=torretas->at(posMasCercana).getX();
-            masCercanaY=torretas->at(posMasCercana).getY();
-            Vector2f seleccionada(masCercanaX,masCercanaY);
-            objetivo=seleccionada;
-            if(objetivo.x>x){
-                 eSprite.setScale(-1,1);
-            }
-            cout<<"distancia en x"<<(abs((int)objetivo.x)-abs((int)x))<<"distancia en y"<<(abs((int)objetivo.y)-abs((int)y))<<endl;
-            if (hitbox.getGlobalBounds().intersects(torretas->at(posMasCercana).getSprite().getGlobalBounds())) {
-                estado=2;
-            cout<<"vida de la torreta"<<mundo::getMundo()->vectorTorreta->at(posMasCercana).vida<<endl;
-
-               if (mundo::getMundo()->vectorTorreta->at(posMasCercana).enemigohit(100) && timeenemigo.getElapsedTime().asMilliseconds()>600){
-                estado=1;
-                mundo::getMundo()->vectorTorreta->erase(mundo::getMundo()->vectorTorreta->begin()+posMasCercana);
-               }
-
-
-            }
-
-        }
-}
-void enemigos::atacaJugador(player &jugador) {
-    objetivo=jugador.pSprite.getPosition();
-    if (hitbox.getGlobalBounds().intersects(jugador.pSprite.getGlobalBounds())) {
-        estado=2;
-    }
-    else {
-        estado=1;
-    }
+void enemigos2::atacaJugador(player *jugador) {
+    objetivo=jugador->pSprite.getPosition();
 }
 //Hitplayer es cuando el jugador le ataca, devuelve true si muere
-bool enemigos::playerHit(float dano){
+bool enemigos2::playerHit(float dano){
 
     bool muerto=false;
 
@@ -276,7 +227,7 @@ if(invulnerable==false){
     return muerto;
 }
 
-void enemigos::invulnerabilidad(){
+void enemigos2::invulnerabilidad(){
 
 
      if (invulnerable){
@@ -292,7 +243,7 @@ void enemigos::invulnerabilidad(){
 
 }
 
-bool enemigos::balaHit(float dano){
+bool enemigos2::balaHit(float dano){
 
     bool muerto=false;
 
@@ -312,7 +263,7 @@ bool enemigos::balaHit(float dano){
     return muerto;
 }
 
-void enemigos::danobala(){
+void enemigos2::danobala(){
 
 
 
@@ -327,9 +278,9 @@ void enemigos::danobala(){
 
 }
 
-void enemigos:: movsprites(){
+void enemigos2:: movsprites(){
 
-    if (atacaTorre==true) {
+    if (ataca==true) {
         estado=2;
     }
 
@@ -347,10 +298,10 @@ void enemigos:: movsprites(){
         case 1:
 
             if(timeenemigo.getElapsedTime().asMilliseconds()<200){
-                    eSprite.setTextureRect(IntRect(3, 290, 59, 88));
+                    eSprite.setTextureRect(IntRect(335, 7, 35, 55));
              }
               else if(timeenemigo.getElapsedTime().asMilliseconds()<400){
-                    eSprite.setTextureRect(sf::IntRect(63, 290, 59, 88));
+                    eSprite.setTextureRect(sf::IntRect(230, 14, 35, 40));
              }
 
 
@@ -410,15 +361,5 @@ void enemigos:: movsprites(){
 
 
     }
-
-}
-void enemigos::seleccionaAtaque(vector<Torreta> vecTor, player &jugador){
-    if (vecTor.empty()==false) {
-        atacaTorretaCercana(vecTor);
-    }
-    else{
-        atacaJugador(jugador);
-    }
-
 
 }

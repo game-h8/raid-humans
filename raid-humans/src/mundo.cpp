@@ -19,6 +19,12 @@ mundo::mundo()
         exit(0);
     }
 
+    if (!eTexture2.loadFromFile("resources/bat.png"))
+    {
+        std::cerr << "Error cargando la imagen del enemigo resources/sprites.png" << std::endl;
+        exit(0);
+    }
+
     if(!balaTex.loadFromFile("resources/TyB.png")){
         std::cerr <<"Error al cargar la imagen de bala";
         exit(0);
