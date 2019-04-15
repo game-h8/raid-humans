@@ -203,14 +203,14 @@ void juego:: inicializar() { //inicializar las variables del juego
 
     if (estado->getEstado() == 3 && estado->getModo()==false){
 
-        enemigos ene1(100,100);
-        enemigos ene2(100,100);
-        enemigos ene3(100,100);
-        enemigos ene4(100,100);
-        enemigos ene5(100,100);
-        enemigos ene6(100,100);
-        enemigos ene7(100,100);
-        enemigos ene8(100,100);
+        enemigos ene1(0,200);
+        enemigos ene2(0,300);
+        enemigos ene3(0,400);
+        enemigos ene4(0,300);
+        enemigos ene5(0,200);
+        enemigos ene6(0,400);
+        enemigos ene7(0,300);
+        enemigos ene8(0,200);
 
 
         enemigosEspera.push_back(ene1);

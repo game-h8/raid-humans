@@ -48,6 +48,7 @@
 		<Unit filename="include/BalaMisil.h" />
 		<Unit filename="include/Castillo.h" />
 		<Unit filename="include/Drawable.hpp" />
+		<Unit filename="include/Hud.h" />
 		<Unit filename="include/Mapa.h" />
 		<Unit filename="include/Moneda.h" />
 		<Unit filename="include/StateMachine.h" />
@@ -65,6 +66,7 @@
 		<Unit filename="src/BalaMisil.cpp" />
 		<Unit filename="src/Castillo.cpp" />
 		<Unit filename="src/Drawable.cpp" />
+		<Unit filename="src/Hud.cpp" />
 		<Unit filename="src/Mapa.cpp" />
 		<Unit filename="src/Moneda.cpp" />
 		<Unit filename="src/StateMachine.cpp" />

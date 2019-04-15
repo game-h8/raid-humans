@@ -66,6 +66,7 @@ enemigos::enemigos(float x2, float y2) {
 
 
     eSprite.setPosition(x,y);
+    eSprite.scale(-1.f,1.f);
 
 }
 
