@@ -83,6 +83,7 @@ class juego
         sf::Sprite portada;
         sf::Sprite menu;
         sf::Sprite boton;
+        sf::Sprite multijugador;
         sf::Sprite torretaCompra1;
         sf::Sprite torretaCompra2;
         sf::Sprite espadaCompra;

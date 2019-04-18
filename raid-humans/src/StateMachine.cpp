@@ -50,7 +50,7 @@ colocandoTurret = false;
 
 void StateMachine::setEstado(int i){
 
-    if(i>0&&i<=5)
+    if(i>0&&i<=6)
     estado= i;
 
 }

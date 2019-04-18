@@ -12,6 +12,7 @@
 #include <Moneda.h>
 #include <BalaMisil.h>
 #include <Castillo.h>
+#include <Multijugador.h>
 
 using namespace sf;
 class enemigos;
@@ -41,6 +42,7 @@ class mundo
         RenderWindow * ventana;
         Castillo *castillo;
         player * jugador;
+        Multijugador * multiplayer;
 
 
 

@@ -85,6 +85,7 @@ mundo::mundo()
 
 tipoTorreta=1;
 monedas=200;
+multiplayer=new Multijugador;
 
 }
 

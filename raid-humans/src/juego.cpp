@@ -39,10 +39,12 @@ juego::juego(Vector2u resolucion)
 portada.setTexture(mundo::getMundo()->splasTexture);
   menu.setTexture(mundo::getMundo()->splasmenu);
   boton.setTexture(mundo::getMundo()->botoninicio);
+  multijugador.setTexture(mundo::getMundo()->botoninicio);
 
  portada.setScale((double)ventana->getSize().x/(double)portada.getTexture()->getSize().x,(double)ventana->getSize().y/(double)portada.getTexture()->getSize().y);
  menu.setScale((double)ventana->getSize().x/(double)menu.getTexture()->getSize().x,(double)ventana->getSize().y/(double)menu.getTexture()->getSize().y);
  boton.setPosition((double)ventana->getSize().x/2-(double)boton.getTexture()->getSize().x/2,(double)ventana->getSize().y/3);
+  multijugador.setPosition((double)ventana->getSize().x/2-(double)boton.getTexture()->getSize().x/2,(double)ventana->getSize().y*3/4);
 titulo.setFont(mundo::getMundo()->font);
 titulo.setCharacterSize(120);
 titulo.setString("Raid Humans");
@@ -251,9 +253,12 @@ void juego:: update(float elapsedTime){
     //////////MENU INICIAL DEL JUEGO///////////
     //////////////////////////////////////
 
+    cout<<estado->getEstado()<<endl;
+
 
 
         if(IsSpriteCLicker (boton)){
+
 
                 clockSpawn.restart();
 
@@ -262,6 +267,17 @@ void juego:: update(float elapsedTime){
                 clockAttack.restart();
 
                  estado->setEstado(3);
+
+
+        }
+
+        if(IsSpriteCLicker (multijugador)){
+
+                cout<<"HOla"<<endl;
+
+
+
+                 estado->setEstado(6);// multijugador
 
 
         }
@@ -575,6 +591,15 @@ void juego:: update(float elapsedTime){
 
 
 
+    }else if (estado->getEstado()==6){
+
+        //////////////////////
+        /////MULTIJUGADOR/////
+        //////////////////////
+
+        mundo::getMundo()->multiplayer->update();
+
+
     }
 
 
@@ -611,6 +636,7 @@ ventana->clear();
 
      ventana->draw(menu);
      ventana->draw(boton);
+     ventana->draw(multijugador);
      ventana->draw(titulo);
 
 
@@ -701,6 +727,15 @@ hud->draw(*ventana);
     //////////////////////////////////////
         titulo.setColor(Color::White);
         ventana->draw(titulo);
+
+
+    }else if (estado->getEstado()==6){
+
+        //////////////////////
+        /////MULTIJUGADOR/////
+        //////////////////////
+
+        mundo::getMundo()->multiplayer->render();
 
 
     }
