@@ -114,27 +114,23 @@ Mapa::Mapa(char *archivo, string urlTiles){
             //XMLElement *layer;
     data[0] = mapaXML->FirstChildElement("layer")->FirstChildElement("data")->FirstChildElement("tile");
     layer = mapaXML->FirstChildElement("layer");
-    sf::String *nombreLayer=new sf::String[_numLayers];
-        cout<<"yolo yolo"<<endl;
 
 
     for(int l=0;l<_numLayers;l++){
-        //nombreLayer[l]=(sf::String)layer->Attribute("name");
+        cout<<"layer actual"<<l<<endl;
         for(int y=0;y<_height;y++){
             for(int x=0;x<_width;x++){
 
                 data[l]->QueryIntAttribute("gid",&_tileMap[l][y][x]);
-                //avanzo al siguiente tag
                 data[l]=data[l]->NextSiblingElement("tile");
             }
         }
-        cout<<"yolo yolo"<<endl;
-        /*if(data[l]==0){
+        if(data[l]==0){
             data[l+1]=layer->NextSiblingElement("layer")->FirstChildElement("data")->FirstChildElement("tile");
-        }*/
+            cout<<"Pasamos al layer 2"<<endl;
+        }
     }
      cout<<"-- ok"<<endl;
-//mapa loadSPrite
 
     //cargamos y resevamos memoria para la matriz 4d
     cout<<"10) Cargamos y reservamos memoria para la matriz 4d"<<endl;
@@ -157,7 +153,7 @@ Mapa::Mapa(char *archivo, string urlTiles){
     for(int l=0;l<_numLayers;l++){
         for(int y=0;y<_height;y++){
             for(int x=0;x<_width;x++){
-                gid = _tileMap[l][y][x]-1;
+                gid = _tileMap[l][y][x];
                 if(gid>=filas*columnas){// if(gid>=_tilesetWidth*_tilesetHeight)?
                     cout<<"Error"<<endl;
                 }else if(gid>0){
@@ -175,14 +171,14 @@ void Mapa::setActivateLayer(int layer){
     _activeLayer=layer;
 }
 void Mapa::drawMapa(sf::RenderWindow &window){
-    //for(int l=0;l<_numLayers;l++){
+    for(int l=0;l<_numLayers;l++){
     //cout<<"D I B U J A M O S   M A P A"<<endl;
         for(int y=0;y<_height;y++){
             for(int x=0;x<_width;x++){
-                 if(_tileMapSprite[_activeLayer][x][y]!=NULL){
-                    window.draw(*(_tileMapSprite[_activeLayer][x][y]));
+                 if(_tileMapSprite[l][x][y]!=NULL){
+                    window.draw(*(_tileMapSprite[l][x][y]));
                  }
             }
         }
-    //}
+    }
 }

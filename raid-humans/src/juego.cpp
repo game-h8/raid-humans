@@ -23,7 +23,10 @@ juego::juego(Vector2u resolucion)
 
 
 //creo mapa
- mapa = new Mapa("resources/mapaok.tmx", "resources/PathAndObjects.png");
+
+    //mapaok -- mapa1
+    //mapa2  -- mapa2
+ mapa = new Mapa("resources/mapa2.tmx", "resources/PathAndObjects.png");
  ventana = new RenderWindow(VideoMode(resolucion.x, resolucion.y), "Raid humans");
  castillo = new Castillo();
  hud = new Hud();
