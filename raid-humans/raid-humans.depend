@@ -1059,7 +1059,7 @@
 1555844459 source:/home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/src/Hud.cpp
 	"Hud.h"
 
-1555844804 source:/home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/src/Mapa.cpp
+1556016114 source:/home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/src/Mapa.cpp
 	"../include/Mapa.h"
 	<iostream>
 	<SFML/System.hpp>
@@ -1075,4 +1075,13 @@
 
 1555844459 source:/home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/src/Torreta.cpp
 	"../include/Torreta.h"
+
+1556015896 source:/home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/src/juego.cpp
+	"../include/juego.h"
+	<SFML/Graphics.hpp>
+	<iostream>
+	"tinyxml2.h"
+	<vector>
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
 

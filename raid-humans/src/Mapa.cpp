@@ -117,13 +117,18 @@ Mapa::Mapa(char *archivo, string urlTiles){
 
 
     for(int l=0;l<_numLayers;l++){
-        cout<<"layer actual"<<l<<endl;
+        cout<<"layer actual "<<l<<" numlayers: "<<_numLayers<<endl;
         for(int y=0;y<_height;y++){
             for(int x=0;x<_width;x++){
 
                 data[l]->QueryIntAttribute("gid",&_tileMap[l][y][x]);
                 data[l]=data[l]->NextSiblingElement("tile");
             }
+        }
+        cout<<"capa "<<l<<" cargada"<<endl;
+        if( _numLayers == 1){
+            cout<<"solo 1 capa, salimos"<<endl;
+            break;
         }
         if(data[l]==0){
             data[l+1]=layer->NextSiblingElement("layer")->FirstChildElement("data")->FirstChildElement("tile");
