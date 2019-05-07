@@ -33,6 +33,8 @@ class player
         float     ylast;
         Vector2f   vel;
         int        estado;    //0-> reposo ,1-> movimiento, 2-> ataque (para renderizar)
+        int nivel=1;
+        int salud=500;
 
 
 
@@ -44,13 +46,16 @@ class player
     void calcularVelocidadPlayer(vector<int> inputs,float time);
     void toggleDebug();
     void ataquePlayer();
-
-
+    void invulnerabilidad();
+    bool enemigohit(float dano);
+    void toggleInvul();
     protected:
     private:
 
     Clock timejugador;
+    Clock timeinvul;
     bool debug = false;
+    bool invulnerable;
 
 
 };

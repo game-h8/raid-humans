@@ -1,8 +1,7 @@
+#ifndef BOSS1_H
+#define BOSS1_H
 
 
-#ifndef ENEMIGOS_H
-#define ENEMIGOS_H
-#include <iostream>
 #include<SFML/Graphics.hpp>
 #include <player.h>
 #include <Torreta.h>
@@ -12,13 +11,16 @@ using namespace sf;
 using namespace std;
 class player;
 class Torreta;
-class enemigos {
+
+
+
+class boss1 {
 
 public:
-        enemigos(); //defecto
-        enemigos(float x, float y); //parametros
-        enemigos(const enemigos& E); //copia
-        ~enemigos(); //destructor
+        boss1(); //defecto
+        boss1(float x, float y); //parametros
+        boss1(const boss1& E); //copia
+        ~boss1(); //destructor
 
         RectangleShape hitbox;
         RectangleShape colision;
@@ -31,12 +33,14 @@ public:
 
         Vector2f   vel;
         Vector2f objetivo;
-        float saludEnemigo;
-        float danioEnemigo;
-        float velocidad = 50;
-        float vida = 500;
+
+
+        float velocidad = 120;
+        float vida;
         float money;
+
         bool ataca=false;
+        bool ataquerealizado=false;
         bool atacaTorre=false;
         bool invulnerable=false;
 
@@ -44,10 +48,10 @@ public:
 
 
         sf::FloatRect getGlobal();
-        void moveEnemy(float time, vector<enemigos>, vector<Torreta>, int a);
+        void moveEnemy(float time);
         void render(float ticks, RenderWindow& ventana);
         void colisionEnemigos(Vector2f ene);
-        bool ataque(player * p, vector<Torreta> vecTor);
+        bool ataque();
         void setObjetivo(Vector2f obj);
         void atacaTorretaCercana(vector<Torreta> vecTor);
         void atacaJugador(player &jugador);
@@ -69,4 +73,4 @@ private:
 
 };
 
-#endif // ENEMIGOS_H
+#endif // BOSS1_H

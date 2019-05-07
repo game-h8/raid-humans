@@ -10,6 +10,9 @@
 #include <Torreta.h>
 #include <Bala.h>
 #include <Moneda.h>
+#include <BalaMisil.h>
+#include <boss1.h>
+#include <Castillo.h>
 
 using namespace sf;
 class enemigos;
@@ -17,7 +20,9 @@ class player;
 class Mapa;
 class Moneda;
 class Bala;
-
+class BalaMisil;
+class Castillo;
+class boss1;
 
 class mundo
 {
@@ -30,27 +35,47 @@ class mundo
         void toggleDebug();
         bool getDebug();
         void test();
-
+        void cambiarTipoTorreta(int tipo);
+        int getCoins();
+        bool gastaCoins(int coins);
+        void addCoins(int coins);
         Mapa *mapa;
         RenderWindow * ventana;
+        Castillo *castillo;
         player * jugador;
 
 
+
         sf::Texture torretaTex;
+        sf::Texture castilloTex;
         sf::Texture   eTexture;
         sf::Texture balaTex;
         sf::Texture coinTex;
         sf::Texture splasTexture;
         sf::Texture splasmenu;
         sf::Texture botoninicio;
+        sf::Texture compratorreta1;
+        sf::Texture compratorreta2;
+        sf::Texture compramejora;
+        sf::Texture botoncambioestado;
+        sf::Texture compratorreta1no;
+        sf::Texture compratorreta2no;
+        sf::Texture compramejorano;
+        sf::Texture enemigobase;
 
+        sf::Text dinero;
+        sf::Font font;
+        int tipoTorreta;
+        int monedas;
 
         vector<enemigos> * enemigosFuera; //vector de enemigos que se encuentran en pantalla
         vector<enemigos> * enemigosEspera;
         vector<Torreta> * vectorTorreta;
         vector<Bala> * vectorBalas;
+        vector<BalaMisil> * vectorBalasMisil;
         vector<Moneda> * vectorMonedas;
-
+        vector<boss1> * vectorboss1Espera;
+        vector<boss1> * vectorBoss1;
 
 
     protected:

@@ -1,17 +1,15 @@
-#ifndef BALA_H
-#define BALA_H
+#ifndef BALAMISIL_H
+#define BALAMISIL_H
 #include <SFML/Graphics.hpp>
 #include "player.h"
 #include "enemigos.h"
-#include <boss1.h>
 #include <math.h>
+#include <boss1.h>
 
-class enemigos;
-class Torreta;
-class player;
-class Bala
+class BalaMisil
 {
     public:
+        BalaMisil(float posX, float posY);
         sf::Vector2f direccion;
         bool viva;
         float nextPosX;
@@ -21,20 +19,21 @@ class Bala
         float xlast;
         float ylast;
         float angle;
-        Bala(float posX, float posY);
+
         void disparar(float time);
         float setPos(sf::Vector2f newPos);
-        int getY();
-        int getX();
         sf::FloatRect getGlobal();
         void colision(int j);
-        void colisionboss(int j);
         void render(float ticks, sf::RenderWindow &Window);
-        virtual ~Bala();
+        void colisionboss1(int j);
         sf::RectangleShape hitbox;
-    private:
 
+        virtual ~BalaMisil();
+
+    protected:
+
+    private:
         sf::Sprite balaSprite;
 };
 
-#endif // BALA_H
+#endif // BALAMISIL_H

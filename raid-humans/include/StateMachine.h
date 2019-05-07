@@ -1,7 +1,7 @@
 #ifndef STATEMACHINE_H
 #define STATEMACHINE_H
 
-
+#include <iostream>
 class StateMachine
 {
     public:
@@ -12,7 +12,10 @@ class StateMachine
         int getEstado();
         bool getModo();
         void toggleModo();
-        void toggleColocar();
+        void colocando();
+        void comprando();
+        int getRonda();
+
         bool getColocando();
 
     protected:

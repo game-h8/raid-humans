@@ -1,28 +1,25 @@
-#include "../include/Bala.h"
-#include <iostream>
-#include <math.h>
+#include "BalaMisil.h"
 
-#define BDMG 100
-Bala::Bala(float posX, float posY)
+#define B2DMG 250
+BalaMisil::BalaMisil(float posX, float posY)
 {
-
     balaSprite.setTexture(mundo::getMundo()->balaTex);
-    balaSprite.setTextureRect(IntRect(276,5,96,118));
+    balaSprite.setTextureRect(IntRect(128,128,128,128));
     balaSprite.scale(0.5,0.5);
-    balaSprite.setOrigin(sf::Vector2f(36,36));
+    balaSprite.setOrigin(sf::Vector2f(65,36));
     nextPosX = posX;
     nextPosY= posY;
-    hitbox.setSize(Vector2f(15,40));
+    hitbox.setSize(Vector2f(16,44));
     hitbox.setFillColor(Color(255,0,0,155));
-    hitbox.setOrigin(8,-5);
+    hitbox.setOrigin(9,0);
     hitbox.setPosition(Vector2f(nextPosX,nextPosY));
-//cout<<"Creo una bala. " <<endl;
+
     viva=true;
 }
 
-void Bala::disparar(float time){
+void BalaMisil::disparar(float time){
 
-    float speed=100;
+    float speed=50;
 
     sf::Vector2f newpos((cos(angle))*2, (sin(angle))*2);
     direccion = newpos;
@@ -35,13 +32,13 @@ void Bala::disparar(float time){
 
     hitbox.setPosition(Vector2f(x,y));
 
-    if(x<0 || y < 0 || x>mundo::getMundo()->ventana->getSize().x|| y>mundo::getMundo()->ventana->getSize().y){
+   if(x<0 || y < 0 || x>mundo::getMundo()->ventana->getSize().x|| y>mundo::getMundo()->ventana->getSize().y){
         viva = false;
     }
 
 }
 
-float Bala::setPos(sf::Vector2f newPos){
+float BalaMisil::setPos(sf::Vector2f newPos){
     balaSprite.setPosition(newPos);
     x=newPos.x;
     y=newPos.y;
@@ -53,50 +50,41 @@ float Bala::setPos(sf::Vector2f newPos){
     hitbox.setRotation(angle*180/M_PI +90);
     return angle;
 }
-int Bala::getX(){
-    return balaSprite.getPosition().x;
-}
-int Bala::getY(){
-    return balaSprite.getPosition().y;
-}
-sf::FloatRect Bala::getGlobal(){
+
+sf::FloatRect BalaMisil::getGlobal(){
     return balaSprite.getGlobalBounds();
 }
-void Bala::colision(int j){
+void BalaMisil::colision(int j){
     if(hitbox.getGlobalBounds().intersects(mundo::getMundo()->enemigosFuera->at(j).hitbox.getGlobalBounds())){
         viva=false;
 
-       if(mundo::getMundo()->enemigosFuera->at(j).balaHit(BDMG)){
+       if(mundo::getMundo()->enemigosFuera->at(j).balaHit(B2DMG)){
         mundo::getMundo()->enemigosFuera->erase(mundo::getMundo()->enemigosFuera->begin()+j);
        }
 
     }
-
 }
-void Bala::colisionboss(int j){
-
+void BalaMisil::colisionboss1(int j){
     if(hitbox.getGlobalBounds().intersects(mundo::getMundo()->vectorBoss1->at(j).hitbox.getGlobalBounds())){
         viva=false;
 
-       if(mundo::getMundo()->vectorBoss1->at(j).balaHit(BDMG)){
+       if(mundo::getMundo()->vectorBoss1->at(j).balaHit(B2DMG)){
         mundo::getMundo()->vectorBoss1->erase(mundo::getMundo()->vectorBoss1->begin()+j);
        }
 
     }
 }
-void Bala::render(float ticks, sf::RenderWindow &Window){
+void BalaMisil::render(float ticks, sf::RenderWindow &Window){
     balaSprite.setPosition(xlast*(1-ticks) + x*ticks,ylast*(1-ticks)+y*ticks);
 
         Window.draw(balaSprite);
 
         if(mundo::getMundo()->getDebug()){
-   Window.draw(hitbox);
+           Window.draw(hitbox);
+        }
 }
 
-
-}
-
-Bala::~Bala()
+BalaMisil::~BalaMisil()
 {
-    //delete balaSprite;
+    //dtor
 }

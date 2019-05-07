@@ -4,6 +4,7 @@
 
 #include <SFML/System/Clock.hpp>
 #include <iostream>
+
 #include <SFML/Graphics.hpp>
 #include "player.h"
 #include "Bala.h"
@@ -13,7 +14,11 @@
 #include <vector>
 #include <Mapa.h>
 #include <StateMachine.h>
-
+#include <BalaMisil.h>
+#include <Castillo.h>
+#include <sstream>
+#include "Hud.h"
+#include <boss1.h>
 using namespace sf;
 
 
@@ -28,11 +33,13 @@ class juego
         vector<int> getInputs();
         Vector2f calcularVelocidadPlayer(vector<int> inputs);
         void dibujarSelector();
-        void addTorreta();
+        bool addTorreta();
         void disparar();
         void recogerMoneda();
+        void checkGameover();
         vector<Torreta> getTorretas();
         bool IsSpriteCLicker(sf::Sprite es);
+        void togleInvul();
 
 
     protected:
@@ -42,14 +49,19 @@ class juego
         RenderWindow * ventana;
         player * jugador;
         StateMachine * estado;
+        Castillo * castillo;
         vector<Torreta> vectorTorreta;
         vector<Bala> vectorBalas;
         vector<Moneda> vectorMonedas;
         vector<enemigos> enemigosFuera; //vector de enemigos que se encuentran en pantalla
         vector<enemigos>enemigosEspera; //vector de enemigos para hacer spawn*/
+        vector<BalaMisil> vectorBalasMisil;
+        vector<boss1> vectorboss1Espera;
+        vector<boss1> vectorBoss1;
         Sprite dSprite;
         Texture dTexture;
-        int monedas;
+        sf::Text titulo;
+
 
         Clock clock;
         Clock updateCLock;
@@ -58,7 +70,8 @@ class juego
 
         //variables de tiempo para el spawn
         Clock clockSpawn;
-        Time tiempoSpawn =  seconds(3.f);
+        Time tiempoSpawn =  seconds(4.f);
+        Time tiempoSpawn2= seconds(2.f);
 
         //variables de tiempo para la bala
         Clock clockBala;
@@ -75,9 +88,12 @@ class juego
         sf::Sprite torretaCompra1;
         sf::Sprite torretaCompra2;
         sf::Sprite espadaCompra;
+
         sf::Sprite continuarRonda;
 
         sf::Sprite torretaFantasma; //la que te sigue al comprar
+
+        Hud * hud;
 };
 #endif // JUEGO_H
 
