@@ -82,6 +82,22 @@ mundo::mundo()
     }
     dinero.setFont(font);
 
+    if(!bombaTex.loadFromFile("resources/Bomba.png")){
+         std::cerr <<"Error al cargar la imagen bomba";
+        exit(0);
+    }
+    if(!explosionTex.loadFromFile("resources/Explosion.png")){
+         std::cerr <<"Error al cargar la imagen explosion";
+        exit(0);
+    }
+    if(!bombaCompra.loadFromFile("resources/botonBomba.png")){
+         std::cerr <<"Error al cargar la imagen botonBomba";
+        exit(0);
+    }
+    if(!bombaCompraNo.loadFromFile("resources/botonBombaNO.png")){
+         std::cerr <<"Error al cargar la imagen botonBombaNo";
+        exit(0);
+    }
 
 tipoTorreta=1;
 monedas=200;

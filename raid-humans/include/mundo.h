@@ -12,6 +12,7 @@
 #include <Moneda.h>
 #include <BalaMisil.h>
 #include <Castillo.h>
+#include <Bomba.h>
 
 using namespace sf;
 class enemigos;
@@ -21,6 +22,7 @@ class Moneda;
 class Bala;
 class BalaMisil;
 class Castillo;
+class Bomba;
 
 class mundo
 {
@@ -59,6 +61,11 @@ class mundo
         sf::Texture compratorreta1no;
         sf::Texture compratorreta2no;
         sf::Texture compramejorano;
+        sf::Texture bombaCompra;
+        sf::Texture bombaCompraNo;
+        sf::Texture bombaTex;
+        sf::Texture explosionTex;
+
 
         sf::Text dinero;
         sf::Font font;
@@ -71,6 +78,7 @@ class mundo
         vector<Bala> * vectorBalas;
         vector<BalaMisil> * vectorBalasMisil;
         vector<Moneda> * vectorMonedas;
+        vector<Bomba> * vectorBombas;
 
 
 

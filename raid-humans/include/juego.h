@@ -16,6 +16,7 @@
 #include <StateMachine.h>
 #include <BalaMisil.h>
 #include <Castillo.h>
+#include <Bomba.h>
 #include <sstream>
 #include "Hud.h"
 using namespace sf;
@@ -55,6 +56,7 @@ class juego
         vector<enemigos> enemigosFuera; //vector de enemigos que se encuentran en pantalla
         vector<enemigos>enemigosEspera; //vector de enemigos para hacer spawn*/
         vector<BalaMisil> vectorBalasMisil;
+        vector<Bomba> vectorBombas;
 
         Sprite dSprite;
         Texture dTexture;
@@ -86,10 +88,12 @@ class juego
         sf::Sprite torretaCompra1;
         sf::Sprite torretaCompra2;
         sf::Sprite espadaCompra;
+        sf::Sprite bombaCompra;
 
         sf::Sprite continuarRonda;
 
         sf::Sprite torretaFantasma; //la que te sigue al comprar
+        sf::Sprite bombaFantasma;
 
         Hud * hud;
 };
