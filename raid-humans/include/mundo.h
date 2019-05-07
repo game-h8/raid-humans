@@ -39,8 +39,9 @@ class mundo
         void addCoins(int coins);
         Mapa *mapa;
         RenderWindow * ventana;
-        player * jugador;
         Castillo *castillo;
+        player * jugador;
+
 
 
         sf::Texture torretaTex;

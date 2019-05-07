@@ -17,7 +17,7 @@
 #include <BalaMisil.h>
 #include <Castillo.h>
 #include <sstream>
-
+#include "Hud.h"
 using namespace sf;
 
 
@@ -32,12 +32,13 @@ class juego
         vector<int> getInputs();
         Vector2f calcularVelocidadPlayer(vector<int> inputs);
         void dibujarSelector();
-        void addTorreta();
+        bool addTorreta();
         void disparar();
         void recogerMoneda();
+        void checkGameover();
         vector<Torreta> getTorretas();
         bool IsSpriteCLicker(sf::Sprite es);
-
+        void togleInvul();
 
 
     protected:
@@ -54,6 +55,7 @@ class juego
         vector<enemigos> enemigosFuera; //vector de enemigos que se encuentran en pantalla
         vector<enemigos>enemigosEspera; //vector de enemigos para hacer spawn*/
         vector<BalaMisil> vectorBalasMisil;
+
         Sprite dSprite;
         Texture dTexture;
         sf::Text titulo;
@@ -66,7 +68,8 @@ class juego
 
         //variables de tiempo para el spawn
         Clock clockSpawn;
-        Time tiempoSpawn =  seconds(3.f);
+        Time tiempoSpawn =  seconds(4.f);
+        Time tiempoSpawn2= seconds(2.f);
 
         //variables de tiempo para la bala
         Clock clockBala;
@@ -87,6 +90,8 @@ class juego
         sf::Sprite continuarRonda;
 
         sf::Sprite torretaFantasma; //la que te sigue al comprar
+
+        Hud * hud;
 };
 #endif // JUEGO_H
 

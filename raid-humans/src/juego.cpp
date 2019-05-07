@@ -6,7 +6,7 @@
 #define SHOOT_SPEED 4000
 #define UPDATE_TICK_TIME 1000/15
 #define kVel 100
-
+#define RONDAFINAL 2
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -23,17 +23,21 @@ juego::juego(Vector2u resolucion)
 
 
 //creo mapa
- mapa = new Mapa("resources/mapaok.tmx", "resources/PathAndObjects.png");
+
+    //mapa1_OK -- mapa1
+    //mapa2  -- mapa2
+ mapa = new Mapa("resources/mapa2.tmx", "resources/PathAndObjects.png");
  ventana = new RenderWindow(VideoMode(resolucion.x, resolucion.y), "Raid humans");
  castillo = new Castillo();
+ hud = new Hud();
  jugador= new player("resources/player2.png" ,500,400);
-
  mundo::getMundo()->enemigosEspera=&enemigosEspera;
  mundo::getMundo()->enemigosFuera=&enemigosFuera;
  mundo::getMundo()->vectorTorreta=&vectorTorreta;
  mundo::getMundo()->vectorMonedas=&vectorMonedas;
  mundo::getMundo()->vectorBalas=&vectorBalas;
  mundo::getMundo()->vectorBalasMisil=&vectorBalasMisil;
+ mundo::getMundo()->castillo=castillo;
 
 portada.setTexture(mundo::getMundo()->splasTexture);
   menu.setTexture(mundo::getMundo()->splasmenu);
@@ -47,6 +51,49 @@ titulo.setCharacterSize(120);
 titulo.setString("Raid Humans");
 titulo.setColor(Color::Black);
 titulo.setPosition((double)ventana->getSize().x/2 - (double)titulo.getGlobalBounds().width/2,(double)ventana->getSize().y*1/4 );
+
+    torretaCompra1.setTexture(mundo::getMundo()->compratorreta1);
+    torretaCompra2.setTexture(mundo::getMundo()->compratorreta2);
+    espadaCompra.setTexture(mundo::getMundo()->compramejora);
+    continuarRonda.setTexture(mundo::getMundo()->botoncambioestado);
+
+
+
+
+    torretaCompra1.setPosition(30,600);
+    torretaCompra2.setPosition(230, 600);
+    espadaCompra.setPosition(430,600);
+
+
+
+    mundo::getMundo()->dinero.setPosition(ventana->getSize().x-ventana->getSize().x/8,ventana->getSize().y/9);
+    mundo::getMundo()->dinero.setColor((sf::Color::Black));
+    mundo::getMundo()->dinero.setCharacterSize(30);
+
+    continuarRonda.setPosition(630,600);
+
+
+    torretaFantasma.setTexture((mundo::getMundo()->torretaTex));
+    torretaFantasma.setColor(Color(255,255,255,155));
+    torretaFantasma.setTextureRect(IntRect(16,5,96,118));
+    torretaFantasma.setScale(0.4f,0.4f);
+    torretaFantasma.setOrigin(sf::Vector2f(96/2,118/2));
+
+
+
+
+estado=new StateMachine();
+
+
+
+portada.setTexture(mundo::getMundo()->splasTexture);
+  menu.setTexture(mundo::getMundo()->splasmenu);
+  boton.setTexture(mundo::getMundo()->botoninicio);
+
+ portada.setScale((double)ventana->getSize().x/(double)portada.getTexture()->getSize().x,(double)ventana->getSize().y/(double)portada.getTexture()->getSize().y);
+ menu.setScale((double)ventana->getSize().x/(double)menu.getTexture()->getSize().x,(double)ventana->getSize().y/(double)menu.getTexture()->getSize().y);
+ boton.setPosition((double)ventana->getSize().x/2-(double)boton.getTexture()->getSize().x/2,(double)ventana->getSize().y/2);
+
 
     torretaCompra1.setTexture(mundo::getMundo()->compratorreta1);
     torretaCompra2.setTexture(mundo::getMundo()->compratorreta2);
@@ -114,6 +161,7 @@ estado=new StateMachine();
                  mundo::getMundo()->toggleDebug();
                  mundo::getMundo()->test();
                  mundo::getMundo()->addCoins(500);
+                 jugador->toggleInvul();
             }
 
 
@@ -158,28 +206,24 @@ void juego:: inicializar() { //inicializar las variables del juego
 
     if (estado->getEstado() == 3 && estado->getModo()==false){
 
-        enemigos ene1(100,100);
-        enemigos ene2(100,100);
-        enemigos ene3(100,100);
-        enemigos ene4(100,100);
+        enemigos ene1(0,200);
+        enemigos ene2(0,300);
+        enemigos ene3(0,400);
+        enemigos ene4(0,300);
+        enemigos ene5(0,200);
+        enemigos ene6(0,400);
+        enemigos ene7(0,300);
+        enemigos ene8(0,200);
 
-        Moneda m1(100,300,1);
-        vectorMonedas.push_back(m1);
-        Moneda m2(200,200,5);
-        vectorMonedas.push_back(m2);
-        Moneda m3(400,300,10);
-        vectorMonedas.push_back(m3);
-        Moneda m4(500,200,50);
-        vectorMonedas.push_back(m4);
-        Moneda m5(500,500,400);
-        vectorMonedas.push_back(m5);
-        Moneda m6(100,200,60);
-        vectorMonedas.push_back(m6);
 
         enemigosEspera.push_back(ene1);
         enemigosEspera.push_back(ene2);
         enemigosEspera.push_back(ene3);
         enemigosEspera.push_back(ene4);
+        enemigosEspera.push_back(ene5);
+        enemigosEspera.push_back(ene6);
+        enemigosEspera.push_back(ene7);
+        enemigosEspera.push_back(ene8);
 
     }
 
@@ -235,10 +279,36 @@ void juego:: update(float elapsedTime){
     std::stringstream ss;
     ss << mundo::getMundo()->getCoins();
 
-
+    hud->updateHud();
     mundo::getMundo()->dinero.setString(ss.str());
 
-   cout << mundo::getMundo()->getCoins() << endl;
+   //cout << mundo::getMundo()->getCoins() << endl;
+
+                for(int i=0; i<vectorBalas.size(); i++){
+                   vectorBalas[i].disparar(elapsedTime);
+                for (int j=0;j<enemigosFuera.size();j++) {
+                    vectorBalas[i].colision(j);
+
+                }
+                    if(!vectorBalas[i].viva){
+                        vectorBalas.erase(vectorBalas.begin()+i);
+                    }
+            //cout<<"Tamano vectorBalas: " <<vectorBalas.size() <<endl;
+                }
+                for(int i=0; i<vectorBalasMisil.size(); i++){
+                    vectorBalasMisil[i].disparar(elapsedTime);
+                    for (int j=0;j<enemigosFuera.size();j++) {
+                        vectorBalasMisil[i].colision(j);
+
+                    }
+                    if(!vectorBalasMisil[i].viva){
+                        vectorBalasMisil.erase(vectorBalasMisil.begin()+i);
+                    }
+                }
+
+        checkGameover();
+
+
         if(estado->getModo()==true){
 
             ////////////////////
@@ -247,7 +317,14 @@ void juego:: update(float elapsedTime){
 
             vector<int> inputs= getInputs();                //Funcion para coger los botones que se pulsan
             jugador->calcularVelocidadPlayer(inputs,elapsedTime); //Calculamos la posicion inicial y final deljugador y lo movemos
+            recogerMoneda();
 
+                    for(int i=0; i<vectorMonedas.size(); i++){
+                        if(vectorMonedas.at(i).checkMuerte()){
+                            vectorMonedas.erase(vectorMonedas.begin()+i);
+                        }
+
+                    }
             //Pintar candado cuando no se puede comprar
 
            if(mundo::getMundo()->getCoins()>=100){
@@ -270,9 +347,11 @@ void juego:: update(float elapsedTime){
 
             //Colocar torreta
            if(estado->getColocando() && sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-                addTorreta();
-                estado->comprando();
-                sf::sleep(seconds(0.100));
+                if(!IsSpriteCLicker(mundo::getMundo()->castillo->castilloSprite) && !addTorreta()){
+                    estado->comprando();
+                    sf::sleep(seconds(0.100));
+                }
+
            }
 
            //Hacer clic en el boton de compra de torreta 1
@@ -345,33 +424,12 @@ void juego:: update(float elapsedTime){
 
 
 
-
             vector<int> inputs= getInputs();                //Funcion para coger los botones que se pulsan
             jugador->calcularVelocidadPlayer(inputs,elapsedTime); //Calculamos la posicion inicial y final deljugador y lo movemos
 
 
 
-            for(int i=0; i<vectorBalas.size(); i++){
-                vectorBalas[i].disparar(elapsedTime);
-                for (int j=0;j<enemigosFuera.size();j++) {
-                    vectorBalas[i].colision(j);
-
-                }
-                if(!vectorBalas[i].viva){
-                    vectorBalas.erase(vectorBalas.begin()+i);
-                }
-            //cout<<"Tamano vectorBalas: " <<vectorBalas.size() <<endl;
-            }
-            for(int i=0; i<vectorBalasMisil.size(); i++){
-                vectorBalasMisil[i].disparar(elapsedTime);
-                for (int j=0;j<enemigosFuera.size();j++) {
-                    vectorBalasMisil[i].colision(j);
-
-                }
-                if(!vectorBalasMisil[i].viva){
-                    vectorBalasMisil.erase(vectorBalasMisil.begin()+i);
-                }
-            }
+            jugador->invulnerabilidad();
 
             //movimiento enemigo
             if (enemigosFuera.empty()==false) {
@@ -395,7 +453,7 @@ void juego:: update(float elapsedTime){
 
 
                      //temporizador para generar enemigos
-                     if(clockSpawn.getElapsedTime() > tiempoSpawn){
+                     if(clockSpawn.getElapsedTime() > tiempoSpawn && estado->getRonda() == 1){
 
                         clockSpawn.restart();
 
@@ -405,13 +463,28 @@ void juego:: update(float elapsedTime){
                         }
                         if (enemigosFuera.empty()==false) {
                             for (int i=0;i<enemigosFuera.size()&&i<4;i++) {
-                                enemigosFuera.at(i).atacaTorretaCercana(vectorTorreta);
+                                enemigosFuera.at(i).seleccionaAtaque(vectorTorreta, *jugador);
                             }
-            }
+                        }
                         //le damos un objetivo al enemigo
 
 
                      }
+                     else if(clockSpawn.getElapsedTime() > tiempoSpawn2 && estado->getRonda() == 2){
+                        clockSpawn.restart();
+
+                        if (enemigosEspera.empty()==false) {
+                            enemigosFuera.push_back(enemigosEspera.at(enemigosEspera.size()-1));
+                            enemigosEspera.pop_back();
+                        }
+                        if (enemigosFuera.empty()==false) {
+                            for (int i=0;i<enemigosFuera.size()&&i<4;i++) {
+                                enemigosFuera.at(i).seleccionaAtaque(vectorTorreta, *jugador);
+                            }
+                        }
+                        //le damos un objetivo al enemigo
+                     }
+
 
                       // los enemigos comprueban el ataque
                      if(clockAttack.getElapsedTime() > tiempoAttack){
@@ -420,7 +493,7 @@ void juego:: update(float elapsedTime){
 
                         if (enemigosFuera.empty()==false) {
                             for (int i=0;i<enemigosFuera.size();i++) {
-                                enemigosFuera.at(i).ataque(jugador, vectorTorreta);
+                                enemigosFuera.at(i).seleccionaAtaque(vectorTorreta, *jugador);
                                 if(enemigosFuera.at(i).ataca==true){
                                    // if (!dTexture.loadFromFile("resources/hit.png")){
                                      //   cerr << "Error cargando la imagen del golpe resources/sprites.png" << endl;
@@ -450,7 +523,14 @@ void juego:: update(float elapsedTime){
                         }
 
                     }
+   if(enemigosEspera.size() == 0 && enemigosFuera.size() == 0){
+        cout <<"CAMBIO DE RONDA DIN DIN DIN" << endl;
 
+         mundo::getMundo()->vectorMonedas->push_back(Moneda(400,400,50*estado->getRonda()));
+
+        estado->toggleModo();
+
+   }
 
         }
 
@@ -459,6 +539,43 @@ void juego:: update(float elapsedTime){
      ////////////////////////////////////////
     //////////GAME OVER//////////
     //////////////////////////////////////
+
+
+        if (enemigosFuera.empty()==false) {
+            for (int i=0;i<enemigosFuera.size();i++) {
+               enemigosFuera.erase(enemigosFuera.begin()+i);
+            }
+        }
+
+
+        if (vectorMonedas.empty()==false) {
+            for (int i=0;i<vectorMonedas.size();i++) {
+               vectorMonedas.erase(vectorMonedas.begin()+i);
+            }
+        }
+
+        if (vectorTorreta.empty()==false) {
+            for (int i=0;i<vectorTorreta.size();i++) {
+               vectorTorreta.erase(vectorTorreta.begin()+i);
+            }
+        }
+
+
+        if (vectorBalasMisil.empty()==false) {
+            for (int i=0;i<vectorBalasMisil.size();i++) {
+              vectorBalasMisil.erase(vectorBalasMisil.begin()+i);
+            }
+        }
+
+
+        if (enemigosEspera.empty()==false) {
+            for (int i=0;i<enemigosEspera.size();i++) {
+               enemigosEspera.erase(enemigosEspera.begin()+i);
+            }
+        }
+
+        titulo.setString("GG ez");
+
 
 
     }
@@ -517,12 +634,6 @@ ventana->clear();
 
 //Recorrer el vector de torretas y dibujar las torretas
 
-for(int i=0; i<vectorBalas.size(); i++){
-    vectorBalas[i].render(percentick, *ventana);
-}
-for(int i=0; i<vectorBalasMisil.size(); i++){
-    vectorBalasMisil[i].render(percentick, *ventana);
-}
 for(int i=0; i<vectorTorreta.size(); i++)
     vectorTorreta[i].draw(*ventana);
 
@@ -542,10 +653,19 @@ if (enemigosFuera.size()>0) {
     }
 }
 
+
+
+for(int i=0; i<vectorBalas.size(); i++){
+    vectorBalas[i].render(percentick, *ventana);
+}
+for(int i=0; i<vectorBalasMisil.size(); i++){
+    vectorBalasMisil[i].render(percentick, *ventana);
+}
+
 for(int i=0; i<vectorMonedas.size(); i++){
     vectorMonedas[i].render(*ventana);
 }
-castillo->draw(*ventana);
+
 
 
 
@@ -571,15 +691,9 @@ castillo->draw(*ventana);
 
                     }
 
-
-
-
+castillo->draw(*ventana);
+hud->draw(*ventana);
       ventana->draw(mundo::getMundo()->dinero);
-    }else if(estado->getEstado()==4){
-     ////////////////////////////////////////
-    //////////CONSTRUCCION///////////
-    //////////////////////////////////////
-
 
     }
 
@@ -588,6 +702,8 @@ castillo->draw(*ventana);
      ////////////////////////////////////////
     //////////GAME OVER//////////
     //////////////////////////////////////
+        titulo.setColor(Color::White);
+        ventana->draw(titulo);
 
 
     }
@@ -638,6 +754,7 @@ vector<int> data;
                if(mundo::getMundo()->getDebug()) addTorreta();
             }
 
+
             Vector2i position = Mouse::getPosition(*ventana);
 
             if(position.x > jugador->x){         //RATON MIRA DERECHA
@@ -681,7 +798,7 @@ void juego::dibujarSelector(){
 
 }
 
-void juego::addTorreta(){
+bool juego::addTorreta(){
 
     //Obtener coordenadas de la ventana
     sf::Vector2i localPosition = sf::Mouse::getPosition(*ventana);
@@ -709,6 +826,7 @@ void juego::addTorreta(){
        vectorTorreta.push_back(*torreta);
 
     }
+    return existe;
 
 }
 
@@ -789,5 +907,17 @@ bool juego:: IsSpriteCLicker (sf::Sprite es){
 
     }
     return pulsado;
+
+}
+
+void juego::checkGameover(){
+
+    if(jugador->salud <= 0 || mundo::getMundo()->castillo->vida<=0 || estado->getRonda()>RONDAFINAL){
+
+                estado->setEstado(5);
+
+    }
+
+
 
 }

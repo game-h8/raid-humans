@@ -1,5 +1,6 @@
 #include "BalaMisil.h"
 
+#define B2DMG 250
 BalaMisil::BalaMisil(float posX, float posY)
 {
     balaSprite.setTexture(mundo::getMundo()->balaTex);
@@ -57,7 +58,7 @@ void BalaMisil::colision(int j){
     if(hitbox.getGlobalBounds().intersects(mundo::getMundo()->enemigosFuera->at(j).hitbox.getGlobalBounds())){
         viva=false;
 
-       if(mundo::getMundo()->enemigosFuera->at(j).balaHit(200)){
+       if(mundo::getMundo()->enemigosFuera->at(j).balaHit(B2DMG)){
         mundo::getMundo()->enemigosFuera->erase(mundo::getMundo()->enemigosFuera->begin()+j);
        }
 
