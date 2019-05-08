@@ -3,19 +3,29 @@
 Hud::Hud()
 {
    // nvida = mundo::getMundo()->jugador->salud;
+    corazon.setTexture(mundo::getMundo()->corazontext);
+    corazon.setPosition(55,76);
+    corazon.setScale(0.1f,0.1f);
 
-    cajavida.setSize(Vector2f(300,40));
-    cajavida.setFillColor(Color(50,205,50,255));
-    cajavida.setPosition(Vector2f(50,80));
+    cajavida.setSize(Vector2f(240,20));
+    cajavida.setFillColor(Color(255,0,0,255));
+    cajavida.setPosition(Vector2f(74,82.5f));
+
+    cajavidabackground.setSize(Vector2f(245,30));
+    cajavidabackground.setFillColor(Color(0,0,0,255));
+    cajavidabackground.setPosition(Vector2f(74,77.5f));
 
 }
 
 void Hud::draw(sf::RenderWindow &Window){
+
+    Window.draw(cajavidabackground);
     Window.draw(cajavida);
+    Window.draw(corazon);
 }
 void Hud::updateHud(){
     int health = mundo::getMundo()->jugador->salud;
-    cajavida.setSize(Vector2f((health*300)/500,40));
+    cajavida.setSize(Vector2f((health*240)/500,20));
 }
 Hud::~Hud()
 {

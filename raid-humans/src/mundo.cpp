@@ -3,6 +3,10 @@ using namespace std;
 mundo::mundo()
 {
 
+    if(!corazontext.loadFromFile("resources/heart.png")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
      if(!torretaTex.loadFromFile("resources/TyB.png")){
         std::cerr <<"Error al cargar la imagen";
         exit(0);

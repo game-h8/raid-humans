@@ -59,6 +59,7 @@ class mundo
         sf::Texture compratorreta1no;
         sf::Texture compratorreta2no;
         sf::Texture compramejorano;
+        sf::Texture corazontext;
 
         sf::Text dinero;
         sf::Font font;

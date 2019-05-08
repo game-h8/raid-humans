@@ -952,7 +952,7 @@
 	<SFML/System/Clock.hpp>
 	<mundo.h>
 
-1555844458 /home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/include/mundo.h
+1557316490 /home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/include/mundo.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	"player.h"
@@ -1004,7 +1004,7 @@
 1555844458 /home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/include/StateMachine.h
 	<iostream>
 
-1555844458 /home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/include/Hud.h
+1557316415 /home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/include/Hud.h
 	<SFML/Graphics.hpp>
 	"mundo.h"
 	"player.h"
@@ -1018,7 +1018,7 @@
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/RenderStates.hpp>
 
-1555844459 source:/home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/src/mundo.cpp
+1557316584 source:/home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/src/mundo.cpp
 	"mundo.h"
 
 1555844459 source:/home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/src/player.cpp
@@ -1076,7 +1076,7 @@
 1555844459 source:/home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/src/Torreta.cpp
 	"../include/Torreta.h"
 
-1556015896 source:/home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/src/juego.cpp
+1556016148 source:/home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/src/juego.cpp
 	"../include/juego.h"
 	<SFML/Graphics.hpp>
 	<iostream>

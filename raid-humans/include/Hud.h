@@ -11,7 +11,9 @@ class Hud
         int nvida;
         void draw(sf::RenderWindow &Window);
         virtual ~Hud();
+        sf::Sprite corazon;
         sf::RectangleShape cajavida;
+        sf::RectangleShape cajavidabackground;
         void updateHud();
     protected:
 
