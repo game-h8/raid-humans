@@ -7,6 +7,10 @@ mundo::mundo()
         std::cerr <<"Error al cargar la imagen";
         exit(0);
     }
+     if(!monedatext.loadFromFile("resources/moneda.png")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
      if(!torretaTex.loadFromFile("resources/TyB.png")){
         std::cerr <<"Error al cargar la imagen";
         exit(0);
@@ -85,7 +89,10 @@ mundo::mundo()
         exit(0);
     }
     dinero.setFont(font);
-
+    //dinero.setColor(sf::Color::Yellow);
+    //dinero.setColor(sf::Color::White);
+    dinero.setScale(1.0f,0.8f);
+    //dinero.setPosition(300,75);
 
 tipoTorreta=1;
 monedas=200;

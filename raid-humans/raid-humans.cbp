@@ -78,6 +78,7 @@
 		<Unit filename="resources/Splash Background.png" />
 		<Unit filename="resources/TyB.png" />
 		<Unit filename="resources/enemigo.png" />
+		<Unit filename="resources/heart.png" />
 		<Unit filename="resources/mapa1_OK.tmx" />
 		<Unit filename="resources/mapa2.tmx" />
 		<Unit filename="resources/mapaok.tmx" />

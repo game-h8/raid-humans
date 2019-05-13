@@ -59,8 +59,9 @@ class juego
         Sprite dSprite;
         Texture dTexture;
         sf::Text titulo;
-
-
+        sf::Text endtitulo;
+        Sprite tumba;
+        Texture tumbatext;
         Clock clock;
         Clock updateCLock;
         Time tiempo = clock.getElapsedTime();

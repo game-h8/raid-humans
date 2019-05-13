@@ -14,6 +14,7 @@ class Hud
         sf::Sprite corazon;
         sf::RectangleShape cajavida;
         sf::RectangleShape cajavidabackground;
+        sf::Sprite monedilla;
         void updateHud();
     protected:
 

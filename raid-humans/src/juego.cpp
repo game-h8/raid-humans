@@ -52,12 +52,22 @@ titulo.setString("Raid Humans");
 titulo.setColor(Color::Black);
 titulo.setPosition((double)ventana->getSize().x/2 - (double)titulo.getGlobalBounds().width/2,(double)ventana->getSize().y*1/4 );
 
+
+endtitulo.setFont(mundo::getMundo()->font);
+endtitulo.setCharacterSize(120);
+endtitulo.setString("GAME OVER");
+endtitulo.setColor(Color::Black);
+endtitulo.setPosition((double)ventana->getSize().x/2 - (double)titulo.getGlobalBounds().width/2,(double)ventana->getSize().y*1/4 );
+
     torretaCompra1.setTexture(mundo::getMundo()->compratorreta1);
     torretaCompra2.setTexture(mundo::getMundo()->compratorreta2);
     espadaCompra.setTexture(mundo::getMundo()->compramejora);
     continuarRonda.setTexture(mundo::getMundo()->botoncambioestado);
 
-
+ if(!tumbatext.loadFromFile("resources/tumbita.png")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
 
 
     torretaCompra1.setPosition(30,600);
@@ -702,9 +712,22 @@ hud->draw(*ventana);
      ////////////////////////////////////////
     //////////GAME OVER//////////
     //////////////////////////////////////
-        titulo.setColor(Color::White);
-        ventana->draw(titulo);
+        endtitulo.setColor(Color::White);
+        ventana->draw(endtitulo);
+/*
+     ventana->draw(boton);
+ if(IsSpriteCLicker (boton)){
 
+                clockSpawn.restart();
+
+                clockBala.restart();
+
+                clockAttack.restart();
+
+                 estado->setEstado(1);
+
+
+        }*/
 
     }
 
