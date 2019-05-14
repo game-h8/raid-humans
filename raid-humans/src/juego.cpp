@@ -205,16 +205,24 @@ void juego:: inicializar() { //inicializar las variables del juego
 
 
     if (estado->getEstado() == 3 && estado->getModo()==false){
-/*
-        enemigos ene1(0,200);
-        enemigos ene2(0,300);
-        enemigos ene3(0,400);
-        enemigos ene4(0,300);
-        enemigos ene5(0,200);
-        enemigos ene6(0,400);
-        enemigos ene7(0,300);
-        enemigos ene8(0,200);
-*/
+
+        enemigos ene1(0,(rand() % 200) + 200);
+        enemigos ene2(0,(rand() % 200) + 200);
+        enemigos ene3(0,(rand() % 200) + 200);
+        enemigos ene4(0,(rand() % 200) + 200);
+        enemigos ene5(0,(rand() % 200) + 200);
+        enemigos ene6(0,(rand() % 200) + 200);
+        enemigos ene7(0,(rand() % 200) + 200);
+        enemigos ene8(0,(rand() % 200) + 200);
+        enemigos ene9(0,(rand() % 200) + 200);
+        enemigos ene10(0,(rand() % 200) + 200);
+        enemigos ene11(0,(rand() % 200) + 200);
+        enemigos ene12(0,(rand() % 200) + 200);
+        enemigos ene13(0,(rand() % 200) + 200);
+        enemigos ene14(0,(rand() % 200) + 200);
+        enemigos ene15(0,(rand() % 200) + 200);
+        enemigos ene16(0,(rand() % 200) + 200);
+
         boss1 bos1(0,200);
         boss1 bos2(0,300);
         boss1 bos3(0,400);
@@ -242,7 +250,17 @@ void juego:: inicializar() { //inicializar las variables del juego
         enemigosEspera.push_back(ene6);
         enemigosEspera.push_back(ene7);
         enemigosEspera.push_back(ene8);
-*/
+        enemigosEspera.push_back(ene9);
+        enemigosEspera.push_back(ene10);
+        enemigosEspera.push_back(ene11);
+        enemigosEspera.push_back(ene12);
+        enemigosEspera.push_back(ene13);
+        enemigosEspera.push_back(ene14);
+        enemigosEspera.push_back(ene15);
+        enemigosEspera.push_back(ene16);
+
+        numEnemigosFuera=0;
+        numEnemigos = (rand() % 6) + 10;
     }
 
 }
@@ -497,7 +515,8 @@ void juego:: update(float elapsedTime){
 
                         clockSpawn.restart();
 
-                        if (enemigosEspera.empty()==false) {
+                        if (enemigosEspera.empty()==false && (numEnemigos != numEnemigosFuera)) {
+                            numEnemigosFuera++;
                             enemigosFuera.push_back(enemigosEspera.at(enemigosEspera.size()-1));
                             enemigosEspera.pop_back();
                         }
@@ -572,7 +591,8 @@ void juego:: update(float elapsedTime){
                         }
 
                     }
-   if(enemigosEspera.size() == 0 && enemigosFuera.size() == 0 && vectorboss1Espera.size() == 0 && vectorBoss1.size()==0){
+
+   if((numEnemigos==numEnemigosFuera) && enemigosFuera.size() == 0 && vectorboss1Espera.size() == 0 && vectorBoss1.size()==0){
         cout <<"CAMBIO DE RONDA DIN DIN DIN" << endl;
 
          mundo::getMundo()->vectorMonedas->push_back(Moneda(400,400,50*estado->getRonda()));
