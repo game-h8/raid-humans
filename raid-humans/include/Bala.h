@@ -28,6 +28,7 @@ class Bala
         int getX();
         sf::FloatRect getGlobal();
         void colision(int j);
+        void colision2(int j);
         void colisionboss(int j);
         void render(float ticks, sf::RenderWindow &Window);
         virtual ~Bala();

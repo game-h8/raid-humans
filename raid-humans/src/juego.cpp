@@ -38,6 +38,8 @@ juego::juego(Vector2u resolucion)
  jugador= new player("resources/player2.png" ,500,400);
  mundo::getMundo()->enemigosEspera=&enemigosEspera;
  mundo::getMundo()->enemigosFuera=&enemigosFuera;
+ mundo::getMundo()->enemigosEspera2=&enemigosEspera2;
+ mundo::getMundo()->enemigosFuera2=&enemigosFuera2;
  mundo::getMundo()->vectorTorreta=&vectorTorreta;
  mundo::getMundo()->vectorMonedas=&vectorMonedas;
  mundo::getMundo()->vectorBalas=&vectorBalas;
@@ -246,6 +248,17 @@ void juego:: inicializar() { //inicializar las variables del juego
         enemigos ene15(0,(rand() % 200) + 200);
         enemigos ene16(0,(rand() % 200) + 200);
 
+        enemigos2 ene21(0,(rand() % 200) + 200);
+        enemigos2 ene22(0,(rand() % 200) + 200);
+        enemigos2 ene23(0,(rand() % 200) + 200);
+        enemigos2 ene24(0,(rand() % 200) + 200);
+        enemigos2 ene25(0,(rand() % 200) + 200);
+        enemigos2 ene26(0,(rand() % 200) + 200);
+        enemigos2 ene27(0,(rand() % 200) + 200);
+        enemigos2 ene28(0,(rand() % 200) + 200);
+        enemigos2 ene29(0,(rand() % 200) + 200);
+        enemigos2 ene210(0,(rand() % 200) + 200);
+
         boss1 bos1(0,(rand() % 200) + 200);
         boss1 bos2(0,(rand() % 200) + 200);
         boss1 bos3(0,(rand() % 200) + 200);
@@ -283,8 +296,16 @@ void juego:: inicializar() { //inicializar las variables del juego
         enemigosEspera.push_back(ene15);
         enemigosEspera.push_back(ene16);
 
+        enemigosEspera2.push_back(ene21);
+        enemigosEspera2.push_back(ene22);
+        enemigosEspera2.push_back(ene23);
+        enemigosEspera2.push_back(ene24);
+
         numEnemigosFuera=0;
         numEnemigos = (rand() % 4) + 5;
+
+        numEnemigosFuera2=0;
+        numEnemigos2 = (rand() % 3) + 2;
 
         numEnemigosFuera1=0;
         numEnemigos1 = (rand() % 3) + 2;
@@ -354,6 +375,10 @@ void juego:: update(float elapsedTime){
                         vectorBalas[i].colision(j);
 
                     }
+                    for (int j=0;j<enemigosFuera2.size();j++) {
+                        vectorBalas[i].colision2(j);
+
+                    }
                     for (int j=0;j<vectorBoss1.size();j++) {
                         vectorBalas[i].colisionboss(j);
 
@@ -367,6 +392,10 @@ void juego:: update(float elapsedTime){
                     vectorBalasMisil[i].disparar(elapsedTime);
                     for (int j=0;j<enemigosFuera.size();j++) {
                         vectorBalasMisil[i].colision(j);
+
+                    }
+                    for (int j=0;j<enemigosFuera2.size();j++) {
+                        vectorBalasMisil[i].colision2(j);
 
                     }
                     for (int j=0;j<vectorBoss1.size();j++) {
@@ -517,6 +546,13 @@ void juego:: update(float elapsedTime){
                         dSprite.setPosition(jugador->xlast,jugador->ylast+25);*/
                     }
             }
+            if (enemigosFuera2.empty()==false) {
+                for (int i=0;i<enemigosFuera2.size();i++) {
+                    enemigosFuera2.at(i).moveEnemy(elapsedTime, enemigosFuera2, i);
+                    enemigosFuera2.at(i).invulnerabilidad();
+                    enemigosFuera2.at(i).danobala();
+                    }
+            }
             if (vectorBoss1.empty()==false) {
                 for (int i=0;i<vectorBoss1.size();i++) {
                     vectorBoss1.at(i).moveEnemy(elapsedTime);
@@ -550,6 +586,11 @@ void juego:: update(float elapsedTime){
                             enemigosFuera.push_back(enemigosEspera.at(enemigosEspera.size()-1));
                             enemigosEspera.pop_back();
                         }
+                        if (enemigosEspera2.empty()==false && (numEnemigos2 != numEnemigosFuera2)) {
+                            numEnemigosFuera2++;
+                            enemigosFuera2.push_back(enemigosEspera2.at(enemigosEspera2.size()-1));
+                            enemigosEspera2.pop_back();
+						}
                         if (vectorboss1Espera.empty()==false && (numEnemigos1 != numEnemigosFuera1)) {
                             numEnemigosFuera1++;
                             vectorBoss1.push_back(vectorboss1Espera.at(vectorboss1Espera.size()-1));
@@ -560,6 +601,13 @@ void juego:: update(float elapsedTime){
                                 enemigosFuera.at(i).seleccionaAtaque(vectorTorreta, *jugador);
                             }
                         }
+                        if (enemigosFuera2.empty()==false) {
+                            for (int i=0;i<enemigosFuera2.size()&&i<4;i++) {
+                                enemigosFuera2.at(i).atacaJugador(jugador);
+                                enemigosFuera2.at(i).ataque(jugador, vectorTorreta);
+                            }
+                        }
+
 
                         //le damos un objetivo al enemigo
 
@@ -573,6 +621,11 @@ void juego:: update(float elapsedTime){
                             enemigosFuera.push_back(enemigosEspera.at(enemigosEspera.size()-1));
                             enemigosEspera.pop_back();
                         }
+                        if (enemigosEspera2.empty()==false && (numEnemigos2 != numEnemigosFuera2)) {
+                            numEnemigosFuera2++;
+                            enemigosFuera2.push_back(enemigosEspera2.at(enemigosEspera2.size()-1));
+                            enemigosEspera2.pop_back();
+                        }
                         if (vectorboss1Espera.empty()==false && (numEnemigos1 != numEnemigosFuera1)) {
                             numEnemigosFuera1++;
                             vectorBoss1.push_back(vectorboss1Espera.at(vectorboss1Espera.size()-1));
@@ -581,6 +634,11 @@ void juego:: update(float elapsedTime){
                         if (enemigosFuera.empty()==false) {
                             for (int i=0;i<enemigosFuera.size()&&i<4;i++) {
                                 enemigosFuera.at(i).seleccionaAtaque(vectorTorreta, *jugador);
+                            }
+                        }
+                        if (enemigosFuera2.empty()==false) {
+                            for (int i=0;i<enemigosFuera2.size()&&i<4;i++) {
+                                enemigosFuera2.at(i).atacaJugador(jugador);
                             }
                         }
                         //le damos un objetivo al enemigo
@@ -607,6 +665,17 @@ void juego:: update(float elapsedTime){
                                 }
                             }
                         }
+                        if (enemigosFuera2.empty()==false) {
+                            for (int i=0;i<enemigosFuera2.size();i++) {
+                                enemigosFuera2.at(i).atacaJugador(jugador);
+                                if(enemigosFuera2.at(i).ataca==true){
+
+
+                                }else{
+
+                                }
+                            }
+                        }
 
                      }
 
@@ -624,7 +693,7 @@ void juego:: update(float elapsedTime){
                         }
 
                     }
-   if((numEnemigos==numEnemigosFuera) && enemigosFuera.size()==0 && (numEnemigos1==numEnemigosFuera1) && vectorBoss1.size()==0){
+   if((numEnemigos==numEnemigosFuera) && enemigosFuera.size()==0 && (numEnemigos1==numEnemigosFuera1) && vectorBoss1.size()==0 && (numEnemigos2==numEnemigosFuera2) && enemigosFuera2.size()==0){
         cout <<"CAMBIO DE RONDA DIN DIN DIN" << endl;
 
          mundo::getMundo()->vectorMonedas->push_back(Moneda(400,400,50*estado->getRonda()));
@@ -646,6 +715,12 @@ void juego:: update(float elapsedTime){
         if (enemigosFuera.empty()==false) {
             for (int i=0;i<enemigosFuera.size();i++) {
                enemigosFuera.erase(enemigosFuera.begin()+i);
+            }
+        }
+
+        if (enemigosFuera2.empty()==false) {
+            for (int i=0;i<enemigosFuera2.size();i++) {
+               enemigosFuera2.erase(enemigosFuera2.begin()+i);
             }
         }
 
@@ -673,6 +748,12 @@ void juego:: update(float elapsedTime){
         if (enemigosEspera.empty()==false) {
             for (int i=0;i<enemigosEspera.size();i++) {
                enemigosEspera.erase(enemigosEspera.begin()+i);
+            }
+        }
+
+        if (enemigosEspera2.empty()==false) {
+            for (int i=0;i<enemigosEspera2.size();i++) {
+               enemigosEspera2.erase(enemigosEspera2.begin()+i);
             }
         }
 
@@ -746,6 +827,11 @@ if (enemigosFuera.empty()==false) {
         enemigosFuera.at(i).render(percentick, *ventana);
     }
 }
+if (enemigosFuera2.empty()==false) {
+    for (int i=0;i<enemigosFuera2.size();i++) {
+        enemigosFuera2.at(i).render(percentick, *ventana);
+    }
+}
 if (vectorBoss1.empty()==false) {
     for (int i=0;i<vectorBoss1.size();i++) {
         vectorBoss1.at(i).render(percentick, *ventana);
@@ -759,7 +845,13 @@ if (enemigosFuera.size()>0) {
         }
     }
 }
-
+if (enemigosFuera2.size()>0) {
+    for (int i=0;i<enemigosFuera2.size();i++) {
+        if(enemigosFuera2.at(i).ataca==true){
+            ventana->draw(dSprite);
+        }
+    }
+}
 
 
 for(int i=0; i<vectorBalas.size(); i++){
@@ -963,7 +1055,7 @@ void juego::disparar(){
         float dist=10000;
         /*FUNCION PARA CALCULAR EL ENEMIGO MAS CERCANO cogiendo el vector de los enemigos Y PASARLE LA POSICION A LA NUEVA BALA
           IF HAY ALGUN ENEMIGO le paso la posicion ELSE no creo la bala */
-        if(!enemigosFuera.empty() || !vectorBoss1.empty()){//Si hay enemigos
+        if(!enemigosFuera.empty() || !vectorBoss1.empty() || !enemigosFuera2.empty()){//Si hay enemigos
             for(int j=0; j<enemigosFuera.size(); j++){//Recorro el vector de enemigos
                 if(enemigosFuera[j].x>0){//Si en esa pos del vector hay un enemigo
                     //Calcular distancia entre enemigo y torreta
@@ -974,6 +1066,20 @@ void juego::disparar(){
 
                         enemigoX=enemigosFuera[j].x;//Asignamos las coordenadas de ese enemigo a nuestras variables
                         enemigoY=enemigosFuera[j].y;
+                    }
+                    }
+                }
+            }
+            for(int j=0; j<enemigosFuera2.size(); j++){//Recorro el vector de enemigos
+                if(enemigosFuera2[j].x>0){//Si en esa pos del vector hay un enemigo
+                    //Calcular distancia entre enemigo y torreta
+                    float newDist=sqrt(pow(vectorTorreta[i].getX()-enemigosFuera2[j].x,2) + pow(vectorTorreta[i].getY()-enemigosFuera2[j].y,2));
+                    if(newDist < dist){
+                        dist=newDist;//si la nueva distancia es menor que la anterior, sera la nueva distancia
+                    if(dist<=300){
+
+                        enemigoX=enemigosFuera2[j].x;//Asignamos las coordenadas de ese enemigo a nuestras variables
+                        enemigoY=enemigosFuera2[j].y;
                     }
                     }
                 }

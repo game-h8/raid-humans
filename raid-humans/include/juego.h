@@ -10,6 +10,7 @@
 #include "Bala.h"
 #include "Torreta.h"
 #include "enemigos.h"
+#include "enemigos2.h"
 #include "Moneda.h"
 #include <vector>
 #include <Mapa.h>
@@ -48,6 +49,10 @@ class juego
         int numEnemigos1 = 0;
         //numero de enemigos que ya han aparecido
         int numEnemigosFuera1 = 0;
+         //numero de enemigos que apareceran en la oleada
+        int numEnemigos2 = 0;
+        //numero de enemigos que ya han aparecido
+        int numEnemigosFuera2 = 0;
 
 
     protected:
@@ -63,6 +68,8 @@ class juego
         vector<Moneda> vectorMonedas;
         vector<enemigos> enemigosFuera; //vector de enemigos que se encuentran en pantalla
         vector<enemigos>enemigosEspera; //vector de enemigos para hacer spawn*/
+        vector<enemigos2> enemigosFuera2;
+        vector<enemigos2> enemigosEspera2;
         vector<BalaMisil> vectorBalasMisil;
         vector<boss1> vectorboss1Espera;
         vector<boss1> vectorBoss1;

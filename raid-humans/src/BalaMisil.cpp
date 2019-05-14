@@ -64,6 +64,16 @@ void BalaMisil::colision(int j){
 
     }
 }
+void BalaMisil::colision2(int j){
+    if(hitbox.getGlobalBounds().intersects(mundo::getMundo()->enemigosFuera2->at(j).hitbox.getGlobalBounds())){
+        viva=false;
+
+       if(mundo::getMundo()->enemigosFuera2->at(j).balaHit(B2DMG)){
+        mundo::getMundo()->enemigosFuera2->erase(mundo::getMundo()->enemigosFuera2->begin()+j);
+       }
+
+    }
+}
 void BalaMisil::colisionboss1(int j){
     if(hitbox.getGlobalBounds().intersects(mundo::getMundo()->vectorBoss1->at(j).hitbox.getGlobalBounds())){
         viva=false;

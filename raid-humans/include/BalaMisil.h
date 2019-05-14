@@ -24,6 +24,7 @@ class BalaMisil
         float setPos(sf::Vector2f newPos);
         sf::FloatRect getGlobal();
         void colision(int j);
+        void colision2(int j);
         void render(float ticks, sf::RenderWindow &Window);
         void colisionboss1(int j);
         sf::RectangleShape hitbox;

@@ -73,6 +73,17 @@ void Bala::colision(int j){
     }
 
 }
+void Bala::colision2(int j){
+    if(hitbox.getGlobalBounds().intersects(mundo::getMundo()->enemigosFuera2->at(j).hitbox.getGlobalBounds())){
+        viva=false;
+
+       if(mundo::getMundo()->enemigosFuera2->at(j).balaHit(BDMG)){
+        mundo::getMundo()->enemigosFuera2->erase(mundo::getMundo()->enemigosFuera2->begin()+j);
+       }
+
+    }
+
+}
 void Bala::colisionboss(int j){
 
     if(hitbox.getGlobalBounds().intersects(mundo::getMundo()->vectorBoss1->at(j).hitbox.getGlobalBounds())){
