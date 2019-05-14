@@ -363,7 +363,7 @@
 	"tinyxml2.h"
 	"SFML/Graphics.hpp"
 
-1555058763 /home/juanmi/Documentos/raid-humans/raid-humans/include/tinyxml2.h
+1555058764 /home/juanmi/Documentos/raid-humans/raid-humans/include/tinyxml2.h
 	<ctype.h>
 	<limits.h>
 	<stdio.h>
@@ -379,7 +379,7 @@
 	<android/log.h>
 	<assert.h>
 
-1555358883 /home/juanmi/Documentos/raid-humans/raid-humans/include/juego.h
+1557859907 /home/juanmi/Documentos/raid-humans/raid-humans/include/juego.h
 	<SFML/System/Clock.hpp>
 	<iostream>
 	<SFML/Graphics.hpp>
@@ -395,14 +395,15 @@
 	<Castillo.h>
 	<sstream>
 	"Hud.h"
+	<boss1.h>
 
-1555358883 /home/juanmi/Documentos/raid-humans/raid-humans/include/player.h
+1557821201 /home/juanmi/Documentos/raid-humans/raid-humans/include/player.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	<SFML/System/Clock.hpp>
 	<mundo.h>
 
-1555358883 /home/juanmi/Documentos/raid-humans/raid-humans/include/mundo.h
+1557859843 /home/juanmi/Documentos/raid-humans/raid-humans/include/mundo.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	"player.h"
@@ -413,64 +414,67 @@
 	<Bala.h>
 	<Moneda.h>
 	<BalaMisil.h>
+	<boss1.h>
 	<Castillo.h>
 
-1555352183 /home/juanmi/Documentos/raid-humans/raid-humans/include/enemigos.h
+1557821201 /home/juanmi/Documentos/raid-humans/raid-humans/include/enemigos.h
 	<iostream>
 	<SFML/Graphics.hpp>
 	<player.h>
 	<Torreta.h>
 	<math.h>
 
-1555229804 /home/juanmi/Documentos/raid-humans/raid-humans/include/Torreta.h
+1557821201 /home/juanmi/Documentos/raid-humans/raid-humans/include/Torreta.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<math.h>
 	<mundo.h>
 
-1555058778 /home/juanmi/Documentos/raid-humans/raid-humans/include/Bala.h
+1557855940 /home/juanmi/Documentos/raid-humans/raid-humans/include/Bala.h
 	<SFML/Graphics.hpp>
 	"player.h"
 	"enemigos.h"
+	<boss1.h>
 	<math.h>
 
-1555229804 /home/juanmi/Documentos/raid-humans/raid-humans/include/Moneda.h
+1557821201 /home/juanmi/Documentos/raid-humans/raid-humans/include/Moneda.h
 	<SFML/Graphics.hpp>
 	<mundo.h>
 	<math.h>
 	<SFML/System/Clock.hpp>
 	<SFML/System/Time.hpp>
 
-1555229804 /home/juanmi/Documentos/raid-humans/raid-humans/include/BalaMisil.h
+1557855940 /home/juanmi/Documentos/raid-humans/raid-humans/include/BalaMisil.h
 	<SFML/Graphics.hpp>
 	"player.h"
 	"enemigos.h"
 	<math.h>
+	<boss1.h>
 
-1555352183 /home/juanmi/Documentos/raid-humans/raid-humans/include/StateMachine.h
+1557821201 /home/juanmi/Documentos/raid-humans/raid-humans/include/StateMachine.h
 	<iostream>
 
-1555358883 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/Bala.cpp
+1557855940 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/Bala.cpp
 	"../include/Bala.h"
 	<iostream>
 	<math.h>
 
-1555358883 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/BalaMisil.cpp
+1557855940 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/BalaMisil.cpp
 	"BalaMisil.h"
 
-1555058763 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/Drawable.cpp
+1555058764 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/Drawable.cpp
 	"Drawable.hpp"
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/RenderStates.hpp>
 
-1555058763 /home/juanmi/Documentos/raid-humans/raid-humans/include/Drawable.hpp
+1555058764 /home/juanmi/Documentos/raid-humans/raid-humans/include/Drawable.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/RenderStates.hpp>
 
-1555358883 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/enemigos.cpp
+1557855940 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/enemigos.cpp
 	"../include/enemigos.h"
 
-1555359002 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/juego.cpp
+1557859844 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/juego.cpp
 	"../include/juego.h"
 	<SFML/Graphics.hpp>
 	<iostream>
@@ -479,37 +483,37 @@
 	<SFML/System.hpp>
 	<SFML/Window.hpp>
 
-1555058778 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/Mapa.cpp
+1557859844 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/Mapa.cpp
 	"../include/Mapa.h"
 	<iostream>
 	<SFML/System.hpp>
 	<SFML/Graphics.hpp>
 	"tinyxml2.h"
 
-1555352184 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/Moneda.cpp
+1557821201 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/Moneda.cpp
 	"Moneda.h"
 	<iostream>
 
-1555358883 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/mundo.cpp
+1557859844 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/mundo.cpp
 	"mundo.h"
 
-1555358883 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/player.cpp
+1557859844 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/player.cpp
 	"player.h"
 
-1555358883 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/StateMachine.cpp
+1557821201 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/StateMachine.cpp
 	"StateMachine.h"
 
-1555058763 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/TileMap.cpp
+1555058764 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/TileMap.cpp
 	"TileMap.h"
 
-1555058763 /home/juanmi/Documentos/raid-humans/raid-humans/include/TileMap.h
+1555058764 /home/juanmi/Documentos/raid-humans/raid-humans/include/TileMap.h
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Transformable.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 	<SFML/Graphics/Texture.hpp>
 	<SFML/Graphics/VertexArray.hpp>
 
-1555058763 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/tinyxml2.cpp
+1555058764 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/tinyxml2.cpp
 	"tinyxml2.h"
 	<new>
 	<stddef.h>
@@ -517,7 +521,7 @@
 	<cstddef>
 	<cstdarg>
 
-1555229804 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/Torreta.cpp
+1557821201 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/Torreta.cpp
 	"../include/Torreta.h"
 
 1557853982 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/Castillo.h
@@ -892,19 +896,19 @@
 	"mundo.h"
 	"player.h"
 
-1555352183 /home/juanmi/Documentos/raid-humans/raid-humans/include/Castillo.h
+1557855940 /home/juanmi/Documentos/raid-humans/raid-humans/include/Castillo.h
 	<SFML/Graphics.hpp>
 	<mundo.h>
 
-1555358883 /home/juanmi/Documentos/raid-humans/raid-humans/include/Hud.h
+1557859843 /home/juanmi/Documentos/raid-humans/raid-humans/include/Hud.h
 	<SFML/Graphics.hpp>
 	"mundo.h"
 	"player.h"
 
-1555352184 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/Castillo.cpp
+1557855940 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/Castillo.cpp
 	"Castillo.h"
 
-1555358883 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/Hud.cpp
+1557859844 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/Hud.cpp
 	"Hud.h"
 
 1557854099 /home/fv/Escritorio/repositorio/raid-humans/raid-humans/include/Hud.h
@@ -939,5 +943,14 @@
 	<math.h>
 
 1557854099 source:/home/fv/Escritorio/repositorio/raid-humans/raid-humans/src/boss1.cpp
+	"boss1.h"
+
+1557859843 /home/juanmi/Documentos/raid-humans/raid-humans/include/boss1.h
+	<SFML/Graphics.hpp>
+	<player.h>
+	<Torreta.h>
+	<math.h>
+
+1557859844 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/boss1.cpp
 	"boss1.h"
 

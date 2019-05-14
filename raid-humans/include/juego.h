@@ -40,6 +40,14 @@ class juego
         vector<Torreta> getTorretas();
         bool IsSpriteCLicker(sf::Sprite es);
         void togleInvul();
+         //numero de enemigos que apareceran en la oleada
+        int numEnemigos = 0;
+        //numero de enemigos que ya han aparecido
+        int numEnemigosFuera = 0;
+         //numero de enemigos que apareceran en la oleada
+        int numEnemigos1 = 0;
+        //numero de enemigos que ya han aparecido
+        int numEnemigosFuera1 = 0;
 
 
     protected:
