@@ -929,7 +929,7 @@
 	<android/log.h>
 	<assert.h>
 
-1557763242 /home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/include/juego.h
+1557764235 /home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/include/juego.h
 	<SFML/System/Clock.hpp>
 	<iostream>
 	<SFML/Graphics.hpp>
@@ -1056,7 +1056,7 @@
 1555844459 source:/home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/src/enemigos.cpp
 	"../include/enemigos.h"
 
-1557762729 source:/home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/src/Hud.cpp
+1557819516 source:/home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/src/Hud.cpp
 	"Hud.h"
 
 1556016114 source:/home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/src/Mapa.cpp
@@ -1076,7 +1076,7 @@
 1555844459 source:/home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/src/Torreta.cpp
 	"../include/Torreta.h"
 
-1556016148 source:/home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/src/juego.cpp
+1557819657 source:/home/fv/Escritorio/proyectoFV/raid-humans/raid-humans/src/juego.cpp
 	"../include/juego.h"
 	<SFML/Graphics.hpp>
 	<iostream>

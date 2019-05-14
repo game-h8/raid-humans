@@ -24,9 +24,13 @@ juego::juego(Vector2u resolucion)
 
 //creo mapa
 
+
+// ===== 2 MAPAS -------->>>>>>
     //mapa1_OK -- mapa1
-    //mapa2  -- mapa2
- mapa = new Mapa("resources/mapa2.tmx", "resources/PathAndObjects.png");
+    //mapa2    -- mapa2
+
+
+ mapa = new Mapa("resources/mapa1_OK.tmx", "resources/PathAndObjects.png");
  ventana = new RenderWindow(VideoMode(resolucion.x, resolucion.y), "Raid humans");
  castillo = new Castillo();
  hud = new Hud();
@@ -69,7 +73,9 @@ endtitulo.setPosition((double)ventana->getSize().x/2 - (double)titulo.getGlobalB
         exit(0);
     }
 
-
+tumba.setTexture(tumbatext);
+tumba.setScale(0.5f,0.5f);
+tumba.setPosition(250,400);
     torretaCompra1.setPosition(30,600);
     torretaCompra2.setPosition(230, 600);
     espadaCompra.setPosition(430,600);
@@ -714,6 +720,8 @@ hud->draw(*ventana);
     //////////////////////////////////////
         endtitulo.setColor(Color::White);
         ventana->draw(endtitulo);
+        //if(mundo::mundo())
+        ventana->draw(tumba);
 /*
      ventana->draw(boton);
  if(IsSpriteCLicker (boton)){
