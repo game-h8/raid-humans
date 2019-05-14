@@ -284,7 +284,7 @@ void juego:: inicializar() { //inicializar las variables del juego
         enemigosEspera.push_back(ene16);
 
         numEnemigosFuera=0;
-        numEnemigos = (rand() % 5) + 3;
+        numEnemigos = (rand() % 4) + 5;
 
         numEnemigosFuera1=0;
         numEnemigos1 = (rand() % 3) + 2;
@@ -550,7 +550,7 @@ void juego:: update(float elapsedTime){
                             enemigosFuera.push_back(enemigosEspera.at(enemigosEspera.size()-1));
                             enemigosEspera.pop_back();
                         }
-                        if (vectorboss1Espera.empty()==false && (numEnemigos != numEnemigosFuera)) {
+                        if (vectorboss1Espera.empty()==false && (numEnemigos1 != numEnemigosFuera1)) {
                             numEnemigosFuera1++;
                             vectorBoss1.push_back(vectorboss1Espera.at(vectorboss1Espera.size()-1));
                             vectorboss1Espera.pop_back();
@@ -573,7 +573,7 @@ void juego:: update(float elapsedTime){
                             enemigosFuera.push_back(enemigosEspera.at(enemigosEspera.size()-1));
                             enemigosEspera.pop_back();
                         }
-                        if (vectorboss1Espera.empty()==false && (numEnemigos != numEnemigosFuera)) {
+                        if (vectorboss1Espera.empty()==false && (numEnemigos1 != numEnemigosFuera1)) {
                             numEnemigosFuera1++;
                             vectorBoss1.push_back(vectorboss1Espera.at(vectorboss1Espera.size()-1));
                             vectorboss1Espera.pop_back();
@@ -624,7 +624,7 @@ void juego:: update(float elapsedTime){
                         }
 
                     }
-   if((numEnemigos==numEnemigosFuera) && enemigosFuera.size() == 0 && (numEnemigos1==numEnemigosFuera1) && vectorBoss1.size()==0){
+   if((numEnemigos==numEnemigosFuera) && enemigosFuera.size()==0 && (numEnemigos1==numEnemigosFuera1) && vectorBoss1.size()==0){
         cout <<"CAMBIO DE RONDA DIN DIN DIN" << endl;
 
          mundo::getMundo()->vectorMonedas->push_back(Moneda(400,400,50*estado->getRonda()));

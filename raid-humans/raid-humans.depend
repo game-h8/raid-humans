@@ -474,7 +474,7 @@
 1557855940 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/enemigos.cpp
 	"../include/enemigos.h"
 
-1557860223 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/juego.cpp
+1557860771 source:/home/juanmi/Documentos/raid-humans/raid-humans/src/juego.cpp
 	"../include/juego.h"
 	<SFML/Graphics.hpp>
 	<iostream>
