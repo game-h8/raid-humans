@@ -228,7 +228,7 @@ void juego:: inicializar() { //inicializar las variables del juego
 
 
     if (estado->getEstado() == 3 && estado->getModo()==false){
-/*
+
         enemigos ene1(0,200);
         enemigos ene2(0,300);
         enemigos ene3(0,400);
@@ -237,7 +237,7 @@ void juego:: inicializar() { //inicializar las variables del juego
         enemigos ene6(0,400);
         enemigos ene7(0,300);
         enemigos ene8(0,200);
-*/
+
         boss1 bos1(0,200);
         boss1 bos2(0,300);
         boss1 bos3(0,400);
@@ -247,10 +247,7 @@ void juego:: inicializar() { //inicializar las variables del juego
         boss1 bos7(0,200);
         boss1 bos8(0,300);
 
-        enemigos ene1(100,100);
-        enemigos ene2(100,100);
-        enemigos ene3(100,100);
-        enemigos ene4(100,100);
+
 
         vectorboss1Espera.push_back(bos1);
         vectorboss1Espera.push_back(bos2);
@@ -260,7 +257,7 @@ void juego:: inicializar() { //inicializar las variables del juego
         vectorboss1Espera.push_back(bos5);
         vectorboss1Espera.push_back(bos7);
         vectorboss1Espera.push_back(bos8);
-/*
+
         enemigosEspera.push_back(ene1);
         enemigosEspera.push_back(ene2);
         enemigosEspera.push_back(ene3);
@@ -269,7 +266,7 @@ void juego:: inicializar() { //inicializar las variables del juego
         enemigosEspera.push_back(ene6);
         enemigosEspera.push_back(ene7);
         enemigosEspera.push_back(ene8);
-*/
+
     }
 
 }
@@ -605,8 +602,9 @@ void juego:: update(float elapsedTime){
         cout <<"CAMBIO DE RONDA DIN DIN DIN" << endl;
 
          mundo::getMundo()->vectorMonedas->push_back(Moneda(400,400,50*estado->getRonda()));
-
+        mundo::getMundo()->castillo->vida=2000;
         estado->toggleModo();
+
 
    }
 
@@ -788,7 +786,7 @@ hud->draw(*ventana);
         endtitulo.setColor(Color::White);
         ventana->draw(endtitulo);
         //if(mundo::mundo())
-        ventana->draw(tumba);
+        //ventana->draw(tumba);
 /*
      ventana->draw(boton);
  if(IsSpriteCLicker (boton)){

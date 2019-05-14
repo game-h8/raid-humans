@@ -71,8 +71,8 @@ class juego
 
         //variables de tiempo para el spawn
         Clock clockSpawn;
-        Time tiempoSpawn =  seconds(4.f);
-        Time tiempoSpawn2= seconds(2.f);
+        Time tiempoSpawn =  seconds(5.f);
+        Time tiempoSpawn2= seconds(3.f);
 
         //variables de tiempo para la bala
         Clock clockBala;
