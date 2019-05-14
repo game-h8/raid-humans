@@ -64,6 +64,16 @@ void BalaMisil::colision(int j){
 
     }
 }
+void BalaMisil::colisionboss1(int j){
+    if(hitbox.getGlobalBounds().intersects(mundo::getMundo()->vectorBoss1->at(j).hitbox.getGlobalBounds())){
+        viva=false;
+
+       if(mundo::getMundo()->vectorBoss1->at(j).balaHit(B2DMG)){
+        mundo::getMundo()->vectorBoss1->erase(mundo::getMundo()->vectorBoss1->begin()+j);
+       }
+
+    }
+}
 void BalaMisil::render(float ticks, sf::RenderWindow &Window){
     balaSprite.setPosition(xlast*(1-ticks) + x*ticks,ylast*(1-ticks)+y*ticks);
 

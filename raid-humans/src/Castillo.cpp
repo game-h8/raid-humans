@@ -22,6 +22,26 @@ void Castillo::draw(sf::RenderWindow &Window){
         Window.draw(hitbox);
     }
 }
+bool Castillo::enemigohit(float dano){
+
+    bool muerto=false;
+
+
+    if(vida-dano<=0) {
+       // muere();
+
+       muerto=true;
+       vida=vida-dano;
+
+    }
+    else{
+        vida=vida-dano;
+        cout<<"vidaaaa"<<vida<<endl;
+
+        }
+
+    return muerto;
+}
 
 Castillo::~Castillo()
 {

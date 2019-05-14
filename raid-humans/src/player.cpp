@@ -461,23 +461,23 @@ if(mundo::getMundo()->getDebug()){
 
 void player::ataquePlayer(){
 
- for(int i=0;i<mundo::getMundo()->enemigosFuera->size();i++){
-
+for(int i=0;i<mundo::getMundo()->enemigosFuera->size();i++){
     if(mundo::getMundo()->enemigosFuera->at(i).hitbox.getGlobalBounds().intersects(hitboxArma.getGlobalBounds())){
-
-
        if(mundo::getMundo()->enemigosFuera->at(i).playerHit(BASEDMG*nivel)){
             //Hitplayer es cuando el jugador le ataca, devuelve true si muere
          mundo::getMundo()->enemigosFuera->erase(mundo::getMundo()->enemigosFuera->begin()+i);
-
        }
-
-
     }
-
 }
 
-
+for(int i=0;i<mundo::getMundo()->vectorBoss1->size();i++){
+    if(mundo::getMundo()->vectorBoss1->at(i).hitbox.getGlobalBounds().intersects(hitboxArma.getGlobalBounds())){
+       if(mundo::getMundo()->vectorBoss1->at(i).playerHit(BASEDMG*nivel)){
+            //Hitplayer es cuando el jugador le ataca, devuelve true si muere
+         mundo::getMundo()->vectorBoss1->erase(mundo::getMundo()->vectorBoss1->begin()+i);
+       }
+    }
+}
 
 }
 
@@ -490,7 +490,6 @@ if(invulnerable){
 }
 
 }
-
 
 
 

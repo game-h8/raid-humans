@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "player.h"
 #include "enemigos.h"
+#include <boss1.h>
 #include <math.h>
 
 class enemigos;
@@ -27,6 +28,7 @@ class Bala
         int getX();
         sf::FloatRect getGlobal();
         void colision(int j);
+        void colisionboss(int j);
         void render(float ticks, sf::RenderWindow &Window);
         virtual ~Bala();
         sf::RectangleShape hitbox;

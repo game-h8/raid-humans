@@ -9,7 +9,7 @@ Bala::Bala(float posX, float posY)
     balaSprite.setTexture(mundo::getMundo()->balaTex);
     balaSprite.setTextureRect(IntRect(276,5,96,118));
     balaSprite.scale(0.5,0.5);
-  balaSprite.setOrigin(sf::Vector2f(36,36));
+    balaSprite.setOrigin(sf::Vector2f(36,36));
     nextPosX = posX;
     nextPosY= posY;
     hitbox.setSize(Vector2f(15,40));
@@ -68,6 +68,18 @@ void Bala::colision(int j){
 
        if(mundo::getMundo()->enemigosFuera->at(j).balaHit(BDMG)){
         mundo::getMundo()->enemigosFuera->erase(mundo::getMundo()->enemigosFuera->begin()+j);
+       }
+
+    }
+
+}
+void Bala::colisionboss(int j){
+
+    if(hitbox.getGlobalBounds().intersects(mundo::getMundo()->vectorBoss1->at(j).hitbox.getGlobalBounds())){
+        viva=false;
+
+       if(mundo::getMundo()->vectorBoss1->at(j).balaHit(BDMG)){
+        mundo::getMundo()->vectorBoss1->erase(mundo::getMundo()->vectorBoss1->begin()+j);
        }
 
     }

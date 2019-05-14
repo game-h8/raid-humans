@@ -7,11 +7,15 @@ class Castillo
 {
     public:
         Castillo();
-        int vida;
+        float vida;
+        bool invulnerable=false;
         void draw(sf::RenderWindow &Window);
+        bool enemigohit(float dano);
         virtual ~Castillo();
         sf::Sprite castilloSprite;
         sf::RectangleShape hitbox;
+
+
 
     protected:
 

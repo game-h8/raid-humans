@@ -83,6 +83,10 @@ mundo::mundo()
         std::cerr <<"Error al cargar la imagen";
         exit(0);
     }
+    if(!enemigobase.loadFromFile("resources/enemigocal.png")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
 
     if(!font.loadFromFile("resources/fuente/Marker Felt.ttf")){
          std::cerr <<"Error al cargar la fuente";
@@ -152,5 +156,5 @@ mundo::~mundo()
 
 void mundo::test(){
 
-cout << enemigosEspera->size() << endl;
+
 }

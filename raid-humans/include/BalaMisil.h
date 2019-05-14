@@ -4,6 +4,7 @@
 #include "player.h"
 #include "enemigos.h"
 #include <math.h>
+#include <boss1.h>
 
 class BalaMisil
 {
@@ -24,6 +25,7 @@ class BalaMisil
         sf::FloatRect getGlobal();
         void colision(int j);
         void render(float ticks, sf::RenderWindow &Window);
+        void colisionboss1(int j);
         sf::RectangleShape hitbox;
 
         virtual ~BalaMisil();

@@ -18,6 +18,7 @@
 #include <Castillo.h>
 #include <sstream>
 #include "Hud.h"
+#include <boss1.h>
 using namespace sf;
 
 
@@ -55,7 +56,8 @@ class juego
         vector<enemigos> enemigosFuera; //vector de enemigos que se encuentran en pantalla
         vector<enemigos>enemigosEspera; //vector de enemigos para hacer spawn*/
         vector<BalaMisil> vectorBalasMisil;
-
+        vector<boss1> vectorboss1Espera;
+        vector<boss1> vectorBoss1;
         Sprite dSprite;
         Texture dTexture;
         sf::Text titulo;

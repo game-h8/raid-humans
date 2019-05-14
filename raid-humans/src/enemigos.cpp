@@ -86,7 +86,7 @@ void enemigos::moveEnemy(float time, vector<enemigos> ene, vector<Torreta> torre
         /*for(int i=0; i<ene.size()&&choca==false; i++){
             //for(int j=0; i<torres.size()&&colision==false; i++){
                 if(i!=a){
-                    if(colision.getGlobalBounds().intersects(ene.at(i).colision.getGlobalBounds())){
+waif(colision.getGlobalBounds().intersects(ene.at(i).colision.getGlobalBounds())){
                         choca=true;
                     }
                     if(ene.at(i).atacaTorre==true) {
@@ -193,7 +193,7 @@ void enemigos::render(float ticks, RenderWindow &ventana) {
 
 eSprite.setPosition(xlast*(1-ticks) + x*ticks,ylast*(1-ticks)+y*ticks);
 ventana.draw(eSprite);
-ventana.draw(colision);
+//ventana.draw(colision);
 if(mundo::getMundo()->getDebug()){
    ventana.draw(hitbox);
 
@@ -215,7 +215,7 @@ void enemigos::atacaTorretaCercana(vector<Torreta> vecTor) {
     int posMasCercana=0;
 
     if (torretas->size()>0) {
-            cout<<"numero de torretas"<<torretas->size()<<endl;
+
             for (int i=0;i<torretas->size();i++) {
                 posibleResultado=fabs(fabs((x-torretas->at(i).getX()))-fabs((y-torretas->at(i).getY())));
 
@@ -230,11 +230,13 @@ void enemigos::atacaTorretaCercana(vector<Torreta> vecTor) {
             objetivo=seleccionada;
             if(objetivo.x>x){
                  eSprite.setScale(-1,1);
+            }else{
+             eSprite.setScale(1,1);
             }
-            cout<<"distancia en x"<<(abs((int)objetivo.x)-abs((int)x))<<"distancia en y"<<(abs((int)objetivo.y)-abs((int)y))<<endl;
+
             if (hitbox.getGlobalBounds().intersects(torretas->at(posMasCercana).getSprite().getGlobalBounds())) {
                 estado=2;
-            cout<<"vida de la torreta"<<mundo::getMundo()->vectorTorreta->at(posMasCercana).vida<<endl;
+
 
                if (mundo::getMundo()->vectorTorreta->at(posMasCercana).enemigohit(DMG) && timeenemigo.getElapsedTime().asMilliseconds()>600){
                 estado=1;
@@ -248,6 +250,12 @@ void enemigos::atacaTorretaCercana(vector<Torreta> vecTor) {
 }
 void enemigos::atacaJugador(player &jugador) {
     objetivo=jugador.pSprite.getPosition();
+
+     if(objetivo.x>x){
+                 eSprite.setScale(-1,1);
+            }else{
+             eSprite.setScale(1,1);
+            }
     if (hitbox.getGlobalBounds().intersects(jugador.pSprite.getGlobalBounds())) {
 
      mundo::getMundo()->jugador->enemigohit(DMG) && timeenemigo.getElapsedTime().asMilliseconds()>600;
@@ -272,7 +280,7 @@ if(invulnerable==false){
     }
     else{
         vida=vida-dano;
-        cout<<"vidaaaa"<<vida<<endl;
+
         timeInvul.restart();
         invulnerabilidad();
         invulnerable = true;
