@@ -284,10 +284,10 @@ void juego:: inicializar() { //inicializar las variables del juego
         enemigosEspera.push_back(ene16);
 
         numEnemigosFuera=0;
-        numEnemigos = (rand() % 6) + 8;
+        numEnemigos = (rand() % 5) + 3;
 
         numEnemigosFuera1=0;
-        numEnemigos1 = (rand() % 4) + 3;
+        numEnemigos1 = (rand() % 3) + 2;
 
     }
 
@@ -574,7 +574,7 @@ void juego:: update(float elapsedTime){
                             enemigosEspera.pop_back();
                         }
                         if (vectorboss1Espera.empty()==false && (numEnemigos != numEnemigosFuera)) {
-                            numEnemigosFuera++;
+                            numEnemigosFuera1++;
                             vectorBoss1.push_back(vectorboss1Espera.at(vectorboss1Espera.size()-1));
                             vectorboss1Espera.pop_back();
                         }
