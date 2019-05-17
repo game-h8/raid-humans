@@ -85,6 +85,31 @@ endtitulo.setPosition((double)ventana->getSize().x/2 - (double)titulo.getGlobalB
 tumba.setTexture(tumbatext);
 tumba.setScale(0.5f,0.5f);
 tumba.setPosition(250,400);
+
+
+ if(!copawintext.loadFromFile("resources/copa.png")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+
+copawin.setTexture(copawintext);
+copawin.setScale(0.5f,0.5f);
+copawin.setPosition(250,400);
+
+ if(!tumbatext.loadFromFile("resources/tumbita.png")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
+
+tumba.setTexture(tumbatext);
+tumba.setScale(0.5f,0.5f);
+tumba.setPosition(250,400);
+
+
+
+
+
+
     torretaCompra1.setPosition(30,600);
     torretaCompra2.setPosition(230, 600);
     espadaCompra.setPosition(430,600);
@@ -922,7 +947,18 @@ hud->draw(*ventana);
         endtitulo.setColor(Color::White);
         ventana->draw(endtitulo);
         //if(mundo::mundo())
-        //ventana->draw(tumba);
+        if(mundo::getMundo()->jugador->salud <= 0 || mundo::getMundo()->castillo->vida <= 0){
+          //  if(mundo::getMundo()->jugador->salud <= 0){
+                ventana->draw(tumba);
+           // }
+           /* if(mundo::getMundo()->castillo->vida == 0){
+                ventana->draw(castillolose);
+            }*/
+        }else{
+            endtitulo.setString("GAME OVER");
+            ventana->draw(copawin);
+        }
+
 /*
      ventana->draw(boton);
  if(IsSpriteCLicker (boton)){
