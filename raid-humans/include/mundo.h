@@ -64,6 +64,7 @@ class mundo
         sf::Texture compratorreta1no;
         sf::Texture compratorreta2no;
         sf::Texture compramejorano;
+        sf::Texture corazonctext;
         sf::Texture corazontext;
         sf::Texture monedatext;
         sf::Texture enemigobase;

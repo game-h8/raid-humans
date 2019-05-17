@@ -7,6 +7,10 @@ mundo::mundo()
         std::cerr <<"Error al cargar la imagen";
         exit(0);
     }
+    if(!corazonctext.loadFromFile("resources/castle.png")){
+        std::cerr <<"Error al cargar la imagen";
+        exit(0);
+    }
      if(!monedatext.loadFromFile("resources/moneda.png")){
         std::cerr <<"Error al cargar la imagen";
         exit(0);
