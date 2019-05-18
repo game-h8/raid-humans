@@ -254,6 +254,7 @@ void juego:: update(float elapsedTime){
                 for (int j=0;j<enemigosFuera.size();j++) {
                     vectorBalas[i].colision(j);
 
+
                 }
                     if(!vectorBalas[i].viva){
                         vectorBalas.erase(vectorBalas.begin()+i);
@@ -268,6 +269,13 @@ void juego:: update(float elapsedTime){
                     }
                     if(!vectorBalasMisil[i].viva){
                         vectorBalasMisil.erase(vectorBalasMisil.begin()+i);
+                    }
+                }
+                for(int i=0; i<vectorBombas.size(); i++){
+                    for (int j=0;j<enemigosFuera.size();j++) {
+                    if(vectorBombas[i].colision(j)){
+                        vectorBombas.erase(vectorBombas.begin()+i);
+                    }
                     }
                 }
 
@@ -354,14 +362,14 @@ void juego:: update(float elapsedTime){
                }
 
 
-           }
+           }//Hacer clic en el boton de bomba
            else if(IsSpriteCLicker (bombaCompra) && !estado->getColocando()){
                   if(mundo::getMundo()->gastaCoins(300)){
                     estado->colocando();
                     sf::sleep(seconds(0.100));
-
+mundo::getMundo()->cambiarTipoTorreta(3);
                     torretaFantasma.setTexture(mundo::getMundo()->bombaTex);
-                    torretaFantasma.scale(0.15,0.15);
+                    torretaFantasma.scale(0.5,0.5);
                   }
            }
 
@@ -809,13 +817,18 @@ bool juego::addTorreta(){
 
     //CAMBIAR CUANDO TENGAMOS EL MAPA
     if(i >= 0 && j >= 0 && i <= 25 && j <= 25 && !existe){
-        //Crea la clase torreta dandole un tamanio
-        Torreta* torreta = new Torreta();
-        //Coloca la torreta en una posicion llamando a una funcion que hemos creado en la clase torreta setPos
-        torreta->setPos(sf::Vector2f(i*32.f+16 ,j*32.f+16));
-        //Anade la torreta creada al vector de torretas
-       vectorTorreta.push_back(*torreta);
-
+            if(mundo::getMundo()->tipoTorreta==3){
+                Bomba bomba(i*32.f+16 ,j*32.f+16);
+                vectorBombas.push_back(bomba);
+            }
+            else{
+                //Crea la clase torreta dandole un tamanio
+                Torreta* torreta = new Torreta();
+                //Coloca la torreta en una posicion llamando a una funcion que hemos creado en la clase torreta setPos
+                torreta->setPos(sf::Vector2f(i*32.f+16 ,j*32.f+16));
+                //Anade la torreta creada al vector de torretas
+               vectorTorreta.push_back(*torreta);
+            }
     }
     return existe;
 

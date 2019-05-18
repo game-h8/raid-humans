@@ -1160,11 +1160,12 @@
 	<Torreta.h>
 	<math.h>
 
-1557215229 /home/fv/Escritorio/GameH8-Hito3/raid-humans/raid-humans/include/Torreta.h
+1558200446 /home/fv/Escritorio/GameH8-Hito3/raid-humans/raid-humans/include/Torreta.h
 	<SFML/Graphics.hpp>
 	<iostream>
 	<math.h>
 	<mundo.h>
+	<Bomba.h>
 
 1557215229 /home/fv/Escritorio/GameH8-Hito3/raid-humans/raid-humans/include/Bala.h
 	<SFML/Graphics.hpp>
@@ -1223,7 +1224,7 @@
 1557215239 source:/home/fv/Escritorio/GameH8-Hito3/raid-humans/raid-humans/src/Hud.cpp
 	"Hud.h"
 
-1557218315 source:/home/fv/Escritorio/GameH8-Hito3/raid-humans/raid-humans/src/juego.cpp
+1558202773 source:/home/fv/Escritorio/GameH8-Hito3/raid-humans/raid-humans/src/juego.cpp
 	"../include/juego.h"
 	<SFML/Graphics.hpp>
 	<iostream>
@@ -1270,13 +1271,14 @@
 	<cstddef>
 	<cstdarg>
 
-1557215229 source:/home/fv/Escritorio/GameH8-Hito3/raid-humans/raid-humans/src/Torreta.cpp
+1558200742 source:/home/fv/Escritorio/GameH8-Hito3/raid-humans/raid-humans/src/Torreta.cpp
 	"../include/Torreta.h"
 
-1557217195 /home/fv/Escritorio/GameH8-Hito3/raid-humans/raid-humans/include/Bomba.h
+1558202392 /home/fv/Escritorio/GameH8-Hito3/raid-humans/raid-humans/include/Bomba.h
 	<SFML/Graphics.hpp>
 	<mundo.h>
+	<enemigos.h>
 
-1557217293 source:/home/fv/Escritorio/GameH8-Hito3/raid-humans/raid-humans/src/Bomba.cpp
+1558203062 source:/home/fv/Escritorio/GameH8-Hito3/raid-humans/raid-humans/src/Bomba.cpp
 	"Bomba.h"
 

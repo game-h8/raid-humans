@@ -4,6 +4,7 @@
 #include <iostream>
 #include <math.h>
 #include <mundo.h>
+#include <Bomba.h>
 
 class Torreta
 {

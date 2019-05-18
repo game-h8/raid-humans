@@ -46,6 +46,7 @@
 		<Unit filename="cb.bmp" />
 		<Unit filename="include/Bala.h" />
 		<Unit filename="include/BalaMisil.h" />
+		<Unit filename="include/Bomba.h" />
 		<Unit filename="include/Castillo.h" />
 		<Unit filename="include/Drawable.hpp" />
 		<Unit filename="include/Hud.h" />
@@ -91,6 +92,7 @@
 		<Unit filename="resources/zombie.png" />
 		<Unit filename="src/Bala.cpp" />
 		<Unit filename="src/BalaMisil.cpp" />
+		<Unit filename="src/Bomba.cpp" />
 		<Unit filename="src/Castillo.cpp" />
 		<Unit filename="src/Drawable.cpp" />
 		<Unit filename="src/Hud.cpp" />
