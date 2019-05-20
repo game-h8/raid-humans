@@ -47,6 +47,7 @@ juego::juego(Vector2u resolucion)
  mundo::getMundo()->castillo=castillo;
  mundo::getMundo()->vectorboss1Espera=&vectorboss1Espera;
  mundo::getMundo()->vectorBoss1=&vectorBoss1;
+ mundo::getMundo()->vectorBombas=&vectorBombas;
 
 portada.setTexture(mundo::getMundo()->splasTexture);
   menu.setTexture(mundo::getMundo()->splasmenu);
@@ -54,7 +55,7 @@ portada.setTexture(mundo::getMundo()->splasTexture);
 
  portada.setScale((double)ventana->getSize().x/(double)portada.getTexture()->getSize().x,(double)ventana->getSize().y/(double)portada.getTexture()->getSize().y);
  menu.setScale((double)ventana->getSize().x/(double)menu.getTexture()->getSize().x,(double)ventana->getSize().y/(double)menu.getTexture()->getSize().y);
- boton.setPosition((double)ventana->getSize().x/2-(double)boton.getTexture()->getSize().x/2,(double)ventana->getSize().y/3);
+ boton.setPosition((double)ventana->getSize().x/2-(double)boton.getTexture()->getSize().x/2,(double)ventana->getSize().y/2);
 titulo.setFont(mundo::getMundo()->font);
 titulo.setCharacterSize(120);
 titulo.setString("Raid Humans");
@@ -65,6 +66,7 @@ titulo.setPosition((double)ventana->getSize().x/2 - (double)titulo.getGlobalBoun
     torretaCompra2.setTexture(mundo::getMundo()->compratorreta2);
     espadaCompra.setTexture(mundo::getMundo()->compramejora);
     continuarRonda.setTexture(mundo::getMundo()->botoncambioestado);
+    bombaCompra.setTexture(mundo::getMundo()->bombaCompra);
 
 endtitulo.setFont(mundo::getMundo()->font);
 endtitulo.setCharacterSize(120);
@@ -72,10 +74,7 @@ endtitulo.setString("GAME OVER");
 endtitulo.setColor(Color::Black);
 endtitulo.setPosition((double)ventana->getSize().x/2 - (double)titulo.getGlobalBounds().width/2,(double)ventana->getSize().y*1/4 );
 
-    torretaCompra1.setTexture(mundo::getMundo()->compratorreta1);
-    torretaCompra2.setTexture(mundo::getMundo()->compratorreta2);
-    espadaCompra.setTexture(mundo::getMundo()->compramejora);
-    continuarRonda.setTexture(mundo::getMundo()->botoncambioestado);
+
 
  if(!tumbatext.loadFromFile("resources/tumbita.png")){
         std::cerr <<"Error al cargar la imagen";
@@ -111,8 +110,13 @@ tumba.setPosition(250,400);
 
 
     torretaCompra1.setPosition(30,600);
-    torretaCompra2.setPosition(230, 600);
-    espadaCompra.setPosition(430,600);
+    torretaCompra1.scale(0.8,0.8);
+    torretaCompra2.setPosition(170, 600);
+    torretaCompra2.scale(0.8,0.8);
+    espadaCompra.setPosition(310,600);
+    espadaCompra.scale(0.8,0.8);
+    bombaCompra.setPosition(400,600);
+    bombaCompra.scale(0.8,0.8);
 
 
 
@@ -135,58 +139,12 @@ tumba.setPosition(250,400);
 estado=new StateMachine();
 
 
-
-portada.setTexture(mundo::getMundo()->splasTexture);
-  menu.setTexture(mundo::getMundo()->splasmenu);
-  boton.setTexture(mundo::getMundo()->botoninicio);
-
- portada.setScale((double)ventana->getSize().x/(double)portada.getTexture()->getSize().x,(double)ventana->getSize().y/(double)portada.getTexture()->getSize().y);
- menu.setScale((double)ventana->getSize().x/(double)menu.getTexture()->getSize().x,(double)ventana->getSize().y/(double)menu.getTexture()->getSize().y);
- boton.setPosition((double)ventana->getSize().x/2-(double)boton.getTexture()->getSize().x/2,(double)ventana->getSize().y/2);
-
-
-    torretaCompra1.setTexture(mundo::getMundo()->compratorreta1);
-    torretaCompra2.setTexture(mundo::getMundo()->compratorreta2);
-    espadaCompra.setTexture(mundo::getMundo()->compramejora);
-    continuarRonda.setTexture(mundo::getMundo()->botoncambioestado);
-
-
-
-
-    torretaCompra1.setPosition(30,600);
-    torretaCompra2.setPosition(230, 600);
-    espadaCompra.setPosition(430,600);
-
-
-
-    mundo::getMundo()->dinero.setPosition(ventana->getSize().x-ventana->getSize().x/8,ventana->getSize().y/9);
-    mundo::getMundo()->dinero.setColor((sf::Color::Black));
-    mundo::getMundo()->dinero.setCharacterSize(30);
-
-    continuarRonda.setPosition(630,600);
-
-
-    torretaFantasma.setTexture((mundo::getMundo()->torretaTex));
-    torretaFantasma.setColor(Color(255,255,255,155));
-    torretaFantasma.setTextureRect(IntRect(16,5,96,118));
-    torretaFantasma.setScale(0.4f,0.4f);
-    torretaFantasma.setOrigin(sf::Vector2f(96/2,118/2));
-
-
-
-
-estado=new StateMachine();
 
 
 
  mundo::getMundo()->ventana=ventana;
  mundo::getMundo()->jugador=jugador;
  mundo::getMundo()->mapa=mapa;
-
-
-
-
-
 
 
 
@@ -423,6 +381,15 @@ void juego:: update(float elapsedTime){
                     }
                 }
 
+                for(int i=0; i<vectorBombas.size();i++){
+                    for(int j=0; j<enemigosFuera.size(); j++){
+                            if(vectorBombas[i].colision(j)){
+                                vectorBombas.erase(vectorBombas.begin()+i);
+                            }
+                    }
+
+                }
+
         checkGameover();
 
 
@@ -462,6 +429,12 @@ void juego:: update(float elapsedTime){
                 espadaCompra.setTexture(mundo::getMundo()->compramejorano);
            }
 
+           if(mundo::getMundo()->getCoins()>=300){
+                bombaCompra.setTexture(mundo::getMundo()->bombaCompra);
+           }else{
+                bombaCompra.setTexture(mundo::getMundo()->bombaCompraNo);
+           }
+
             //Colocar torreta
            if(estado->getColocando() && sf::Mouse::isButtonPressed(sf::Mouse::Left)){
                 if(!IsSpriteCLicker(mundo::getMundo()->castillo->castilloSprite) && !addTorreta()){
@@ -477,6 +450,7 @@ void juego:: update(float elapsedTime){
                     estado->colocando();
                     sf::sleep(seconds(0.100));
                     mundo::getMundo()->cambiarTipoTorreta(1);
+                    torretaFantasma.setTexture(mundo::getMundo()->torretaTex);
                     torretaFantasma.setTextureRect(IntRect(128,0,128,128));
                 }
            }
@@ -488,7 +462,7 @@ void juego:: update(float elapsedTime){
                     estado->colocando();
                     sf::sleep(seconds(0.100));
                     mundo::getMundo()->cambiarTipoTorreta(2);
-
+                    torretaFantasma.setTexture(mundo::getMundo()->torretaTex);
                     torretaFantasma.setTextureRect(IntRect(0,128,128,128));
                   }
 
@@ -500,6 +474,16 @@ void juego:: update(float elapsedTime){
 
 
            }
+           else if(IsSpriteCLicker (bombaCompra) && !estado->getColocando()){
+                if(mundo::getMundo()->gastaCoins(200)){
+                    estado->colocando();
+                    sf::sleep(seconds(0.100));
+                    mundo::getMundo()->cambiarTipoTorreta(3);
+                    torretaFantasma.setTexture(mundo::getMundo()->bombaTex);
+                    torretaFantasma.setScale(0.2,0.2);
+                    torretaFantasma.setTextureRect(IntRect(0,0,128,128));
+                }
+           }
 
 
             //Mover botones para que no se buguee
@@ -508,13 +492,15 @@ void juego:: update(float elapsedTime){
             torretaCompra2.setPosition(-200, -200);
             espadaCompra.setPosition(-200,-200);
             continuarRonda.setPosition(-200,-200);
+            bombaCompra.setPosition(-200,-200);
 
            }else{
 
 
             torretaCompra1.setPosition(30,600);
-            torretaCompra2.setPosition(230, 600);
-            espadaCompra.setPosition(430,600);
+            torretaCompra2.setPosition(190, 600);
+            bombaCompra.setPosition(350,600);
+            espadaCompra.setPosition(510,600);
             continuarRonda.setPosition(630,600);
            }
 
@@ -773,6 +759,12 @@ void juego:: update(float elapsedTime){
             }
         }
 
+        if(vectorBombas.empty()==false){
+            for(int i=0; i<vectorBombas.size(); i++){
+                vectorBombas.erase(vectorBombas.begin()+i);
+            }
+        }
+
         titulo.setString("GG ez");
 
 
@@ -880,6 +872,9 @@ for(int i=0; i<vectorBalasMisil.size(); i++){
 for(int i=0; i<vectorMonedas.size(); i++){
     vectorMonedas[i].render(*ventana);
 }
+for(int i=0; i<vectorBombas.size(); i++){
+    vectorBombas[i].render(*ventana);
+}
 
 
 
@@ -900,6 +895,7 @@ for(int i=0; i<vectorMonedas.size(); i++){
                             ventana->draw(torretaCompra2);
                             ventana->draw(espadaCompra);
                             ventana->draw(continuarRonda);
+                            ventana->draw(bombaCompra);
 
 
                         }
@@ -1056,15 +1052,26 @@ bool juego::addTorreta(){
             existe = true;
         }
     }
+    for(int k=0; k<vectorBombas.size(); k++){
+        if(vectorBombas[k].getX()/32 == i && vectorBombas[k].getY()/32 == j){
+            existe = true;
+        }
+    }
 
     //CAMBIAR CUANDO TENGAMOS EL MAPA
     if(i >= 0 && j >= 0 && i <= 25 && j <= 25 && !existe){
-        //Crea la clase torreta dandole un tamanio
-        Torreta* torreta = new Torreta();
-        //Coloca la torreta en una posicion llamando a una funcion que hemos creado en la clase torreta setPos
-        torreta->setPos(sf::Vector2f(i*32.f+16 ,j*32.f+16));
-        //Anade la torreta creada al vector de torretas
-       vectorTorreta.push_back(*torreta);
+            if(mundo::getMundo()->tipoTorreta==3){
+                Bomba bomba(i*32.f+16 ,j*32.f+16);
+                vectorBombas.push_back(bomba);
+            }
+            else{
+                //Crea la clase torreta dandole un tamanio
+                Torreta* torreta = new Torreta();
+                //Coloca la torreta en una posicion llamando a una funcion que hemos creado en la clase torreta setPos
+                torreta->setPos(sf::Vector2f(i*32.f+16 ,j*32.f+16));
+                //Anade la torreta creada al vector de torretas
+               vectorTorreta.push_back(*torreta);
+            }
 
     }
     return existe;

@@ -17,6 +17,7 @@
 #include <StateMachine.h>
 #include <BalaMisil.h>
 #include <Castillo.h>
+#include <Bomba.h>
 #include <sstream>
 #include "Hud.h"
 #include <boss1.h>
@@ -73,6 +74,7 @@ class juego
         vector<BalaMisil> vectorBalasMisil;
         vector<boss1> vectorboss1Espera;
         vector<boss1> vectorBoss1;
+        vector<Bomba> vectorBombas;
         Sprite dSprite;
         Texture dTexture;
         sf::Text titulo;
@@ -106,6 +108,7 @@ class juego
         sf::Sprite torretaCompra1;
         sf::Sprite torretaCompra2;
         sf::Sprite espadaCompra;
+        sf::Sprite bombaCompra;
 
         sf::Sprite continuarRonda;
 
