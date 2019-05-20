@@ -274,7 +274,11 @@ void juego:: update(float elapsedTime){
                 for(int i=0; i<vectorBombas.size(); i++){
                     for (int j=0;j<enemigosFuera.size();j++) {
                     if(vectorBombas[i].colision(j)){
-                        vectorBombas.erase(vectorBombas.begin()+i);
+
+                        /*if(!vectorBombas[i].explotando)
+                            vectorBombas[i].timeExplosion.restart();
+                        if(vectorBombas[i].explosion())*/
+                            vectorBombas.erase(vectorBombas.begin()+i);
                     }
                     }
                 }
@@ -811,6 +815,11 @@ bool juego::addTorreta(){
 
     for(int k = 0; k < vectorTorreta.size();k++){
         if(vectorTorreta[k].getX()/32 == i && vectorTorreta[k].getY()/32 == j){
+            existe = true;
+        }
+    }
+    for(int k = 0; k < vectorBombas.size();k++){
+        if(vectorBombas[k].getX()/32 == i && vectorBombas[k].getY()/32 == j){
             existe = true;
         }
     }

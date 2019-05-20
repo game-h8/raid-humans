@@ -10,14 +10,19 @@ class Bomba
         Bomba(float xPos, float yPos);
         bool explosion();
         bool viva;
+        bool explotando;
         bool colision(int i);
+        int getX();
+        int getY();
         void render(sf::RenderWindow &Window);
         sf::Sprite bomba;
+        sf::Clock timeExplosion;
         virtual ~Bomba();
 
     protected:
 
     private:
+
 };
 
 #endif // BOMBA_H

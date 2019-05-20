@@ -1224,7 +1224,7 @@
 1557215239 source:/home/fv/Escritorio/GameH8-Hito3/raid-humans/raid-humans/src/Hud.cpp
 	"Hud.h"
 
-1558202773 source:/home/fv/Escritorio/GameH8-Hito3/raid-humans/raid-humans/src/juego.cpp
+1558364482 source:/home/fv/Escritorio/GameH8-Hito3/raid-humans/raid-humans/src/juego.cpp
 	"../include/juego.h"
 	<SFML/Graphics.hpp>
 	<iostream>
@@ -1274,11 +1274,11 @@
 1558200742 source:/home/fv/Escritorio/GameH8-Hito3/raid-humans/raid-humans/src/Torreta.cpp
 	"../include/Torreta.h"
 
-1558202392 /home/fv/Escritorio/GameH8-Hito3/raid-humans/raid-humans/include/Bomba.h
+1558364151 /home/fv/Escritorio/GameH8-Hito3/raid-humans/raid-humans/include/Bomba.h
 	<SFML/Graphics.hpp>
 	<mundo.h>
 	<enemigos.h>
 
-1558203062 source:/home/fv/Escritorio/GameH8-Hito3/raid-humans/raid-humans/src/Bomba.cpp
+1558364853 source:/home/fv/Escritorio/GameH8-Hito3/raid-humans/raid-humans/src/Bomba.cpp
 	"Bomba.h"
 
