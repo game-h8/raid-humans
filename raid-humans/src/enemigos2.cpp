@@ -4,7 +4,7 @@ using namespace sf;
 using namespace std;
 
 
-#define DMG 100
+#define DMG 25
 enemigos2::enemigos2() {
     x=0;
     y=0;

@@ -273,18 +273,9 @@ void juego:: inicializar() { //inicializar las variables del juego
         enemigos ene15(0,(rand() % 200) + 200);
         enemigos ene16(0,(rand() % 200) + 200);
 
-        /* MURCIELAGO
         enemigos2 ene21(0,(rand() % 200) + 200);
         enemigos2 ene22(0,(rand() % 200) + 200);
-        enemigos2 ene23(0,(rand() % 200) + 200);
-        enemigos2 ene24(0,(rand() % 200) + 200);
-        enemigos2 ene25(0,(rand() % 200) + 200);
-        enemigos2 ene26(0,(rand() % 200) + 200);
-        enemigos2 ene27(0,(rand() % 200) + 200);
-        enemigos2 ene28(0,(rand() % 200) + 200);
-        enemigos2 ene29(0,(rand() % 200) + 200);
-        enemigos2 ene210(0,(rand() % 200) + 200);
-        */
+
 
         boss1 bos1(0,(rand() % 200) + 200);
         boss1 bos2(0,(rand() % 200) + 200);
@@ -323,20 +314,14 @@ void juego:: inicializar() { //inicializar las variables del juego
         enemigosEspera.push_back(ene15);
         enemigosEspera.push_back(ene16);
 
-        /* MURCIELAGO
         enemigosEspera2.push_back(ene21);
         enemigosEspera2.push_back(ene22);
-        enemigosEspera2.push_back(ene23);
-        enemigosEspera2.push_back(ene24);
-        */
 
         numEnemigosFuera=0;
         numEnemigos = (rand() % 4) + 5;
 
-        /* MURCIELAGO
         numEnemigosFuera2=0;
         numEnemigos2 = (rand() % 3) + 2;
-        */
 
         numEnemigosFuera1=0;
         numEnemigos1 = (rand() % 3) + 2;
@@ -577,7 +562,6 @@ void juego:: update(float elapsedTime){
                         dSprite.setPosition(jugador->xlast,jugador->ylast+25);*/
                     }
             }
-            /* MURCIELAGO
             if (enemigosFuera2.empty()==false) {
                 for (int i=0;i<enemigosFuera2.size();i++) {
                     enemigosFuera2.at(i).moveEnemy(elapsedTime, enemigosFuera2, i);
@@ -585,7 +569,6 @@ void juego:: update(float elapsedTime){
                     enemigosFuera2.at(i).danobala();
                     }
             }
-            */
             if (vectorBoss1.empty()==false) {
                 for (int i=0;i<vectorBoss1.size();i++) {
                     vectorBoss1.at(i).moveEnemy(elapsedTime);
@@ -619,13 +602,11 @@ void juego:: update(float elapsedTime){
                             enemigosFuera.push_back(enemigosEspera.at(enemigosEspera.size()-1));
                             enemigosEspera.pop_back();
                         }
-                        /* MURCIELAGO
                         if (enemigosEspera2.empty()==false && (numEnemigos2 != numEnemigosFuera2)) {
                             numEnemigosFuera2++;
                             enemigosFuera2.push_back(enemigosEspera2.at(enemigosEspera2.size()-1));
                             enemigosEspera2.pop_back();
 						}
-						*/
                         if (vectorboss1Espera.empty()==false && (numEnemigos1 != numEnemigosFuera1)) {
                             numEnemigosFuera1++;
                             vectorBoss1.push_back(vectorboss1Espera.at(vectorboss1Espera.size()-1));
@@ -636,14 +617,12 @@ void juego:: update(float elapsedTime){
                                 enemigosFuera.at(i).seleccionaAtaque(vectorTorreta, *jugador);
                             }
                         }
-                        /* MURCIELAGO
                         if (enemigosFuera2.empty()==false) {
                             for (int i=0;i<enemigosFuera2.size()&&i<4;i++) {
                                 enemigosFuera2.at(i).atacaJugador(jugador);
                                 enemigosFuera2.at(i).ataque(jugador, vectorTorreta);
                             }
                         }
-                        */
 
 
                         //le damos un objetivo al enemigo
@@ -658,13 +637,11 @@ void juego:: update(float elapsedTime){
                             enemigosFuera.push_back(enemigosEspera.at(enemigosEspera.size()-1));
                             enemigosEspera.pop_back();
                         }
-                        /* MURCIELAGO
                         if (enemigosEspera2.empty()==false && (numEnemigos2 != numEnemigosFuera2)) {
                             numEnemigosFuera2++;
                             enemigosFuera2.push_back(enemigosEspera2.at(enemigosEspera2.size()-1));
                             enemigosEspera2.pop_back();
                         }
-                        */
                         if (vectorboss1Espera.empty()==false && (numEnemigos1 != numEnemigosFuera1)) {
                             numEnemigosFuera1++;
                             vectorBoss1.push_back(vectorboss1Espera.at(vectorboss1Espera.size()-1));
@@ -675,13 +652,11 @@ void juego:: update(float elapsedTime){
                                 enemigosFuera.at(i).seleccionaAtaque(vectorTorreta, *jugador);
                             }
                         }
-                        /* MURCIELAGO
                         if (enemigosFuera2.empty()==false) {
                             for (int i=0;i<enemigosFuera2.size()&&i<4;i++) {
                                 enemigosFuera2.at(i).atacaJugador(jugador);
                             }
                         }
-                        */
                         //le damos un objetivo al enemigo
                      }
 
@@ -706,7 +681,6 @@ void juego:: update(float elapsedTime){
                                 }
                             }
                         }
-                        /* MURCIELAGO
                         if (enemigosFuera2.empty()==false) {
                             for (int i=0;i<enemigosFuera2.size();i++) {
                                 enemigosFuera2.at(i).atacaJugador(jugador);
@@ -718,7 +692,6 @@ void juego:: update(float elapsedTime){
                                 }
                             }
                         }
-                        */
 
                      }
 
